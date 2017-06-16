@@ -1,13 +1,72 @@
 FORMAT: 1A
 HOST: http://polls.apiblueprint.org/
 
-# Polls API
+# bandDB API
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+bandDB is an API for viewing bands data, including band members, member infomation, 
+genre, albums, tours and songs.
 
-## Questions Collection [/questions]
 
-### List All Questions [GET]
+## Artists [/artists/{id}{?query1,query2}]
+
++ Parameters
+    + id - A path variable that is required for a valid URL
+    + query1 (optional) - A query variable
+    + query2 (optional) - Another query variable
+
+### List all artists [GET]
+### Post a new artist [POST]
+
++ Request (application/json)
+
+        {
+            "question": "Favourite programming language?",
+            "choices": [
+                "Swift",
+                "Python",
+                "Objective-C",
+                "Ruby"
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /questions/2
+
+    + Body
+
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 0
+                    }, {
+                        "choice": "Python",
+                        "votes": 0
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 0
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 0
+                    }
+                ]
+            }
+
+## Albums [/albums]
+### List all albums [GET]
+### Post a new album [POST]
+
+## Tours [/tours]
+### List all tours [GET]
+### Post a new tour [POST]
+
+## Songs [/songs]
+### List all songs [GET]
 
 + Response 200 (application/json)
 
@@ -33,10 +92,10 @@ Polls is a simple API allowing consumers to view polls and vote in them.
             }
         ]
 
-### Create a New Question [POST]
+### Post a new song [POST]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
+User may post a new song using this action. It takes a JSON
+object containing a song and a collection of answers in the
 form of choices.
 
 + Request (application/json)

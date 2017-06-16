@@ -1,0 +1,11 @@
+TITLE:	                                                                      EST.:
+A user wants to see an artist's age.                                            1
+A user wants to see an artist's genre.                                          1
+A user wants to compare two bands and their comparable stats.                   5
+A user wants to see a list of songs from an album.                              3
+A user wants to be able to see all of the albums created by a specific band.    2
+A user wants to know know the lineup for the most upcoming tour.                4
+A user wants to be able see all of the members of a specific band.              4
+A user wants to know tour dates for a particular band or person.	            3
+A user wants to know where an artist is from.	                                2
+A user wants to know information about bands!	                                6

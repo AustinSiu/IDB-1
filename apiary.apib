@@ -15,125 +15,60 @@ genre, albums, tours and songs.
     + query2 (optional) - Another query variable
 
 ### List all artists [GET]
-### Post a new artist [POST]
++ Response 204
 
+### Post a new artist [POST]
 + Request (application/json)
 
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
++ Response 201 
+
+
+## Albums [/albums/{id}{?query1,query2}]
+
++ Parameters
+    + id - Path variable
+    + query1 (optional) - Query variable
+    + query2 (optional) - Query variable
+
+### List all albums [GET]
++ Response 204
+
+### Post a new album [POST]
++ Request (application/json)
 
 + Response 201 (application/json)
 
-    + Headers
 
-            Location: /questions/2
+## Tours [/tours/{id}{?query1,query2}]
++ Parameters
+    + id - Path variable
+    + query1 (optional) - Query variable
+    + query2 (optional) - Query variable
 
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
-
-## Albums [/albums]
-### List all albums [GET]
-### Post a new album [POST]
-
-## Tours [/tours]
 ### List all tours [GET]
-### Post a new tour [POST]
++ Response 204
 
-## Songs [/songs]
+### Post a new tour [POST]
++ Request (application/json)
+
++ Response 201 (application/json)
+
+
+## Songs [/songs/{id}{?query1,query2}]
++ Parameters
+    + id - Path variable
+    + query1 (optional) - Query variable
+    + query2 (optional) - Query variable
+
+
+
 ### List all songs [GET]
 
-+ Response 200 (application/json)
++ Response 204
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
 
 ### Post a new song [POST]
 
-User may post a new song using this action. It takes a JSON
-object containing a song and a collection of answers in the
-form of choices.
-
 + Request (application/json)
 
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /questions/2
-
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
++ Response 204

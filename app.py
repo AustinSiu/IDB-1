@@ -2,7 +2,7 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
-	return 'Banddb.me'
+def index():
+	return render_template('templates/index.html')
 
 app.run(debug=True)

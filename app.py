@@ -11,19 +11,19 @@ def bands():
 	return render_template('search.html', model="bands")
 
 @app.route('/people')
-def bands():
+def people():
 	return render_template('search.html', model="people")
 
 @app.route('/albumns')
-def bands():
+def albumns():
 	return render_template('search.html', model="albumns")
 
 @app.route('/tours')
-def bands():
+def tours():
 	return render_template('search.html', model="tours")
 
 @app.route('/songs')
-def bands():
+def songs():
 	return render_template('search.html', model="songs")
 
 app.run(debug=True)

@@ -15,7 +15,7 @@ def index():
 
     Doc.
     """
-    return render_template('index.html')
+    return render_template('test.html')
 
 
 @app.route('/bands')

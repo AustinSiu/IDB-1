@@ -15,7 +15,7 @@ def index():
 
     Doc.
     """
-    return render_template('test.html')
+    return render_template('index.html')
 
 
 @app.route('/bands')
@@ -25,7 +25,7 @@ def bands():
 
     Doc.
     """
-    return render_template('search.html', model="bands")
+    return render_template('bands.html')
 
 
 @app.route('/people')
@@ -35,7 +35,7 @@ def people():
 
     Doc.
     """
-    return render_template('search.html', model="people")
+    return render_template('people.html')
 
 
 @app.route('/albums')
@@ -45,7 +45,7 @@ def albums():
 
     Doc.
     """
-    return render_template('search.html', model="albums")
+    return render_template('albums.html')
 
 
 @app.route('/tours')
@@ -55,7 +55,7 @@ def tours():
 
     Doc.
     """
-    return render_template('search.html', model="tours")
+    return render_template('tours.html')
 
 
 @app.route('/songs')
@@ -65,7 +65,59 @@ def songs():
 
     Doc.
     """
-    return render_template('search.html', model="songs")
+    return render_template('songs.html')
+
+
+# INFO
+
+@app.route('/bands/info')
+def bands_info():
+    """
+    Doc.
+
+    Doc.
+    """
+    return render_template('bands-info.html')
+
+
+@app.route('/people/info')
+def people_info():
+    """
+    Doc.
+
+    Doc.
+    """
+    return render_template('people-info.html')
+
+
+@app.route('/albums/info')
+def albums_info():
+    """
+    Doc.
+
+    Doc.
+    """
+    return render_template('albums-info.html')
+
+
+@app.route('/tours/info')
+def tours_info():
+    """
+    Doc.
+
+    Doc.
+    """
+    return render_template('tours-info.html')
+
+
+@app.route('/songs/info')
+def songs_info():
+    """
+    Doc.
+
+    Doc.
+    """
+    return render_template('songs-info.html')
 
 
 app.run(debug=True)

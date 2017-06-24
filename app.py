@@ -77,7 +77,7 @@ def bands_info():
 
     Doc.
     """
-    return render_template('bands-info.html')
+    return render_template('band-info.html')
 
 
 @app.route('/people/info')
@@ -87,7 +87,7 @@ def people_info():
 
     Doc.
     """
-    return render_template('people-info.html')
+    return render_template('person-info.html')
 
 
 @app.route('/albums/info')
@@ -97,7 +97,7 @@ def albums_info():
 
     Doc.
     """
-    return render_template('albums-info.html')
+    return render_template('album-info.html')
 
 
 @app.route('/tours/info')
@@ -107,7 +107,7 @@ def tours_info():
 
     Doc.
     """
-    return render_template('tours-info.html')
+    return render_template('tour-info.html')
 
 
 @app.route('/songs/info')
@@ -117,7 +117,7 @@ def songs_info():
 
     Doc.
     """
-    return render_template('songs-info.html')
+    return render_template('song-info.html')
 
 
 app.run(debug=True)

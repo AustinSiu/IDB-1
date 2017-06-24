@@ -2,15 +2,47 @@
 <html lang="en">
 <head>
     {% block head %}
-    <link rel="stylesheet" href="style.css" />
+    <!-- Bootstrap core CSS -->
+    <link href="{{url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="{{url_for('static', filename='bootstrap/css/bootstrap-theme.min.css') }}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{{url_for('static', filename='css/theme.css') }}" rel="stylesheet">
+
     <title>{% block title %}{% endblock %} - My Webpage</title>
     {% endblock %}
 </head>
 <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">BandDB</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/bands">Bands</a></li>
+            <li><a href="/people">People</a></li>
+            <li><a href="/albums">Albums</a></li>
+            <li><a href="/tours">Tours</a></li>
+            <li><a href="/songs">Songs</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
     <div id="content">{% block content %}{% endblock %}</div>
     <div id="footer">
         {% block footer %}
-        &copy; Copyright 2017 by <a href="http://domain.invalid/">you</a>.
+        &copy; Copyright 2017 by <a href="#">you</a>.
         {% endblock %}
     </div>
 </body>

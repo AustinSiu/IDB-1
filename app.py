@@ -69,6 +69,15 @@ def songs():
     return render_template('songs.html')
 
 
+@app.route('/about')
+def about():
+    """
+    Doc.
+
+    Doc.
+    """
+    return render_template('about.html')
+
 # INFO
 
 @app.route('/bands/info')

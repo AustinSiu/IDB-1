@@ -1,49 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% block head %}
+    {% block bootstrap %}
     <!-- Bootstrap core CSS -->
-    <link href="{{url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/style.css') }}" rel="stylesheet">
     <!-- Bootstrap theme -->
-    <link href="{{url_for('static', filename='bootstrap/css/bootstrap-theme.min.css') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/style.scss') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="{{url_for('static', filename='css/theme.css') }}" rel="stylesheet">
+    <!-- <link href="{{url_for('static', filename='css/theme.css') }}" rel="stylesheet"> -->
+    <link href="{{url_for('static', filename='bootstrap1/sass/layout/_content.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/layout/_footer.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/layout/_header.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/layout/_sidebar.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/libs/_component.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/libs/_global.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/libs/_mixins.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/libs/_normalize.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/libs/_settings.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/bootstrap-grid/_grid.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/bootstrap-grid/_mixins.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/bootstrap-grid/_settings.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/pages/_download.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/pages/_gallery.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/pages/_homepage.scss') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap1/sass/pages/_post.scss') }}" rel="stylesheet">
+
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900" rel="stylesheet" type="text/css">
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<!-- Loading main css file -->
+		<link rel="stylesheet" href="style.css">
 
     <title>{% block title %}{% endblock %} - My Webpage</title>
     {% endblock %}
+
 </head>
-<body>
+<div id="header">{% block header %}
+<body class="header-collapse">
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div id="site-content">
+    <header class="site-header">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">BandDB</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/bands">Bands</a></li>
-            <li><a href="/people">People</a></li>
-            <li><a href="/albums">Albums</a></li>
-            <li><a href="/tours">Tours</a></li>
-            <li><a href="/songs">Songs</a></li>
-            <li><a href="/about">About</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+        <a href="index.html" id="branding">
+          <img src="{{url_for('static', filename='bootstrap1/dummy/logo.png')}}" alt="">
+          <small class="site-description">Slogan goes here</small>
+        </a> <!-- #branding -->
 
-    <div id="content">{% block content %}{% endblock %}</div>
-    <div id="footer">
-        {% block footer %}
-        &copy; Copyright 2017 by <a href="#">you</a>.
-        {% endblock %}
-    </div>
+        <nav class="main-navigation">
+          <button type="button" class="toggle-menu"><i class="fa fa-bars"></i></button>
+          <ul class="menu">
+            {% block currentmenuitem %}
+            {% endblock %}
+          </ul> <!-- .menu -->
+        </nav> <!-- .main-navigation -->
+        <div class="mobile-menu"></div>
+      </div>
+    </header> <!-- .site-header -->
+  </div>
+
+{% endblock %}</div>
+
+<div id="content">{% block content %}{% endblock %}</div>
+
+
+<div id="footer">{% block footer %}
+
+    <footer class="site-footer">
+      <div class="container">
+        <img src="{{url_for('static', filename='bootstrap1/dummy/logo-footer.png')}}" alt="Site Name">
+
+        <address>
+          <p>Summer CS 373: Software Engineering <br>Taught by Professor Downing<br>2017</p>
+        </address>
+
+        <!-- <form action="#" class="newsletter-form"> -->
+          <!-- <input type="email" placeholder="Enter your email to join newsletter..."> -->
+          <!-- <input type="submit" class="button cut-corner" value="Subscribe"> -->
+        <!-- </form> .newsletter-form -->
+
+        <div class="social-links">
+          <a href="#"><i class="fa fa-facebook-square"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-google-plus"></i></a>
+          <a href="#"><i class="fa fa-pinterest"></i></a>
+        </div> <!-- .social-links -->
+
+        <p class="copy">Copyright 2014 Company Name. Designed by Themezy. All right reserved</p>
+      </div>
+    </footer> <!-- .site-footer -->
+{% endblock %}</div>
+
+  <script src="{{url_for('static', filename='bootstrap1/js/jquery-1.11.1.min.js')}}"></script>
+  <script src="{{url_for('static', filename='bootstrap1/js/plugins.js')}}"></script>
+  <script src="{{url_for('static', filename='bootstrap1/js/app.js')}}"></script>
+
 </body>
+
 </html>

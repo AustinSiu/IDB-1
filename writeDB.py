@@ -11,10 +11,10 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 date_format = "%Y-%m-%d"
-new_artist = Artist(Name = "dummy", Start_time = "2017-06-01")
+new_artist = Artist(Name="dummy", Start_time="2017-06-01")
 session.add(new_artist)
 session.flush()
-new_song = Songs(, ArtistID = new_artist.ArtistID, )
+new_song = Songs(, ArtistID=new_artist.ArtistID, )
 session.add(new_song)
-session.flush() #optional
+session.flush()  # optional
 session.commit()

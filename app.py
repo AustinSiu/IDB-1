@@ -80,6 +80,7 @@ def about():
 
 # INFO
 
+
 @app.route('/bands/info')
 def bands_info():
     """

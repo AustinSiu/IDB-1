@@ -7,6 +7,7 @@ api = Api(app)
 
 bands = {123: "Metalica"}
 
+
 class Bands(Resource):
     """DOC."""
 

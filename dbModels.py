@@ -44,31 +44,38 @@ class Artists(db.Model):
     relations of top_3_songs (a table)
     """
 
-    ArtistID 	= db.Column(db.Integer, nullable=False, primary_key=True)
-    Name 		= db.Column(db.String(length=50), nullable=False)
-    Start_Time 	= db.Column(db.Date, nullable=False)
-    End_Time 	= db.Column(db.Date, nullable=True)
+    ArtistID = db.Column(db.Integer, nullable=False, primary_key=True)
+    Name = db.Column(db.String(length=50), nullable=False)
+    Age = db.Column(db.Integer, nullable=True)
+    Origin = db.Column(db.String, nullable=True)
+    Start_Time = db.Column(db.Date, nullable=False)
+    End_Time = db.Column(db.Date, nullable=True)
 
 #   artist-song is a one-to-many relationship
-    Songs       = db.relationship('Songs', backref=db.backref('artist', lazy='dynamic'), lazy='dynamic')
+    Songs = db.relationship('Songs', backref=db.backref(
+        'artist', lazy='dynamic'), lazy='dynamic')
 
 #   artist-album is a one-to-many relationship
-    Albums     = db.relationship('Albums', backref=db.backref('artist', lazy='dynamic'), lazy='dynamic')
+    Albums = db.relationship('Albums', backref=db.backref(
+        'artist', lazy='dynamic'), lazy='dynamic')
 
 #   artist-tour is a one-to-many relationship
-    Tours       = db.relationship('Tours', backref=db.backref('artist', lazy='dynamic'), lazy='dynamic')   
+    Tours = db.relationship('Tours', backref=db.backref(
+        'artist', lazy='dynamic'), lazy='dynamic')
 
 #	top 3 songs is a many-to-many relationship
-    Top_3_Songs	= db.relationship('Songs', secondary=top_3_songs, backref=db.backref('artist', lazy='dynamic'), lazy='dynamic')
+    Top_3_Songs = db.relationship('Songs', secondary=top_3_songs, backref=db.backref(
+        'artist', lazy='dynamic'), lazy='dynamic')
 
-    def __init__(self, name, start_time, end_time=None, **rest):
-    	self.Name 		= name
-    	self.Start_Time = start_time
-    	self.End_Time 	= end_time
+    def __init__(self, name, age, origin, start_time, end_time=None, **rest):
+        self.Name = name
+        self.Start_Time = start_time
+        self.End_Time = end_time
+        self.Age = age
+        self.Origin = origin
 
     def __repr__(self):
-    	return '<Artist %r> ' % self.Name
-
+        return '<Artist %r> ' % self.Name
 
 
 class Songs(db.Model):
@@ -78,34 +85,34 @@ class Songs(db.Model):
     relations from Artists, Albums, Labels
     relations of genre (a table)
     """
-    SongID          = db.Column(db.Integer,  nullable = False, primary_key = True)
-    Name            = db.Column(db.String(length=50), nullable = False)
-    Creation_Date   = db.Column(db.Date, nullable = False)
-    Chart_Position  = db.Column(db.Integer, nullable = True)
-    Run_Time        = db.Column(db.Numeric(scale = 2), nullable = False)
+    SongID = db.Column(db.Integer,  nullable=False, primary_key=True)
+    Name = db.Column(db.String(length=50), nullable=False)
+    Creation_Date = db.Column(db.Date, nullable=False)
+    Chart_Position = db.Column(db.Integer, nullable=True)
+    Run_Time = db.Column(db.Numeric(scale=2), nullable=False)
 
 #   song-genre is a many-to-many relationship
-    Genre    = db.relationship('Genre', secondary=song_genre, backref=db.backref('song', lazy='dynamic'), lazy='dynamic')
+    Genre = db.relationship('Genre', secondary=song_genre, backref=db.backref(
+        'song', lazy='dynamic'), lazy='dynamic')
 
 #   artist-song is a one-to-many relationship
     ArtistID = db.Column(db.Integer, db.ForeignKey("artists.ArtistID"))
 
-#   album-song is a one-to-many relationship 
-    AlbumID  = db.Column(db.Integer, db.ForeignKey('albums.AlbumID'))
+#   album-song is a one-to-many relationship
+    AlbumID = db.Column(db.Integer, db.ForeignKey('albums.AlbumID'))
 
 #   label-song is a one-to-many relationship
-    LabelID  = db.Column(db.Integer, db.ForeignKey("labels.LabelID"))
-
-
+    LabelID = db.Column(db.Integer, db.ForeignKey("labels.LabelID"))
 
     def __init__(self, name, creation_date, run_time, chart_position=None, **rest):
-    	self.Name 			= name
-    	self.Creation_Date  = creation_date
-    	self.Chart_Position = chart_position
-    	self.Run_Time 		= run_time
+        self.Name = name
+        self.Creation_Date = creation_date
+        self.Chart_Position = chart_position
+        self.Run_Time = run_time
 
     def __repr__(self):
-    	return '<Song %r> ' % self.Name
+        return '<Song %r> ' % self.Name
+
 
 class Albums(db.Model):
     """
@@ -115,21 +122,23 @@ class Albums(db.Model):
     relations to Songs
     relations of genre (album_genre, a table)
     """
-    AlbumID             = db.Column(db.Integer, nullable = False, primary_key = True)
-    Title               = db.Column(db.String, nullable = False)
-    Year                = db.Column(db.Date, nullable = False)
-    US_Chart_Postion    = db.Column(db.Integer, nullable = True)
+    AlbumID = db.Column(db.Integer, nullable=False, primary_key=True)
+    Title = db.Column(db.String, nullable=False)
+    Year = db.Column(db.Date, nullable=False)
+    US_Chart_Postion = db.Column(db.Integer, nullable=True)
 
 #   Album-song is a one-to-many relationship
-    LabelID  = db.Column(db.Integer, db.ForeignKey("labels.LabelID"), nullable = False)
+    LabelID = db.Column(db.Integer, db.ForeignKey(
+        "labels.LabelID"), nullable=False)
 #   Artist-album is a one-to-many relationship
-    ArtistID = db.Column(db.Integer, db.ForeignKey("artists.ArtistID"), nullable = False)
+    ArtistID = db.Column(db.Integer, db.ForeignKey(
+        "artists.ArtistID"), nullable=False)
 #   Album-song is a one-to-many relationship
-    Songs    = db.relationship('Songs', backref='album', lazy='dynamic')
+    Songs = db.relationship('Songs', backref='album', lazy='dynamic')
 
     def __init__(self, title, year, us_chart_position=None, **rest):
-        self.title            = title
-        self.Year             = year
+        self.title = title
+        self.Year = year
         self.US_Chart_Postion = us_chart_position
 
     def __repr__(self):
@@ -143,20 +152,23 @@ class Tours(db.Model):
     relations from Artist
     relations of tour_line_up (a table)
     """
-    TourID      = db.Column(db.Integer, nullable = False, primary_key = True)
-    Venue       = db.Column(db.String(length=50), nullable = False)
-    Location    = db.Column(db.Integer, nullable = False)
-    tDate       = db.Column(db.Date, nullable = False)
+    TourID = db.Column(db.Integer, nullable=False, primary_key=True)
+    Venue = db.Column(db.String(length=50), nullable=False)
+    Location = db.Column(db.Integer, nullable=False)
+    tDate = db.Column(db.Date, nullable=False)
 
 #   Artist-tour is a one-to-many relationship
-    ArtistID     = db.Column(db.Integer, db.ForeignKey("artists.ArtistID"), nullable = False)
+    ArtistID = db.Column(db.Integer, db.ForeignKey(
+        "artists.ArtistID"), nullable=False)
 #   Tour-tour_line_up is a many to many relationship
-    Tour_Line_Up = db.relationship('Songs', secondary=tour_line_up, backref=db.backref('tour', lazy='dynamic'), lazy='dynamic')
+    Tour_Line_Up = db.relationship('Songs', secondary=tour_line_up, backref=db.backref(
+        'tour', lazy='dynamic'), lazy='dynamic')
 
     def __init__(self, venue, location, date, **rest):
-        self.Venue      = venue
-        self.Location   = location
-        self.tDate      = date
+        self.Venue = venue
+        self.Location = location
+        self.tDate = date
+
 
 class Genre(db.Model):
     """
@@ -164,11 +176,13 @@ class Genre(db.Model):
     feature of GID, Name
     relations of song_genre (a table), album_genre (a table)
     """
-    GID     = db.Column(db.Integer, nullable = False, primary_key = True)
-    Name    = db.Column(db.String, nullable = False)
+    GID = db.Column(db.Integer, nullable=False, primary_key=True)
+    Name = db.Column(db.String, nullable=False)
 
-    Songs   = db.relationship('Songs', secondary=song_genre, backref=db.backref('genre', lazy='dynamic'), lazy='dynamic')
-    Albums  = db.relationship('Albums', secondary=album_genre, backref=db.backref('genre', lazy='dynamic'), lazy='dynamic')
+    Songs = db.relationship('Songs', secondary=song_genre, backref=db.backref(
+        'genre', lazy='dynamic'), lazy='dynamic')
+    Albums = db.relationship('Albums', secondary=album_genre, backref=db.backref(
+        'genre', lazy='dynamic'), lazy='dynamic')
 
 
 class Labels(db.Model):
@@ -177,14 +191,15 @@ class Labels(db.Model):
     features of LabelID, Name
     relations to Albums, Songs
     """
-    LabelID = db.Column(db.Integer, nullable = False, primary_key = True)
-    Name = db.Column(db.String, nullable = False)
+    LabelID = db.Column(db.Integer, nullable=False, primary_key=True)
+    Name = db.Column(db.String, nullable=False)
 #   one-to-many
-    Albums = db.relationship('Albums', backref=db.backref('label', lazy='dynamic'), lazy='dynamic')
+    Albums = db.relationship('Albums', backref=db.backref(
+        'label', lazy='dynamic'), lazy='dynamic')
 
 #   one-to-many
-    Songs = db.relationship('Songs', backref=db.backref('label', lazy='dynamic'), lazy='dynamic')
-
+    Songs = db.relationship('Songs', backref=db.backref(
+        'label', lazy='dynamic'), lazy='dynamic')
 
 
 #	For test purposes, uncomment to initialize database

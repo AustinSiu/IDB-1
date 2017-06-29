@@ -4,9 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # for test purposes, use sqlite:////path/test.db instead
-# app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////path/test.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////Users/shidashen/Desktop/IDB_database/test.db"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/test"
+#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/test"
 
 db = SQLAlchemy(app)
 
@@ -18,6 +18,23 @@ db = SQLAlchemy(app)
 # Use append() to insert one-to-many and many-to-many relations
 # connections are automatically closed
 # *************
+
+top_3_songs = db.Table(
+    db.Column('ArtistID', db.Integer, db.ForeignKey("artists.ArtistID")),
+    db.Column('SongID', db.Integer, db.ForeignKey("songs.SongID")))
+
+song_genre = db.table(
+    db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')),
+    db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
+
+album_genre = db.table(
+    db.Column('AlbumID', db.Integer, db.ForeignKey('albums.AlbumID')),
+    db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
+
+tour_line_up = db.table(
+    db.Column('TourID', db.Integer, db.ForeignKey('tours.TourID')),
+    db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')))
+
 
 class Artists(db.Model):
     """
@@ -33,13 +50,13 @@ class Artists(db.Model):
     End_Time 	= db.Column(db.Date, nullable=True)
 
 #   artist-song is a one-to-many relationship
-    songs       = db.relationship('Songs', backref=db.backref('artist', lazy='dynamic'), lazy='dynamic')
+    Songs       = db.relationship('Songs', backref=db.backref('artist', lazy='dynamic'), lazy='dynamic')
 
 #   artist-album is a one-to-many relationship
-    albumns     = db.relationship('Albums', backref=db.backref('artist', lazy='dynamic'), lazy='dynamic')
+    Albums     = db.relationship('Albums', backref=db.backref('artist', lazy='dynamic'), lazy='dynamic')
 
 #   artist-tour is a one-to-many relationship
-    tours       = db.relationship('Tours', backref=db.backref('artist', lazy='dynamic'), lazy='dynamic')   
+    Tours       = db.relationship('Tours', backref=db.backref('artist', lazy='dynamic'), lazy='dynamic')   
 
 #	top 3 songs is a many-to-many relationship
     Top_3_Songs	= db.relationship('Songs', secondary=top_3_songs, backref=db.backref('artist', lazy='dynamic'), lazy='dynamic')
@@ -52,9 +69,7 @@ class Artists(db.Model):
     def __repr__(self):
     	return '<Artist %r> ' % self.Name
 
-top_3_songs = db.Table(
-    db.Column('ArtistID', db.Integer, db.ForeignKey("artists.ArtistID")),
-    db.Column('SongID', db.Integer, db.ForeignKey("songs.SongID")))
+
 
 class Songs(db.Model):
     """ 
@@ -67,23 +82,23 @@ class Songs(db.Model):
     Name            = db.Column(db.String(length=50), nullable = False)
     Creation_Date   = db.Column(db.Date, nullable = False)
     Chart_Position  = db.Column(db.Integer, nullable = True)
-    Run_Time        = db.Column(Numeric(scale = 2), nullable = False)
+    Run_Time        = db.Column(db.Numeric(scale = 2), nullable = False)
 
 #   song-genre is a many-to-many relationship
     Genre    = db.relationship('Genre', secondary=song_genre, backref=db.backref('song', lazy='dynamic'), lazy='dynamic')
 
 #   artist-song is a one-to-many relationship
-    ArtistID = db.Column(db.Integer, db.ForeignKey("artist.ArtistID"))
+    ArtistID = db.Column(db.Integer, db.ForeignKey("artists.ArtistID"))
 
-#   albumn-song is a one-to-many relationship 
-    AlbumID  = db.Column(db.Integer, db.ForeignKey('albumn.id'))
+#   album-song is a one-to-many relationship 
+    AlbumID  = db.Column(db.Integer, db.ForeignKey('albums.AlbumID'))
 
 #   label-song is a one-to-many relationship
-    LabelID  = db.Column(db.Integer, db.ForeignKey("label.LabelID"))
+    LabelID  = db.Column(db.Integer, db.ForeignKey("labels.LabelID"))
 
 
 
-    def __init__(self, name, creation_date, chart_position=None, run_time, **rest):
+    def __init__(self, name, creation_date, run_time, chart_position=None, **rest):
     	self.Name 			= name
     	self.Creation_Date  = creation_date
     	self.Chart_Position = chart_position
@@ -106,11 +121,11 @@ class Albums(db.Model):
     US_Chart_Postion    = db.Column(db.Integer, nullable = True)
 
 #   Album-song is a one-to-many relationship
-    LabelID  = db.Column(db.Integer, db.ForeignKey("LabelList.LabelID"), nullable = False)
+    LabelID  = db.Column(db.Integer, db.ForeignKey("labels.LabelID"), nullable = False)
 #   Artist-album is a one-to-many relationship
-    ArtistID = db.Column(db.Integer, db.ForeignKey("Artists.ArtistID"), nullable = False)
+    ArtistID = db.Column(db.Integer, db.ForeignKey("artists.ArtistID"), nullable = False)
 #   Album-song is a one-to-many relationship
-    Songs    = db.relationship('Songs', backref='Albumn', lazy='dynamic')
+    Songs    = db.relationship('Songs', backref='album', lazy='dynamic')
 
     def __init__(self, title, year, us_chart_position=None, **rest):
         self.title            = title
@@ -134,18 +149,14 @@ class Tours(db.Model):
     tDate       = db.Column(db.Date, nullable = False)
 
 #   Artist-tour is a one-to-many relationship
-    ArtistID     = db.Column(db.Integer, db.ForeignKey("Artists.ArtistID"), nullable = False)
+    ArtistID     = db.Column(db.Integer, db.ForeignKey("artists.ArtistID"), nullable = False)
 #   Tour-tour_line_up is a many to many relationship
     Tour_Line_Up = db.relationship('Songs', secondary=tour_line_up, backref=db.backref('tour', lazy='dynamic'), lazy='dynamic')
 
-    def __init__(self, venue, location, date, **rest)
+    def __init__(self, venue, location, date, **rest):
         self.Venue      = venue
         self.Location   = location
         self.tDate      = date
-
-tour_line_up = db.table(
-    db.Column('TourID', db.Integer, db.ForeignKey('tours.TourID')),
-    db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')))
 
 class Genre(db.Model):
     """
@@ -159,14 +170,6 @@ class Genre(db.Model):
     Songs   = db.relationship('Songs', secondary=song_genre, backref=db.backref('genre', lazy='dynamic'), lazy='dynamic')
     Albums  = db.relationship('Albums', secondary=album_genre, backref=db.backref('genre', lazy='dynamic'), lazy='dynamic')
 
-song_genre = db.table(
-    db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')),
-    db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
-
-album_genre = db.table(
-    db.Column('AlbumID', db.Integer, db.ForeignKey('albums.SongID')),
-    db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
-
 
 class Labels(db.Model):
     """
@@ -176,7 +179,10 @@ class Labels(db.Model):
     """
     LabelID = db.Column(db.Integer, nullable = False, primary_key = True)
     Name = db.Column(db.String, nullable = False)
+#   one-to-many
     Albums = db.relationship('Albums', backref=db.backref('label', lazy='dynamic'), lazy='dynamic')
+
+#   one-to-many
     Songs = db.relationship('Songs', backref=db.backref('label', lazy='dynamic'), lazy='dynamic')
 
 

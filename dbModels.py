@@ -149,6 +149,9 @@ class Albums(db.Model):
 #   Album-song is a one-to-many relationship
     Songs = db.relationship('Songs', backref='album', lazy='dynamic')
 
+    Genre = db.relationship('Genre', secondary=song_genre, backref=db.backref(
+        'song', lazy='dynamic'), lazy='dynamic')
+
     def __init__(self, title, year, image, us_chart_position=None, **rest):
         self.title = title
         self.Year = year

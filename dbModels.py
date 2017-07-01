@@ -187,6 +187,13 @@ class Genre(db.Model):
     Name = db.Column(db.String, nullable=False)
     Image = db.Column(db.String, nullable=True)
 
+    def __init__(self, name, image=None):
+        self.Name = name
+        self.Image = image
+
+    def __repr__(self):
+        return '<Genre %r> ' % self.Name
+
 class Labels(db.Model):
     """
     Model Labels has
@@ -202,6 +209,14 @@ class Labels(db.Model):
 
 #   one-to-many
     Songs = db.relationship('Songs', backref='label', lazy='dynamic')
+
+    def __init__(self, name, image=None):
+        self.Name = name
+        self.Image = image
+
+    def __repr__(self):
+        return '<Label %r> ' % self.Name
+
 
 
 #	For test purposes, uncomment to initialize database

@@ -25,9 +25,13 @@ from pprint import pprint
 with open('data.json') as data_file:
     data = json.load(data_file)
 
+db.drop_all()
+db.create_all()
+
 for artist, content in data['artists'].items():
 	# construct artist
-	NewArtist = Artist(name=content['name'], start_time=content['active']['end'], image=content['image'])
+	NewArtist = Artists(name=content['name'], start_time=content['active']['end'], image=content['image'])
+	
 	if content['genre'] in Genre.query.all():
 		g = Genre.query.filter_by(Name==content['genre']).first()
 		NewArtist.Genre.append(g)

@@ -21,8 +21,22 @@ bb = Albums(title='shitty', year=datetime.datetime(1999,2,1).date(), image='bbb'
 a.Albums.append(bb)
 
 
-db.session.add(a)
+g = Genre(name='BS')
+a.ArtistGenre.append(g)
 
+db.session.add(a)
+db.session.commit()
+
+
+aa = Artists(name='jza', start_time=t_str,image='xxx')
+g2 = Genre(name='BS')
+
+if Genre.query.filter(Genre.Name=='BS').count():
+	aa.ArtistGenre.append(Genre.query.filter(Genre.Name=='BS').first())
+else:
+	aa.ArtistGenre.append(g2)
+
+db.session.add(aa)
 db.session.commit()
 
 print(dbQuery.AllArtists())

@@ -11,5 +11,6 @@ manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
 manager.create_api(Artists, methods=['GET'])
 manager.create_api(Songs, methods=['GET'])
 manager.create_api(Albums, methods=['GET'])
+manager.create_api(Genre, methods=['GET'])
 
 # start the flask loop

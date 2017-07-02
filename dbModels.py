@@ -5,7 +5,7 @@ import datetime
 app = Flask(__name__)
 
 # for test purposes, use sqlite:////path/test.db instead
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://utssd:<CS>demima888!@postgresql-banddb.cybt0ykhyacv.us-west-2.rds.amazonaws.com:5432/bandDB"
+app.config['SQLALCHEMY_DATABASE_URI'] = 
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/test"
 

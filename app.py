@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 # for test purposes, use sqlite:////path/test.db instead
 # a config file is needed
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/bandDB"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/tikalestari"
 
 db = SQLAlchemy(app)
 
@@ -68,7 +68,7 @@ class Artists(db.Model):
 #   top 3 songs are many-to-many relationship
     TopSongs = db.relationship('Songs', secondary=TopSongs, backref=db.backref('a', lazy='dynamic'))
 
-#   Artist-genre is a many-to-many relationship    
+#   Artist-genre is a many-to-many relationship
     ArtistGenre = db.relationship('Genre', secondary=ArtistGenre, backref=db.backref(
         'artist', lazy='dynamic'))
 
@@ -94,7 +94,7 @@ class Artists(db.Model):
 
 
 class Songs(db.Model):
-    """ 
+    """
     Model Songs:
     features of SongID, Name, Creation_Date, Chart_Position, Run_Time
     relations from Artists, Albums, Labels
@@ -135,7 +135,7 @@ class Albums(db.Model):
     """
     Model Albums has
     features of AlbumID, Title, Year, US_Chart_Position
-    relations from Labels, Artists, 
+    relations from Labels, Artists,
     relations to Songs
     relations of genre (album_genre, a table)
     """
@@ -168,7 +168,7 @@ class Albums(db.Model):
 class Tours(db.Model):
     """
     Model Tours has
-    features of TourID, Venue, Location, tDate, 
+    features of TourID, Venue, Location, tDate,
     relations from Artist
     relations of tour_line_up (a table)
     """
@@ -232,10 +232,6 @@ class Labels(db.Model):
     def __repr__(self):
         return self.Name
 
-
-
-
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -246,26 +242,33 @@ def index():
     """
     return render_template('index.html')
 
+# @app.route('/artists/<artist_id>')
+# def artist(artist_id):
+#     """
+#     Doc.
+#
+#     Doc.
+#     """
+#     return render_template('artist-info.html', artist=artist_id)
 
-@app.route('/bands')
+@app.route('/artists')
 def bands():
     """
     Doc.
 
     Doc.
     """
-    return render_template('bands.html')
+    data = api_artists()
+    return render_template('artists.html', data=data)
 
-
-@app.route('/people')
-def people():
-    """
-    Doc.
-
-    Doc.
-    """
-    return render_template('people.html')
-
+# @app.route('/albums/<album_id>')
+# def artist(artist_id):
+#     """
+#     Doc.
+#
+#     Doc.
+#     """
+#     return render_template('album-info.html', album=album_id)
 
 @app.route('/albums')
 def albums():
@@ -286,6 +289,14 @@ def tours():
     """
     return render_template('tours.html')
 
+# @app.route('/songs/<song_id>')
+# def artist(song_id):
+#     """
+#     Doc.
+#
+#     Doc.
+#     """
+#     return render_template('song-info.html', song=song_id)
 
 @app.route('/songs')
 def songs():
@@ -308,54 +319,8 @@ def about():
 
 # INFO
 
-@app.route('/bands/info')
-def bands_info():
-    """
-    Doc.
-
-    Doc.
-    """
-    return render_template('band-info.html')
-
-
-@app.route('/people/info')
-def people_info():
-    """
-    Doc.
-
-    Doc.
-    """
-    return render_template('person-info.html')
-
-
-@app.route('/albums/info')
-def albums_info():
-    """
-    Doc.
-
-    Doc.
-    """
-    return render_template('album-info.html')
-
-
-@app.route('/tours/info')
-def tours_info():
-    """
-    Doc.
-
-    Doc.
-    """
-    return render_template('tour-info.html')
-
-
-@app.route('/songs/info')
-def songs_info():
-    """
-    Doc.
-
-    Doc.
-    """
-    return render_template('song-info.html')
-
+def api_artists():
+    data = dbQuery().AllArtists()
+    return data
 
 app.run(debug=True)

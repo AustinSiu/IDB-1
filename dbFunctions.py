@@ -39,7 +39,6 @@ class dbQuery:
     def SongImage(self, song):
         return Songs.query.filter(Songs.Name==song).first().Image
 
-
     def AllAlbums(self):
         albums = Albums.query.all()
         return albums

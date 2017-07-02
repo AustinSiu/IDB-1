@@ -38,7 +38,7 @@ class dbQuery:
         return albums
 
     def AlbumByArtist(self, artist):
-        albums = Albums.query.join(Artists).filter(Artistd.Name==artist).all()
+        albums = Albums.query.join(Artists).filter(Artists.Name==artist).all()
         return albums
 
     def AlbumByGenre(self, genre):

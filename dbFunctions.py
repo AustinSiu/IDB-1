@@ -24,7 +24,7 @@ class dbQuery:
         return genre # return a list
 
     def ArtistByGenre(self, genre):
-        artists = Artists.query.join(ArtistGenre).filter(Genre.Name==genre).all()
+        artists = Artists.query.filter(Artists.ArtistGenre.any(Name=genre)).all()
         for a in artists:
             a.ArtistGenre
         artistsInfo = [a.__dict__ for a in artists]
@@ -51,7 +51,7 @@ class dbQuery:
         return albumsInfo
 
     def SongByGenre(self, genre):
-        songs = Songs.query.join(SongGenre).filter(Genre.Name==genre).all()
+        songs = Songs.query.filter(Songs.SongGenre.any(Name=genre)).all()
         for s in songs:
             s.SongGenre
         songsInfo = [s.__dict__ for s in songs]

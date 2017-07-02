@@ -30,7 +30,7 @@ class dbQuery:
         return songs
 
     def SongByAlbum(self, album):
-        songs = Songs.query.join(Albums).filter(Albums.Name==album).all()
+        songs = Songs.query.join(Albums).filter(Albums.Title==album).all()
         return songs
 
     def AllAlbums(self):
@@ -41,9 +41,6 @@ class dbQuery:
         albums = Albums.query.join(Artists).filter(Artists.Name==artist).all()
         return albums
 
-    def AlbumByGenre(self, genre):
-        albums = Albums.query.join(AlbumGenre).filter(Genre.Name==genre).all()
-        return albums
 
     def allGenre(self):
         genre = Genre.query.all()

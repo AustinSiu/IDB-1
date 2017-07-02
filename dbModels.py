@@ -5,7 +5,7 @@ import datetime
 app = Flask(__name__)
 
 # for test purposes, use sqlite:////path/test.db instead
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////Users/shidashen/Desktop/IDB/test.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost/test"
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/test"
 
@@ -19,6 +19,9 @@ db = SQLAlchemy(app)
 # Use append() to insert one-to-many and many-to-many relations
 # connections are automatically closed
 # *************
+TopSongs = db.Table('top_songs',
+    db.Column('ArtistID', db.Integer, db.ForeignKey('artists.ArtistID')),
+    db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')))
 
 ArtistGenre = db.Table('artist_genre',
     db.Column('ArtistID', db.Integer, db.ForeignKey('artists.ArtistID')),
@@ -49,9 +52,12 @@ class Artists(db.Model):
     Name = db.Column(db.String(length=50), nullable=False)
     Age = db.Column(db.Integer, nullable=True)
     Origin = db.Column(db.String, nullable=True)
-    Start_Time = db.Column(db.Date, nullable=False)
+    Start_Time = db.Column(db.Date, nullable=True)
     End_Time = db.Column(db.Date, nullable=True)
     Image = db.Column(db.String, nullable=True)
+
+#   top 3 songs are many-to-many relationship
+    TopSongs = db.relationship('Songs', secondary=TopSongs, backref=db.backref('a', lazy='dynamic'))
 
 #   Artist-genre is a many-to-many relationship    
     ArtistGenre = db.relationship('Genre', secondary=ArtistGenre, backref=db.backref(
@@ -66,7 +72,7 @@ class Artists(db.Model):
 #   artist-tour is a one-to-many relationship
     Tours = db.relationship('Tours', backref='artist', lazy='dynamic')
 
-    def __init__(self, name, start_time, image, age=None, origin=None, end_time=None, **rest):
+    def __init__(self, name, image, start_time=None, age=None, origin=None, end_time=None, **rest):
         self.Name = name
         self.Start_Time = start_time
         self.End_Time = end_time
@@ -89,7 +95,7 @@ class Songs(db.Model):
     Name = db.Column(db.String(length=50), nullable=False)
     Creation_Date = db.Column(db.Date, nullable=False)
     Chart_Position = db.Column(db.Integer, nullable=True)
-    Run_Time = db.Column(db.Numeric(scale=2), nullable=False)
+    Run_Time = db.Column(db.Integer, nullable=False)
     Image = db.Column(db.String, nullable=True)
 
 #   song-genre is a many-to-many relationship

@@ -10,7 +10,7 @@ t_str = t.date()
 a = Artists(name='jz', start_time=t_str,image='xxx')
 
 
-b = Albums(title='shit', year=datetime.datetime(1999,2,1).date(), image='bbb', us_chart_position=2)
+b = Albums(title='shit', year=datetime.datetime.strptime("14 Jul 2008, 06:07", "%d %b %Y, %H:%M").date().isoformat(), image='bbb', us_chart_position=2)
 a.Albums.append(b)
 
 c = Songs(name='holy', creation_date=datetime.datetime(1999,2,1).date(), run_time=1, image='ccc', chart_position=2)
@@ -38,6 +38,10 @@ else:
 
 db.session.add(aa)
 db.session.commit()
+
+
+d = Songs.query.first().Creation_Date
+print(d)
 
 print(dbQuery.AllArtists())
 print(dbQuery.AllAlbums())

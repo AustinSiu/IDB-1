@@ -21,6 +21,9 @@ class dbQuery:
         songs = Songs.query.join(Artists).filter(Artists.Name==artist).all()
         return songs
 
+    def ArtistImage(self, artist):
+        return Artists.query.filter(Artists.Name==artist).first().Image
+
     def AllSongs(self):
         songs = Songs.query.all()
         return songs
@@ -33,6 +36,10 @@ class dbQuery:
         songs = Songs.query.join(Albums).filter(Albums.Title==album).all()
         return songs
 
+    def SongImage(self, song):
+        return Songs.query.filter(Songs.Name==song).first().Image
+
+
     def AllAlbums(self):
         albums = Albums.query.all()
         return albums
@@ -40,6 +47,10 @@ class dbQuery:
     def AlbumByArtist(self, artist):
         albums = Albums.query.join(Artists).filter(Artists.Name==artist).all()
         return albums
+
+    def AlbumImage(self, album):
+        return Albums.query.filter(Albums.Title==album).first().Image
+
 
 
     def allGenre(self):

@@ -5,70 +5,48 @@ class dbQuery:
     """
     all query functions
     """
-    def AllArtists():
+    def AllArtists(self):
         artists = Artists.query.all()
+        return artists # return a list of artist names in the form of <artist name>
+
+    def ArtistByName(self, name):
+        artist = Artists.query.filter(Artists.Name==name).all()
+        return artists # return a list of artist names in the form of <artist name>
+
+    def ArtistByGenre(self, genre):
+        artist = Artists.query.join(ArtistGenre).filter(Genre.Name==genre).all()
         return artists
 
-    def ArtistByName(name):
-        artist = Artists.query.filter_by(Name=name).all()
-        return artists
-
-    def ArtistByStartTime(start_time):
-        artist = Artists.query.filter_by(Start_Time=start_time).all()
-        return artists
-
-    def ArtistByEndTime(end_time):
-        artist = Artists.query.filter_by(End_Time=end_time).all()
-        return artists
-
-    def ArtistByGenre(genre):
-        artist = Artists.query.filter_by(Genre=genre).all()
-        return artists
-
-    def ArtistSongs(artist):
+    def ArtistSongs(self, artist):
         songs = Songs.query.join(Artists).filter(Artists.Name==artist).all()
         return songs
 
-    def AllSongs():
+    def AllSongs(self):
         songs = Songs.query.all()
         return songs
 
-    def SongByGenre(genre):
-        songs = Songs.query.filter_by(Genre=genre).all()
+    def SongByGenre(self, genre):
+        songs = Songs.query.join(SongGenre).filter(Genre.Name==genre).all()
         return songs
 
-    def SongByAlbum(album):
-        ID = Albums.query.filter_by(Name=album).first().AlbumID
-        songs = Songs.query.filter_by(AlbumID=ID).all()
+    def SongByAlbum(self, album):
+        songs = Songs.query.join(Albums).filter(Albums.Name==album).all()
         return songs
 
-    def SongByLabel(label):
-        ID = Labels.query.filter_by(Name=label).first().LabelID
-        songs = Songs.query.filter_by(LabelID=ID).all()
-        return songs
-
-    def AllAlbums():
+    def AllAlbums(self):
         albums = Albums.query.all()
         return albums
 
-    def AlbumByArtist(artist):
-        ID = Artists.query.filter_by(Name=artist).first().ArtistID
-        albums = Albums.query.filter_by(ArtistID=ID).all()
+    def AlbumByArtist(self, artist):
+        albums = Albums.query.join(Artists).filter(Artistd.Name==artist).all()
         return albums
 
-    def AlbumByGenre(genre):
-        albums = Albums.query.filter_by(Genre=genre).all()
+    def AlbumByGenre(self, genre):
+        albums = Albums.query.join(AlbumGenre).filter(Genre.Name==genre).all()
         return albums
 
-    def allGenre():
+    def allGenre(self):
         genre = Genre.query.all()
-
-    def allLabels():
-        labels = Labels.query.all()
-
-    def allTours():
-        tours = Tours.query.all()
-        return tours
 
 
 class dbAdd():

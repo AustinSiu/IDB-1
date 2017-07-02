@@ -1,21 +1,15 @@
-"""DOC."""
-from flask import Flask
-from flask_restful import Resource, Api
+import flask
+import flask_sqlalchemy
+import flask_restless
+from dbModels import *
 
-app = Flask(__name__)
-api = Api(app)
+# Create the Flask-Restless API manager.
+manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
 
-bands = {123: "Metalica"}
+# Create API endpoints, which will be available at /api/<tablename> by
+# default. Allowed HTTP methods can be specified as well.
+manager.create_api(Artists, methods=['GET'])
+manager.create_api(Songs, methods=['GET'])
+manager.create_api(Albums, methods=['GET'])
 
-class Bands(Resource):
-    """DOC."""
-
-    def get(self, band_id):
-        """DOC."""
-        return {band_id: bands[band_id]}
-
-
-api.add_resource(Bands, '/api/band/<int:band_id>', '/api/bands/<int:band_id>')
-
-if __name__ == '__main__':
-    app.run(debug=True)
+# start the flask loop

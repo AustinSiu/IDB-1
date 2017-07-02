@@ -82,7 +82,7 @@ class Artists(db.Model):
         self.Image = image
 
     def __repr__(self):
-        return '<Artist %r> ' % self.Name
+        return self.Name
 
 
 class Songs(db.Model):
@@ -120,7 +120,7 @@ class Songs(db.Model):
         self.Image = image
 
     def __repr__(self):
-        return '<Song %r> ' % self.Name
+        return self.Name
 
 
 class Albums(db.Model):
@@ -154,7 +154,7 @@ class Albums(db.Model):
         self.Image = image
 
     def __repr__(self):
-        return '<Album %r> ' % self.Title
+        return self.Title
 
 
 class Tours(db.Model):
@@ -199,7 +199,7 @@ class Genre(db.Model):
         self.Image = image
 
     def __repr__(self):
-        return '<Genre %r> ' % self.Name
+        return self.Name
 
 class Labels(db.Model):
     """
@@ -222,7 +222,7 @@ class Labels(db.Model):
         self.Image = image
 
     def __repr__(self):
-        return '<Label %r> ' % self.Name
+        return self.Name
 
 
 

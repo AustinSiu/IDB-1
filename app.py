@@ -19,6 +19,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/bandDB"
 
 db = SQLAlchemy(app)
 
+# *************
+# Tips to Note
+# *************
+# Integer PK will autoincrement by default in Flask SQLAlchemy
+# Table name is automatically generated in F-S as "CamelCase" to "camel_case"
+# Use append() to insert one-to-many and many-to-many relations
+# connections are automatically closed
+# *************
+
 TopSongs = db.Table('top_songs',
     db.Column('ArtistID', db.Integer, db.ForeignKey('artists.ArtistID')),
     db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')))
@@ -81,7 +90,7 @@ class Artists(db.Model):
         self.Image = image
 
     def __repr__(self):
-        return '<Artist %r> ' % self.Name
+        return self.Name
 
 
 class Songs(db.Model):
@@ -119,7 +128,7 @@ class Songs(db.Model):
         self.Image = image
 
     def __repr__(self):
-        return '<Song %r> ' % self.Name
+        return self.Name
 
 
 class Albums(db.Model):
@@ -153,7 +162,7 @@ class Albums(db.Model):
         self.Image = image
 
     def __repr__(self):
-        return '<Album %r> ' % self.Title
+        return self.Title
 
 
 class Tours(db.Model):
@@ -198,7 +207,7 @@ class Genre(db.Model):
         self.Image = image
 
     def __repr__(self):
-        return '<Genre %r> ' % self.Name
+        return self.Name
 
 class Labels(db.Model):
     """
@@ -221,7 +230,9 @@ class Labels(db.Model):
         self.Image = image
 
     def __repr__(self):
-        return '<Label %r> ' % self.Name
+        return self.Name
+
+
 
 
 

@@ -1,24 +1,23 @@
 {% extends "layout.html" %}
-{% block title %}bands{% endblock %}
+{% block title %}artists{% endblock %}
 {% block head %}
     {{ super() }}
 {% endblock %}
 {% block currentmenuitem %}
 <li class="menu-item"><a href="/index">Home</a></li>
-<li class="menu-item current-menu-item"><a href="/bands">Bands</a></li>
-<li class="menu-item"><a href="/people">People</a></li>
+<li class="menu-item current-menu-item"><a href="/artists">Artists</a></li>
 <li class="menu-item"><a href="/albums">Albums</a></li>
-<li class="menu-item"><a href="/tours">Tours</a></li>
 <li class="menu-item"><a href="/songs">Songs</a></li>
+<li class="menu-item"><a href="/tours">Tours</a></li>
 <li class="menu-item"><a href="/about">About</a></li>
 {% endblock %}
 {% block content %}
+
 <main class="main-content">
     <div class="fullwidth-block gallery">
       <div class="container">
         <div class="content fullwidth">
-          <h1></h1>
-          <h2 class="entry-title">Bands</h2>
+          <h2 class="entry-title"></h2>
           <div class="filter-links filterable-nav">
             <select class="mobile-filter">
               <option value="*">Show all</option>
@@ -27,11 +26,39 @@
               <option value=".stuff">Stuff</option>
             </select>
             <a href="#" class="current" data-filter="*">Show all</a>
-            <a href="#" data-filter=".concert">Concert</a>
-            <a href="#" data-filter=".band">Band</a>
-            <a href="#" data-filter=".stuff">Stuff</a>
+            <a href="#" data-filter=".alternative">Alternative</a>
+            <a href="#" data-filter=".blues">Blues</a>
+            <a href="#" data-filter=".classic">Classic</a>
+            <a href="#" data-filter=".country">Country</a>
+            <a href="#" data-filter=".electronic">Electronic</a>
+            <a href="#" data-filter=".indie">Indie</a>
+            <a href="#" data-filter=".hip-hop">Hip-Hop</a>
+            <a href="#" data-filter=".rap">Rap</a>
+            <a href="#" data-filter=".rock">Rock</a>
+
           </div>
+
+          <!-- <div class="filterable-items">
+          {% for genre in genres %}
+              {% for artist in genre %}
+              <div class="filterable-item blues">
+                <h3>{{artist.Name}}</h3>
+              <a href="/artist/<{{artist.Name}}"><figure><img src="{{artist.Image}}" alt="" height="300" width="300"></figure></a>
+            </div>
+              {% endfor %}
+          {% endfor %}
+          </div> -->
           <div class="filterable-items">
+            {% for item in data %}
+            <div class="filterable-item blues">
+              <h3>{{item.Name}}</h3>
+            <a href="/artist/<{{item.Name}}"><figure><img src="{{item.Image}}" alt="" height="300" width="300"></figure></a>
+          </div>
+            {% endfor %}
+          </div>
+
+
+          <!-- <div class="filterable-items">
             <div class="filterable-item concert">
               <a href="dummy/large-gallery/gallery-1.jpg"><figure><img src="{{url_for('static', filename='images/devs/tl.jpg')}}" alt="gallery 1"></figure></a>
             </div>
@@ -67,7 +94,7 @@
             </div>
             <div class="filterable-item stuff">
               <a href="dummy/large-gallery/gallery-12.jpg"><figure><img src="{{url_for('static', filename='images/devs/ss.jpg')}}" alt="gallery 12"></figure></a>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

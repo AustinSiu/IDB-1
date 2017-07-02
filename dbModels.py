@@ -1,20 +1,12 @@
-"""
-Doc.
-
-Doc.
-"""
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask import render_template
 import datetime
-
-
-from dbFunctions import *
 
 app = Flask(__name__)
 
 # for test purposes, use sqlite:////path/test.db instead
-# a config file is needed
+#app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////Users/shidashen/Desktop/IDB/IDB/test.db"
+
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/banddb"
 
 db = SQLAlchemy(app)
@@ -68,7 +60,7 @@ class Artists(db.Model):
 #   top 3 songs are many-to-many relationship
     TopSongs = db.relationship('Songs', secondary=TopSongs, backref=db.backref('a', lazy='dynamic'))
 
-#   Artist-genre is a many-to-many relationship
+#   Artist-genre is a many-to-many relationship    
     ArtistGenre = db.relationship('Genre', secondary=ArtistGenre, backref=db.backref(
         'artist', lazy='dynamic'))
 
@@ -94,7 +86,7 @@ class Artists(db.Model):
 
 
 class Songs(db.Model):
-    """
+    """ 
     Model Songs:
     features of SongID, Name, Creation_Date, Chart_Position, Run_Time
     relations from Artists, Albums, Labels
@@ -135,7 +127,7 @@ class Albums(db.Model):
     """
     Model Albums has
     features of AlbumID, Title, Year, US_Chart_Position
-    relations from Labels, Artists,
+    relations from Labels, Artists, 
     relations to Songs
     relations of genre (album_genre, a table)
     """
@@ -168,7 +160,7 @@ class Albums(db.Model):
 class Tours(db.Model):
     """
     Model Tours has
-    features of TourID, Venue, Location, tDate,
+    features of TourID, Venue, Location, tDate, 
     relations from Artist
     relations of tour_line_up (a table)
     """
@@ -233,111 +225,7 @@ class Labels(db.Model):
         return self.Name
 
 
-import flask.ext.sqlalchemy
-import flask.ext.restless
 
-# Create the Flask-Restless API manager.
-manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
-
-# Create API endpoints, which will be available at /api/<tablename> by
-# default. Allowed HTTP methods can be specified as well.
-manager.create_api(Artists, methods=['GET'])
-manager.create_api(Songs, methods=['GET'])
-manager.create_api(Albums, methods=['GET'])
-manager.create_api(Genre, methods=['GET'])
-
-
-
-
-@app.route('/')
-@app.route('/index')
-def index():
-    """
-    Doc.
-
-    Doc.
-    """
-    return render_template('index.html')
-
-# @app.route('/artists/<artist_id>')
-# def artist(artist_id):
-#     """
-#     Doc.
-#
-#     Doc.
-#     """
-#     return render_template('artist-info.html', artist=artist_id)
-
-@app.route('/artists')
-def bands():
-    """
-    Doc.
-
-    Doc.
-    """
-    data = api_artists()
-    return render_template('artists.html', data=data)
-
-# @app.route('/albums/<album_id>')
-# def artist(artist_id):
-#     """
-#     Doc.
-#
-#     Doc.
-#     """
-#     return render_template('album-info.html', album=album_id)
-
-@app.route('/albums')
-def albums():
-    """
-    Doc.
-
-    Doc.
-    """
-    return render_template('albums.html')
-
-
-@app.route('/tours')
-def tours():
-    """
-    Doc.
-
-    Doc.
-    """
-    return render_template('tours.html')
-
-# @app.route('/songs/<song_id>')
-# def artist(song_id):
-#     """
-#     Doc.
-#
-#     Doc.
-#     """
-#     return render_template('song-info.html', song=song_id)
-
-@app.route('/songs')
-def songs():
-    """
-    Doc.
-
-    Doc.
-    """
-    return render_template('songs.html')
-
-
-@app.route('/about')
-def about():
-    """
-    Doc.
-
-    Doc.
-    """
-    return render_template('about.html')
-
-# INFO
-
-def api_artists():
-    data = dbQuery().AllArtists()
-    return data
-
-app.run(debug=True)
+#	For test purposes, uncomment to initialize database
+#	if __name__ == '__main__':
+#		app.run(port=9001)

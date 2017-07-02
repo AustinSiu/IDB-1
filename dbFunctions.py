@@ -15,15 +15,15 @@ class dbQuery:
 
     def ArtistByStartTime(start_time):
         artist = Artists.query.filter_by(Start_Time=start_time).all()
-        return artists
+        return artist
 
     def ArtistByEndTime(end_time):
         artist = Artists.query.filter_by(End_Time=end_time).all()
-        return artists
+        return artist
 
     def ArtistByGenre(genre):
         artist = Artists.query.filter_by(Genre=genre).all()
-        return artists
+        return artist
 
     def ArtistSongs(artist):
         songs = Songs.query.join(Artists).filter(Artists.Name==artist).all()

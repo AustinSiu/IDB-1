@@ -5,7 +5,7 @@ import datetime
 app = Flask(__name__)
 
 # for test purposes, use sqlite:////path/test.db instead
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost/test"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://utssd:<CS>demima888!@postgresql-banddb.cybt0ykhyacv.us-west-2.rds.amazonaws.com:5432/bandDB"
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/test"
 
@@ -19,6 +19,7 @@ db = SQLAlchemy(app)
 # Use append() to insert one-to-many and many-to-many relations
 # connections are automatically closed
 # *************
+
 TopSongs = db.Table('top_songs',
     db.Column('ArtistID', db.Integer, db.ForeignKey('artists.ArtistID')),
     db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')))
@@ -49,7 +50,7 @@ class Artists(db.Model):
     """
 
     ArtistID = db.Column(db.Integer, nullable=False, primary_key=True)
-    Name = db.Column(db.String(length=50), nullable=False)
+    Name = db.Column(db.String, nullable=False)
     Age = db.Column(db.Integer, nullable=True)
     Origin = db.Column(db.String, nullable=True)
     Start_Time = db.Column(db.Date, nullable=True)
@@ -92,7 +93,7 @@ class Songs(db.Model):
     relations of genre (a table)
     """
     SongID = db.Column(db.Integer,  nullable=False, primary_key=True)
-    Name = db.Column(db.String(length=50), nullable=False)
+    Name = db.Column(db.String, nullable=False)
     Creation_Date = db.Column(db.Date, nullable=False)
     Chart_Position = db.Column(db.Integer, nullable=True)
     Run_Time = db.Column(db.Integer, nullable=False)
@@ -164,7 +165,7 @@ class Tours(db.Model):
     relations of tour_line_up (a table)
     """
     TourID = db.Column(db.Integer, nullable=False, primary_key=True)
-    Venue = db.Column(db.String(length=50), nullable=False)
+    Venue = db.Column(db.String, nullable=False)
     Location = db.Column(db.Integer, nullable=False)
     tDate = db.Column(db.Date, nullable=False)
     Image = db.Column(db.String, nullable=True)

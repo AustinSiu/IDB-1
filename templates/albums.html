@@ -7,8 +7,8 @@
 <li class="menu-item"><a href="/index">Home</a></li>
 <li class="menu-item"><a href="/artists">Artists</a></li>
 <li class="menu-item current-menu-item"><a href="/albums">Albums</a></li>
-<li class="menu-item"><a href="/tours">Tours</a></li>
 <li class="menu-item"><a href="/songs">Songs</a></li>
+<li class="menu-item"><a href="/tours">Tours</a></li>
 <li class="menu-item"><a href="/about">About</a></li>
 {% endblock %}
 {% block content %}
@@ -23,49 +23,23 @@
               <option value=".concert">Concert</option>
               <option value=".band">Band</option>
               <option value=".stuff">Stuff</option>
+              <option valie=".hehe">Hehe</option>
             </select>
             <a href="#" class="current" data-filter="*">Show all</a>
             <a href="#" data-filter=".concert">Concert</a>
             <a href="#" data-filter=".band">Band</a>
             <a href="#" data-filter=".stuff">Stuff</a>
+            <a href="#" data-filter=".hehe">hehe</a>
           </div>
           <div class="filterable-items">
-            <div class="filterable-item concert">
-              <a href="dummy/large-gallery/gallery-1.jpg"><figure><img src="{{url_for('static', filename='images/devs/tl.jpg')}}" alt="gallery 1"></figure></a>
+          {% for item in data %}
+
+              <div class="filterable-item <>">
+              <h3>{{item.Name}}</h3>
+              <a href="/albums/<{{item.Name}}"><figure><img src="{{item.Image}}" alt="" height="300" width="300"></figure></a>
             </div>
-            <div class="filterable-item concert">
-              <a href="dummy/large-gallery/gallery-2.jpg"><figure><img src="{{url_for('static', filename='images/devs/ss.jpg')}}" alt="gallery 2"></figure></a>
-            </div>
-            <div class="filterable-item stuff">
-              <a href="dummy/large-gallery/gallery-3.jpg"><figure><img src="{{url_for('static', filename='images/devs/sb.jpg')}}" alt="gallery 3"></figure></a>
-            </div>
-            <div class="filterable-item concert">
-              <a href="dummy/large-gallery/gallery-4.jpg"><figure><img src="{{url_for('static', filename='images/devs/mc.jpg')}}" alt="gallery 4"></figure></a>
-            </div>
-            <div class="filterable-item band">
-              <a href="dummy/large-gallery/gallery-5.jpg"><figure><img src="{{url_for('static', filename='images/devs/djp.jpg')}}" alt="gallery 5"></figure></a>
-            </div>
-            <div class="filterable-item stuff">
-              <a href="dummy/large-gallery/gallery-6.jpg"><figure><img src="{{url_for('static', filename='images/devs/tl.jpg')}}" alt="gallery 6"></figure></a>
-            </div>
-            <div class="filterable-item concert">
-              <a href="dummy/large-gallery/gallery-7.jpg"><figure><img src="{{url_for('static', filename='images/devs/ss.jpg')}}" alt="gallery 7"></figure></a>
-            </div>
-            <div class="filterable-item band">
-              <a href="dummy/large-gallery/gallery-8.jpg"><figure><img src="{{url_for('static', filename='images/devs/sb.jpg')}}" alt="gallery 8"></figure></a>
-            </div>
-            <div class="filterable-item band">
-              <a href="dummy/large-gallery/gallery-9.jpg"><figure><img src="{{url_for('static', filename='images/devs/mc.jpg')}}" alt="gallery 9"></figure></a>
-            </div>
-            <div class="filterable-item stuff">
-              <a href="dummy/large-gallery/gallery-10.jpg"><figure><img src="{{url_for('static', filename='images/devs/djp.jpg')}}" alt="gallery 10"></figure></a>
-            </div>
-            <div class="filterable-item band">
-              <a href="dummy/large-gallery/gallery-11.jpg"><figure><img src="{{url_for('static', filename='images/devs/tl.jpg')}}" alt="gallery 11"></figure></a>
-            </div>
-            <div class="filterable-item stuff">
-              <a href="dummy/large-gallery/gallery-12.jpg"><figure><img src="{{url_for('static', filename='images/devs/ss.jpg')}}" alt="gallery 12"></figure></a>
-            </div>
+
+          {% endfor %}
           </div>
         </div>
       </div>

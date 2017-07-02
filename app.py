@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 # for test purposes, use sqlite:////path/test.db instead
 # a config file is needed
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/tikalestari"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/banddb"
 
 db = SQLAlchemy(app)
 
@@ -231,6 +231,23 @@ class Labels(db.Model):
 
     def __repr__(self):
         return self.Name
+
+
+import flask.ext.sqlalchemy
+import flask.ext.restless
+
+# Create the Flask-Restless API manager.
+manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
+
+# Create API endpoints, which will be available at /api/<tablename> by
+# default. Allowed HTTP methods can be specified as well.
+manager.create_api(Artists, methods=['GET'])
+manager.create_api(Songs, methods=['GET'])
+manager.create_api(Albums, methods=['GET'])
+manager.create_api(Genre, methods=['GET'])
+
+
+
 
 @app.route('/')
 @app.route('/index')

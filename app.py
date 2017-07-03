@@ -29,24 +29,29 @@ db = SQLAlchemy(app)
 # *************
 
 TopSongs = db.Table('top_songs',
-    db.Column('ArtistID', db.Integer, db.ForeignKey('artists.ArtistID')),
-    db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')))
+                    db.Column('ArtistID', db.Integer,
+                              db.ForeignKey('artists.ArtistID')),
+                    db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')))
 
 ArtistGenre = db.Table('artist_genre',
-    db.Column('ArtistID', db.Integer, db.ForeignKey('artists.ArtistID')),
-    db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
+                       db.Column('ArtistID', db.Integer,
+                                 db.ForeignKey('artists.ArtistID')),
+                       db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
 
 SongGenre = db.Table('song_genre',
-    db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')),
-    db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
+                     db.Column('SongID', db.Integer,
+                               db.ForeignKey('songs.SongID')),
+                     db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
 
 AlbumGenre = db.Table('album_genre',
-    db.Column('AlbumID', db.Integer, db.ForeignKey('albums.AlbumID')),
-    db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
+                      db.Column('AlbumID', db.Integer,
+                                db.ForeignKey('albums.AlbumID')),
+                      db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
 
 TourLineUp = db.Table('tour_line_up',
-    db.Column('TourID', db.Integer, db.ForeignKey('tours.TourID')),
-    db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')))
+                      db.Column('TourID', db.Integer,
+                                db.ForeignKey('tours.TourID')),
+                      db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')))
 
 
 class Artists(db.Model):
@@ -66,7 +71,8 @@ class Artists(db.Model):
     Image = db.Column(db.String, nullable=True)
 
 #   top 3 songs are many-to-many relationship
-    TopSongs = db.relationship('Songs', secondary=TopSongs, backref=db.backref('a', lazy='dynamic'))
+    TopSongs = db.relationship(
+        'Songs', secondary=TopSongs, backref=db.backref('a', lazy='dynamic'))
 
 #   Artist-genre is a many-to-many relationship
     ArtistGenre = db.relationship('Genre', secondary=ArtistGenre, backref=db.backref(
@@ -146,9 +152,11 @@ class Albums(db.Model):
     Image = db.Column(db.String, nullable=True)
 
 #   Album-song is a one-to-many relationship
-    LabelID = db.Column(db.Integer, db.ForeignKey("labels.LabelID"), nullable=True)
+    LabelID = db.Column(db.Integer, db.ForeignKey(
+        "labels.LabelID"), nullable=True)
 #   Artist-album is a one-to-many relationship
-    ArtistID = db.Column(db.Integer, db.ForeignKey("artists.ArtistID"), nullable=True)
+    ArtistID = db.Column(db.Integer, db.ForeignKey(
+        "artists.ArtistID"), nullable=True)
 #   Album-song is a one-to-many relationship
     Songs = db.relationship('Songs', backref='album')
 
@@ -209,6 +217,7 @@ class Genre(db.Model):
     def __repr__(self):
         return self.Name
 
+
 class Labels(db.Model):
     """
     Model Labels has
@@ -247,8 +256,6 @@ manager.create_api(Albums, methods=['GET'])
 manager.create_api(Genre, methods=['GET'])
 
 
-
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -259,20 +266,22 @@ def index():
     """
     return render_template('index.html')
 
-@app.route('/artist/<artist_id>') # when does this get called?
+
+@app.route('/artist/<artist_id>')  # when does this get called?
 def artist(artist_id):
     """
     Doc.
 
     Doc.
     """
-    artist_id = str(artist_id.replace('%20',' '))
+    artist_id = str(artist_id.replace('%20', ' '))
     a = dbQuery().GetArtist(artist_id)
     s = dbQuery().ArtistSongs(artist_id)
     al = dbQuery().AlbumByArtist(artist_id)
     return render_template('artist-info.html', artist=a, songs=s, albums=al)
 
-@app.route('/artists', defaults={'sorting':'asc', 'page':1}, strict_slashes=False)
+
+@app.route('/artists', defaults={'sorting': 'asc', 'page': 1}, strict_slashes=False)
 @app.route('/artists/<string:sorting>/<int:page>')
 def artists(sorting, page):
     """
@@ -281,27 +290,29 @@ def artists(sorting, page):
     Doc.
     """
     data = dbQuery().AllArtists(sorting)
-    data = data[(page - 1) * 8 : page * 8]
-    return render_template('artists.html', data=data,language='Python',framework='Flask',lang=False)
+    pages = len(data)
+    data = data[(page - 1) * 8: page * 8]
+    return render_template('artists.html', data=data, pages=pages, language='Python', framework='Flask', lang=False)
+
 
 @app.route('/artists_by_genre/<string:genre>/<string:sorting>/<int:page>')
 def artists_by_genre(genre, sorting, page):
     data = dbQuery.ArtistsByGenre(genre, sorting)
-    data = data[(page - 1) * 8 : page * 8]
-    return render_template('artists.html', data=data,language='Python',framework='Flask',lang=False)
-
-
+    pages = len(data)
+    data = data[(page - 1) * 8: page * 8]
+    return render_template('artists.html', data=data, pages=pages, language='Python', framework='Flask', lang=False)
 
 
 @app.route('/albums/<album_id>')
 def album(album_id):
-    album_id = str(album_id.replace('%20',' '))
+    album_id = str(album_id.replace('%20', ' '))
     a = dbQuery().GetAlbum(album_id)
     s = dbQuery().SongByAlbum(album_id)
     #ar = dbQuery().GetArtist()
     return render_template('album-info.html', album=a, songs=s)
 
-@app.route('/albums', defaults={'sorting':'asc', 'page':1}, strict_slashes=False)
+
+@app.route('/albums', defaults={'sorting': 'asc', 'page': 1}, strict_slashes=False)
 @app.route('/albums/<string:sorting>/<int:page>')
 def albums(sorting, page):
     """
@@ -310,8 +321,9 @@ def albums(sorting, page):
     Doc.
     """
     data = dbQuery().AllAlbums(sorting)
-    data = data[(page - 1) * 8 : page * 8]
-    return render_template('albums.html', data=data, language='Python',framework='Flask',lang=False)
+    pages = len(data)
+    data = data[(page - 1) * 8: page * 8]
+    return render_template('albums.html', data=data, pages=pages, language='Python', framework='Flask', lang=False)
 
 
 @app.route('/tours')
@@ -323,14 +335,16 @@ def tours():
     """
     return render_template('tours.html')
 
+
 @app.route('/songs/<song_id>')
 def song(song_id):
-    song_id = str(song_id.replace('%20',' '))
+    song_id = str(song_id.replace('%20', ' '))
     s = dbQuery().GetSong(song_id)
     #ar = dbQuery().GetArtist()
     return render_template('song-info.html', song=s)
 
-@app.route('/songs', defaults={'sorting':'asc', 'page':1}, strict_slashes=False)
+
+@app.route('/songs', defaults={'sorting': 'asc', 'page': 1}, strict_slashes=False)
 @app.route('/songs/<string:sorting>/<int:page>')
 def songs(sorting, page):
     """
@@ -339,14 +353,17 @@ def songs(sorting, page):
     Doc.
     """
     data = dbQuery().AllSongs(sorting)
-    data = data[(page - 1) * 8 : page * 8]
-    return render_template('songs.html', data=data, language='Python',framework='Flask',lang=False)
+    pages = len(data)
+    data = data[(page - 1) * 8: page * 8]
+    return render_template('songs.html', data=data, pages=pages, language='Python', framework='Flask', lang=False)
+
 
 @app.route('/songs_by_genre/<string:genre>/<string:sorting>/<int:page>')
 def songs_by_genre(genre, sorting, page):
     data = dbQuery().SongByGenre(genre, sorting)
-    data = data[(page - 1) * 8 : page * 8]
-    return render_template('songs.html', data=data, language='Python',framework='Flask',lang=False)
+    pages = len(data)
+    data = data[(page - 1) * 8: page * 8]
+    return render_template('songs.html', data=data, pages=pages, language='Python', framework='Flask', lang=False)
 
 
 @app.route('/about')
@@ -359,7 +376,6 @@ def about():
     return render_template('about.html')
 
 # INFO
-
 
 
 app.run(debug=True)

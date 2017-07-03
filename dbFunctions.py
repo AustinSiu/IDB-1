@@ -5,12 +5,18 @@ class dbQuery:
     """
     all query functions
     """
-    def AllArtists(self):
-        artists = Artists.query.all()
+    def AllArtists(self, sorting):
+    if sorting == 'asc':
+        artists = Artists.query.order_by((db.func.lower(Artists.Name)).desc()).all()
         for a in artists:
             a.ArtistGenre
         artistsInfo = [a.__dict__ for a in artists]
-        return artistsInfo # return a list of dict of artist
+    else:
+        artists = Artists.query.order_by((db.func.lower(Artists.Name)).asc()).all()
+        for a in artists:
+            a.ArtistGenre
+        artistsInfo = [a.__dict__ for a in artists]
+    return artistsInfo # return a list of dict of artist
 
     def ArtistByName(self, name):
         artists = Artists.query.filter(Artists.Name==name).all()
@@ -23,12 +29,18 @@ class dbQuery:
         genre = Artists.query.filter(Artists.Name==artist).first().ArtistGenre
         return genre # return a list
 
-    def ArtistByGenre(self, genre):
-        artists = Artists.query.filter(Artists.ArtistGenre.any(Name=genre)).all()
+    def ArtistByGenre(self, genre, sorting):
+    if sorting == 'desc':
+        artists = Artists.query.filter(Artists.ArtistGenre.any(Name=genre)).order_by((db.func.lower(Artists.Name)).desc()).all()
         for a in artists:
             a.ArtistGenre
         artistsInfo = [a.__dict__ for a in artists]
-        return artistsInfo
+    else:
+        artists = Artists.query.filter(Artists.ArtistGenre.any(Name=genre)).order_by((db.func.lower(Artists.Name)).asc()).all()
+        for a in artists:
+            a.ArtistGenre
+        artistsInfo = [a.__dict__ for a in artists]
+    return artistsInfo
 
     def ArtistSongs(self, artist):
         songs = Songs.query.join(Artists).filter(Artists.Name==artist).all()
@@ -42,24 +54,36 @@ class dbQuery:
         a=Artists.query.filter(Artists.Name==artist).first()
         return a.__dict__
 
-    def AllSongs(self):
-        songs = Songs.query.all()
+    def AllSongs(self, sorting):
+    if sorting == 'desc':
+        songs = Songs.query.order_by((db.func.lower(Songs.Name)).desc()).all()
         for s in songs:
             s.SongGenre
         songsInfo = [s.__dict__ for s in songs]
-        return songsInfo
+    else:
+        songs = Songs.query.order_by((db.func.lower(Songs.Name)).asc()).all()
+        for s in songs:
+            s.SongGenre
+        songsInfo = [s.__dict__ for s in songs]
+    return songsInfo
 
     def SongAlbum(self, song):
         albums = Albums.query.join(Songs).filter(Songs.Name==song).all()
         albumsInfo = [al.__dict__ for al in albums]
         return albumsInfo
 
-    def SongByGenre(self, genre):
-        songs = Songs.query.filter(Songs.SongGenre.any(Name=genre)).all()
+    def SongByGenre(self, genre, sorting):
+    if sorting == 'desc':
+        songs = Songs.query.filter(Songs.SongGenre.any(Name=genre)).order_by((db.func.lower(Songs.Name)).desc()).all()
         for s in songs:
             s.SongGenre
         songsInfo = [s.__dict__ for s in songs]
-        return songsInfo
+    else:
+        songs = Songs.query.filter(Songs.SongGenre.any(Name=genre)).order_by((db.func.lower(Songs.Name)).desc()).all()
+        for s in songs:
+            s.SongGenre
+        songsInfo = [s.__dict__ for s in songs]
+    return songsInfo
 
     def SongByAlbum(self, album):
         songs = Songs.query.join(Albums).filter(Albums.Title==album).all()
@@ -75,10 +99,14 @@ class dbQuery:
         a=Songs.query.filter(Songs.Name==song).first()
         return a
 
-    def AllAlbums(self):
-        albums = Albums.query.all()
+    def AllAlbums(self, sorting):
+    if sorting == 'desc':
+        albums = Albums.query.order_by((db.func.lower(Albums.Title)).desc()).all()
         albumsInfo = [al.__dict__ for al in albums]
-        return albumsInfo
+    else:
+        albums = Albums.query.order_by((db.func.lower(Albums.Title)).asc()).all()
+        albumsInfo = [al.__dict__ for al in albums]
+    return albumsInfo
 
     def AlbumByArtist(self, artist):
         albums = Albums.query.join(Artists).filter(Artists.Name==artist).all()

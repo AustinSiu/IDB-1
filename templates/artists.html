@@ -19,12 +19,6 @@
         <div class="content fullwidth">
           <h2 class="entry-title">Artists</h2>
           <div class="filter-links filterable-nav">
-            <select class="mobile-filter">
-              <option value="*">Show all</option>
-              <option value=".concert">Concert</option>
-              <option value=".band">Band</option>
-              <option value=".stuff">Stuff</option>
-            </select>
             <h3>Filter By</h3>
             <a href="#" class="current" data-filter="*">Show all</a>
             <a href="#" data-filter=".alternative">Alternative</a>
@@ -36,14 +30,20 @@
             <a href="#" data-filter=".rock">Rock</a>
 
           </div>
+
+          <div class="filter-links filterable-nav">
+            <h3>Sort By</h3>
+            <a href="#" data-filter=".ascending">Ascending</a>
+            <a href="#" data-filter=".descending">Descending</a>
+
+          </div>
+
           <div class="filterable-items">
-            {% for key,value in genres.items() %} <!-- {'alternative':[rihanna, ladygaga]} -->
-              {% for i in value %}
-                <div class="filterable-item {{key}}">
-                  <h3>{{i.Name}}</h3>
-                <a href="/artist/{{i.Name}}"><figure><img src="{{i.Image}}" alt="" height="300" width="300"></figure></a>
-                </div>
-              {% endfor %}
+            {% for i in data %}
+              <div class="filterable-item {{key}}">
+                <h3>{{i.Name}}</h3>
+              <a href="/artist/{{i.Name}}"><figure><img src="{{i.Image}}" alt="" height="300" width="300"></figure></a>
+              </div>
             {% endfor %}
           </div>
 

@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 # for test purposes, use sqlite:////path/test.db instead
 # a config file is needed
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/tikalestari"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/banddb"
 
 db = SQLAlchemy(app)
 
@@ -272,19 +272,26 @@ def artist(artist_id):
     al = dbQuery().AlbumByArtist(artist_id)
     return render_template('artist-info.html', artist=a, songs=s, albums=al)
 
-@app.route('/artists')
-def bands():
+@app.route('/artists', defaults={'sorting':'asc', 'page':1}, strict_slashes=False)
+@app.route('/artists/<string:sorting>/<int:page>')
+def artists(sorting, page):
     """
     Doc.
 
     Doc.
     """
-    data = api_artists()
-    genres = ['alternative', 'blues', 'classic', 'country','electronic','indie','hip-hop','rap','rock']
-    genres_dict = {}
-    for g in genres:
-        genres_dict[g] = dbQuery().ArtistByGenre(g)
-    return render_template('artists.html', data=data, genres=genres_dict, language='Python',framework='Flask',lang=False)
+    data = dbQuery().AllArtists(sorting)
+    data = data[(page - 1) * 8 : page * 8]
+    return render_template('artists.html', data=data,language='Python',framework='Flask',lang=False)
+
+@app.route('/artists_by_genre/<string:genre>/<string:sorting>/<int:page>')
+def artists_by_genre(genre, sorting, page):
+    data = dbQuery.ArtistsByGenre(genre, sorting)
+    data = data[(page - 1) * 8 : page * 8]
+    return render_template('artists.html', data=data,language='Python',framework='Flask',lang=False)
+
+
+
 
 @app.route('/albums/<album_id>')
 def album(album_id):
@@ -294,14 +301,16 @@ def album(album_id):
     #ar = dbQuery().GetArtist()
     return render_template('album-info.html', album=a, songs=s)
 
-@app.route('/albums')
-def albums():
+@app.route('/albums', defaults={'sorting':'asc', 'page':1}, strict_slashes=False)
+@app.route('/albums/<string:sorting>/<int:page>')
+def albums(sorting, page):
     """
     Doc.
 
     Doc.
     """
-    data = dbQuery().AllAlbums()
+    data = dbQuery().AllAlbums(sorting)
+    data = data[(page - 1) * 8 : page * 8]
     return render_template('albums.html', data=data, language='Python',framework='Flask',lang=False)
 
 
@@ -321,14 +330,22 @@ def song(song_id):
     #ar = dbQuery().GetArtist()
     return render_template('song-info.html', song=s)
 
-@app.route('/songs')
-def songs():
+@app.route('/songs', defaults={'sorting':'asc', 'page':1}, strict_slashes=False)
+@app.route('/songs/<string:sorting>/<int:page>')
+def songs(sorting, page):
     """
     Doc.
 
     Doc.
     """
-    data = dbQuery().AllSongs()
+    data = dbQuery().AllSongs(sorting)
+    data = data[(page - 1) * 8 : page * 8]
+    return render_template('songs.html', data=data, language='Python',framework='Flask',lang=False)
+
+@app.route('/songs_by_genre/<string:genre>/<string:sorting>/<int:page>')
+def songs_by_genre(genre, sorting, page):
+    data = dbQuery().SongByGenre(genre, sorting)
+    data = data[(page - 1) * 8 : page * 8]
     return render_template('songs.html', data=data, language='Python',framework='Flask',lang=False)
 
 
@@ -343,8 +360,6 @@ def about():
 
 # INFO
 
-def api_artists():
-    data = dbQuery().AllArtists()
-    return data
+
 
 app.run(debug=True)

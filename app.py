@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 # for test purposes, use sqlite:////path/test.db instead
 # a config file is needed
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/tikalestari"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/banddb"
 
 db = SQLAlchemy(app)
 
@@ -272,7 +272,7 @@ def artist(artist_id):
     al = dbQuery().AlbumByArtist(artist_id)
     return render_template('artist-info.html', artist=a, songs=s, albums=al)
 
-@app.route('/artists', defaults={'sorting':'asc', 'page':1})
+@app.route('/artists', defaults={'sorting':'asc', 'page':1}, strict_slashes=False)
 @app.route('/artists/<string:sorting>/<int:page>')
 def artists(sorting, page):
     """
@@ -301,7 +301,7 @@ def album(album_id):
     #ar = dbQuery().GetArtist()
     return render_template('album-info.html', album=a, songs=s)
 
-@app.route('/albums', defaults={'sorting':'asc', 'page':1})
+@app.route('/albums', defaults={'sorting':'asc', 'page':1}, strict_slashes=False)
 @app.route('/albums/<string:sorting>/<int:page>')
 def albums(sorting, page):
     """
@@ -330,9 +330,9 @@ def song(song_id):
     #ar = dbQuery().GetArtist()
     return render_template('song-info.html', song=s)
 
-@app.route('/songs', defaults={'sorting':'asc', 'page':1})
+@app.route('/songs', defaults={'sorting':'asc', 'page':1}, strict_slashes=False)
 @app.route('/songs/<string:sorting>/<int:page>')
-def songs(sorting):
+def songs(sorting, page):
     """
     Doc.
 

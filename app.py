@@ -281,14 +281,16 @@ def artists(sorting, page):
     Doc.
     """
     data = dbQuery().AllArtists(sorting)
+    pages = len(data)
     data = data[(page - 1) * 8 : page * 8]
-    return render_template('artists.html', data=data,language='Python',framework='Flask',lang=False)
+    return render_template('artists.html', data=data,pages=pages, language='Python',framework='Flask',lang=False)
 
 @app.route('/artists_by_genre/<string:genre>/<string:sorting>/<int:page>')
 def artists_by_genre(genre, sorting, page):
     data = dbQuery.ArtistsByGenre(genre, sorting)
+    pages = len(data)
     data = data[(page - 1) * 8 : page * 8]
-    return render_template('artists.html', data=data,language='Python',framework='Flask',lang=False)
+    return render_template('artists.html', data=data,pages=pages, language='Python',framework='Flask',lang=False)
 
 
 
@@ -310,8 +312,9 @@ def albums(sorting, page):
     Doc.
     """
     data = dbQuery().AllAlbums(sorting)
+    pages = len(data)
     data = data[(page - 1) * 8 : page * 8]
-    return render_template('albums.html', data=data, language='Python',framework='Flask',lang=False)
+    return render_template('albums.html', data=data, pages=pages, language='Python',framework='Flask',lang=False)
 
 
 @app.route('/tours')
@@ -339,14 +342,16 @@ def songs(sorting, page):
     Doc.
     """
     data = dbQuery().AllSongs(sorting)
+    pages = len(data)
     data = data[(page - 1) * 8 : page * 8]
-    return render_template('songs.html', data=data, language='Python',framework='Flask',lang=False)
+    return render_template('songs.html', data=data, pages=pages, language='Python',framework='Flask',lang=False)
 
 @app.route('/songs_by_genre/<string:genre>/<string:sorting>/<int:page>')
 def songs_by_genre(genre, sorting, page):
     data = dbQuery().SongByGenre(genre, sorting)
+    pages = len(data)
     data = data[(page - 1) * 8 : page * 8]
-    return render_template('songs.html', data=data, language='Python',framework='Flask',lang=False)
+    return render_template('songs.html', data=data, pages = pages, language='Python',framework='Flask',lang=False)
 
 
 @app.route('/about')

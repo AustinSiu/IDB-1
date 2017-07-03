@@ -284,7 +284,9 @@ def bands():
     genres_dict = {}
     for g in genres:
         genres_dict[g] = dbQuery().ArtistByGenre(g)
-    return render_template('artists.html', data=data, genres=genres_dict, language='Python',framework='Flask',lang=False)
+    asc = dbQuery().SortArtistAsc()
+    desc = dbQuery().SortArtistDes()
+    return render_template('artists.html', data=data, genres=genres_dict, asc=asc, desc=desc, language='Python',framework='Flask',lang=False)
 
 @app.route('/albums/<album_id>')
 def album(album_id):
@@ -302,7 +304,9 @@ def albums():
     Doc.
     """
     data = dbQuery().AllAlbums()
-    return render_template('albums.html', data=data, language='Python',framework='Flask',lang=False)
+    asc = dbQuery().SortAlbumAsc()
+    desc = dbQuery().SortAlbumDes()
+    return render_template('albums.html', data=data, asc=asc, desc=desc,language='Python',framework='Flask',lang=False)
 
 
 @app.route('/tours')
@@ -329,7 +333,9 @@ def songs():
     Doc.
     """
     data = dbQuery().AllSongs()
-    return render_template('songs.html', data=data, language='Python',framework='Flask',lang=False)
+    asc = dbQuery().SortSongAsc()
+    desc = dbQuery().SortSongDes()
+    return render_template('songs.html', data=data, asc=asc, desc=desc, language='Python',framework='Flask',lang=False)
 
 
 @app.route('/about')

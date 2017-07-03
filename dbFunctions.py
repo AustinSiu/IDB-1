@@ -103,7 +103,7 @@ class dbQuery:
             a.ArtistGenre
         artistsInfo = [a.__dict__ for a in artists]
         return artistsInfo
-    
+
     def SortArtistDes(self):
         artists = Artists.query.order_by((db.func.lower(Artists.Name)).desc()).all()
         for a in artists:
@@ -117,7 +117,7 @@ class dbQuery:
             s.SongGenre
         songsInfo = [s.__dict__ for s in songs]
         return songsInfo
-    
+
     def SortSongDes(self):
         songs = Songs.query.order_by((db.func.lower(Songs.Name)).desc()).all()
         for s in songs:
@@ -126,12 +126,12 @@ class dbQuery:
         return songsInfo
 
     def SortAlbumAsc(self):
-        albums = Albums.query.order_by((db.func.lower(Albums.Name)).asc()).all()
+        albums = Albums.query.order_by((db.func.lower(Albums.Title)).asc()).all()
         albumsInfo = [al.__dict__ for al in albums]
         return albumsInfo
-    
+
     def SortAlbumDes(self):
-        albums = Albums.query.order_by((db.func.lower(Albums.Name)).desc()).all()
+        albums = Albums.query.order_by((db.func.lower(Albums.Title)).desc()).all()
         albumsInfo = [al.__dict__ for al in albums]
         return albumsInfo
 

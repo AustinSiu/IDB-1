@@ -6,17 +6,17 @@ class dbQuery:
     all query functions
     """
     def AllArtists(self, sorting):
-    if sorting == 'asc':
-        artists = Artists.query.order_by((db.func.lower(Artists.Name)).desc()).all()
-        for a in artists:
-            a.ArtistGenre
-        artistsInfo = [a.__dict__ for a in artists]
-    else:
-        artists = Artists.query.order_by((db.func.lower(Artists.Name)).asc()).all()
-        for a in artists:
-            a.ArtistGenre
-        artistsInfo = [a.__dict__ for a in artists]
-    return artistsInfo # return a list of dict of artist
+        if sorting == 'asc':
+            artists = Artists.query.order_by((db.func.lower(Artists.Name)).desc()).all()
+            for a in artists:
+                a.ArtistGenre
+            artistsInfo = [a.__dict__ for a in artists]
+        else:
+            artists = Artists.query.order_by((db.func.lower(Artists.Name)).asc()).all()
+            for a in artists:
+                a.ArtistGenre
+            artistsInfo = [a.__dict__ for a in artists]
+        return artistsInfo # return a list of dict of artist
 
     def ArtistByName(self, name):
         artists = Artists.query.filter(Artists.Name==name).all()
@@ -30,17 +30,17 @@ class dbQuery:
         return genre # return a list
 
     def ArtistByGenre(self, genre, sorting):
-    if sorting == 'desc':
-        artists = Artists.query.filter(Artists.ArtistGenre.any(Name=genre)).order_by((db.func.lower(Artists.Name)).desc()).all()
-        for a in artists:
-            a.ArtistGenre
-        artistsInfo = [a.__dict__ for a in artists]
-    else:
-        artists = Artists.query.filter(Artists.ArtistGenre.any(Name=genre)).order_by((db.func.lower(Artists.Name)).asc()).all()
-        for a in artists:
-            a.ArtistGenre
-        artistsInfo = [a.__dict__ for a in artists]
-    return artistsInfo
+        if sorting == 'desc':
+            artists = Artists.query.filter(Artists.ArtistGenre.any(Name=genre)).order_by((db.func.lower(Artists.Name)).desc()).all()
+            for a in artists:
+                a.ArtistGenre
+            artistsInfo = [a.__dict__ for a in artists]
+        else:
+            artists = Artists.query.filter(Artists.ArtistGenre.any(Name=genre)).order_by((db.func.lower(Artists.Name)).asc()).all()
+            for a in artists:
+                a.ArtistGenre
+            artistsInfo = [a.__dict__ for a in artists]
+        return artistsInfo
 
     def ArtistSongs(self, artist):
         songs = Songs.query.join(Artists).filter(Artists.Name==artist).all()
@@ -73,17 +73,17 @@ class dbQuery:
         return albumsInfo
 
     def SongByGenre(self, genre, sorting):
-    if sorting == 'desc':
-        songs = Songs.query.filter(Songs.SongGenre.any(Name=genre)).order_by((db.func.lower(Songs.Name)).desc()).all()
-        for s in songs:
-            s.SongGenre
-        songsInfo = [s.__dict__ for s in songs]
-    else:
-        songs = Songs.query.filter(Songs.SongGenre.any(Name=genre)).order_by((db.func.lower(Songs.Name)).desc()).all()
-        for s in songs:
-            s.SongGenre
-        songsInfo = [s.__dict__ for s in songs]
-    return songsInfo
+        if sorting == 'desc':
+            songs = Songs.query.filter(Songs.SongGenre.any(Name=genre)).order_by((db.func.lower(Songs.Name)).desc()).all()
+            for s in songs:
+                s.SongGenre
+            songsInfo = [s.__dict__ for s in songs]
+        else:
+            songs = Songs.query.filter(Songs.SongGenre.any(Name=genre)).order_by((db.func.lower(Songs.Name)).desc()).all()
+            for s in songs:
+                s.SongGenre
+            songsInfo = [s.__dict__ for s in songs]
+        return songsInfo
 
     def SongByAlbum(self, album):
         songs = Songs.query.join(Albums).filter(Albums.Title==album).all()

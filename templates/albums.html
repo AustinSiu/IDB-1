@@ -26,17 +26,13 @@
               <option valie=".hehe">Hehe</option>
             </select>
             <a href="#" class="current" data-filter="*">Show all</a>
-            <a href="#" data-filter=".concert">Concert</a>
-            <a href="#" data-filter=".band">Band</a>
-            <a href="#" data-filter=".stuff">Stuff</a>
-            <a href="#" data-filter=".hehe">hehe</a>
           </div>
           <div class="filterable-items">
           {% for item in data %}
 
               <div class="filterable-item <>">
-              <h3>{{item.Name}}</h3>
-              <a href="/albums/<{{item.Name}}"><figure><img src="{{item.Image}}" alt="" height="300" width="300"></figure></a>
+                <h3>{{item.Title}}</h3>
+              <a href="/albums/{{item.Title}}"><figure><img src="{{item.Image}}" alt="" height="300" width="300"></figure></a>
             </div>
 
           {% endfor %}

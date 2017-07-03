@@ -118,14 +118,14 @@ def createArtists():
             for s in songs:
                 try:
                     song = createSong(s)
-                    album = createAlbum(song['album']['id'], song['artist']['id'], song['artist']['name'])
+                    album = createAlbum(
+                        song['album']['id'], song['artist']['id'], song['artist']['name'])
                     for ms in album['songs']:
                         createSong(ms['id'])
                 except KeyError:
                     pass
                 except TypeError:
                     pass
-
 
             # print('@@@@@@@@@@@@@@@@@@@@@ BBBBBB @@@@@@@@@@@@@@@@@@@@@')
             albums = [a['id'] for a in artist['albums']]
@@ -146,7 +146,7 @@ def createArtists():
             print('@@ Artists successfully added! @@')
         except KeyError as e:
             print('@@ Artists creation failed! @@')
-            print ("Log:", e)
+            print("Log:", e)
 
 
 def createSong(s):

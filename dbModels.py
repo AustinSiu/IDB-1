@@ -21,24 +21,29 @@ db = SQLAlchemy(app)
 # *************
 
 TopSongs = db.Table('top_songs',
-    db.Column('ArtistID', db.Integer, db.ForeignKey('artists.ArtistID')),
-    db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')))
+                    db.Column('ArtistID', db.Integer,
+                              db.ForeignKey('artists.ArtistID')),
+                    db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')))
 
 ArtistGenre = db.Table('artist_genre',
-    db.Column('ArtistID', db.Integer, db.ForeignKey('artists.ArtistID')),
-    db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
+                       db.Column('ArtistID', db.Integer,
+                                 db.ForeignKey('artists.ArtistID')),
+                       db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
 
 SongGenre = db.Table('song_genre',
-    db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')),
-    db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
+                     db.Column('SongID', db.Integer,
+                               db.ForeignKey('songs.SongID')),
+                     db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
 
 AlbumGenre = db.Table('album_genre',
-    db.Column('AlbumID', db.Integer, db.ForeignKey('albums.AlbumID')),
-    db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
+                      db.Column('AlbumID', db.Integer,
+                                db.ForeignKey('albums.AlbumID')),
+                      db.Column('GID', db.Integer, db.ForeignKey('genre.GID')))
 
 TourLineUp = db.Table('tour_line_up',
-    db.Column('TourID', db.Integer, db.ForeignKey('tours.TourID')),
-    db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')))
+                      db.Column('TourID', db.Integer,
+                                db.ForeignKey('tours.TourID')),
+                      db.Column('SongID', db.Integer, db.ForeignKey('songs.SongID')))
 
 
 class Artists(db.Model):
@@ -58,7 +63,8 @@ class Artists(db.Model):
     Image = db.Column(db.String, nullable=True)
 
 #   top 3 songs are many-to-many relationship
-    TopSongs = db.relationship('Songs', secondary=TopSongs, backref=db.backref('a', lazy='dynamic'))
+    TopSongs = db.relationship(
+        'Songs', secondary=TopSongs, backref=db.backref('a', lazy='dynamic'))
 
 #   Artist-genre is a many-to-many relationship
     ArtistGenre = db.relationship('Genre', secondary=ArtistGenre, backref=db.backref(
@@ -138,9 +144,11 @@ class Albums(db.Model):
     Image = db.Column(db.String, nullable=True)
 
 #   Album-song is a one-to-many relationship
-    LabelID = db.Column(db.Integer, db.ForeignKey("labels.LabelID"), nullable=True)
+    LabelID = db.Column(db.Integer, db.ForeignKey(
+        "labels.LabelID"), nullable=True)
 #   Artist-album is a one-to-many relationship
-    ArtistID = db.Column(db.Integer, db.ForeignKey("artists.ArtistID"), nullable=True)
+    ArtistID = db.Column(db.Integer, db.ForeignKey(
+        "artists.ArtistID"), nullable=True)
 #   Album-song is a one-to-many relationship
     Songs = db.relationship('Songs', backref='album')
 
@@ -201,6 +209,7 @@ class Genre(db.Model):
     def __repr__(self):
         return self.Name
 
+
 class Labels(db.Model):
     """
     Model Labels has
@@ -223,7 +232,6 @@ class Labels(db.Model):
 
     def __repr__(self):
         return self.Name
-
 
 
 #	For test purposes, uncomment to initialize database

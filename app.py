@@ -282,21 +282,13 @@ def artists(sorting, page):
     """
     data = dbQuery().AllArtists(sorting)
     data = data[(page - 1) * 8 : page * 8]
-    genres = ['alternative', 'blues', 'classic', 'country','electronic','indie','hip-hop','rap','rock']
-    genres_dict = {}
-    for g in genres:
-        genres_dict[g] = dbQuery().ArtistByGenre(g)
-    return render_template('artists.html', data=data, genres=genres_dict,language='Python',framework='Flask',lang=False)
+    return render_template('artists.html', data=data,language='Python',framework='Flask',lang=False)
 
 @app.route('/artists/<string:genre>/<string:sorting>/<int:page>')
 def artists_by_genre(genre, sorting, page):
     data = dbQuery.ArtistsByGenre(genre, sorting)
     data = data[(page - 1) * 8 : page * 8]
-    genres = ['alternative', 'blues', 'classic', 'country','electronic','indie','hip-hop','rap','rock']
-    genres_dict = {}
-    for g in genres:
-        genres_dict[g] = dbQuery().ArtistByGenre(g)
-    return render_template('artists.html', data=data, genres=genres_dict,language='Python',framework='Flask',lang=False)
+    return render_template('artists.html', data=data,language='Python',framework='Flask',lang=False)
 
 
 

@@ -37,33 +37,13 @@
             <a href="#" data-filter=".descending">Descending</a>
 
           </div>
-          
-          <div class="filterable-items">
-            {% for key,value in genres.items() %} <!-- {'alternative':[rihanna, ladygaga]} -->
-              {% for i in value %}
-                <div class="filterable-item {{key}}">
-                  <h3>{{i.Name}}</h3>
-                <a href="/artist/{{i.Name}}"><figure><img src="{{i.Image}}" alt="" height="300" width="300"></figure></a>
-                </div>
-              {% endfor %}
-            {% endfor %}
-          </div>
 
           <div class="filterable-items">
-            {% for item in asc %} <!-- {'alternative':[rihanna, ladygaga]} -->
-                <div class="filterable-item ascending">
-                  <h3>{{item.Name}}</h3>
-                <a href="/artist/{{item.Name}}"><figure><img src="{{item.Image}}" alt="" height="300" width="300"></figure></a>
-                </div>
-            {% endfor %}
-          </div>
-
-          <div class="filterable-items">
-            {% for item in desc %} <!-- {'alternative':[rihanna, ladygaga]} -->
-                <div class="filterable-item descending">
-                  <h3>{{item.Name}}</h3>
-                <a href="/artist/{{item.Name}}"><figure><img src="{{item.Image}}" alt="" height="300" width="300"></figure></a>
-                </div>
+            {% for i in data %}
+              <div class="filterable-item {{key}}">
+                <h3>{{i.Name}}</h3>
+              <a href="/artist/{{i.Name}}"><figure><img src="{{i.Image}}" alt="" height="300" width="300"></figure></a>
+              </div>
             {% endfor %}
           </div>
 

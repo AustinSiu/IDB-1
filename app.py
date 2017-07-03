@@ -284,7 +284,7 @@ def artists(sorting, page):
     data = data[(page - 1) * 8 : page * 8]
     return render_template('artists.html', data=data,language='Python',framework='Flask',lang=False)
 
-@app.route('/artists/<string:genre>/<string:sorting>/<int:page>')
+@app.route('/artists_by_genre/<string:genre>/<string:sorting>/<int:page>')
 def artists_by_genre(genre, sorting, page):
     data = dbQuery.ArtistsByGenre(genre, sorting)
     data = data[(page - 1) * 8 : page * 8]
@@ -342,7 +342,7 @@ def songs(sorting):
     data = data[(page - 1) * 8 : page * 8]
     return render_template('songs.html', data=data, language='Python',framework='Flask',lang=False)
 
-@app.route('/songs/<string:genre>/<string:sorting>/<int:page>')
+@app.route('/songs_by_genre/<string:genre>/<string:sorting>/<int:page>')
 def songs_by_genre(genre, sorting, page):
     data = dbQuery().SongByGenre(genre, sorting)
     data = data[(page - 1) * 8 : page * 8]

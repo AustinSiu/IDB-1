@@ -7,7 +7,7 @@ app = Flask(__name__)
 # for test purposes, use sqlite:////path/test.db instead
 #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////Users/shidashen/Desktop/IDB/IDB/test.db"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/banddb"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/tikalestari"
 
 db = SQLAlchemy(app)
 
@@ -60,7 +60,7 @@ class Artists(db.Model):
 #   top 3 songs are many-to-many relationship
     TopSongs = db.relationship('Songs', secondary=TopSongs, backref=db.backref('a', lazy='dynamic'))
 
-#   Artist-genre is a many-to-many relationship    
+#   Artist-genre is a many-to-many relationship
     ArtistGenre = db.relationship('Genre', secondary=ArtistGenre, backref=db.backref(
         'artist', lazy='dynamic'))
 
@@ -86,7 +86,7 @@ class Artists(db.Model):
 
 
 class Songs(db.Model):
-    """ 
+    """
     Model Songs:
     features of SongID, Name, Creation_Date, Chart_Position, Run_Time
     relations from Artists, Albums, Labels
@@ -127,7 +127,7 @@ class Albums(db.Model):
     """
     Model Albums has
     features of AlbumID, Title, Year, US_Chart_Position
-    relations from Labels, Artists, 
+    relations from Labels, Artists,
     relations to Songs
     relations of genre (album_genre, a table)
     """
@@ -160,7 +160,7 @@ class Albums(db.Model):
 class Tours(db.Model):
     """
     Model Tours has
-    features of TourID, Venue, Location, tDate, 
+    features of TourID, Venue, Location, tDate,
     relations from Artist
     relations of tour_line_up (a table)
     """

@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 # for test purposes, use sqlite:////path/test.db instead
 # a config file is needed
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/banddb"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/tikalestari"
 
 db = SQLAlchemy(app)
 
@@ -259,14 +259,18 @@ def index():
     """
     return render_template('index.html')
 
-# @app.route('/artists/<artist_id>')
-# def artist(artist_id):
-#     """
-#     Doc.
-#
-#     Doc.
-#     """
-#     return render_template('artist-info.html', artist=artist_id)
+@app.route('/artist/<artist_id>') # when does this get called?
+def artist(artist_id):
+    """
+    Doc.
+
+    Doc.
+    """
+    artist_id = str(artist_id.replace('%20',' '))
+    a = dbQuery().GetArtist(artist_id)
+    s = dbQuery().ArtistSongs(artist_id)
+    al = dbQuery().AlbumByArtist(artist_id)
+    return render_template('artist-info.html', artist=a, songs=s, albums=al)
 
 @app.route('/artists')
 def bands():
@@ -276,16 +280,19 @@ def bands():
     Doc.
     """
     data = api_artists()
-    return render_template('artists.html', data=data)
+    genres = ['alternative', 'blues', 'classic', 'country','electronic','indie','hip-hop','rap','rock']
+    genres_dict = {}
+    for g in genres:
+        genres_dict[g] = dbQuery().ArtistByGenre(g)
+    return render_template('artists.html', data=data, genres=genres_dict, language='Python',framework='Flask',lang=False)
 
-# @app.route('/albums/<album_id>')
-# def artist(artist_id):
-#     """
-#     Doc.
-#
-#     Doc.
-#     """
-#     return render_template('album-info.html', album=album_id)
+@app.route('/albums/<album_id>')
+def album(album_id):
+    album_id = str(album_id.replace('%20',' '))
+    a = dbQuery().GetAlbum(album_id)
+    s = dbQuery().SongByAlbum(album_id)
+    #ar = dbQuery().GetArtist()
+    return render_template('album-info.html', album=a, songs=s)
 
 @app.route('/albums')
 def albums():
@@ -294,7 +301,8 @@ def albums():
 
     Doc.
     """
-    return render_template('albums.html')
+    data = dbQuery().AllAlbums()
+    return render_template('albums.html', data=data, language='Python',framework='Flask',lang=False)
 
 
 @app.route('/tours')
@@ -306,14 +314,12 @@ def tours():
     """
     return render_template('tours.html')
 
-# @app.route('/songs/<song_id>')
-# def artist(song_id):
-#     """
-#     Doc.
-#
-#     Doc.
-#     """
-#     return render_template('song-info.html', song=song_id)
+@app.route('/songs/<song_id>')
+def song(song_id):
+    song_id = str(song_id.replace('%20',' '))
+    s = dbQuery().GetSong(song_id)
+    #ar = dbQuery().GetArtist()
+    return render_template('song-info.html', song=s)
 
 @app.route('/songs')
 def songs():
@@ -322,7 +328,8 @@ def songs():
 
     Doc.
     """
-    return render_template('songs.html')
+    data = dbQuery().AllSongs()
+    return render_template('songs.html', data=data, language='Python',framework='Flask',lang=False)
 
 
 @app.route('/about')

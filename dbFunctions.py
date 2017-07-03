@@ -1,5 +1,5 @@
 from dbModels import *
-
+from sqlalchemy import func
 
 class dbQuery:
     """
@@ -97,12 +97,43 @@ class dbQuery:
         genreInfo = [g.__dict__ for g in genre]
         return genreInfo
 
-    # def SortArtistAsc(self):
-    #     artists = AllArtists()
-    #
-    # def SortArtistDes(self):
-    #     artists = AllArtists()
+    def SortArtistAsc(self):
+        artists = Artists.query.order_by((db.func.lower(Artists.Name)).asc()).all()
+        for a in artists:
+            a.ArtistGenre
+        artistsInfo = [a.__dict__ for a in artists]
+        return artistsInfo
+    
+    def SortArtistDes(self):
+        artists = Artists.query.order_by((db.func.lower(Artists.Name)).desc()).all()
+        for a in artists:
+            a.ArtistGenre
+        artistsInfo = [a.__dict__ for a in artists]
+        return artistsInfo
 
+    def SortSongAsc(self):
+        songs = Songs.query.order_by((db.func.lower(Songs.Name)).asc()).all()
+        for s in songs:
+            s.SongGenre
+        songsInfo = [s.__dict__ for s in songs]
+        return songsInfo
+    
+    def SortSongDes(self):
+        songs = Songs.query.order_by((db.func.lower(Songs.Name)).desc()).all()
+        for s in songs:
+            s.SongGenre
+        songsInfo = [s.__dict__ for s in songs]
+        return songsInfo
+
+    def SortAlbumAsc(self):
+        albums = Albums.query.order_by((db.func.lower(Albums.Name)).asc()).all()
+        albumsInfo = [al.__dict__ for al in albums]
+        return albumsInfo
+    
+    def SortAlbumDes(self):
+        albums = Albums.query.order_by((db.func.lower(Albums.Name)).desc()).all()
+        albumsInfo = [al.__dict__ for al in albums]
+        return albumsInfo
 
 class dbAdd():
     """

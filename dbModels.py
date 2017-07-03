@@ -7,7 +7,7 @@ app = Flask(__name__)
 # for test purposes, use sqlite:////path/test.db instead
 #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////Users/shidashen/Desktop/IDB/IDB/test.db"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/tikalestari"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/banddb"
 
 db = SQLAlchemy(app)
 

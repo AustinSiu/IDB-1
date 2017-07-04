@@ -17,7 +17,7 @@
 			<div class="fullwidth-block inner-content">
 				<div class="container">
 					<div class="row">
-						
+
 						<div class="col-md-7">
 							<div class="content">
 								<h2 class="entry-title">{{artist.Name}}</h2>
@@ -26,7 +26,7 @@
 								</figure>
               </div>
 						</div>
-							
+
 						<div class="col-md-4 col-md-push-1">
 							<aside class="sidebar">
 								<div class="widget">
@@ -50,7 +50,8 @@
 								<div class="widget">
 									<h3 class="widget-title">Albums</h3>
 									<ul class="discography-list">
-                    					{% for a in albums%}
+
+                              {% for a in albums%}
 										<li>
 											<figure class="cover"><img src="{{a.Image}}" alt="{{a.Title}}"></figure>
 											<div class="detail">
@@ -69,11 +70,11 @@
 						          	<li>Origin: {{artist.Origin}}</li>
 						          	<li>Years Active: {{artist.Start_Time}} - {{artist.End_Time}} </li>
 						        </ul>
-						    </div>  
+						    </div>
 							-->
 						</div>
 					</div>
-				</div> 
+				</div>
 
 
 			</main> <!-- .main-content -->

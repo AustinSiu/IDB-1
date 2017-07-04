@@ -267,7 +267,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/artist/<artist_name>')  # when does this get called?
+@app.route('/artist/<string:artist_name>')  # when does this get called?
 def artist(artist_name):
     """
     Doc.

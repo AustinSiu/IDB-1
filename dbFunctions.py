@@ -65,6 +65,7 @@ class dbQuery:
 
     def GetArtist(self, artist):
         a = Artists.query.filter(Artists.Name == artist).first()
+        a.ArtistGenre
         return a.__dict__
 
     def AllSongs(self, sorting):

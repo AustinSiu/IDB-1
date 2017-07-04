@@ -13,38 +13,67 @@
 {% endblock %}
 {% block content %}
 	<body>
-			<main class="main-content">
-				<div class="fullwidth-block inner-content">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-7">
-								<div class="content">
-									<h2 class="entry-title">{{artist.Name}}</h2>
-									<figure class="featured-image">
-										<img src="{{artist.Image}}" alt="">
-									</figure>
-                </div>
-							</div>
-							<div class="col-md-4 col-md-push-1">
-								<aside class="sidebar">
-									<div class="widget">
-										<h3 class="widget-title">Songs</h3>
-										<ul class="discography-list">
-                      {% for s in songs%}
-											<li>
-												<figure class="cover"><img src="{{s.Image}}" alt="{{s.Name}}"></figure>
-												<div class="detail">
-													<h3><a href="#">{{s.Name}}</a></h3>
-												</div>
-											</li>
-                      {% endfor %}
-										</ul>
-									</div>
-								</aside>
-							</div>
+		<main class="main-content">
+			<div class="fullwidth-block inner-content">
+				<div class="container">
+					<div class="row">
+						
+						<div class="col-md-7">
+							<div class="content">
+								<h2 class="entry-title">{{artist.Name}}</h2>
+								<figure class="featured-image">
+									<img src="{{artist.Image}}" alt="">
+								</figure>
+              </div>
+						</div>
+							
+						<div class="col-md-4 col-md-push-1">
+							<aside class="sidebar">
+								<div class="widget">
+									<h3 class="widget-title">Songs</h3>
+									<ul class="discography-list">
+                    					{% for s in songs%}
+										<li>
+											<figure class="cover"><img src="{{s.Image}}" alt="{{s.Name}}"></figure>
+											<div class="detail">
+												<h3><a href="/songs/{{s.Name}}">{{s.Name}}</a></h3>
+											</div>
+										</li>
+                   			 		{% endfor %}
+									</ul>
+								</div>
+							</aside>
+						</div>
+
+						<div class="col-md-4 col-md-push-1">
+							<aside class="sidebar">
+								<div class="widget">
+									<h3 class="widget-title">Albums</h3>
+									<ul class="discography-list">
+                    					{% for a in albums%}
+										<li>
+											<figure class="cover"><img src="{{a.Image}}" alt="{{a.Title}}"></figure>
+											<div class="detail">
+												<h3><a href="/albums/{{a.Title}}">{{a.Title}}</a></h3>
+											</div>
+										</li>
+                   			 		{% endfor %}
+									</ul>
+								</div>
+							</aside>
+						</div>
+							<!--
+ 							<div class="container theme-showcase" role="main">
+						        <ul>
+						          	<li>Age: {{artist.Age}}</li>
+						          	<li>Origin: {{artist.Origin}}</li>
+						          	<li>Years Active: {{artist.Start_Time}} - {{artist.End_Time}} </li>
+						        </ul>
+						    </div>  
+							-->
 						</div>
 					</div>
-				</div> <!-- .testimonial-section -->
+				</div> 
 
 
 			</main> <!-- .main-content -->

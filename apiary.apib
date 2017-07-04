@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://banddb.me/api
 
 # bandDB API
 
@@ -7,68 +7,1400 @@ bandDB is an API for viewing bands data, including band members, member infomati
 genre, albums, tours and songs.
 
 
-## Artist [/artist/{id}{?query1,query2}]
+## Artist Collection [/artists/{ArtistID}]
++ Parameters 
+    + ArtistID (number) - ID of the artist
+
+### View an Artist Detail [GET]
+
++ Response 200 (application/json)
+
+        {
+         "Age":null,
+         "Albums":[
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Image":"https://lastfm-img2.akamaized.net/i/u/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Title":"Abbey Road",
+               "US_Chart_Postion":null,
+               "Year":"2008-11-27"
+            },
+            {
+               "AlbumID":70,
+               "ArtistID":1,
+               "Image":"https://lastfm-img2.akamaized.net/i/u/5a63743f4ba244678b74d90ad868504f.png",
+               "LabelID":null,
+               "Title":"Sgt. Pepper's Lonely Hearts Club Band",
+               "US_Chart_Postion":null,
+               "Year":"2009-01-06"
+            },
+            {
+               "AlbumID":108,
+               "ArtistID":1,
+               "Image":"https://lastfm-img2.akamaized.net/i/u/fafc74a8f45241acc10158be6e2d8270.png",
+               "LabelID":null,
+               "Title":"Revolver",
+               "US_Chart_Postion":null,
+               "Year":"2009-01-23"
+            }
+         ],
+         "ArtistGenre":[
+            {
+               "GID":1,
+               "Image":null,
+               "Name":"classic rock"
+            },
+            {
+               "GID":4,
+               "Image":null,
+               "Name":"rock"
+            },
+            {
+               "GID":35,
+               "Image":null,
+               "Name":"british"
+            }
+         ],
+         "ArtistID":1,
+         "End_Time":null,
+         "Image":"https://lastfm-img2.akamaized.net/i/u/047a20990f8ffd0442352e67c4e0bcdc.png",
+         "Name":"The Beatles",
+         "Origin":null,
+         "Songs":[
+            {
+               "AlbumID":108,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2014-12-08",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/fafc74a8f45241acc10158be6e2d8270.png",
+               "LabelID":null,
+               "Name":"Taxman",
+               "Run_Time":156,
+               "SongID":1
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-11-29",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Here Comes the Sun",
+               "Run_Time":185,
+               "SongID":78
+            },
+            {
+               "AlbumID":108,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-14",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/fafc74a8f45241acc10158be6e2d8270.png",
+               "LabelID":null,
+               "Name":"Eleanor Rigby",
+               "Run_Time":125,
+               "SongID":83
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Carry That Weight",
+               "Run_Time":97,
+               "SongID":118
+            },
+            {
+               "AlbumID":51,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-14",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/a152d53917b94c968087513a71d6ab3e.png",
+               "LabelID":null,
+               "Name":"Let It Be",
+               "Run_Time":241,
+               "SongID":119
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Polythene Pam",
+               "Run_Time":73,
+               "SongID":147
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Golden Slumbers",
+               "Run_Time":92,
+               "SongID":150
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-04-24",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Because",
+               "Run_Time":165,
+               "SongID":155
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-09",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Something",
+               "Run_Time":178,
+               "SongID":160
+            },
+            {
+               "AlbumID":139,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-18",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/c287f9f433293ca72d9866fb18b460a5.png",
+               "LabelID":null,
+               "Name":"Help!",
+               "Run_Time":137,
+               "SongID":195
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-08-09",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Her Majesty",
+               "Run_Time":23,
+               "SongID":219
+            },
+            {
+               "AlbumID":70,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-09-09",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/5a63743f4ba244678b74d90ad868504f.png",
+               "LabelID":null,
+               "Name":"Lucy in the Sky with Diamonds",
+               "Run_Time":208,
+               "SongID":232
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-08-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Come Together",
+               "Run_Time":255,
+               "SongID":265
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Sun King",
+               "Run_Time":147,
+               "SongID":322
+            },
+            {
+               "AlbumID":108,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-12-19",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/fafc74a8f45241acc10158be6e2d8270.png",
+               "LabelID":null,
+               "Name":"I'm Only Sleeping",
+               "Run_Time":181,
+               "SongID":323
+            },
+            {
+               "AlbumID":139,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-08-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/c287f9f433293ca72d9866fb18b460a5.png",
+               "LabelID":null,
+               "Name":"Yesterday",
+               "Run_Time":153,
+               "SongID":344
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Mean Mr. Mustard",
+               "Run_Time":66,
+               "SongID":376
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"The End",
+               "Run_Time":140,
+               "SongID":415
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"She Came in Through the Bathroom Window",
+               "Run_Time":117,
+               "SongID":431
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-09-19",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Oh! Darling",
+               "Run_Time":207,
+               "SongID":453
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"You Never Give Me Your Money",
+               "Run_Time":242,
+               "SongID":446
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-10-26",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"I Want You (She's So Heavy)",
+               "Run_Time":467,
+               "SongID":476
+            }
+         ],
+         "Start_Time":null,
+         "TopSongs":[
+            {
+               "AlbumID":51,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-14",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/a152d53917b94c968087513a71d6ab3e.png",
+               "LabelID":null,
+               "Name":"Let It Be",
+               "Run_Time":241,
+               "SongID":119
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-08-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Come Together",
+               "Run_Time":255,
+               "SongID":265
+            },
+            {
+               "AlbumID":139,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-08-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/c287f9f433293ca72d9866fb18b460a5.png",
+               "LabelID":null,
+               "Name":"Yesterday",
+               "Run_Time":153,
+               "SongID":344
+            }
+         ],
+         "Tours":[
+
+         ]
+        }
+
+## Album Collection [/albums/{AlbumID}]
 
 + Parameters
-    + id - A path variable that is required for a valid URL
-    + query1 (optional) - A query variable
-    + query2 (optional) - Another query variable
+    + AlbumID (number) - ID of Album
 
-### Display an artist or list all artists [GET]
-+ Response 204
+### View an Album Detail [GET]
++ Response 200
 
-### Post a new artist [POST]
-+ Request (application/json)
+        {
+         "AlbumGenre":[
 
-+ Response 201 
+         ],
+         "AlbumID":1,
+         "ArtistID":36,
+         "Image":"https://lastfm-img2.akamaized.net/i/u/b981d2efc62719fc76dfe1ceee8dc9bc.png",
+         "LabelID":null,
+         "Songs":[
+            {
+               "AlbumID":1,
+               "ArtistID":36,
+               "Chart_Position":null,
+               "Creation_Date":"2009-06-28",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/b981d2efc62719fc76dfe1ceee8dc9bc.png",
+               "LabelID":null,
+               "Name":"Daydreamer",
+               "Run_Time":199,
+               "SongID":318
+            }
+         ],
+         "Title":"19",
+         "US_Chart_Postion":null,
+         "Year":"2008-08-17",
+         "artist":{
+            "Age":null,
+            "ArtistID":36,
+            "End_Time":null,
+            "Image":"https://lastfm-img2.akamaized.net/i/u/c8cfa0a250a26a361f26fed40b5aec45.png",
+            "Name":"Adele",
+            "Origin":null,
+            "Start_Time":null
+         },
+         "label":null
+        }
 
 
-## Albums [/albums/{id}{?query1,query2}]
+## Song Collection [/songs/{SongID}]
++ Parameters
+    + SongID (number) - ID of Song
+
+
+
+### View a Song Detail [GET]
+
++ Response 200
+
+        {
+         "AlbumID":108,
+         "ArtistID":1,
+         "Chart_Position":null,
+         "Creation_Date":"2014-12-08",
+         "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/fafc74a8f45241acc10158be6e2d8270.png",
+         "LabelID":null,
+         "Name":"Taxman",
+         "Run_Time":156,
+         "SongGenre":[
+            {
+               "GID":1,
+               "Image":null,
+               "Name":"classic rock"
+            }
+         ],
+         "SongID":1,
+         "a":[
+
+         ],
+         "album":{
+            "AlbumID":108,
+            "ArtistID":1,
+            "Image":"https://lastfm-img2.akamaized.net/i/u/fafc74a8f45241acc10158be6e2d8270.png",
+            "LabelID":null,
+            "Title":"Revolver",
+            "US_Chart_Postion":null,
+            "Year":"2009-01-23"
+         },
+         "artist":{
+            "Age":null,
+            "ArtistID":1,
+            "End_Time":null,
+            "Image":"https://lastfm-img2.akamaized.net/i/u/047a20990f8ffd0442352e67c4e0bcdc.png",
+            "Name":"The Beatles",
+            "Origin":null,
+            "Start_Time":null
+         },
+         "label":null,
+         "tour":[
+
+         ]
+        }
+
+## Genre Collection [/Genre/{GID}]
 
 + Parameters
-    + id - Path variable
-    + query1 (optional) - Query variable
-    + query2 (optional) - Query variable
+    + GID (number) - ID of Genre
 
-### Display an album or list all albums [GET]
-+ Response 204
+### View a Genre Detail [GET]
++ Response 200
 
-### Post a new album [POST]
-+ Request (application/json)
+        {
+         "GID":1,
+         "Image":null,
+         "Name":"classic rock",
+         "album":[
 
-+ Response 201 (application/json)
-
-
-## Tours [/tours/{id}{?query1,query2}]
-+ Parameters
-    + id - Path variable
-    + query1 (optional) - Query variable
-    + query2 (optional) - Query variable
-
-### Display a tour or list all tours [GET]
-+ Response 204
-
-### Post a new tour [POST]
-+ Request (application/json)
-
-+ Response 201 (application/json)
-
-
-## Songs [/songs/{id}{?query1,query2}]
-+ Parameters
-    + id - Path variable
-    + query1 (optional) - Query variable
-    + query2 (optional) - Query variable
-
-
-
-### Display a song or list all songs [GET]
-
-+ Response 204
-
-
-### Post a new song [POST]
-
-+ Request (application/json)
-
-+ Response 204
+         ],
+         "artist":[
+            {
+               "Age":null,
+               "ArtistID":1,
+               "End_Time":null,
+               "Image":"https://lastfm-img2.akamaized.net/i/u/047a20990f8ffd0442352e67c4e0bcdc.png",
+               "Name":"The Beatles",
+               "Origin":null,
+               "Start_Time":null
+            },
+            {
+               "Age":null,
+               "ArtistID":3,
+               "End_Time":null,
+               "Image":"https://lastfm-img2.akamaized.net/i/u/8b238225c5f341dfc10a1695a9cdf00c.png",
+               "Name":"Led Zeppelin",
+               "Origin":null,
+               "Start_Time":null
+            },
+            {
+               "Age":null,
+               "ArtistID":10,
+               "End_Time":null,
+               "Image":"https://lastfm-img2.akamaized.net/i/u/eb4d33a8b7ff4510ab495584dc4d960b.png",
+               "Name":"Queen",
+               "Origin":null,
+               "Start_Time":null
+            },
+            {
+               "Age":null,
+               "ArtistID":20,
+               "End_Time":null,
+               "Image":"https://lastfm-img2.akamaized.net/i/u/99f5f7c30e124efb83208fdb770a45b9.png",
+               "Name":"The Doors",
+               "Origin":null,
+               "Start_Time":null
+            },
+            {
+               "Age":null,
+               "ArtistID":24,
+               "End_Time":null,
+               "Image":"https://lastfm-img2.akamaized.net/i/u/d3f4e279a056464eb794710d8b4b69b7.png",
+               "Name":"AC/DC",
+               "Origin":null,
+               "Start_Time":null
+            },
+            {
+               "Age":null,
+               "ArtistID":32,
+               "End_Time":null,
+               "Image":"https://lastfm-img2.akamaized.net/i/u/e9cba8541e7a4b5aa60381618d680dbd.png",
+               "Name":"U2",
+               "Origin":null,
+               "Start_Time":null
+            },
+            {
+               "Age":null,
+               "ArtistID":40,
+               "End_Time":null,
+               "Image":"https://lastfm-img2.akamaized.net/i/u/0fb9c44b36644e159895ceae88560c16.png",
+               "Name":"Pink Floyd",
+               "Origin":null,
+               "Start_Time":null
+            }
+         ],
+         "song":[
+            {
+               "AlbumID":108,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2014-12-08",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/fafc74a8f45241acc10158be6e2d8270.png",
+               "LabelID":null,
+               "Name":"Taxman",
+               "Run_Time":156,
+               "SongID":1
+            },
+            {
+               "AlbumID":4,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2014-11-12",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/648b57ec41d0464b9afa9739b7ac2a1b.png",
+               "LabelID":null,
+               "Name":"Ramble On",
+               "Run_Time":275,
+               "SongID":3
+            },
+            {
+               "AlbumID":null,
+               "ArtistID":null,
+               "Chart_Position":null,
+               "Creation_Date":"2009-01-02",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/82b68b8267234a289714c0e20c4e288d.png",
+               "LabelID":null,
+               "Name":"You Shook Me",
+               "Run_Time":390,
+               "SongID":4
+            },
+            {
+               "AlbumID":18,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-14",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/d6d901b17eba4104c178dd7f29920f41.png",
+               "LabelID":null,
+               "Name":"Killer Queen",
+               "Run_Time":180,
+               "SongID":12
+            },
+            {
+               "AlbumID":18,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2009-03-08",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/d6d901b17eba4104c178dd7f29920f41.png",
+               "LabelID":null,
+               "Name":"Crazy Little Thing Called Love",
+               "Run_Time":161,
+               "SongID":14
+            },
+            {
+               "AlbumID":null,
+               "ArtistID":null,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-20",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Octopus's Garden",
+               "Run_Time":169,
+               "SongID":25
+            },
+            {
+               "AlbumID":42,
+               "ArtistID":20,
+               "Chart_Position":null,
+               "Creation_Date":"2009-04-24",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/24590e4ca3a94c748d6c8452ce52467b.png",
+               "LabelID":null,
+               "Name":"The Crystal Ship",
+               "Run_Time":150,
+               "SongID":26
+            },
+            {
+               "AlbumID":143,
+               "ArtistID":20,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-30",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/f4a3df5139914c5190350c0e1c59094b.png",
+               "LabelID":null,
+               "Name":"Strange Days",
+               "Run_Time":185,
+               "SongID":39
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-11-29",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Here Comes the Sun",
+               "Run_Time":185,
+               "SongID":78
+            },
+            {
+               "AlbumID":4,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-13",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/648b57ec41d0464b9afa9739b7ac2a1b.png",
+               "LabelID":null,
+               "Name":"Moby Dick",
+               "Run_Time":265,
+               "SongID":60
+            },
+            {
+               "AlbumID":42,
+               "ArtistID":20,
+               "Chart_Position":null,
+               "Creation_Date":"2008-11-10",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/b582b826362646eea0228627279356a4.png",
+               "LabelID":null,
+               "Name":"Light My Fire",
+               "Run_Time":410,
+               "SongID":85
+            },
+            {
+               "AlbumID":72,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-14",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/43871b6b40f14f4d89360b68d9084802.png",
+               "LabelID":null,
+               "Name":"'39",
+               "Run_Time":205,
+               "SongID":82
+            },
+            {
+               "AlbumID":108,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-14",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/fafc74a8f45241acc10158be6e2d8270.png",
+               "LabelID":null,
+               "Name":"Eleanor Rigby",
+               "Run_Time":125,
+               "SongID":83
+            },
+            {
+               "AlbumID":114,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2008-10-24",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/d6d901b17eba4104c178dd7f29920f41.png",
+               "LabelID":null,
+               "Name":"Don't Stop Me Now",
+               "Run_Time":209,
+               "SongID":91
+            },
+            {
+               "AlbumID":115,
+               "ArtistID":40,
+               "Chart_Position":null,
+               "Creation_Date":"2008-05-27",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/ad72064705cf4368b135f2a58848cca6.png",
+               "LabelID":null,
+               "Name":"Money",
+               "Run_Time":534,
+               "SongID":95
+            },
+            {
+               "AlbumID":4,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2010-02-21",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/648b57ec41d0464b9afa9739b7ac2a1b.png",
+               "LabelID":null,
+               "Name":"Living Loving Maid (She's Just a Woman)",
+               "Run_Time":160,
+               "SongID":96
+            },
+            {
+               "AlbumID":18,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2009-11-20",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/d6d901b17eba4104c178dd7f29920f41.png",
+               "LabelID":null,
+               "Name":"Bicycle Race",
+               "Run_Time":184,
+               "SongID":116
+            },
+            {
+               "AlbumID":72,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-14",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/d6d901b17eba4104c178dd7f29920f41.png",
+               "LabelID":null,
+               "Name":"Bohemian Rhapsody",
+               "Run_Time":281,
+               "SongID":109
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Carry That Weight",
+               "Run_Time":97,
+               "SongID":118
+            },
+            {
+               "AlbumID":51,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-14",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/a152d53917b94c968087513a71d6ab3e.png",
+               "LabelID":null,
+               "Name":"Let It Be",
+               "Run_Time":241,
+               "SongID":119
+            },
+            {
+               "AlbumID":null,
+               "ArtistID":null,
+               "Chart_Position":null,
+               "Creation_Date":"2010-01-24",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/a152d53917b94c968087513a71d6ab3e.png",
+               "LabelID":null,
+               "Name":"Two of Us",
+               "Run_Time":213,
+               "SongID":121
+            },
+            {
+               "AlbumID":140,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2009-01-05",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/82b68b8267234a289714c0e20c4e288d.png",
+               "LabelID":null,
+               "Name":"Good Times Bad Times",
+               "Run_Time":163,
+               "SongID":122
+            },
+            {
+               "AlbumID":140,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2009-09-18",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/82b68b8267234a289714c0e20c4e288d.png",
+               "LabelID":null,
+               "Name":"Dazed and Confused",
+               "Run_Time":386,
+               "SongID":129
+            },
+            {
+               "AlbumID":null,
+               "ArtistID":null,
+               "Chart_Position":null,
+               "Creation_Date":"2009-07-24",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/d6d901b17eba4104c178dd7f29920f41.png",
+               "LabelID":null,
+               "Name":"Save Me",
+               "Run_Time":228,
+               "SongID":148
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Golden Slumbers",
+               "Run_Time":92,
+               "SongID":150
+            },
+            {
+               "AlbumID":null,
+               "ArtistID":null,
+               "Chart_Position":null,
+               "Creation_Date":"2008-11-19",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Maxwell's Silver Hammer",
+               "Run_Time":207,
+               "SongID":153
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-04-24",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Because",
+               "Run_Time":165,
+               "SongID":155
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-09",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Something",
+               "Run_Time":178,
+               "SongID":160
+            },
+            {
+               "AlbumID":143,
+               "ArtistID":20,
+               "Chart_Position":null,
+               "Creation_Date":"2008-11-06",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/b582b826362646eea0228627279356a4.png",
+               "LabelID":null,
+               "Name":"People Are Strange",
+               "Run_Time":130,
+               "SongID":171
+            },
+            {
+               "AlbumID":71,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2008-11-13",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/1e6f99756d0342f891d3233ac1283d21.png",
+               "LabelID":null,
+               "Name":"The Battle of Evermore",
+               "Run_Time":338,
+               "SongID":178
+            },
+            {
+               "AlbumID":140,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2010-12-22",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/82b68b8267234a289714c0e20c4e288d.png",
+               "LabelID":null,
+               "Name":"Your Time Is Gonna Come",
+               "Run_Time":281,
+               "SongID":183
+            },
+            {
+               "AlbumID":18,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2008-09-09",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/d6d901b17eba4104c178dd7f29920f41.png",
+               "LabelID":null,
+               "Name":"Somebody to Love",
+               "Run_Time":293,
+               "SongID":180
+            },
+            {
+               "AlbumID":4,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2013-10-13",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/648b57ec41d0464b9afa9739b7ac2a1b.png",
+               "LabelID":null,
+               "Name":"Thank You",
+               "Run_Time":230,
+               "SongID":187
+            },
+            {
+               "AlbumID":57,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2008-09-04",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/5acf44b6b52e40d5a345f5f39c4cb715.png",
+               "LabelID":null,
+               "Name":"Who Wants to Live Forever",
+               "Run_Time":297,
+               "SongID":190
+            },
+            {
+               "AlbumID":null,
+               "ArtistID":null,
+               "Chart_Position":null,
+               "Creation_Date":"2009-03-01",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/b582b826362646eea0228627279356a4.png",
+               "LabelID":null,
+               "Name":"Hello, I Love You",
+               "Run_Time":134,
+               "SongID":193
+            },
+            {
+               "AlbumID":139,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-18",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/c287f9f433293ca72d9866fb18b460a5.png",
+               "LabelID":null,
+               "Name":"Help!",
+               "Run_Time":137,
+               "SongID":195
+            },
+            {
+               "AlbumID":22,
+               "ArtistID":20,
+               "Chart_Position":null,
+               "Creation_Date":"2011-08-17",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/b582b826362646eea0228627279356a4.png",
+               "LabelID":null,
+               "Name":"L.A. Woman",
+               "Run_Time":469,
+               "SongID":213
+            },
+            {
+               "AlbumID":72,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2009-02-24",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/43871b6b40f14f4d89360b68d9084802.png",
+               "LabelID":null,
+               "Name":"Lazing on a Sunday Afternoon",
+               "Run_Time":67,
+               "SongID":215
+            },
+            {
+               "AlbumID":59,
+               "ArtistID":40,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-18",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/394cfbc6b2a74766a4364778c641ca51.png",
+               "LabelID":null,
+               "Name":"Wish You Were Here",
+               "Run_Time":395,
+               "SongID":205
+            },
+            {
+               "AlbumID":18,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-14",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/d6d901b17eba4104c178dd7f29920f41.png",
+               "LabelID":null,
+               "Name":"We Are the Champions",
+               "Run_Time":179,
+               "SongID":207
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-08-09",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Her Majesty",
+               "Run_Time":23,
+               "SongID":219
+            },
+            {
+               "AlbumID":57,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2008-10-25",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/5acf44b6b52e40d5a345f5f39c4cb715.png",
+               "LabelID":null,
+               "Name":"The Show Must Go On",
+               "Run_Time":275,
+               "SongID":220
+            },
+            {
+               "AlbumID":70,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-09-09",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/5a63743f4ba244678b74d90ad868504f.png",
+               "LabelID":null,
+               "Name":"Lucy in the Sky with Diamonds",
+               "Run_Time":208,
+               "SongID":232
+            },
+            {
+               "AlbumID":null,
+               "ArtistID":null,
+               "Chart_Position":null,
+               "Creation_Date":"2010-09-03",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/1e6f99756d0342f891d3233ac1283d21.png",
+               "LabelID":null,
+               "Name":"Rock and Roll",
+               "Run_Time":220,
+               "SongID":236
+            },
+            {
+               "AlbumID":72,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-14",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/43871b6b40f14f4d89360b68d9084802.png",
+               "LabelID":null,
+               "Name":"The Prophet's Song",
+               "Run_Time":497,
+               "SongID":250
+            },
+            {
+               "AlbumID":72,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2009-02-24",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/43871b6b40f14f4d89360b68d9084802.png",
+               "LabelID":null,
+               "Name":"Good Company",
+               "Run_Time":188,
+               "SongID":256
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-08-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Come Together",
+               "Run_Time":255,
+               "SongID":265
+            },
+            {
+               "AlbumID":22,
+               "ArtistID":20,
+               "Chart_Position":null,
+               "Creation_Date":"2009-03-01",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/b582b826362646eea0228627279356a4.png",
+               "LabelID":null,
+               "Name":"Riders on the Storm",
+               "Run_Time":434,
+               "SongID":272
+            },
+            {
+               "AlbumID":72,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2009-02-24",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/43871b6b40f14f4d89360b68d9084802.png",
+               "LabelID":null,
+               "Name":"Seaside Rendezvous",
+               "Run_Time":133,
+               "SongID":284
+            },
+            {
+               "AlbumID":18,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2009-11-20",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/d6d901b17eba4104c178dd7f29920f41.png",
+               "LabelID":null,
+               "Name":"You're My Best Friend",
+               "Run_Time":170,
+               "SongID":283
+            },
+            {
+               "AlbumID":143,
+               "ArtistID":20,
+               "Chart_Position":null,
+               "Creation_Date":"2009-03-01",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/b582b826362646eea0228627279356a4.png",
+               "LabelID":null,
+               "Name":"Love Me Two Times",
+               "Run_Time":196,
+               "SongID":302
+            },
+            {
+               "AlbumID":4,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2009-09-19",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/648b57ec41d0464b9afa9739b7ac2a1b.png",
+               "LabelID":null,
+               "Name":"The Lemon Song",
+               "Run_Time":380,
+               "SongID":305
+            },
+            {
+               "AlbumID":18,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2008-10-24",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/d6d901b17eba4104c178dd7f29920f41.png",
+               "LabelID":null,
+               "Name":"Another One Bites the Dust",
+               "Run_Time":294,
+               "SongID":306
+            },
+            {
+               "AlbumID":null,
+               "ArtistID":null,
+               "Chart_Position":null,
+               "Creation_Date":"2008-08-06",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/a59b52a89a2238773d25cc0f18a4c4b7.png",
+               "LabelID":null,
+               "Name":"Under Pressure",
+               "Run_Time":221,
+               "SongID":314
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Sun King",
+               "Run_Time":147,
+               "SongID":322
+            },
+            {
+               "AlbumID":108,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-12-19",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/fafc74a8f45241acc10158be6e2d8270.png",
+               "LabelID":null,
+               "Name":"I'm Only Sleeping",
+               "Run_Time":181,
+               "SongID":323
+            },
+            {
+               "AlbumID":57,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-13",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/5acf44b6b52e40d5a345f5f39c4cb715.png",
+               "LabelID":null,
+               "Name":"I Want to Break Free",
+               "Run_Time":256,
+               "SongID":328
+            },
+            {
+               "AlbumID":null,
+               "ArtistID":null,
+               "Chart_Position":null,
+               "Creation_Date":"2008-12-19",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/a152d53917b94c968087513a71d6ab3e.png",
+               "LabelID":null,
+               "Name":"Across the Universe",
+               "Run_Time":231,
+               "SongID":334
+            },
+            {
+               "AlbumID":71,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2008-05-23",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/1e6f99756d0342f891d3233ac1283d21.png",
+               "LabelID":null,
+               "Name":"Stairway to Heaven",
+               "Run_Time":577,
+               "SongID":358
+            },
+            {
+               "AlbumID":139,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-08-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/c287f9f433293ca72d9866fb18b460a5.png",
+               "LabelID":null,
+               "Name":"Yesterday",
+               "Run_Time":153,
+               "SongID":344
+            },
+            {
+               "AlbumID":null,
+               "ArtistID":null,
+               "Chart_Position":null,
+               "Creation_Date":"2009-11-04",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/5a63743f4ba244678b74d90ad868504f.png",
+               "LabelID":null,
+               "Name":"Sgt. Pepper's Lonely Hearts Club Band",
+               "Run_Time":78,
+               "SongID":347
+            },
+            {
+               "AlbumID":57,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2008-11-05",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/5acf44b6b52e40d5a345f5f39c4cb715.png",
+               "LabelID":null,
+               "Name":"I Want It All",
+               "Run_Time":280,
+               "SongID":351
+            },
+            {
+               "AlbumID":null,
+               "ArtistID":null,
+               "Chart_Position":null,
+               "Creation_Date":"2009-03-01",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/b582b826362646eea0228627279356a4.png",
+               "LabelID":null,
+               "Name":"Roadhouse Blues",
+               "Run_Time":244,
+               "SongID":365
+            },
+            {
+               "AlbumID":4,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2014-11-12",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/648b57ec41d0464b9afa9739b7ac2a1b.png",
+               "LabelID":null,
+               "Name":"What Is and What Should Never Be",
+               "Run_Time":287,
+               "SongID":370
+            },
+            {
+               "AlbumID":12,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2009-02-11",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2a3cb674a14343c183d4a7abc9b2a080.png",
+               "LabelID":null,
+               "Name":"Immigrant Song",
+               "Run_Time":146,
+               "SongID":379
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Mean Mr. Mustard",
+               "Run_Time":66,
+               "SongID":376
+            },
+            {
+               "AlbumID":null,
+               "ArtistID":null,
+               "Chart_Position":null,
+               "Creation_Date":"2009-03-01",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/b582b826362646eea0228627279356a4.png",
+               "LabelID":null,
+               "Name":"Touch Me",
+               "Run_Time":195,
+               "SongID":374
+            },
+            {
+               "AlbumID":140,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-06",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/82b68b8267234a289714c0e20c4e288d.png",
+               "LabelID":null,
+               "Name":"Babe I'm Gonna Leave You",
+               "Run_Time":400,
+               "SongID":402
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"She Came in Through the Bathroom Window",
+               "Run_Time":117,
+               "SongID":431
+            },
+            {
+               "AlbumID":71,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2008-08-31",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/1e6f99756d0342f891d3233ac1283d21.png",
+               "LabelID":null,
+               "Name":"Black Dog",
+               "Run_Time":295,
+               "SongID":477
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-09-19",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"Oh! Darling",
+               "Run_Time":207,
+               "SongID":453
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2009-10-07",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"You Never Give Me Your Money",
+               "Run_Time":242,
+               "SongID":446
+            },
+            {
+               "AlbumID":4,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2008-07-23",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/648b57ec41d0464b9afa9739b7ac2a1b.png",
+               "LabelID":null,
+               "Name":"Heartbreaker",
+               "Run_Time":255,
+               "SongID":456
+            },
+            {
+               "AlbumID":4,
+               "ArtistID":3,
+               "Chart_Position":null,
+               "Creation_Date":"2009-09-02",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/648b57ec41d0464b9afa9739b7ac2a1b.png",
+               "LabelID":null,
+               "Name":"Whole Lotta Love",
+               "Run_Time":333,
+               "SongID":457
+            },
+            {
+               "AlbumID":18,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2008-12-16",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/d6d901b17eba4104c178dd7f29920f41.png",
+               "LabelID":null,
+               "Name":"Fat Bottomed Girls",
+               "Run_Time":201,
+               "SongID":462
+            },
+            {
+               "AlbumID":83,
+               "ArtistID":1,
+               "Chart_Position":null,
+               "Creation_Date":"2008-10-26",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/2ce29f74a6f54b8791e5fdacc2ba36f5.png",
+               "LabelID":null,
+               "Name":"I Want You (She's So Heavy)",
+               "Run_Time":467,
+               "SongID":476
+            },
+            {
+               "AlbumID":72,
+               "ArtistID":10,
+               "Chart_Position":null,
+               "Creation_Date":"2009-02-24",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/43871b6b40f14f4d89360b68d9084802.png",
+               "LabelID":null,
+               "Name":"Love of My Life",
+               "Run_Time":287,
+               "SongID":482
+            },
+            {
+               "AlbumID":42,
+               "ArtistID":20,
+               "Chart_Position":null,
+               "Creation_Date":"2009-03-01",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/b582b826362646eea0228627279356a4.png",
+               "LabelID":null,
+               "Name":"Break on Through (to the Other Side)",
+               "Run_Time":149,
+               "SongID":487
+            },
+            {
+               "AlbumID":42,
+               "ArtistID":20,
+               "Chart_Position":null,
+               "Creation_Date":"2013-06-06",
+               "Image":"https://lastfm-img2.akamaized.net/i/u/300x300/24590e4ca3a94c748d6c8452ce52467b.png",
+               "LabelID":null,
+               "Name":"Soul Kitchen",
+               "Run_Time":210,
+               "SongID":492
+            }
+         ]
+        }

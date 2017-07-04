@@ -39,7 +39,7 @@
                     <li>
                       <figure class="cover"><img src="{{s.Image}}" alt="{{s.Name}}"></figure>
                       <div class="detail">
-                        <h3><a href="{{url_for('song', song_name='{{s.Name}}' )}}">{{s.Name}}</a></h3>
+                        <h3><a href="{{url_for('song', song_name= s.Name )}}">{{s.Name}}</a></h3>
                       </div>
                     </li>
                     {% endfor %}

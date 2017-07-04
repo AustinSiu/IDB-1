@@ -24,7 +24,8 @@
                 <figure class="featured-image">
                   <img src="{{album.Image}}" alt="">
                 </figure>
-                <h3>Artist: <a href="/artist/{{artist.Name}}">{{artist.Name}}</a></h3>
+                <h3>Artist: <a href="{{url_for('artist', artist_name= artist.Name )}}">{{artist.Name}}</a></h3>
+
                 <h3>Release Date: {{album.Year}}</h3>
               </div>
             </div>
@@ -38,7 +39,7 @@
                     <li>
                       <figure class="cover"><img src="{{s.Image}}" alt="{{s.Name}}"></figure>
                       <div class="detail">
-                        <h3><a href="/songs/{{s.Name}}">{{s.Name}}</a></h3>
+                        <h3><a href="{{url_for('song', song_name= s.Name )}}">{{s.Name}}</a></h3>
                       </div>
                     </li>
                     {% endfor %}

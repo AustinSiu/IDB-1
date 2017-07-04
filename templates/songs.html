@@ -18,14 +18,21 @@
         <div class="content fullwidth">
           <h2 class="entry-title">Songs</h2>
             <h3>Filter By</h3>
-            <dev class="my-button"><a href="/albums">Show all</a></dev>
+            <dev class="my-button current"><a href="/songs" {%if not genre%} class = "current-button"{% endif %}>Show all</a></dev>
+            <dev class="my-button"><a href="{{url_for('songs_by_genre',genre='alternative',sorting='asc',page=1)}}" {%if genre == 'alternative'%} class = "current-button"{% endif %}>Alternative</a></dev>
+            <dev class="my-button"><a href="{{url_for('songs_by_genre',genre='blues',sorting='asc',page=1)}}" {%if genre == 'blues'%} class = "current-button"{% endif %}>Blues</a></dev>
+            <dev class="my-button"><a href="{{url_for('songs_by_genre',genre='country',sorting='asc',page=1)}}" {%if genre == 'country'%} class = "current-button"{% endif %}>Country</a></dev>
+            <dev class="my-button"><a href="{{url_for('songs_by_genre',genre='electronic',sorting='asc',page=1)}}" {%if genre == 'electronic'%} class = "current-button"{% endif %}>Electronic</a></dev>
+            <dev class="my-button"><a href="{{url_for('songs_by_genre',genre='indie',sorting='asc',page=1)}}" {%if genre == 'indie'%} class = "current-button"{% endif %}>Indie</a></dev>
+            <dev class="my-button"><a href="{{url_for('songs_by_genre',genre='rap',sorting='asc',page=1)}}" {%if genre == 'rap'%} class = "current-button"{% endif %}>Rap</a></dev>
+            <dev class="my-button"><a href="{{url_for('songs_by_genre',genre='rock',sorting='asc',page=1)}}" {%if genre == 'rock'%} class = "current-button"{% endif %}>Rock</a></dev>
 
             <h3>Sort By</h3>
           <div class="my-button">
-            <a href="{{url_for('songs',sorting='asc',page=1)}}">Ascending</a>
+            <a href="{{url_for('songs',sorting='asc',page=1)}}"{%if sorting == 'asc'%} class = "current-button"{% endif %}>Ascending</a>
           </div>
           <div class="my-button">
-            <a href="{{url_for('songs',sorting='desc',page=1)}}">Descending</a>
+            <a href="{{url_for('songs',sorting='desc',page=1)}}"{%if sorting == 'desc'%} class = "current-button"{% endif %}>Descending</a>
           </div>
 
           <div class="filterable-items">
@@ -48,12 +55,12 @@
       <body>
       <div class="pagination">
        <a href="#">&laquo;</a>
-       <a href="{{url_for('artists',sorting='asc',page=1)}}">1</a>
-       <a href="{{url_for('artists',sorting='asc',page=2)}}">2</a>
-       <a href="{{url_for('artists',sorting='asc',page=3)}}">3</a>
-       <a href="#">4</a>
-       <a href="#">5</a>
-       <a href="#">6</a>
+       <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=1)}}">1</a>
+       <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=2)}}">2</a>
+       <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=3)}}">3</a>
+       <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=4)}}">4</a>
+       <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=5)}}">5</a>
+       <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=6)}}">6</a>
        <a href="#">&raquo;</a>
       </div>
       </body>

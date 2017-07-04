@@ -121,6 +121,7 @@ class dbQuery:
 
     def GetSong(self, song):
         a = Songs.query.filter(Songs.Name == song).first()
+        a.SongGenre
         return a.__dict__
 
     def AllAlbums(self, sorting):

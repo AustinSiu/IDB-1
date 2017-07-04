@@ -309,7 +309,7 @@ def album(album_name):
     a = dbQuery().GetAlbum(album_name)
     s = dbQuery().SongByAlbum(album_name)
     ar = dbQuery().ArtistByID(a['ArtistID'])
-    return render_template('album-info.html', album=a, songs=s, aritst=ar)
+    return render_template('album-info.html', album=a, songs=s, artist=ar)
 
 
 @app.route('/albums', defaults={'sorting': 'asc', 'page': 1}, strict_slashes=False)

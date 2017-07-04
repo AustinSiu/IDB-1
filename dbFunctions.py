@@ -29,6 +29,12 @@ class dbQuery:
         artistsInfo = [a.__dict__ for a in artists]
         return artistsInfo  # return a list of dict of artist
 
+    def ArtistByID(self, ID):
+        artists = Artists.query.filter(Artists.ArtistID == ID).first()
+        artists.ArtistGenre
+        artistsInfo = artists.__dict__
+        return artistsInfo
+
     def ArtistGenre(self, artist):
         genre = Artists.query.filter(
             Artists.Name == artist).first().ArtistGenre

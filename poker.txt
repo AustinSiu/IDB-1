@@ -1,14 +1,14 @@
-TITLE:										EST:		ACTUAL: 
+TITLE:										                                EST:		ACTUAL:
 A user wants to scrape some data from out website. She uses our APIs.		80 min		120 min
 A user wants to see all bands but the page will only display X at a time.	100 min		120 min
-A user want's to be able to sort tours based on dates.				40 min		60 min
-A user wants to be able to see the most recently released albums.		60 min		60 min
-A user wants to sort the tours by location.					50 min		60 min
-A user wants to be able to sort people by age.					50 min		60 min
-A user wants to be able to sort the bands based on genre.			50 min		40 min
-User wants to search for Band X's albums between 1985 and 1990. She goes 
-to the website and list band X's albums. She filters the results between 
-1985 and 1990.									100 min		70 min
-A user wants to see the last listed song on in the songs pages.			20 min		40 min
-A user wants the website to not look terrible.					60 min		30 min
-A user wants to be able to sort the bands displayed alphabetically.		100 min		60 min
+A user want's to be able to sort tours based on dates.				        40 min		60 min
+A user wants to be able to see the most recently released albums.		    60 min		60 min
+A user wants to sort the tours by location.					                50 min		60 min
+A user wants to be able to sort people by age.					            50 min		60 min
+A user wants to be able to sort the bands based on genre.			        50 min		40 min
+User wants to search for Band X's albums between 1985 and 1990. She goes
+to the website and list band X's albums. She filters the results between
+1985 and 1990.									                            100 min		70 min
+A user wants to see the last listed song on in the songs pages.			    20 min		40 min
+A user wants the website to not look terrible.					            60 min		30 min
+A user wants to be able to sort the bands displayed alphabetically.		    100 min		60 min

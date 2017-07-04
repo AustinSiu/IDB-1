@@ -22,7 +22,6 @@ install:
 before_script:
     - uname -a
     - printenv | sort
-    - make versions
 
 script:
     - date

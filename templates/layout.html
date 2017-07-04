@@ -35,16 +35,35 @@
 
 </head>
 <div id="header">{% block header %}
+  <!-- pagination -->
+
+  <head>
+  <style>
+  .my-button {
+      display: inline-block;
+  }
+  .my-button a {
+      color: #ababab;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color .3s;
+      border: 1px solid #ddd;
+  }
+  .my-button a.active {
+      background-color: ##ababab;
+      color: white;
+      border: 1px solid #4CAF50;
+  }
+
+  .my-button a:hover:not(.active), .my-button a.current {color: #fd5927; border: 1px solid #fd5927;}
+  </style>
+  </head>
 <body class="header-collapse">
 
   <div id="site-content">
     <header class="site-header">
       <div class="container">
-        <!-- <a href="index.html" id="branding">
-          <img src="{{url_for('static', filename='bootstrap1/dummy/logo.png')}}" alt="">
-          <small class="site-description">Slogan goes here</small>
-        </a> -->
-
         <nav class="main-navigation">
           <button type="button" class="toggle-menu"><i class="fa fa-bars"></i></button>
           <ul class="menu">
@@ -63,6 +82,32 @@
 
 
 <div id="footer">{% block footer %}
+  <!-- pagination -->
+
+  <head>
+  <style>
+  .pagination {
+      display: inline-block;
+  }
+
+  .pagination a {
+      color: #ababab;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color .3s;
+      border: 1px solid #ddd;
+  }
+
+  .pagination a.active {
+      background-color: ##ababab;
+      color: white;
+      border: 1px solid #4CAF50;
+  }
+
+  .pagination a:hover:not(.active) {background-color: #ddd;}
+  </style>
+  </head>
 
     <footer class="site-footer">
       <div class="container">

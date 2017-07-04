@@ -297,10 +297,10 @@ def artists(sorting, page):
 
 @app.route('/artists_by_genre/<string:genre>/<string:sorting>/<int:page>')
 def artists_by_genre(genre, sorting, page):
-    data = dbQuery.ArtistsByGenre(genre, sorting)
+    data = dbQuery().ArtistByGenre(genre, sorting)
     pages = len(data)
     data = data[(page - 1) * 8: page * 8]
-    return render_template('artists.html', data=data, pages=pages, language='Python', framework='Flask', lang=False)
+    return render_template('artists.html', data=data, pages=pages, genre=genre, language='Python', framework='Flask', lang=False)
 
 
 @app.route('/albums/<album_id>')
@@ -363,7 +363,7 @@ def songs_by_genre(genre, sorting, page):
     data = dbQuery().SongByGenre(genre, sorting)
     pages = len(data)
     data = data[(page - 1) * 8: page * 8]
-    return render_template('songs.html', data=data, pages=pages, language='Python', framework='Flask', lang=False)
+    return render_template('songs.html', data=data, pages=pages, genre=genre, language='Python', framework='Flask', lang=False)
 
 
 @app.route('/about')

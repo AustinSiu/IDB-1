@@ -17,51 +17,45 @@
       <div class="container">
         <div class="content fullwidth">
           <h2 class="entry-title">Albums</h2>
-          <div class="filter-links filterable-nav">
             <h3>Filter By</h3>
-            <a href="#" class="current" data-filter="*">Show all</a>
-          </div>
+            <dev class="my-button"><a href="/albums">Show all</a></dev>
 
-          <div class="filter-links filterable-nav">
             <h3>Sort By</h3>
-            <a href="#" data-filter=".ascending">Ascending</a>
-            <a href="#" data-filter=".descending">Descending</a>
-
+          <div class="my-button">
+            <a href="{{url_for('albums',sorting='asc',page=1)}}">Ascending</a>
+          </div>
+          <div class="my-button">
+            <a href="{{url_for('albums',sorting='desc',page=1)}}">Descending</a>
           </div>
 
           <div class="filterable-items">
           {% for item in data %}
-
-              <div class="filterable-item <>">
+            <div class="filterable-item">
                 <h3>{{item.Title}}</h3>
               <a href="/albums/{{item.Title}}"><figure><img src="{{item.Image}}" alt="" height="300" width="300"></figure></a>
             </div>
-
           {% endfor %}
-          </div>
-
-          <div class="filterable-items">
-            {% for item in asc %} <!-- {'alternative':[rihanna, ladygaga]} -->
-                <div class="filterable-item ascending">
-                  <h3>{{item.Title}}</h3>
-                <a href="/album/{{item.Title}}"><figure><img src="{{item.Image}}" alt="" height="300" width="300"></figure></a>
-                </div>
-            {% endfor %}
-          </div>
-
-          <div class="filterable-items">
-            {% for item in desc %} <!-- {'alternative':[rihanna, ladygaga]} -->
-                <div class="filterable-item descending">
-                  <h3>{{item.Title}}</h3>
-                <a href="/album/{{item.Title}}"><figure><img src="{{item.Image}}" alt="" height="300" width="300"></figure></a>
-                </div>
-            {% endfor %}
-          </div>
-
+        </div>
         </div>
       </div>
     </div> <!-- .testimonial-section -->
 
+    <center>
+    <body>
+
+    <div class="pagination">
+      <a href="#">&laquo;</a>
+      <a href="{{url_for('artists',sorting='asc',page=1)}}">1</a>
+      <a href="{{url_for('artists',sorting='asc',page=2)}}">2</a>
+      <a href="{{url_for('artists',sorting='asc',page=3)}}">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+      <a href="#">6</a>
+      <a href="#">&raquo;</a>
+    </div>
+
+    </body>
+    </center>
 
   </main> <!-- .main-content -->
 {% endblock %}

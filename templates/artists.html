@@ -18,29 +18,27 @@
       <div class="container">
         <div class="content fullwidth">
           <h2 class="entry-title">Artists</h2>
-          <div class="filter-links filterable-nav">
             <h3>Filter By</h3>
-            <a href="#" class="current" data-filter="*">Show all</a>
-            <a href="#" data-filter=".alternative">Alternative</a>
-            <a href="#" data-filter=".blues">Blues</a>
-            <a href="#" data-filter=".country">Country</a>
-            <a href="#" data-filter=".electronic">Electronic</a>
-            <a href="#" data-filter=".indie">Indie</a>
-            <a href="#" data-filter=".rap">Rap</a>
-            <a href="#" data-filter=".rock">Rock</a>
+            <dev class="my-button"><a href="/artists">Show all</a></dev>
+            <dev class="my-button"><a href="{{url_for('artists_by_genre',genre='alternative',sorting='asc',page=1)}}">Alternative</a></dev>
+            <dev class="my-button"><a href="{{url_for('artists_by_genre',genre='blues',sorting='asc',page=1)}}">Blues</a></dev>
+            <dev class="my-button"><a href="{{url_for('artists_by_genre',genre='country',sorting='asc',page=1)}}">Country</a></dev>
+            <dev class="my-button"><a href="{{url_for('artists_by_genre',genre='electronic',sorting='asc',page=1)}}">Electronic</a></dev>
+            <dev class="my-button"><a href="{{url_for('artists_by_genre',genre='indie',sorting='asc',page=1)}}">Indie</a></dev>
+            <dev class="my-button"><a href="{{url_for('artists_by_genre',genre='rap',sorting='asc',page=1)}}">Rap</a></dev>
+            <dev class="my-button"><a href="{{url_for('artists_by_genre',genre='rock',sorting='asc',page=1)}}">Rock</a></dev>
 
-          </div>
-
-          <div class="filter-links filterable-nav">
             <h3>Sort By</h3>
-            <a href="#" data-filter=".ascending">Ascending</a>
-            <a href="#" data-filter=".descending">Descending</a>
-
+          <div class="my-button">
+            <a href="{{url_for('artists',sorting='asc',page=1)}}">Ascending</a>
+          </div>
+          <div class="my-button">
+            <a href="{{url_for('artists',sorting='desc',page=1)}}">Descending</a>
           </div>
 
           <div class="filterable-items">
             {% for i in data %}
-              <div class="filterable-item {{key}}">
+              <div class="filterable-item">
                 <h3>{{i.Name}}</h3>
               <a href="/artist/{{i.Name}}"><figure><img src="{{i.Image}}" alt="" height="300" width="300"></figure></a>
               </div>
@@ -52,7 +50,24 @@
       </div>
     </div> <!-- .testimonial-section -->
 
+      <!-- .pagination -->
+    <center>
+    <body>
+    <div class="pagination">
+      <a href="#">&laquo;</a>
+      <a href="{{url_for('artists',sorting='asc',page=1)}}">1</a>
+      <a href="{{url_for('artists',sorting='asc',page=2)}}">2</a>
+      <a href="{{url_for('artists',sorting='asc',page=3)}}">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+      <a href="#">6</a>
+      <a href="#">&raquo;</a>
+    </div>
+    </body>
+    </center>
+    <!-- .pagination -->
 
   </main> <!-- .main-content -->
+
 
 {% endblock %}

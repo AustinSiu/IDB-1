@@ -29,6 +29,12 @@ class dbQuery:
         artistsInfo = [a.__dict__ for a in artists]
         return artistsInfo  # return a list of dict of artist
 
+    def ArtistByID(self, ID):
+        artists = Artists.query.filter(Artists.ArtistID == ID).first()
+        artists.ArtistGenre
+        artistsInfo = artists.__dict__
+        return artistsInfo
+
     def ArtistGenre(self, artist):
         genre = Artists.query.filter(
             Artists.Name == artist).first().ArtistGenre
@@ -76,6 +82,13 @@ class dbQuery:
             songsInfo = [s.__dict__ for s in songs]
         return songsInfo
 
+    def SongByID(self, ID):
+        songs = Songs.query.filter(Songs.SongID == ID).first()
+        songs.SongGenre
+        songsInfo = songs.__dict__
+        return songsInfo
+
+
     def SongAlbum(self, song):
         albums = Albums.query.join(Songs).filter(Songs.Name == song).all()
         albumsInfo = [al.__dict__ for al in albums]
@@ -120,6 +133,12 @@ class dbQuery:
                 (db.func.lower(Albums.Title)).asc()).all()
             albumsInfo = [al.__dict__ for al in albums]
         return albumsInfo
+
+    def AlbumByID(self, ID):
+        albums = Albums.query.filter(Albums.AlbumID == ID).first()
+        albumsInfo = albums.__dict__
+        return albumsInfo
+
 
     def AlbumByArtist(self, artist):
         albums = Albums.query.join(Artists).filter(

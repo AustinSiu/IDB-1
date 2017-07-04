@@ -54,14 +54,24 @@
       <center>
       <body>
       <div class="pagination">
-       <a href="#">&laquo;</a>
-       <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=1)}}">1</a>
-       <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=2)}}">2</a>
-       <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=3)}}">3</a>
-       <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=4)}}">4</a>
-       <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=5)}}">5</a>
-       <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=6)}}">6</a>
-       <a href="#">&raquo;</a>
+        <a href="#">&laquo;</a>
+        {% if not genre %}
+        <a href="{{url_for('songs',sorting=sorting,page=1)}}">1</a>
+        <a href="{{url_for('songs',sorting=sorting,page=2)}}">2</a>
+        <a href="{{url_for('songs',sorting=sorting,page=3)}}">3</a>
+        <a href="{{url_for('songs',sorting=sorting,page=4)}}">4</a>
+        <a href="{{url_for('songs',sorting=sorting,page=5)}}">5</a>
+        <a href="{{url_for('songs',sorting=sorting,page=6)}}">6</a>
+        {% else %}
+        <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=1)}}">1</a>
+        <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=2)}}">2</a>
+        <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=3)}}">3</a>
+        <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=4)}}">4</a>
+        <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=5)}}">5</a>
+        <a href="{{url_for('songs_by_genre',genre=genre,sorting=sorting,page=6)}}">6</a>
+        {%endif%}
+        <a href="#">&raquo;</a>
+
       </div>
       </body>
       </center>

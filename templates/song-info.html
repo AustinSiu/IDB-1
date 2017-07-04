@@ -43,7 +43,7 @@
                       <li>
                         <figure class="cover"><img src="{{artist.Image}}" alt="{{artist.Name}}"></figure>
                         <div class="detail">
-                          <h3><a href="/artist/{{artist.Name}}">{{artist.Name}}</a></h3>
+                          <h3><a href="{{url_for('artist', artist_name='{{artist.Name}}' )}}">{{artist.Name}}</a></h3>
                         </div>
                       </li>
                     </ul>
@@ -59,7 +59,7 @@
                       <li>
                         <figure class="cover"><img src="{{album.Image}}" alt="{{album.Title}}"></figure>
                         <div class="detail">
-                          <h3><a href="/album/{{album.Name}}">{{album.Title}}</a></h3>
+                          <h3><a href="{{url_for('album', album_name='{{album.Title}}' )}}">{{album.Title}}</a></h3>
                         </div>
                       </li>
                     </ul>

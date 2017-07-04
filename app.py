@@ -303,7 +303,7 @@ def artists_by_genre(genre, sorting, page):
     return render_template('artists.html', data=data, pages=pages, genre=genre, language='Python', framework='Flask', lang=False)
 
 
-@app.route('/albums/<album_name>')
+@app.route('/albums/<string:album_name>')
 def album(album_name):
     album_name = str(album_name.replace('%20', ' '))
     a = dbQuery().GetAlbum(album_name)

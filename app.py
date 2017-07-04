@@ -267,17 +267,17 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/artist/<artist_id>')  # when does this get called?
-def artist(artist_id):
+@app.route('/artist/<artist_name>')  # when does this get called?
+def artist(artist_name):
     """
     Doc.
 
     Doc.
     """
-    artist_id = str(artist_id.replace('%20', ' '))
-    a = dbQuery().GetArtist(artist_id)
-    s = dbQuery().ArtistSongs(artist_id)
-    al = dbQuery().AlbumByArtist(artist_id)
+    artist_name = str(artist_name.replace('%20', ' '))
+    a = dbQuery().GetArtist(artist_name)
+    s = dbQuery().ArtistSongs(artist_name)
+    al = dbQuery().AlbumByArtist(artist_name)
     return render_template('artist-info.html', artist=a, songs=s, albums=al)
 
 
@@ -303,13 +303,13 @@ def artists_by_genre(genre, sorting, page):
     return render_template('artists.html', data=data, pages=pages, genre=genre, language='Python', framework='Flask', lang=False)
 
 
-@app.route('/albums/<album_id>')
-def album(album_id):
-    album_id = str(album_id.replace('%20', ' '))
-    a = dbQuery().GetAlbum(album_id)
-    s = dbQuery().SongByAlbum(album_id)
-    #ar = dbQuery().GetArtist()
-    return render_template('album-info.html', album=a, songs=s)
+@app.route('/albums/<album_name>')
+def album(album_name):
+    album_name = str(album_name.replace('%20', ' '))
+    a = dbQuery().GetAlbum(album_name)
+    s = dbQuery().SongByAlbum(album_name)
+    ar = dbQuery().ArtistByID(a['ArtistID'])
+    return render_template('album-info.html', album=a, songs=s, aritst=ar)
 
 
 @app.route('/albums', defaults={'sorting': 'asc', 'page': 1}, strict_slashes=False)
@@ -336,12 +336,13 @@ def tours():
     return render_template('tours.html')
 
 
-@app.route('/songs/<song_id>')
-def song(song_id):
-    song_id = str(song_id.replace('%20', ' '))
-    s = dbQuery().GetSong(song_id)
-    #ar = dbQuery().GetArtist()
-    return render_template('song-info.html', song=s)
+@app.route('/songs/<song_name>')
+def song(song_name):
+    song_name = str(song_name.replace('%20', ' '))
+    s = dbQuery().GetSong(song_name)
+    ar = dbQuery().ArtistByID(s['ArtistID'])
+    al = dbQuery().AlbumByID(s['AlbumID'])
+    return render_template('song-info.html', song=s, album=al, artist=ar)
 
 
 @app.route('/songs', defaults={'sorting': 'asc', 'page': 1}, strict_slashes=False)

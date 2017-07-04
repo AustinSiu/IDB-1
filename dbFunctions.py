@@ -121,7 +121,7 @@ class dbQuery:
 
     def GetSong(self, song):
         a = Songs.query.filter(Songs.Name == song).first()
-        return a
+        return a.__dict__
 
     def AllAlbums(self, sorting):
         if sorting == 'desc':
@@ -151,7 +151,8 @@ class dbQuery:
 
     def GetAlbum(self, album):
         a = Albums.query.filter(Albums.Title == album).first()
-        return a
+        aInfo = a.__dict__
+        return aInfo
 
     def AllGenre(self):
         genre = Genre.query.all()

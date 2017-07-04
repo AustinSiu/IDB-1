@@ -18,14 +18,14 @@
         <div class="content fullwidth">
           <h2 class="entry-title">Albums</h2>
             <h3>Filter By</h3>
-            <dev class="my-button"><a href="/albums">Show all</a></dev>
+            <dev class="my-button"><a href="/albums" class = "current-button">Show all</a></dev>
 
             <h3>Sort By</h3>
           <div class="my-button">
-            <a href="{{url_for('albums',sorting='asc',page=1)}}">Ascending</a>
+            <a href="{{url_for('albums',sorting='asc',page=1)}}"{%if sorting == 'asc'%} class = "current-button"{% endif %}>Ascending</a>
           </div>
           <div class="my-button">
-            <a href="{{url_for('albums',sorting='desc',page=1)}}">Descending</a>
+            <a href="{{url_for('albums',sorting='desc',page=1)}}"{%if sorting == 'desc'%} class = "current-button"{% endif %}>Descending</a>
           </div>
 
           <div class="filterable-items">

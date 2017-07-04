@@ -32,14 +32,14 @@
 								<div class="widget">
 									<h3 class="widget-title">Songs</h3>
 									<ul class="discography-list">
-                    					{% for s in songs%}
+                    {% for s in songs%}
 										<li>
 											<figure class="cover"><img src="{{s.Image}}" alt="{{s.Name}}"></figure>
 											<div class="detail">
 												<h3><a href="/songs/{{s.Name}}">{{s.Name}}</a></h3>
 											</div>
 										</li>
-                   			 		{% endfor %}
+                   	{% endfor %}
 									</ul>
 								</div>
 							</aside>
@@ -50,14 +50,14 @@
 								<div class="widget">
 									<h3 class="widget-title">Albums</h3>
 									<ul class="discography-list">
-                    					{% for a in albums%}
+                    {% for a in albums%}
 										<li>
 											<figure class="cover"><img src="{{a.Image}}" alt="{{a.Title}}"></figure>
 											<div class="detail">
 												<h3><a href="/albums/{{a.Title}}">{{a.Title}}</a></h3>
 											</div>
 										</li>
-                   			 		{% endfor %}
+                   	{% endfor %}
 									</ul>
 								</div>
 							</aside>

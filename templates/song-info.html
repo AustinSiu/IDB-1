@@ -23,8 +23,35 @@
 									<figure class="featured-image">
 										<img src="{{song.Image}}" alt="">
 									</figure>
+									<h3>
+										<ul>
+											<li>Release Date: </li>
+											<li>Chart Position: </li>
+											<li>Run Time:</li>
+											<li>Genre:</li>
+										</ul>
+									</h3>
                 </div>
 							</div>
+						
+							<div class="col-md-4 col-md-push-1">
+								<aside class="sidebar">
+									<div class="widget">
+										<h3 class="widget-title">Artist</h3>
+										<ul class="discography-list">
+	                    <!-- {% for s in songs%} -->
+											<li>
+												<!-- <figure class="cover"><img src="{{s.Image}}" alt="{{s.Name}}"></figure> -->
+												<div class="detail">
+													<h3><a href="#">{{song.ArtistID}}</a></h3>
+												</div>
+											</li>
+	                   	<!-- {% endfor %} -->
+										</ul>
+									</div>
+								</aside>
+							</div>
+
 						</div>
 					</div>
 				</div> <!-- .testimonial-section -->

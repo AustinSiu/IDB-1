@@ -2,7 +2,6 @@
 import json
 import requests
 import traceback
-import itertools
 import pprint
 
 key = "4052bb9ce9df1086a8155f7af21a52b6"
@@ -85,6 +84,13 @@ def songExists(id):
 
 def albumExists(id):
     for v in result['albums']:
+        if v == id:
+            return True
+    return False
+
+
+def artistExists(id):
+    for v in result['artists']:
         if v == id:
             return True
     return False
@@ -239,49 +245,53 @@ def save():
         json.dump(result, outfile)
 
 
-def test():
-    for _, artist in result['artists'].items():
-        try:
-            for album in artist['albums']:
-                print(album['id'])
-                result['albums'][album['id']]
-        except KeyError:
-            print('Album does not exits for artist %s' % (artist['id']))
-        try:
-            for song in artist['songs']:
-                result['songs'][song['id']]
-        except KeyError:
-            print('Song does not exits for artist %s' % (artist['id']))
+def testJSON():
+    failed = False
+    for a in result['artists']:
+        artist = result['artists'][a]
+        for album in artist['albums']:
+            albumID = album['id']
+            if not albumExists(albumID):
+                print('Album %s DNE for Artist %s' % (albumID, a))
+                failed = True
+        for song in artist['songs']:
+            songID = song['id']
+            if not songExists(songID):
+                print('Song %s DNE for Artist %s' % (songID, a))
+                failed = True
 
-    for _, song in result['songs'].items():
-        try:
-            result['albums'][song['album']['id']]
-        except KeyError:
-            print('Album does not exits for song %s' % (song['id']))
-        try:
-            print(song['artist']['id'])
-            result['songs'][song['artist']['id']]
-        except KeyError:
-            print('Artist does not exits for song %s' % (song['id']))
+    for s in result['songs']:
+        artistID = result['songs'][s]['artist']['id']
+        if not artistExists(artistID):
+            print('Artist %s DNE for song %s' % (artistID, s))
+            failed = True
+        albumID = result['songs'][s]['album']['id']
+        if not albumExists(albumID):
+            print('Album %s DNE for song %s' % (albumID, s))
+            failed = True
 
-    for _, album in result['albums'].items():
-        try:
-            result['artists'][album['artist']['id']]
-        except KeyError:
-            print('Artists does not exits for album %s' % (album['id']))
-        try:
-            for song in album['songs']:
-                result['songs'][song['id']]
-        except KeyError:
-            print('Song does not exits for album %s' % (album['id']))
+    for a in result['albums']:
+        album = result['albums'][a]
+        artistID = result['albums'][a]['artist']['id']
+        if not artistExists(artistID):
+            print('Artist %s DNE for Album %s' % (artistID, a))
+            failed = True
+        for song in album['songs']:
+            songID = song['id']
+            if not songExists(songID):
+                print('Song %s DNE for Album %s' % (songID, a))
+                failed = True
 
-    print('Finished')
+    if not failed:
+        print('JSON file is VALID!')
+    else:
+        print('JSON file is NOT VALID!')
 
 
 try:
     createArtists()
     save()
-    test()
+    testJSON()
 except Exception as e:
     print("Something when wrong! Saving...")
     print(e)

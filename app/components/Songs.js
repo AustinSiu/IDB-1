@@ -9,6 +9,9 @@ class Songs extends React.Component {
 
   //this.method = this.method.bind(this);
 
+  // var genres = ["Show All", "Alternative", "Blues", "Country", "Electronic", "Indie", "Rap", "Rock"];
+  // var sort = [Ascending, Descending]
+
   render() {
     return (
       <div>Songs Page!</div>

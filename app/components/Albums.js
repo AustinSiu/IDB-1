@@ -7,8 +7,10 @@ class Albums extends React.Component {
     this.state = {};
   };
 
-  // Don't forget to bind after adding methods
   //this.method = this.method.bind(this);
+
+  // var filer = null
+  // var sort = [Ascending, Descending]
 
   render() {
     return (

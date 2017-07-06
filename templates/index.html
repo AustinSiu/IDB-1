@@ -1,0 +1,171 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block currentmenuitem %}
+<li class="menu-item current-menu-item"><a href="/index">Home</a></li>
+<li class="menu-item"><a href="/artists">Artists</a></li>
+<li class="menu-item"><a href="/albums">Albums</a></li>
+<li class="menu-item"><a href="/songs">Songs</a></li>
+<li class="menu-item"><a href="/tours">Tours</a></li>
+<li class="menu-item"><a href="/about">About</a></li>
+{% endblock %}
+{% block content %}
+<div class="hero">
+  <div class="slider">
+    <ul class="slides">
+      <li class="lazy-bg" data-background="{{url_for('static', filename='bootstrap1/dummy/slide-1.jpg')}}">
+        <div class="container">
+          <h2 class="slide-title">Welcome to BandDB</h2>
+          <h3 class="slide-subtitle">Everything you need to know about your favorite bands and artists</h3>
+          <p class="slide-desc">Start by browsing bands, people, albums, tours, and songs. <br>The options are endless.</p>
+
+        </div>
+      </li>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<main class="main-content">
+  <div class="fullwidth-block testimonial-section">
+    <div class="container">
+      <div class="quote-slider">
+        <ul class="slides">
+          <li>
+            <blockquote>
+              <p>"Such Music. Very Nice."</p>
+              <cite>Anonymous</cite>
+              <span>Corporation CEO, books author</span>
+            </blockquote>
+          </li>
+          <li>
+            <blockquote>
+              <p>"yolo"</p>
+              <cite>Drake</cite>
+              <span>Corporation CEO, books author</span>
+            </blockquote>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div> <!-- .testimonial-section -->
+
+  <div class="fullwidth-block upcoming-event-section" data-bg-color="#191919">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-title">Upcoming tours</h2>
+
+        <div class="event-nav">
+          <a class="prev" id="event-prev" href="#"><i class="fa fa-caret-left"></i></a>
+            <a class="next" id="event-next" href="#"><i class="fa fa-caret-right"></i></a>
+        </div> <!-- .event-nav -->
+
+      </header> <!-- .section-header -->
+      <div class="event-carousel">
+
+        <div class="event">
+          <div class="entry-date">
+            <div class="date">19</div>
+            <span class="month">Oct</span>
+          </div>
+          <h2 class="entry-title"><a href="#">The Weeknd - Starboy: Legend of the Fall 2017</a></h2>
+          <p>AT&T Center</p>
+        </div> <!-- .event -->
+
+
+        <div class="event">
+          <div class="entry-date">
+            <div class="date">22</div>
+            <span class="month">Aug</span>
+          </div>
+          <h2 class="entry-title"><a href="#">Ed Sheeran</a></h2>
+          <p>AT&T Center</p>
+        </div> <!-- .event -->
+
+
+        <div class="event">
+          <div class="entry-date">
+            <div class="date">10</div>
+            <span class="month">Jan</span>
+          </div>
+          <h2 class="entry-title"><a href="#">Katy Perry: Witness The Tour</a></h2>
+          <p>AT&T Center</p>
+        </div> <!-- .event -->
+
+
+        <div class="event">
+          <div class="entry-date">
+            <div class="date">8</div>
+            <span class="month">Sep</span>
+          </div>
+          <h2 class="entry-title"><a href="#">Guns N' Roses: Not In This Lifetime Tour</a></h2>
+          <p>Alamodome</p>
+        </div> <!-- .event -->
+
+
+        <div class="event">
+          <div class="entry-date">
+            <div class="date">21</div>
+            <span class="month">Sep</span>
+          </div>
+          <h2 class="entry-title"><a href="#">Luke Bryan: Huntin', Fishin' & Lovin' Everyday</a></h2>
+          <p>Austin360 Amphitheater</p>
+        </div> <!-- .event -->
+
+      </div> <!-- .event-carousel -->
+    </div> <!-- .container -->
+  </div> <!-- .upcoming-event-section -->
+
+  <div class="fullwidth-block why-chooseus-section">
+    <div class="container">
+      <h2 class="section-title">Meet the creators</h2>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="feature">
+            <figure class="cut-corner">
+              <img src="{{url_for('static', filename='images/devs/djp.jpg')}}" alt="">
+          </figure>
+            <h3 class="feature-title">Jonathan Peacher</h3>
+          </div> <!-- .feature -->
+        </div>
+        <div class="col-md-4">
+          <div class="feature">
+            <figure class="cut-corner">
+              <img src="{{url_for('static', filename='images/devs/tl.jpg')}}" alt="">
+            </figure>
+            <h3 class="feature-title">Tika Lestari</h3>
+          </div> <!-- .feature -->
+        </div>
+        <div class="col-md-4">
+          <div class="feature">
+            <figure class="cut-corner">
+              <img src="{{url_for('static', filename='images/devs/ss.jpg')}}" alt="">
+            </figure>
+            <h3 class="feature-title">Shida Shen</h3>
+          </div> <!-- .feature -->
+        </div>
+        <div class="col-md-4">
+          <div class="feature">
+            <figure class="cut-corner">
+              <img src="{{url_for('static', filename='images/devs/sb.jpg')}}" alt="">
+            </figure>
+            <h3 class="feature-title">Sarah Baxter</h3>
+          </div> <!-- .feature -->
+        </div>
+        <div class="col-md-4">
+          <div class="feature">
+            <figure class="cut-corner">
+              <img src="{{url_for('static', filename='images/devs/mc.jpg')}}" alt="">
+            </figure>
+            <h3 class="feature-title">Mitch Chaiet</h3>
+          </div> <!-- .feature -->
+        </div>
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .why-chooseus-section -->
+</main> <!-- .main-content -->
+{% endblock %}

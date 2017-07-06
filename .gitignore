@@ -1,1 +1,7 @@
 .DS_Store
+<<<<<<< HEAD
+=======
+*.pyc
+.coverage
+.pylintrc
+>>>>>>> dev

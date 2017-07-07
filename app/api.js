@@ -1,30 +1,70 @@
 
 var axios = require('axios');
 
-var artistsURL = 'http://banddb.me/api/genre';
+var artistsURL = 'http://banddb.me/api/artists';
+var songsURL = 'http://banddb.me/api/songs';
+var albumsURL = 'http://banddb.me/api/albums';
+var toursURL = 'http://banddb.me/api/tours';
 
 module.exports = {
 
-  fetchPopularRepos: function (language) {
-    var encodedURI = window.encodeURI('https://api.github.com/search/repositories?q=stars:>1+language:'+ language + '&sort=stars&order=desc&type=Repositories');
-
-    return axios.get(encodedURI)
-      .then(function (response) {
-        return response.data.items;
-      });
-  },
-
   getArtists: function (filter) {
 
-    var encodedURI = window.encodeURI('http://banddb.me/api/artists');
+    var encodedURI = window.encodeURI(artistsURL);
     console.log(JSON.stringify({"filters": filter}));
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
       } 
       }).then(function (response) {
-        console.log("Response: ");
-        console.log(response);
+        return response.data.objects
+      }).catch(function(error) {
+        console.log("Recieved Error: ");
+        console.log(error);      
+      });
+  },
+
+  getAlbums: function (filter) {
+
+    var encodedURI = window.encodeURI(albumsURL);
+    console.log(JSON.stringify({"filters": filter}));
+    return axios.get(encodedURI, {
+      headers: {
+        'Content-Type': 'application/json'
+      } 
+      }).then(function (response) {
+        return response.data.objects
+      }).catch(function(error) {
+        console.log("Recieved Error: ");
+        console.log(error);      
+      });
+  },
+
+  getSongs: function (filter) {
+
+    var encodedURI = window.encodeURI(songsURL);
+    console.log(JSON.stringify({"filters": filter}));
+    return axios.get(encodedURI, {
+      headers: {
+        'Content-Type': 'application/json'
+      } 
+      }).then(function (response) {
+        return response.data.objects
+      }).catch(function(error) {
+        console.log("Recieved Error: ");
+        console.log(error);      
+      });
+  },
+
+  getTours: function (filter) {
+
+    var encodedURI = window.encodeURI(toursURL);
+    console.log(JSON.stringify({"filters": filter}));
+    return axios.get(encodedURI, {
+      headers: {
+        'Content-Type': 'application/json'
+      } 
+      }).then(function (response) {
         return response.data.objects
       }).catch(function(error) {
         console.log("Recieved Error: ");

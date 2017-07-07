@@ -1,7 +1,6 @@
 var React = require('react');
 var PropTypes = require('prop-types');
 var api = require('../api');
-var Grid = require('./Grid');
 
 function SelectGenre (props) {
   var genres = ["Show All", "Alternative", "Blues", "Country", "Electronic", "Indie", "Rap", "Rock"];
@@ -23,6 +22,31 @@ function SelectGenre (props) {
 SelectGenre.propTypes = {
   currentFilter: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
+};
+
+function ArtistGrid(props) {
+  return(
+    <ul className="data-list">
+      {props.artists.map(function (artist) {
+        return (
+          <li key={artist.ArtistID} className='data-item'>
+            <ul className='data-list-items'>
+              <li>
+                <img
+                  className='img'
+                  src={artist.Image}
+                  alt={'Image for ' + artist.Name}/>
+              </li>
+              <li>{artist.Name}</li>
+            </ul>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+ArtistGrid.propTypes = {
+  artists : PropTypes.array.isRequired,
 };
 
 class Artists extends React.Component {
@@ -58,7 +82,6 @@ class Artists extends React.Component {
 
   render() {
     var genres = ["Show All", "Alternative", "Blues", "Country", "Electronic", "Indie", "Rap", "Rock"];
-    var sort = ["Ascending", "Descending"];
 
     return (
       <div>
@@ -68,7 +91,7 @@ class Artists extends React.Component {
 
         {!this.state.artists 
           ? <p>LOADING</p> 
-          : <Grid artists={this.state.artists}/>}
+          : <ArtistGrid artists={this.state.artists} />}
       </div>
     )
   }

@@ -81,7 +81,6 @@ class Artists extends React.Component {
   }
 
   render() {
-    var genres = ["Show All", "Alternative", "Blues", "Country", "Electronic", "Indie", "Rap", "Rock"];
 
     return (
       <div>

@@ -3,16 +3,16 @@ var PropTypes = require('prop-types');
 var api = require('../api');
 
 function SelectGenre (props) {
-  var genres = ["Show All", "Alternative", "Blues", "Country", "Electronic", "Indie", "Rap", "Rock"];
+  var filters = ["Show All"];
   return (
     <ul className="options">
-      {genres.map((genre) => {
+      {filters.map((filter) => {
         return (
           <li 
-          style={genre === props.currentFilter ? {color: '#d0021b'} : null}
-          onClick={props.onSelect.bind(null, genre)}
-          key={genre}>
-            {genre}
+          style={filter === props.currentFilter ? {color: '#d0021b'} : null}
+          onClick={props.onSelect.bind(null, filter)}
+          key={filter}>
+            {filter}
           </li>
         )
       })}
@@ -27,17 +27,17 @@ SelectGenre.propTypes = {
 function AlbumGrid(props) {
   return(
     <ul className="data-list">
-      {props.artists.map(function (artist) {
+      {props.albums.map(function (album) {
         return (
-          <li key={artist.ArtistID} className='data-item'>
+          <li key={album.AlbumID} className='data-item'>
             <ul className='data-list-items'>
               <li>
                 <img
                   className='img'
-                  src={artist.Image}
-                  alt={'Image for ' + artist.Name}/>
+                  src={album.Image}
+                  alt={'Image for ' + album.Title}/>
               </li>
-              <li>{artist.Name}</li>
+              <li>{album.Title}</li>
             </ul>
           </li>
         )
@@ -46,7 +46,7 @@ function AlbumGrid(props) {
   )
 }
 AlbumGrid.propTypes = {
-  artists : PropTypes.array.isRequired,
+  albums : PropTypes.array.isRequired,
 };
 
 class Albums extends React.Component {
@@ -55,7 +55,7 @@ class Albums extends React.Component {
     super(props);
     this.state = {
       currentFilter: "Show All",
-      artists: null,
+      albums: null,
     };
 
     this.updateFilter = this.updateFilter.bind(this);
@@ -63,25 +63,24 @@ class Albums extends React.Component {
   componentDidMount() {  
     this.updateFilter(this.state.currentFilter)
   }
-  updateFilter(genre) {
+  updateFilter(filter) {
     this.setState(function() {
       return {
-        currentFilter: genre,
-        artists: null,
+        currentFilter: filter,
+        albums: null,
       }
     });
-    api.getArtists("Show All")
-      .then(function(artists) {
+    api.getAlbums("Show All")
+      .then(function(albums) {
         this.setState(function() {
           return {
-            artists: artists
+            albums: albums
           }
         })
       }.bind(this))
   }
 
   render() {
-    var genres = ["Show All", "Alternative", "Blues", "Country", "Electronic", "Indie", "Rap", "Rock"];
 
     return (
       <div>
@@ -89,9 +88,9 @@ class Albums extends React.Component {
         currentFilter = {this.state.currentFilter}
         onSelect = {this.updateFilter}/>
 
-        {!this.state.artists 
+        {!this.state.albums 
           ? <p>LOADING</p> 
-          : <AlbumGrid artists={this.state.artists} />}
+          : <AlbumGrid albums={this.state.albums} />}
       </div>
     )
   }

@@ -11,7 +11,7 @@ function Grid(props) {
             <ul className='data-list-items'>
               <li>
                 <img
-                  className='avatar'
+                  className='img'
                   src={artist.Image}
                   alt={'Image for ' + artist.Name}/>
               </li>

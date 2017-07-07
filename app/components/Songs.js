@@ -27,17 +27,17 @@ SelectGenre.propTypes = {
 function SongGrid(props) {
   return(
     <ul className="data-list">
-      {props.artists.map(function (artist) {
+      {props.songs.map(function (song) {
         return (
-          <li key={artist.ArtistID} className='data-item'>
+          <li key={song.SongID} className='data-item'>
             <ul className='data-list-items'>
               <li>
                 <img
                   className='img'
-                  src={artist.Image}
-                  alt={'Image for ' + artist.Name}/>
+                  src={song.Image}
+                  alt={'Image for ' + song.Name}/>
               </li>
-              <li>{artist.Name}</li>
+              <li>{song.Name}</li>
             </ul>
           </li>
         )
@@ -46,7 +46,7 @@ function SongGrid(props) {
   )
 }
 SongGrid.propTypes = {
-  artists : PropTypes.array.isRequired,
+  songs : PropTypes.array.isRequired,
 };
 
 class Albums extends React.Component {
@@ -55,7 +55,7 @@ class Albums extends React.Component {
     super(props);
     this.state = {
       currentFilter: "Show All",
-      artists: null,
+      songs: null,
     };
 
     this.updateFilter = this.updateFilter.bind(this);
@@ -67,14 +67,14 @@ class Albums extends React.Component {
     this.setState(function() {
       return {
         currentFilter: genre,
-        artists: null,
+        songs: null,
       }
     });
-    api.getArtists("Show All")
-      .then(function(artists) {
+    api.getSongs("Show All")
+      .then(function(songs) {
         this.setState(function() {
           return {
-            artists: artists
+            songs: songs
           }
         })
       }.bind(this))
@@ -89,9 +89,9 @@ class Albums extends React.Component {
         currentFilter = {this.state.currentFilter}
         onSelect = {this.updateFilter}/>
 
-        {!this.state.artists 
+        {!this.state.songs 
           ? <p>LOADING</p> 
-          : <SongGrid artists={this.state.artists} />}
+          : <SongGrid songs={this.state.songs} />}
       </div>
     )
   }

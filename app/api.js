@@ -2,7 +2,6 @@
 var axios = require('axios');
 
 var artistsURL = 'http://banddb.me/api/genre';
-var genres = ["Show All", "Alternative", "Blues", "Country", "Electronic", "Indie", "Rap", "Rock"];
 
 module.exports = {
 
@@ -17,7 +16,7 @@ module.exports = {
 
   getArtists: function (filter) {
 
-    var encodedURI = window.encodeURI('http://banddb.me/api/genre');
+    var encodedURI = window.encodeURI('http://banddb.me/api/artists');
     console.log(JSON.stringify({"filters": filter}));
     return axios.get(encodedURI, {
       headers: {

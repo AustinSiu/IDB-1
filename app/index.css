@@ -25,3 +25,14 @@ li {
   font-weight: bold;
   cursor: pointer;
 }
+
+.data-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.data-item {
+  margin: 20px;
+  text-align: center;
+}

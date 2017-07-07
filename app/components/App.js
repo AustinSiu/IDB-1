@@ -18,12 +18,20 @@ class App extends React.Component {
       <Router>
         <div className='container'>
         	<Navbar />
-          <Route exact path='/' component={Home} />
-          <Route path='/artists' component={Artists} />
-          <Route path='/albums' component={Albums} />
-          <Route path='/tours' component={Tours} />
-          <Route path='/songs' component={Songs} />
-          <Route path='/about' component={About} />
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/artists' component={Artists} />
+            <Route path='/albums' component={Albums} />
+            <Route path='/tours' component={Tours} />
+            <Route path='/songs' component={Songs} />
+            <Route path='/about' component={About} />
+            <Route render={function () {
+              return <center>
+                <h1>404</h1>
+                <h2>Oops! We can't seem to find the page you're looking for.</h2>
+                </center>
+              }} />
+          </Switch>  
         </div>
       </Router>
     )

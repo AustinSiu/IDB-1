@@ -12,6 +12,11 @@ var Tours = require('./Tours');
 var Songs = require('./Songs');
 var About = require('./About');
 
+var ArtistInstance = require('./Artist-Instance')
+var AlbumInstance = require('./Album-Instance')
+var TourInstance = require('./Tour-Instance')
+var SongInstance = require('./Song-Instance')
+
 class App extends React.Component {
   render() {
     return (
@@ -21,9 +26,13 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/artists' component={Artists} />
+            <Route path='/artist-instance' component={ArtistInstance} />
             <Route path='/albums' component={Albums} />
+            <Route path='/album-instance/:albumID' component={AlbumInstance} />
             <Route path='/tours' component={Tours} />
+            <Route path='/tour-instance' component={TourInstance} />
             <Route path='/songs' component={Songs} />
+            <Route path='/song-instance' component={SongInstance} />
             <Route path='/about' component={About} />
             <Route render={function () {
               return <center>
@@ -31,7 +40,7 @@ class App extends React.Component {
                 <h2>Oops! We can't seem to find the page you're looking for.</h2>
                 </center>
               }} />
-          </Switch>  
+          </Switch>
         </div>
       </Router>
     )

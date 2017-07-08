@@ -12,7 +12,6 @@ function Grid(props) {
               <li>
                 <img
                   className='img'
-                  src={artist.Image}
                   alt={'Image for ' + artist.Name}/>
               </li>
               <li>{artist.Name}</li>

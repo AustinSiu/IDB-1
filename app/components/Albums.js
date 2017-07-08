@@ -8,7 +8,7 @@ function SelectGenre (props) {
     <ul className="options">
       {filters.map((filter) => {
         return (
-          <li 
+          <li
           style={filter === props.currentFilter ? {color: '#d0021b'} : null}
           onClick={props.onSelect.bind(null, filter)}
           key={filter}>
@@ -32,10 +32,12 @@ function AlbumGrid(props) {
           <li key={album.AlbumID} className='data-item'>
             <ul className='data-list-items'>
               <li>
+                <a href={'/album-instance/' + album.AlbumID}>
                 <img
                   className='img'
                   src={album.Image}
                   alt={'Image for ' + album.Title}/>
+                </a>
               </li>
               <li>{album.Title}</li>
             </ul>
@@ -60,7 +62,7 @@ class Albums extends React.Component {
 
     this.updateFilter = this.updateFilter.bind(this);
   }
-  componentDidMount() {  
+  componentDidMount() {
     this.updateFilter(this.state.currentFilter)
   }
   updateFilter(filter) {
@@ -88,8 +90,8 @@ class Albums extends React.Component {
         currentFilter = {this.state.currentFilter}
         onSelect = {this.updateFilter}/>
 
-        {!this.state.albums 
-          ? <p>LOADING</p> 
+        {!this.state.albums
+          ? <p>LOADING</p>
           : <AlbumGrid albums={this.state.albums} />}
       </div>
     )

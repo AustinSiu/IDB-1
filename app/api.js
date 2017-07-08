@@ -15,12 +15,12 @@ module.exports = {
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
-      } 
+      }
       }).then(function (response) {
         return response.data.objects
       }).catch(function(error) {
         console.log("Recieved Error: ");
-        console.log(error);      
+        console.log(error);
       });
   },
 
@@ -31,12 +31,13 @@ module.exports = {
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
-      } 
+      }
       }).then(function (response) {
+      //  console.log(response)
         return response.data.objects
       }).catch(function(error) {
         console.log("Recieved Error: ");
-        console.log(error);      
+        console.log(error);
       });
   },
 
@@ -47,12 +48,12 @@ module.exports = {
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
-      } 
+      }
       }).then(function (response) {
         return response.data.objects
       }).catch(function(error) {
         console.log("Recieved Error: ");
-        console.log(error);      
+        console.log(error);
       });
   },
 
@@ -63,13 +64,42 @@ module.exports = {
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
-      } 
+      }
       }).then(function (response) {
         return response.data.objects
       }).catch(function(error) {
         console.log("Recieved Error: ");
-        console.log(error);      
+        console.log(error);
       });
+  },
+
+  // Instance functions
+
+  getAlbum: function(id) {
+
+    var encodedURI = window.encodeURI(albumsURL+ '/' + id);
+    console.log("the encoded URI" + encodedURI);
+    return axios.get(encodedURI, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(function (response) {
+      console.log(response.data)
+      return response.data.objects //???
+    }).catch(function (error) {
+      console.log("Received Error: ");
+      console.log(error);
+    });
+
   }
+
+
+
+
+
+
+
+
+
 
 };

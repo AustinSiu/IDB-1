@@ -3,7 +3,7 @@ var PropTypes = require('prop-types');
 var api = require('../api');
 
 function SelectGenre (props) {
-  var genres = ["Show All", "Alternative", "Blues", "Country", "Electronic", "Indie", "Rap", "Rock"];
+  var genres = ["Show All", "alternative", "blues", "country", "electronic", "indie", "rap", "rock"];
   return (
     <ul className="options">
       {genres.map((genre) => {
@@ -25,6 +25,7 @@ SelectGenre.propTypes = {
 };
 
 function ArtistGrid(props) {
+  console.log(props.artists)
   return(
     <ul className="data-list">
       {props.artists.map(function (artist) {
@@ -70,7 +71,7 @@ class Artists extends React.Component {
         artists: null,
       }
     });
-    api.getArtists("Show All")
+    api.getArtists(genre)
       .then(function(artists) {
         this.setState(function() {
           return {

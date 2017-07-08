@@ -85,7 +85,7 @@ module.exports = {
       }
     }).then(function (response) {
       console.log(response.data)
-      return response.data.objects //???
+      return response.data//???
     }).catch(function (error) {
       console.log("Received Error: ");
       console.log(error);

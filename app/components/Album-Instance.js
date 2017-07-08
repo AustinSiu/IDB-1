@@ -15,39 +15,43 @@ class Album_Instance extends React.Component {
   }
 
   updateAlbum(a){
-    var albumID = this.props.match.params.albumID; //??
+    var albumID = this.props.match.params.albumID;
 
-    this.setState(function(){
+    this.setState(function() {
       return {
         album: a
       }
     });
+
     api.getAlbum(albumID)
       .then(function(a) {
-        this.setState(function() {
+        console.log(a)
+        this.setState(function () {
           return {
             album: a
           }
         });
       }.bind(this));
   }
-  //this.method = this.method.bind(this);
 
   render() {
+    console.log(JSON.stringify(this.state.album))
+    console.log(this.state.album)
     const { album } = this.state;
-
-    if(!album){
-      return <p>LOADING</p>
+    if(!album) {
+      return <p>LOADING!</p>
     }
-      else{
+    else {
       return (
         <div className="container">
+
           <h1>hey</h1>
+          <h1>{album.Title}</h1>
+
         </div>
       )
-      }
 
-
+    }
   }
 }
 

@@ -1,6 +1,7 @@
 var React = require('react');
 var PropTypes = require('prop-types');
 var api = require('../api');
+var Link = require('react-router-dom').Link;
 
 function SelectGenre (props) {
   var filters = ["Show All"];
@@ -32,12 +33,12 @@ function AlbumGrid(props) {
           <li key={album.AlbumID} className='data-item'>
             <ul className='data-list-items'>
               <li>
-                <a href={'/album-instance/' + album.AlbumID}>
-                <img
-                  className='img'
-                  src={album.Image}
-                  alt={'Image for ' + album.Title}/>
-                </a>
+                <Link to={'/album-instance/' + album.AlbumID}>
+                  <img
+                    className='img'
+                    src={album.Image}
+                    alt={'Image for ' + album.Title}/>
+                </Link>
               </li>
               <li>{album.Title}</li>
             </ul>
@@ -83,7 +84,7 @@ class Albums extends React.Component {
   }
 
   render() {
-
+    const { album } = this.state;
     return (
       <div>
         <SelectGenre
@@ -93,6 +94,7 @@ class Albums extends React.Component {
         {!this.state.albums
           ? <p>LOADING</p>
           : <AlbumGrid albums={this.state.albums} />}
+
       </div>
     )
   }

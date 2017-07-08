@@ -3,7 +3,7 @@ var PropTypes = require('prop-types');
 var api = require('../api');
 
 function SelectGenre (props) {
-  var genres = ["Show All", "Alternative", "Blues", "Country", "Electronic", "Indie", "Rap", "Rock"];
+  var genres = ["Show All", "alternative", "blues", "country", "electronic", "indie", "rap", "rock"];
   return (
     <ul className="options">
       {genres.map((genre) => {
@@ -70,7 +70,7 @@ class Albums extends React.Component {
         songs: null,
       }
     });
-    api.getSongs("Show All")
+    api.getSongs(genre)
       .then(function(songs) {
         this.setState(function() {
           return {

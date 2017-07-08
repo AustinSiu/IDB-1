@@ -17,7 +17,14 @@ module.exports = {
         'Content-Type': 'application/json'
       } 
       }).then(function (response) {
-        return response.data.objects
+        if (filter === "Show All") {
+          return response.data.objects
+        }
+        else {
+          return (response.data.objects.filter(function(artist)  {
+            return artist.ArtistGenre[0].Name === filter
+          }))
+        }
       }).catch(function(error) {
         console.log("Recieved Error: ");
         console.log(error);      
@@ -33,7 +40,14 @@ module.exports = {
         'Content-Type': 'application/json'
       } 
       }).then(function (response) {
-        return response.data.objects
+        if (filter === "Show All") {
+          return response.data.objects
+        }
+        else {
+          return (response.data.objects.filter(function(album)  {
+            return album.AlbumGenre[0].Name === filter
+          }))
+        }
       }).catch(function(error) {
         console.log("Recieved Error: ");
         console.log(error);      
@@ -49,7 +63,14 @@ module.exports = {
         'Content-Type': 'application/json'
       } 
       }).then(function (response) {
-        return response.data.objects
+        if (filter === "Show All") {
+          return response.data.objects
+        }
+        else {
+          return (response.data.objects.filter(function(song)  {
+            return song.SongGenre[0].Name === filter
+          }))
+        }
       }).catch(function(error) {
         console.log("Recieved Error: ");
         console.log(error);      

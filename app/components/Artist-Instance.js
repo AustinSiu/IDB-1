@@ -11,10 +11,10 @@ class Artist_Instance extends React.Component {
   }
 
   componentDidMount() {
-    this.updateAlbum(this.state.artist);
+    this.updateArtist(this.state.artist);
   }
 
-  updateAlbum(a){
+  updateArtist(a){
     var artistID = this.props.match.params.artistID;
 
     this.setState(function() {
@@ -23,7 +23,7 @@ class Artist_Instance extends React.Component {
       }
     });
 
-    api.getAlbum(artistID)
+    api.getArtist(artistID)
       .then(function(a) {
         console.log(a)
         this.setState(function () {

@@ -11,10 +11,10 @@ class Tour_Instance extends React.Component {
   }
 
   componentDidMount() {
-    this.updateAlbum(this.state.tour);
+    this.updateTour(this.state.tour);
   }
 
-  updateAlbum(a){
+  updateTour(a){
     var tourID = this.props.match.params.tourID;
 
     this.setState(function() {
@@ -23,7 +23,7 @@ class Tour_Instance extends React.Component {
       }
     });
 
-    api.getAlbum(tourID)
+    api.getTour(tourID)
       .then(function(a) {
         console.log(a)
         this.setState(function () {

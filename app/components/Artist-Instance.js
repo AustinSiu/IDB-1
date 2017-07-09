@@ -1,5 +1,6 @@
 var React = require('react');
 var api = require('../api');
+var Link = require('react-router-dom').Link;
 
 class Artist_Instance extends React.Component {
 
@@ -53,8 +54,14 @@ class Artist_Instance extends React.Component {
             alt={'Image for ' + artist.Name}/>
           <ul>
             <li>Genre: {artist.ArtistGenre[0].Name}</li>
-            <li>Songs: </li>
-            <li>Album: </li>
+            <li>Songs: 
+              <Link to={'/song-instance/' + artist.Songs[0].SongID}>
+                {artist.Songs[0].SongID}
+              </Link></li>
+            <li>Album: 
+              <Link to={'/album-instance/' + artist.Albums[0].AlbumID}>
+                {artist.Albums[0].AlbumID}
+              </Link></li>
           </ul>
 
         </div>

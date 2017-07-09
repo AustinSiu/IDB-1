@@ -2,6 +2,7 @@ var React = require('react');
 var PropTypes = require('prop-types');
 var api = require('../api');
 var Link = require('react-router-dom').Link;
+import {Pagination} from 'pui-react-pagination';
 
 function SelectGenre (props) {
   var genres = ["Show All", "alternative", "blues", "country", "electronic", "indie", "rap", "rock"];
@@ -154,6 +155,7 @@ class Artists extends React.Component {
         {!this.state.artists
           ? <p>LOADING</p>
           : <ArtistGrid artists={this.state.artists} />}
+
       </div>
     )
   }

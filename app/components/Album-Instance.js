@@ -1,5 +1,6 @@
 var React = require('react');
 var api = require('../api');
+var Link = require('react-router-dom').Link;
 
 class Album_Instance extends React.Component {
 
@@ -45,17 +46,21 @@ class Album_Instance extends React.Component {
       return (
         <div className="container">
 
-          <h1>hey</h1>
-          <h1>{album.Title}</h1>
+          <h1>Album: {album.Title}</h1>
           <img
             className='img'
             src={album.Image}
             alt={'Image for ' + album.Title}/>
           <ul>
             <li>Release Date: {album.Year}</li>
-            <li>Genre: </li>
-            <li>Songs: </li>
-            <li>Artist: </li>
+            <li>Songs: 
+              <Link to={'/song-instance/' + album.Songs[0].SongID}>
+                {album.Songs[0].Name}
+              </Link></li>            
+            <li>Artist: 
+              <Link to={'/artist-instance/' + album.ArtistID}>
+                {album.artist.Name}
+              </Link></li>  
           </ul>
 
         </div>

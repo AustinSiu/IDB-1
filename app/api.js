@@ -8,26 +8,30 @@ var toursURL = 'http://banddb.me/api/tours';
 
 module.exports = {
 
-    getArtists: function (filter) {
+  getArtists: function (filter) {
 
     var encodedURI = window.encodeURI(artistsURL);
     console.log(JSON.stringify({"filters": filter}));
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
-      }
+      } 
       }).then(function (response) {
         if (filter === "Show All") {
           return response.data.objects
         }
         else {
           return (response.data.objects.filter(function(artist)  {
-            return artist.ArtistGenre[0].Name === filter
+            for (var genre of artist.ArtistGenre) {
+              if (genre.Name === filter) {
+                return true
+              }}
+            return false
           }))
         }
       }).catch(function(error) {
         console.log("Recieved Error: ");
-        console.log(error);
+        console.log(error);      
       });
   },
 
@@ -45,7 +49,11 @@ module.exports = {
         }
         else {
           return (response.data.objects.filter(function(album)  {
-            return album.AlbumGenre[0].Name === filter
+            for (var genre of album.AlbumGenre) {
+              if (genre.Name === filter) {
+                return true
+              }}
+            return false
           }))
         }
       }).catch(function(error) {
@@ -68,7 +76,11 @@ module.exports = {
         }
         else {
           return (response.data.objects.filter(function(song)  {
-            return song.SongGenre[0].Name === filter
+            for (var genre of song.SongGenre) {
+              if (genre.Name === filter) {
+                return true
+              }}
+            return false
           }))
         }
       }).catch(function(error) {

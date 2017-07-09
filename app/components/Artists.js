@@ -9,7 +9,7 @@ function SelectGenre (props) {
     <ul className="options">
       {genres.map((genre) => {
         return (
-          <li 
+          <li
           style={genre === props.currentFilter ? {color: '#d0021b'} : null}
           onClick={props.onSelect.bind(null, genre)}
           key={genre}>
@@ -88,7 +88,7 @@ class Artists extends React.Component {
     this.updateFilter = this.updateFilter.bind(this);
     this.updateSort = this.updateSort.bind(this);
   }
-  componentDidMount() {  
+  componentDidMount() {
     this.updateFilter(this.state.currentFilter)
   }
   updateFilter(genre) {
@@ -151,8 +151,8 @@ class Artists extends React.Component {
         currentSort={this.state.currentSort}
         onSelect= {this.updateSort}/>
 
-        {!this.state.artists 
-          ? <p>LOADING</p> 
+        {!this.state.artists
+          ? <p>LOADING</p>
           : <ArtistGrid artists={this.state.artists} />}
       </div>
     )

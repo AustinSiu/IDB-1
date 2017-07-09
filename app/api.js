@@ -15,7 +15,7 @@ module.exports = {
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
-      } 
+      }
       }).then(function (response) {
         if (filter === "Show All") {
           return response.data.objects
@@ -27,7 +27,7 @@ module.exports = {
         }
       }).catch(function(error) {
         console.log("Recieved Error: ");
-        console.log(error);      
+        console.log(error);
       });
   },
 
@@ -38,7 +38,7 @@ module.exports = {
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
-      } 
+      }
       }).then(function (response) {
         if (filter === "Show All") {
           return response.data.objects
@@ -50,7 +50,7 @@ module.exports = {
         }
       }).catch(function(error) {
         console.log("Recieved Error: ");
-        console.log(error);      
+        console.log(error);
       });
   },
 
@@ -61,7 +61,7 @@ module.exports = {
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
-      } 
+      }
       }).then(function (response) {
         if (filter === "Show All") {
           return response.data.objects
@@ -73,7 +73,7 @@ module.exports = {
         }
       }).catch(function(error) {
         console.log("Recieved Error: ");
-        console.log(error);      
+        console.log(error);
       });
   },
 
@@ -84,12 +84,12 @@ module.exports = {
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
-      } 
+      }
       }).then(function (response) {
         return response.data.objects
       }).catch(function(error) {
         console.log("Recieved Error: ");
-        console.log(error);      
+        console.log(error);
       });
   },
 
@@ -111,8 +111,43 @@ module.exports = {
       console.log(error);
     });
 
-  }
+  },
 
+  getArtist: function(id) {
+
+    var encodedURI = window.encodeURI(artistsURL+ '/' + id);
+    console.log("the encoded URI" + encodedURI);
+    return axios.get(encodedURI, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(function (response) {
+      console.log(response.data)
+      return response.data
+    }).catch(function (error) {
+      console.log("Received Error: ");
+      console.log(error);
+    });
+
+  },
+
+  getSong: function(id) {
+
+    var encodedURI = window.encodeURI(songsURL+ '/' + id);
+    console.log("the encoded URI" + encodedURI);
+    return axios.get(encodedURI, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(function (response) {
+      console.log(response.data)
+      return response.data
+    }).catch(function (error) {
+      console.log("Received Error: ");
+      console.log(error);
+    });
+
+  }
 
 
 

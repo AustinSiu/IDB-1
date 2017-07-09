@@ -80,6 +80,7 @@ class Albums extends React.Component {
     super(props);
     this.state = {
       currentFilter: "Show All",
+      currentSort: "asc",
       songs: null,
     };
 
@@ -152,6 +153,7 @@ class Albums extends React.Component {
         {!this.state.songs 
           ? <p>LOADING</p> 
           : <SongGrid songs={this.state.songs} />}
+
       </div>
     )
   }

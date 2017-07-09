@@ -82,6 +82,7 @@ class Albums extends React.Component {
     super(props);
     this.state = {
       currentFilter: "Show All",
+      currentSort: "asc",
       albums: null,
       activePage: 1,
       numPages: 0,

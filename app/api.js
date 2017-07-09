@@ -35,7 +35,7 @@ module.exports = {
       });
   },
 
-  getAlbums: function (page, filter) {
+  getAlbums: function (filter) {
 
     var encodedURI = window.encodeURI(albumsURL);
     console.log(JSON.stringify({"filters": filter}));
@@ -43,10 +43,6 @@ module.exports = {
       headers: {
         'Content-Type': 'application/json'
       },
-
-      params: {
-        'page': page
-      }
       }).then(function (response) {
         if (filter === "Show All") {
           return response.data.objects

@@ -2,9 +2,8 @@ var React = require('react');
 var PropTypes = require('prop-types');
 var api = require('../api');
 var Link = require('react-router-dom').Link;
-import { PageHeader, Pagination, Button,
-		 ButtonGroup, ButtonToolbar,
-		 Grid, Row, Col } from 'react-bootstrap';
+import {Pagination} from 'pui-react-pagination';
+
 function SelectGenre (props) {
   var filters = ["Show All"];
   return (
@@ -85,7 +84,7 @@ class Albums extends React.Component {
       currentSort: "asc",
       albums: null,
       activePage: 1,
-      numPages: 0,
+      numPages: 7,
     };
 
     this.updateFilter = this.updateFilter.bind(this);
@@ -164,7 +163,7 @@ class Albums extends React.Component {
       .then(function(albums) {
         this.setState(function() {
           return {
-            albums: albums.objects,
+            albums: albums,
             numPages: 5
           }
         })
@@ -186,17 +185,9 @@ class Albums extends React.Component {
           ? <p>LOADING</p>
           : <AlbumGrid albums={this.state.albums} />}
 
-          <Pagination
-            prev
-            next
-            first
-            last
-            ellipsis
-            boundaryLinks
-            items={this.state.numPages}
-            maxButtons={5}
-            activePage={this.state.activePage}
-            onSelect={this.handleSelect}/>
+        <Pagination items={7}
+                activePage={1}
+                onSelect={this.handleSelect.bind(this)} />
       </div>
     )
   }

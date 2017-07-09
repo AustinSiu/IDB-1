@@ -25,6 +25,7 @@
   "homepage": "https://github.com/djpeacher/IDB#readme",
   "dependencies": {
     "axios": "^0.16.2",
+    "pui-react-pagination": "^8.3.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.1"

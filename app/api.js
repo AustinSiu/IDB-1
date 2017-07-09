@@ -31,13 +31,17 @@ module.exports = {
       });
   },
 
-  getAlbums: function (filter) {
+  getAlbums: function (page, filter) {
 
     var encodedURI = window.encodeURI(albumsURL);
     console.log(JSON.stringify({"filters": filter}));
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
+      },
+
+      params: {
+        'page': page
       }
       }).then(function (response) {
         if (filter === "Show All") {

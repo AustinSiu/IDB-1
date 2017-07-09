@@ -1,6 +1,7 @@
 var React = require('react');
 var PropTypes = require('prop-types');
 var api = require('../api');
+var Link = require('react-router-dom').Link;
 
 function SelectGenre (props) {
   var genres = ["Show All", "alternative", "blues", "country", "electronic", "indie", "rap", "rock"];
@@ -32,13 +33,15 @@ function ArtistGrid(props) {
         return (
           <li key={artist.ArtistID} className='data-item'>
             <ul className='data-list-items'>
-              <li>
-                <img
-                  className='img'
-                  src={artist.Image}
-                  alt={'Image for ' + artist.Name}/>
-              </li>
-              <li>{artist.Name}</li>
+              <Link to={'/artist-instance/' + artist.ArtistID}>
+                <li>
+                  <img
+                    className='img'
+                    src={artist.Image}
+                    alt={'Image for ' + artist.Name}/>
+                </li>
+                <li>{artist.Name}</li>
+              </Link>
             </ul>
           </li>
         )

@@ -1,4 +1,5 @@
 var React = require('react');
+var Link = require('react-router-dom').Link;
 
 class Tours extends React.Component {
 

@@ -52,6 +52,28 @@ AlbumGrid.propTypes = {
   albums : PropTypes.array.isRequired,
 };
 
+function SelectSort (props) {
+  var sorts = ["asc", "desc"];
+  return (
+    <ul className="options">
+      {sorts.map((sort) => {
+        return (
+          <li 
+          style={sort === props.currentSort? {color: '#d0021b'} : null}
+          onClick={props.onSelect.bind(null, sort)}
+          key={sort}>
+            {sort}
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+SelectGenre.propTypes = {
+  currentFilter: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired,
+};
+
 class Albums extends React.Component {
 
   constructor(props) {
@@ -62,6 +84,7 @@ class Albums extends React.Component {
     };
 
     this.updateFilter = this.updateFilter.bind(this);
+    this.updateSort = this.updateSort.bind(this);
   }
   componentDidMount() {
     this.updateFilter(this.state.currentFilter)
@@ -82,7 +105,38 @@ class Albums extends React.Component {
         })
       }.bind(this))
   }
-
+  updateSort(sort) {
+    this.setState(function() {
+      return {
+        currentSort: sort,
+    }})
+    if (sort === "asc") {
+      this.setState(function() {
+        return {
+          currentSort: sort,
+          albums: this.state.albums.sort(function(a, b){
+            if (a.Name > b.Name) {
+              return 1
+            } else {
+              return -1
+            }
+        })
+      }})
+    }
+    else {
+      this.setState(function() {
+        return {
+          currentSort: sort,
+          albums: this.state.albums.sort(function(a, b){
+            if (a.Name < b.Name) {
+              return 1
+            } else {
+              return -1
+            }
+        })
+      }})
+    }
+  }
   render() {
     const { album } = this.state;
     return (
@@ -90,6 +144,9 @@ class Albums extends React.Component {
         <SelectGenre
         currentFilter = {this.state.currentFilter}
         onSelect = {this.updateFilter}/>
+        <SelectSort
+        currentSort={this.state.currentSort}
+        onSelect= {this.updateSort}/>
 
         {!this.state.albums
           ? <p>LOADING</p>

@@ -46,8 +46,7 @@ class Artist_Instance extends React.Component {
       return (
         <div className="container">
 
-          <h1>hey</h1>
-          <h1>{artist.Name}</h1>
+          <h1>Artist: {artist.Name}</h1>
           <img
             className='img'
             src={artist.Image}
@@ -56,11 +55,11 @@ class Artist_Instance extends React.Component {
             <li>Genre: {artist.ArtistGenre[0].Name}</li>
             <li>Songs: 
               <Link to={'/song-instance/' + artist.Songs[0].SongID}>
-                {artist.Songs[0].SongID}
+                {artist.Songs[0].Name}
               </Link></li>
             <li>Album: 
               <Link to={'/album-instance/' + artist.Albums[0].AlbumID}>
-                {artist.Albums[0].AlbumID}
+                {artist.Albums[0].Title}
               </Link></li>
           </ul>
 

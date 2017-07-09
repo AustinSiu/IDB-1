@@ -47,6 +47,16 @@ class Album_Instance extends React.Component {
 
           <h1>hey</h1>
           <h1>{album.Title}</h1>
+          <img
+            className='img'
+            src={album.Image}
+            alt={'Image for ' + album.Title}/>
+          <ul>
+            <li>Release Date: {album.Year}</li>
+            <li>Genre: </li>
+            <li>Songs: </li>
+            <li>Artist: </li>
+          </ul>
 
         </div>
       )

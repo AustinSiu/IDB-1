@@ -47,6 +47,15 @@ class Artist_Instance extends React.Component {
 
           <h1>hey</h1>
           <h1>{artist.Name}</h1>
+          <img
+            className='img'
+            src={artist.Image}
+            alt={'Image for ' + artist.Name}/>
+          <ul>
+            <li>Genre: {artist.ArtistGenre[0].Name}</li>
+            <li>Songs: </li>
+            <li>Album: </li>
+          </ul>
 
         </div>
       )

@@ -115,7 +115,7 @@ class Albums extends React.Component {
         return {
           currentSort: sort,
           albums: this.state.albums.sort(function(a, b){
-            if (a.Name > b.Name) {
+            if (a.Title > b.Title) {
               return 1
             } else {
               return -1
@@ -128,7 +128,7 @@ class Albums extends React.Component {
         return {
           currentSort: sort,
           albums: this.state.albums.sort(function(a, b){
-            if (a.Name < b.Name) {
+            if (a.Title < b.Title) {
               return 1
             } else {
               return -1

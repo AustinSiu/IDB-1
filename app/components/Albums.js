@@ -32,15 +32,15 @@ function AlbumGrid(props) {
         return (
           <li key={album.AlbumID} className='data-item'>
             <ul className='data-list-items'>
-              <li>
                 <Link to={'/album-instance/' + album.AlbumID}>
-                  <img
-                    className='img'
-                    src={album.Image}
-                    alt={'Image for ' + album.Title}/>
+                  <li>
+                    <img
+                      className='img'
+                      src={album.Image}
+                      alt={'Image for ' + album.Title}/>
+                  </li>
+                  <li>{album.Title}</li>
                 </Link>
-              </li>
-              <li>{album.Title}</li>
             </ul>
           </li>
         )

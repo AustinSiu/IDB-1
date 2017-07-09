@@ -8,19 +8,26 @@ var toursURL = 'http://banddb.me/api/tours';
 
 module.exports = {
 
-  getArtists: function (filter) {
+    getArtists: function (filter) {
 
     var encodedURI = window.encodeURI(artistsURL);
     console.log(JSON.stringify({"filters": filter}));
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
-      }
+      } 
       }).then(function (response) {
-        return response.data.objects
+        if (filter === "Show All") {
+          return response.data.objects
+        }
+        else {
+          return (response.data.objects.filter(function(artist)  {
+            return artist.ArtistGenre[0].Name === filter
+          }))
+        }
       }).catch(function(error) {
         console.log("Recieved Error: ");
-        console.log(error);
+        console.log(error);      
       });
   },
 
@@ -31,13 +38,19 @@ module.exports = {
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
-      }
+      } 
       }).then(function (response) {
-      //  console.log(response)
-        return response.data.objects
+        if (filter === "Show All") {
+          return response.data.objects
+        }
+        else {
+          return (response.data.objects.filter(function(album)  {
+            return album.AlbumGenre[0].Name === filter
+          }))
+        }
       }).catch(function(error) {
         console.log("Recieved Error: ");
-        console.log(error);
+        console.log(error);      
       });
   },
 
@@ -48,12 +61,19 @@ module.exports = {
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
-      }
+      } 
       }).then(function (response) {
-        return response.data.objects
+        if (filter === "Show All") {
+          return response.data.objects
+        }
+        else {
+          return (response.data.objects.filter(function(song)  {
+            return song.SongGenre[0].Name === filter
+          }))
+        }
       }).catch(function(error) {
         console.log("Recieved Error: ");
-        console.log(error);
+        console.log(error);      
       });
   },
 
@@ -64,12 +84,12 @@ module.exports = {
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
-      }
+      } 
       }).then(function (response) {
         return response.data.objects
       }).catch(function(error) {
         console.log("Recieved Error: ");
-        console.log(error);
+        console.log(error);      
       });
   },
 
@@ -85,7 +105,7 @@ module.exports = {
       }
     }).then(function (response) {
       console.log(response.data)
-      return response.data//???
+      return response.data
     }).catch(function (error) {
       console.log("Received Error: ");
       console.log(error);

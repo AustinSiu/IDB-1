@@ -49,7 +49,7 @@ class About extends React.Component {
                   <li> - <a href="https://developer.spotify.com/web-api/">https://developer.spotify.com/web-api/</a></li>
                   <li> - Phase 1: Since we only needed 3 instances of each model, data scraping was done manually.</li>
                   <li> - Phase 2-4: Data scraping was done automatically.</li>
-                    <h3 className="Title">Tools </h3>
+                    <h3 className="title">Tools </h3>
                   <h3 className="subtitle">Hosting </h3>
                           <li> - AWS EC2 - Elastic Compute Cloud is a web service that provides computing capacity from Amazon's cloud.</li>
                           <li> - Namecheap - the domain name registrar from which we obtained our banddb.me domain.</li>

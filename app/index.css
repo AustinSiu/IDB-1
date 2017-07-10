@@ -5,95 +5,6 @@ body {
   font-size: 16px;
   line-height: 24px;
   background-image: url('/images/slide-1.jpg');
-  overflow-y: scroll;
-}
-
-html {
-  overflow-y: scroll;
-}
-
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-a {
-  text-decoration: none;
-  color: #848484;
-}
-
-ul {
-  padding: 0;
-}
-
-li {
-  list-style-type: none;
-}
-
-.img {
-  height: auto;
-  width: auto;
-  max-width: 200px;
-  max-height: 200px;
-}
-
-.space-list-items {
-  margin-bottom: 7px;
-}
-
-.options {
-  display: flex;
-  justify-content: center;
-}
-
-.options li {
-  margin: 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.data-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.data-item {
-  margin: 20px;
-  text-align: center;
-}
-
-.home-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.nav {
-  display: flex;
-}
-
-.nav li {
-  margin-right: 15px;
-}
-
-.nav li :hover{
-  font-weight: bold;
-  color: #fd5927;
-}
-
-.active {
-  font-weight: bold;
-  color: #fd5927;
-}
-body {
-  background-color: #141414;
-  color: #848484;
-  font-family: "Source Sans Pro", "Open Sans", sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  background-image: url('/images/slide-1.jpg');
 }
 
 .container {
@@ -218,5 +129,23 @@ li {
     margin-right: 300px;
   }
 
-
+  .my-button {
+      display: flex;
+      justify-content: center;
+  }
+  .my-button li {
+      color: #ababab;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color .3s;
+      border: 1px solid #ddd;
+      margin: 1px ;
+  }
+  .my-button li.active {
+      background-color: ##ababab;
+      color: white;
+      border: 1px solid #4CAF50;
+  }
+  .my-button li:hover:not(.active), .my-button li.current-button {color: #fd5927; border: 1px solid #fd5927;}
 /* -------- SLIDER --------- */

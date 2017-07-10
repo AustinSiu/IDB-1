@@ -2,7 +2,7 @@ var React = require('react');
 var PropTypes = require('prop-types');
 var api = require('../api');
 var Link = require('react-router-dom').Link;
-import { PageHeader, Pagination, Button, 
+import { PageHeader, Pagination, Button,
      ButtonGroup, ButtonToolbar,
      Grid, Row, Col } from 'react-bootstrap';
 
@@ -12,11 +12,11 @@ var orderByDsc = [{'field': 'Title', 'direction': 'desc'}];
 function SelectGenre (props) {
   var filters = ["Show All"];
   return (
-    <ul className="options">
+    <ul className="my-button">
       {filters.map((filter) => {
         return (
           <li
-          style={filter === props.currentFilter ? {color: '#d0021b'} : null}
+          style={filter === props.currentFilter ? {color: '#fd5927'} : null}
           onClick={props.onSelect.bind(null, filter)}
           key={filter}>
             {filter}
@@ -61,11 +61,11 @@ AlbumGrid.propTypes = {
 function SelectSort (props) {
   var sorts = ["asc", "desc"];
   return (
-    <ul className="options">
+    <ul className="my-button">
       {sorts.map((sort) => {
         return (
           <li
-          style={sort === props.currentSort? {color: '#d0021b'} : null}
+          style={sort === props.currentSort? {color: '#fd5927'} : null}
           onClick={props.onSelect.bind(null, sort)}
           key={sort}>
             {sort}
@@ -127,7 +127,7 @@ class Albums extends React.Component {
     var filter;
     var order_by;
     if (sort === 'asc') {
-      order_by = orderByAsc; 
+      order_by = orderByAsc;
     } else {
       order_by = orderByDsc
     }
@@ -147,7 +147,7 @@ class Albums extends React.Component {
     var filter;
     var order_by;
     if (this.state.currentSort === 'asc') {
-      order_by = orderByAsc; 
+      order_by = orderByAsc;
     } else {
       order_by = orderByDsc
     }

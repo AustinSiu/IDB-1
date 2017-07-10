@@ -10,11 +10,11 @@ var orderByDsc = [{'field': 'Name', 'direction': 'desc'}];
 function SelectGenre (props) {
   var genres = ["Show All", "alternative", "blues", "country", "electronic", "indie", "rap", "rock"];
   return (
-    <ul className="options">
+    <ul className="my-button">
       {genres.map((genre) => {
         return (
           <li
-          style={genre === props.currentFilter ? {color: '#d0021b'} : null}
+          style={genre === props.currentFilter ? {color: '#fd5927'} : null}
           onClick={props.onSelect.bind(null, genre)}
           key={genre}>
             {genre}
@@ -32,11 +32,11 @@ SelectGenre.propTypes = {
 function SelectSort (props) {
   var sorts = ["asc", "desc"];
   return (
-    <ul className="options">
+    <ul className="my-button">
       {sorts.map((sort) => {
         return (
-          <li 
-          style={sort === props.currentSort? {color: '#d0021b'} : null}
+          <li
+          style={sort === props.currentSort? {color: '#fd5927'} : null}
           onClick={props.onSelect.bind(null, sort)}
           key={sort}>
             {sort}
@@ -132,7 +132,7 @@ class Artists extends React.Component {
     }
     var order_by;
     if (sort === 'asc') {
-      order_by = orderByAsc; 
+      order_by = orderByAsc;
     } else {
       order_by = orderByDsc
     }
@@ -154,7 +154,7 @@ class Artists extends React.Component {
     }
     var order_by;
     if (this.state.currentSort === 'asc') {
-      order_by = orderByAsc; 
+      order_by = orderByAsc;
     } else {
       order_by = orderByDsc
     }

@@ -13,135 +13,93 @@ module.exports = {
     var encodedURI = window.encodeURI(artistsURL);
     return axios.get(encodedURI, {
 
-            headers: {
-                'Content-Type': 'application/json'
-            },
+      headers: {
+          'Content-Type': 'application/json'
+      },
 
-            params: {
-                'page': page,
-                'q': JSON.stringify({"order_by": orderBy, 'filters': filter})
-            }
-        })
-        .then(function(response) {
-            console.log(response);
+      params: {
+          'page': page,
+          'q': JSON.stringify({"order_by": orderBy, 'filters': filter})
+      }
+    })
+    .then(function(response) {
+        console.log(response);
 
-            return response.data;
-        }).catch(function(error) {
-            console.log(error);
-        });
+        return response.data;
+    }).catch(function(error) {
+        console.log(error);
+    });
   }, 
 
-  getAlbums: function (filter="Show All", sort="asc", page=1) {
+  getAlbums: function (page, filter, orderBy) {
 
-    var encodedURI = window.encodeURI(albumsURL);
+    var encodedURI = window.encodeURI(artistsURL);
     return axios.get(encodedURI, {
+
       headers: {
-        'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
       },
-      }).then(function (response) {
-        // apply filter
-        if (filter !== "Show All") {
-          response.data.objects =  (response.data.objects.filter(function(album)  {
-            for (var genre of album.AlbumGenre) {
-              if (genre.Name === filter) {
-                return true
-              }}
-            return false
-          }))
-        }
-        // apply sort
-        if (sort === "asc") {
-          response.data.objects= response.data.objects.sort(function(a, b){
-            if (a.Title > b.Title) {
-              return 1
-            } else {
-              return -1
-            }
-            })
-        }
-        else {
-          response.data.objects= response.data.objects.sort(function(a, b){
-            if (a.Title < b.Title) {
-              return 1
-            } else {
-              return -1
-            }
-          })
-        }
-        // paginate
-        var start = (page - 1) * 10; // items per page = 10
-        var end = start + 10;
-        response.data.objects = response.data.objects.slice(start, end)
-        return response.data.objects
-      }).catch(function(error) {
-        console.log("Recieved Error: ");
-        console.log(error);
-      });
-  },
 
-  getSongs: function (filter="Show All", sort="asc", page=1) {
-
-    var encodedURI = window.encodeURI(songsURL);
-    return axios.get(encodedURI, {
-      headers: {
-        'Content-Type': 'application/json'
+      params: {
+          'page': page,
+          'q': JSON.stringify({"order_by": orderBy, 'filters': filter})
       }
-      }).then(function (response) {
-        // apply filter
-        if (filter !== "Show All") {
-          response.data.objects =  (response.data.objects.filter(function(song)  {
-            for (var genre of song.SongGenre) {
-              if (genre.Name === filter) {
-                return true
-              }}
-            return false
-          }))
-        }
-        // apply sort
-        if (sort === "asc") {
-          response.data.objects= response.data.objects.sort(function(a, b){
-            if (a.Name > b.Name) {
-              return 1
-            } else {
-              return -1
-            }
-            })
-        }
-        else {
-          response.data.objects= response.data.objects.sort(function(a, b){
-            if (a.Name < b.Name) {
-              return 1
-            } else {
-              return -1
-            }
-          })
-        }
-        // paginate
-        var start = (page - 1) * 10; // items per page = 10
-        var end = start + 10;
-        response.data.objects = response.data.objects.slice(start, end)
-        return response.data.objects
-      }).catch(function(error) {
-        console.log("Recieved Error: ");
+    })
+    .then(function(response) {
+        console.log(response);
+
+        return response.data;
+    }).catch(function(error) {
         console.log(error);
-      });
-  },
+    });
+  }, 
 
-  getTours: function (filter) {
+  getSongs: function (page, filter, orderBy) {
 
-    var encodedURI = window.encodeURI(toursURL);
+    var encodedURI = window.encodeURI(artistsURL);
     return axios.get(encodedURI, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-      }).then(function (response) {
-        return response.data.objects
-      }).catch(function(error) {
-        console.log("Recieved Error: ");
-        console.log(error);
-      });
-  },
 
+      headers: {
+          'Content-Type': 'application/json'
+      },
+
+      params: {
+          'page': page,
+          'q': JSON.stringify({"order_by": orderBy, 'filters': filter})
+      }
+    })
+    .then(function(response) {
+        console.log(response);
+
+        return response.data;
+    }).catch(function(error) {
+        console.log(error);
+    });
+  }, 
+
+  getTours: function (page, filter, orderBy) {
+
+    var encodedURI = window.encodeURI(artistsURL);
+    return axios.get(encodedURI, {
+
+      headers: {
+          'Content-Type': 'application/json'
+      },
+
+      params: {
+          'page': page,
+          'q': JSON.stringify({"order_by": orderBy, 'filters': filter})
+      }
+    })
+    .then(function(response) {
+        console.log(response);
+
+        return response.data;
+    }).catch(function(error) {
+        console.log(error);
+    });
+  }, 
+  
   // Instance functions
 
   getAlbum: function(id) {

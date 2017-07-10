@@ -2,7 +2,9 @@ var React = require('react');
 var PropTypes = require('prop-types');
 var api = require('../api');
 var Link = require('react-router-dom').Link;
-import {Pagination} from 'pui-react-pagination';
+import { PageHeader, Pagination, Button, 
+     ButtonGroup, ButtonToolbar,
+     Grid, Row, Col } from 'react-bootstrap';
 
 var orderByAsc = [{'field': 'Name', 'direction': 'asc'}];
 var orderByDsc = [{'field': 'Name', 'direction': 'desc'}];
@@ -145,20 +147,8 @@ class Albums extends React.Component {
         })
       }.bind(this))
   }
-  handleSelect(event, selectedEvent) {
-    const eventKey = selectedEvent.eventKey;
-    const curPage = this.state.activePage;
-
-    if(eventKey === 'next') {
-      this.setState({activePage: curPage + 1});
-    }
-    else if(eventKey === 'prev') {
-      this.setState({activePage: curPage - 1});
-    }
-    else {
-      this.setState({activePage: eventKey});
-    }
-    this.setState({activePage: selectedEvent.eventKey});
+  handleSelect(eventKey) {
+    this.setState({activePage: eventKey});
     var filter;
     if (this.state.currentFilter !== "Show All") {
       filter = [{'name': 'SongGenre','op': 'any', 'val':{"name":"Name","op":"==","val":this.state.currentFilter}}];;
@@ -194,11 +184,17 @@ class Albums extends React.Component {
           ? <p>LOADING</p> 
           : <SongGrid songs={this.state.songs} />}
 
-        <Pagination items={this.state.numPages}
-                    next={false}
-                    prev={false}
-                    activePage={this.state.activePage}
-                    onSelect={this.handleSelect.bind(this)} />
+        <Pagination
+            prev
+            next
+            first
+            last
+            ellipsis
+            boundaryLinks
+            items={this.state.numPages}
+            maxButtons={5}
+            activePage={this.state.activePage}
+            onSelect={this.handleSelect} />
 
       </div>
     )

@@ -143,16 +143,12 @@ class Albums extends React.Component {
     const eventKey = selectedEvent.eventKey;
     const curPage = this.state.activePage;
 
-    if(eventKey === 'next') {
-      this.setState({activePage: curPage + 1});
-    }
-    else if(eventKey === 'prev') {
-      this.setState({activePage: curPage - 1});
-    }
-    else {
-      this.setState({activePage: eventKey});
-    }
-    this.setState({activePage: selectedEvent.eventKey});
+    this.setState(function() {
+      return {
+        activePage: eventKey,
+      }
+    })
+
     var filter;
     var order_by;
     if (this.state.currentSort === 'asc') {

@@ -48,6 +48,8 @@ class SearchResults extends React.Component {
                 moduleType = {"Artists"} />
         <Search searchString = {this.state.searchString}
                 moduleType = {"Albums"} />
+        <Search searchString = {this.state.searchString}
+                moduleType = {"Songs"} />
       </div>
     )
   }

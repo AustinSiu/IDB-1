@@ -8,31 +8,28 @@ var toursURL = 'http://banddb.me/api/tours';
 
 module.exports = {
 
-  getArtists: function (filter="Show All", sort="asc", page=1) {
+  getArtists: function (page, filter, orderBy) {
 
     var encodedURI = window.encodeURI(artistsURL);
     return axios.get(encodedURI, {
-      headers: {
-        'Content-Type': 'application/json'
-      } 
-      }).then(function (response) {
-        if (filter === "Show All") {
-          return response.data.objects
-        }
-        else {
-          return (response.data.objects.filter(function(artist)  {
-            for (var genre of artist.ArtistGenre) {
-              if (genre.Name === filter) {
-                return true
-              }}
-            return false
-          }))
-        }
-      }).catch(function(error) {
-        console.log("Recieved Error: ");
-        console.log(error);      
-      });
-  },
+
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
+            params: {
+                'page': page,
+                'q': JSON.stringify({"order_by": orderBy, 'filters': filter})
+            }
+        })
+        .then(function(response) {
+            console.log(response);
+
+            return response.data;
+        }).catch(function(error) {
+            console.log(error);
+        });
+  }, 
 
   getAlbums: function (filter="Show All", sort="asc", page=1) {
 

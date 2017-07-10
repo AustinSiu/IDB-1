@@ -4,6 +4,9 @@ var api = require('../api');
 var Link = require('react-router-dom').Link;
 import {Pagination} from 'pui-react-pagination';
 
+var orderByAsc = [{'field': 'Name', 'direction': 'asc'}];
+var orderByDsc = [{'field': 'Name', 'direction': 'desc'}];
+
 function SelectGenre (props) {
   var genres = ["Show All", "alternative", "blues", "country", "electronic", "indie", "rap", "rock"];
   return (
@@ -84,10 +87,13 @@ class Artists extends React.Component {
       currentFilter: "Show All",
       currentSort: "asc",
       artists: null,
+      activePage: 1,
+      numPages: 6,
     };
 
     this.updateFilter = this.updateFilter.bind(this);
     this.updateSort = this.updateSort.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
   componentDidMount() {
     this.updateFilter(this.state.currentFilter)
@@ -97,13 +103,19 @@ class Artists extends React.Component {
       return {
         currentFilter: genre,
         artists: null,
+        activePage: 1,
       }
     });
-    api.getArtists(genre)
-      .then(function(artists) {
+    var filter;
+    if (genre !== "Show All") {
+      filter = [{'name': 'ArtistGenre','op': 'any', 'val':{"name":"Name","op":"==","val":genre}}];;
+    }
+    api.getArtists(1, filter, orderByAsc)
+      .then(function(data) {
         this.setState(function() {
           return {
-            artists: artists
+            artists: data.objects,
+            numPages: data.total_pages,
           }
         })
       }.bind(this))
@@ -112,33 +124,61 @@ class Artists extends React.Component {
     this.setState(function() {
       return {
         currentSort: sort,
+        activePage: 1,
     }})
-    if (sort === "asc") {
-      this.setState(function() {
-        return {
-          currentSort: sort,
-          artists: this.state.artists.sort(function(a, b){
-            if (a.Name > b.Name) {
-              return 1
-            } else {
-              return -1
-            }
+    var filter;
+    if (this.state.currentFilter !== "Show All") {
+      filter = [{'name': 'ArtistGenre','op': 'any', 'val':{"name":"Name","op":"==","val":this.state.currentFilter}}];;
+    }
+    var order_by;
+    if (sort === 'asc') {
+      order_by = orderByAsc; 
+    } else {
+      order_by = orderByDsc
+    }
+    api.getArtists(1, filter, order_by)
+      .then(function(data) {
+        this.setState(function() {
+          return {
+            artists: data.objects,
+            numPages: data.total_pages,
+          }
         })
-      }})
+      }.bind(this))
+  }
+  handleSelect(event, selectedEvent) {
+    const eventKey = selectedEvent.eventKey;
+    const curPage = this.state.activePage;
+
+    if(eventKey === 'next') {
+      this.setState({activePage: curPage + 1});
+    }
+    else if(eventKey === 'prev') {
+      this.setState({activePage: curPage - 1});
     }
     else {
-      this.setState(function() {
-        return {
-          currentSort: sort,
-          artists: this.state.artists.sort(function(a, b){
-            if (a.Name < b.Name) {
-              return 1
-            } else {
-              return -1
-            }
-        })
-      }})
+      this.setState({activePage: eventKey});
     }
+    this.setState({activePage: selectedEvent.eventKey});
+    var filter;
+    if (this.state.currentFilter !== "Show All") {
+      filter = [{'name': 'ArtistGenre','op': 'any', 'val':{"name":"Name","op":"==","val":this.state.currentFilter}}];;
+    }
+    var order_by;
+    if (this.state.currentSort === 'asc') {
+      order_by = orderByAsc; 
+    } else {
+      order_by = orderByDsc
+    }
+    api.getArtists(eventKey, filter, order_by)
+      .then(function(data) {
+        this.setState(function() {
+          return {
+            artists: data.objects,
+            numPages: data.total_pages,
+          }
+        })
+      }.bind(this))
   }
 
   render() {
@@ -156,6 +196,11 @@ class Artists extends React.Component {
           ? <p>LOADING</p>
           : <ArtistGrid artists={this.state.artists} />}
 
+        <Pagination items={this.state.numPages}
+                    next={false}
+                    prev={false}
+                    activePage={this.state.activePage}
+                    onSelect={this.handleSelect.bind(this)} />
       </div>
     )
   }

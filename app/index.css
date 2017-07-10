@@ -1,5 +1,10 @@
 body {
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  background-color: #141414;
+  color: #848484;
+  font-family: "Source Sans Pro", "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  background-image: url('/images/slide-1.jpg');
 }
 
 .container {
@@ -9,7 +14,7 @@ body {
 
 a {
   text-decoration: none;
-  color: black;
+  color: #848484;
 }
 
 ul {
@@ -21,7 +26,10 @@ li {
 }
 
 .img {
-  width: 150px;
+  height: auto;
+  width: auto;
+  max-width: 200px;
+  max-height: 200px;
 }
 
 .space-list-items {
@@ -64,6 +72,145 @@ li {
   margin-right: 15px;
 }
 
+.nav li :hover{
+  font-weight: bold;
+  color: #fd5927;
+}
+
 .active {
   font-weight: bold;
+  color: #fd5927;
 }
+body {
+  background-color: #141414;
+  color: #848484;
+  font-family: "Source Sans Pro", "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  background-image: url('/images/slide-1.jpg');
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+  color: #848484;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.img {
+  height: auto;
+  width: auto;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.space-list-items {
+  margin-bottom: 7px;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+}
+
+.options li {
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.data-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.data-item {
+  margin: 20px;
+  text-align: center;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+}
+
+.nav li {
+  margin-right: 15px;
+}
+
+.nav li :hover{
+  font-weight: bold;
+  color: #fd5927;
+}
+
+.active {
+  font-weight: bold;
+  color: #fd5927;
+}
+
+.title-header {
+  position: fixed;
+  margin-top: 150px;
+}
+  .title-header .title {
+    font-weight: bold;
+    font-size: 65px;
+    color: white;
+    text-align: center;
+  }
+
+  .title-header .subtitle {
+    font-weight: bold;
+    font-size: 40px;
+    color: #fd5927;
+    text-align: center;
+    line-height: 100%;
+  }
+
+  .title-header .subdesc {
+    font-size: 25px;
+    color: #848484;
+    text-align: center;
+  }
+
+.about {
+  position: fixed;
+  margin-top: 50px;
+}
+  .about .title {
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+  }
+  .about .subtitle {
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
+    line-height: 100%;
+  }
+
+  .about .subdesc {
+    font-size: 20px;
+    color: #848484;
+    line-height: 100%;
+  }
+
+
+/* -------- SLIDER --------- */

@@ -3,8 +3,15 @@ var React = require('react');
 class Home extends React.Component {
   render() {
     return (
-      <div>Home Page!</div>
-    )
+      <div className="title-header">
+              <div className="container">
+                <h2 className="title">Welcome to BandDB</h2>
+                <h3 className="subtitle">Everything you need to know about your favorite bands and artists</h3>
+                <p className="subdesc">Start by browsing bands, people, albums, tours, and songs. The options are endless.</p>
+
+              </div>
+        </div>
+  )
   }
 }
 

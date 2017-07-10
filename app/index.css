@@ -5,7 +5,13 @@ body {
   font-size: 16px;
   line-height: 24px;
   background-image: url('/images/slide-1.jpg');
+  overflow-y: scroll;
 }
+
+html {
+  overflow-y: scroll;
+}
+
 
 .container {
   max-width: 1200px;
@@ -191,7 +197,6 @@ li {
   }
 
 .about {
-  position: fixed;
   margin-top: 50px;
 }
   .about .title {
@@ -207,9 +212,10 @@ li {
   }
 
   .about .subdesc {
-    font-size: 20px;
+    font-size: 15px;
     color: #848484;
-    line-height: 100%;
+    line-height: 120%;
+    margin-right: 300px;
   }
 
 

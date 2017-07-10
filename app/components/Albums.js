@@ -84,7 +84,8 @@ class Albums extends React.Component {
       currentSort: "asc",
       albums: null,
       activePage: 1,
-      numPages: 7,
+      numPages: 16,
+      itemsPerPage: 10
     };
 
     this.updateFilter = this.updateFilter.bind(this);
@@ -100,9 +101,10 @@ class Albums extends React.Component {
       return {
         currentFilter: filter,
         albums: null,
+        activePage: 1,
       }
     });
-    api.getAlbums("Show All")
+    api.getAlbums(filter)
       .then(function(albums) {
         this.setState(function() {
           return {
@@ -115,42 +117,44 @@ class Albums extends React.Component {
     this.setState(function() {
       return {
         currentSort: sort,
+        activePage: 1,
     }})
-    if (sort === "asc") {
-      this.setState(function() {
-        return {
-          currentSort: sort,
-          albums: this.state.albums.sort(function(a, b){
-            if (a.Title > b.Title) {
-              return 1
-            } else {
-              return -1
-            }
+    api.getAlbums(this.state.currentFilter, sort)
+      .then(function(albums) {
+        this.setState(function() {
+          return {
+            albums: albums
+          }
         })
-      }})
-    }
-    else {
-      this.setState(function() {
-        return {
-          currentSort: sort,
-          albums: this.state.albums.sort(function(a, b){
-            if (a.Title < b.Title) {
-              return 1
-            } else {
-              return -1
-            }
-        })
-      }})
-    }
+      }.bind(this))
   }
 
-  handleSelect(eventKey) {
-   this.setState({activePage: eventKey}, function(){
-     this.updateStatus(null);
-   });
-  //  var query = this.props.location.query;
-  //  query.page = eventKey;
-  //  ProductStore.fetchProductList(query);
+  handleSelect(event, selectedEvent) {
+    const eventKey = selectedEvent.eventKey;
+    const curPage = this.state.activePage;
+
+    if(eventKey === 'next') {
+      console.log(eventKey)
+      this.setState({activePage: curPage + 1});
+    }
+    else if(eventKey === 'prev') {
+      this.setState({activePage: curPage - 1});
+    }
+    else {
+      this.setState({activePage: eventKey});
+      console.log(eventKey)
+      console.log(this.state.activePage)
+      console.log(curPage)
+    }
+    this.setState({activePage: selectedEvent.eventKey});
+    api.getAlbums(this.state.currentFilter, this.state.currentSort, eventKey)
+      .then(function(albums) {
+        this.setState(function() {
+          return {
+            albums: albums
+          }
+        })
+      }.bind(this))
   }
   updateStatus(status) {
     this.setState(function() {
@@ -185,9 +189,11 @@ class Albums extends React.Component {
           ? <p>LOADING</p>
           : <AlbumGrid albums={this.state.albums} />}
 
-        <Pagination items={7}
-                activePage={1}
-                onSelect={this.handleSelect.bind(this)} />
+        <Pagination items={this.state.numPages}
+                    next={false}
+                    prev={false}
+                    activePage={this.state.activePage}
+                    onSelect={this.handleSelect.bind(this)} />
       </div>
     )
   }

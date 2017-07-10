@@ -8,10 +8,9 @@ var toursURL = 'http://banddb.me/api/tours';
 
 module.exports = {
 
-  getArtists: function (filter) {
+  getArtists: function (filter="Show All", sort="asc", page=1) {
 
     var encodedURI = window.encodeURI(artistsURL);
-    console.log(JSON.stringify({"filters": filter}));
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
@@ -35,20 +34,17 @@ module.exports = {
       });
   },
 
-  getAlbums: function (filter) {
+  getAlbums: function (filter="Show All", sort="asc", page=1) {
 
     var encodedURI = window.encodeURI(albumsURL);
-    console.log(JSON.stringify({"filters": filter}));
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
       },
       }).then(function (response) {
-        if (filter === "Show All") {
-          return response.data.objects
-        }
-        else {
-          return (response.data.objects.filter(function(album)  {
+        // apply filter
+        if (filter !== "Show All") {
+          response.data.objects =  (response.data.objects.filter(function(album)  {
             for (var genre of album.AlbumGenre) {
               if (genre.Name === filter) {
                 return true
@@ -56,6 +52,30 @@ module.exports = {
             return false
           }))
         }
+        // apply sort
+        if (sort === "asc") {
+          response.data.objects= response.data.objects.sort(function(a, b){
+            if (a.Title > b.Title) {
+              return 1
+            } else {
+              return -1
+            }
+            })
+        }
+        else {
+          response.data.objects= response.data.objects.sort(function(a, b){
+            if (a.Title < b.Title) {
+              return 1
+            } else {
+              return -1
+            }
+          })
+        }
+        // paginate
+        var start = (page - 1) * 10; // items per page = 10
+        var end = start + 10;
+        response.data.objects = response.data.objects.slice(start, end)
+        return response.data.objects
       }).catch(function(error) {
         console.log("Recieved Error: ");
         console.log(error);
@@ -65,7 +85,6 @@ module.exports = {
   getSongs: function (filter) {
 
     var encodedURI = window.encodeURI(songsURL);
-    console.log(JSON.stringify({"filters": filter}));
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'
@@ -92,7 +111,6 @@ module.exports = {
   getTours: function (filter) {
 
     var encodedURI = window.encodeURI(toursURL);
-    console.log(JSON.stringify({"filters": filter}));
     return axios.get(encodedURI, {
       headers: {
         'Content-Type': 'application/json'

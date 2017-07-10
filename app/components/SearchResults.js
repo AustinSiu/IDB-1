@@ -1,7 +1,24 @@
 var React = require('react');
+var PropTypes = require('prop-types');
 var api = require('../api.js');
 var Search = require('./Search.js');
 import { PageHeader, Pagination, Tabs, Tab } from 'react-bootstrap';
+
+function SearchPageTitle(props) {
+  var title = "Search results for: '";
+  for(var i = 0; i < props.searchString.length; i++){
+    title += props.searchString[i];
+    if(i != props.searchString.length-1)
+      title += " ";
+  }
+  title += "'"
+  return (
+    <h1>{title}</h1>
+  )
+}
+SearchPageTitle.propTypes = {
+  searchString : PropTypes.array.isRequired,
+};
 
 class SearchResults extends React.Component {
   constructor(props) {
@@ -10,7 +27,6 @@ class SearchResults extends React.Component {
       searchString: null,
     }
     this.updateSearchResults = this.updateSearchResults.bind(this);
-    this.showSearchEntry = this.showSearchEntry.bind(this);
   }
   componentWillMount() {
     this.updateSearchResults((this.props.match.params.searchString).split(" "));
@@ -24,20 +40,10 @@ class SearchResults extends React.Component {
   updateSearchResults(searchString) {
     this.setState({searchString: searchString});
   }
-  showSearchEntry(){
-    const { searchString } = this.state;
-    var title = "";
-    for(var i = 0; i < searchString.length; i++){
-      title += searchString[i];
-      if(i != searchString.length-1)
-        title += " ";
-    }
-    return title;
-  }
   render(){
     return(
       <div>
-        <h1>Search results for: {this.showSearchEntry()}</h1>
+        <SearchPageTitle searchString = {this.state.searchString} />
         <Search searchString = {this.state.searchString} />
       </div>
     )

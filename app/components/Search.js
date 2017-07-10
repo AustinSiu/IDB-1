@@ -29,6 +29,9 @@ function ResultGrid(props) {
     </ul>
   )
 }
+ResultGrid.propTypes = {
+  artists : PropTypes.array.isRequired,
+};
 
 class Search extends React.Component{
   constructor(props) {
@@ -51,14 +54,19 @@ class Search extends React.Component{
   }
   updateSearchResults(searchResults) {
     var filter;
-
+    const { searchString } = this.props;
     this.setState(function() {
       return {
         searchResults: searchResults
       }
     });
         
-    filter = [{'name': 'Name','op': 'eq', 'val': this.props.searchString[0]}];
+    filter = [{"or": [
+                {'name': 'Name','op': 'eq', 'val': this.props.searchString[0]},
+                {'name': 'ArtistGenre','op': 'any', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
+                {'name': 'Albums','op': 'any', 'val': {'name': 'Title', 'op': 'eq', 'val' : this.props.searchString[0]}},
+                {'name': 'Songs','op': 'any', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
+              ]}]
 
     api.getArtists(this.state.activePage, filter, orderByAsc)
       .then(function (data) {
@@ -73,7 +81,6 @@ class Search extends React.Component{
   render(){
     return(
       <div>
-
         {!this.state.searchResults
           ? <p>LOADING</p>
           : <ResultGrid artists={this.state.searchResults} />}

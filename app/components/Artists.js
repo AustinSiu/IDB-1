@@ -2,9 +2,7 @@ var React = require('react');
 var PropTypes = require('prop-types');
 var api = require('../api');
 var Link = require('react-router-dom').Link;
-import { PageHeader, Pagination, Button, 
-     ButtonGroup, ButtonToolbar,
-     Grid, Row, Col } from 'react-bootstrap';
+import {Pagination} from 'pui-react-pagination';
 
 var orderByAsc = [{'field': 'Name', 'direction': 'asc'}];
 var orderByDsc = [{'field': 'Name', 'direction': 'desc'}];
@@ -186,17 +184,11 @@ class Artists extends React.Component {
           ? <p>LOADING</p>
           : <ArtistGrid artists={this.state.artists} />}
 
-        <Pagination
-            prev
-            next
-            first
-            last
-            ellipsis
-            boundaryLinks
-            items={this.state.numPages}
-            maxButtons={5}
-            activePage={this.state.activePage}
-            onSelect={this.handleSelect} />
+        <Pagination items={this.state.numPages}
+                    next={false}
+                    prev={false}
+                    activePage={this.state.activePage}
+                    onSelect={this.handleSelect.bind(this)} />
       </div>
     )
   }

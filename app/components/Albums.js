@@ -4,6 +4,9 @@ var api = require('../api');
 var Link = require('react-router-dom').Link;
 import {Pagination} from 'pui-react-pagination';
 
+var orderByAsc = [{'field': 'Title', 'direction': 'asc'}];
+var orderByDsc = [{'field': 'Title', 'direction': 'desc'}];
+
 function SelectGenre (props) {
   var filters = ["Show All"];
   return (
@@ -85,7 +88,6 @@ class Albums extends React.Component {
       albums: null,
       activePage: 1,
       numPages: 16,
-      itemsPerPage: 10
     };
 
     this.updateFilter = this.updateFilter.bind(this);
@@ -95,19 +97,21 @@ class Albums extends React.Component {
   componentDidMount() {
     this.updateFilter(this.state.currentFilter)
   }
-  updateFilter(filter) {
+  updateFilter(genre) {
     this.setState(function() {
       return {
-        currentFilter: filter,
+        currentFilter: genre,
         albums: null,
         activePage: 1,
       }
     });
-    api.getAlbums(filter)
-      .then(function(albums) {
+    var filter;
+    api.getAlbums(1, filter, orderByAsc)
+      .then(function(data) {
         this.setState(function() {
           return {
-            albums: albums
+            albums: data.objects,
+            numPages: data.total_pages,
           }
         })
       }.bind(this))
@@ -118,16 +122,23 @@ class Albums extends React.Component {
         currentSort: sort,
         activePage: 1,
     }})
-    api.getAlbums(this.state.currentFilter, sort)
-      .then(function(albums) {
+    var filter;
+    var order_by;
+    if (sort === 'asc') {
+      order_by = orderByAsc; 
+    } else {
+      order_by = orderByDsc
+    }
+    api.getAlbums(1, filter, order_by)
+      .then(function(data) {
         this.setState(function() {
           return {
-            albums: albums
+            albums: data.objects,
+            numPages: data.total_pages,
           }
         })
       }.bind(this))
   }
-
   handleSelect(event, selectedEvent) {
     const eventKey = selectedEvent.eventKey;
     const curPage = this.state.activePage;
@@ -142,11 +153,19 @@ class Albums extends React.Component {
       this.setState({activePage: eventKey});
     }
     this.setState({activePage: selectedEvent.eventKey});
-    api.getAlbums(this.state.currentFilter, this.state.currentSort, eventKey)
-      .then(function(albums) {
+    var filter;
+    var order_by;
+    if (this.state.currentSort === 'asc') {
+      order_by = orderByAsc; 
+    } else {
+      order_by = orderByDsc
+    }
+    api.getAlbums(eventKey, filter, order_by)
+      .then(function(data) {
         this.setState(function() {
           return {
-            albums: albums
+            albums: data.objects,
+            numPages: data.total_pages,
           }
         })
       }.bind(this))

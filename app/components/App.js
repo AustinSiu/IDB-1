@@ -12,10 +12,12 @@ var Tours = require('./Tours');
 var Songs = require('./Songs');
 var About = require('./About');
 
-var ArtistInstance = require('./Artist-Instance')
-var AlbumInstance = require('./Album-Instance')
-var TourInstance = require('./Tour-Instance')
-var SongInstance = require('./Song-Instance')
+var ArtistInstance = require('./Artist-Instance');
+var AlbumInstance = require('./Album-Instance');
+var TourInstance = require('./Tour-Instance');
+var SongInstance = require('./Song-Instance');
+
+var SearchResults = require('./SearchResults.js');
 
 class App extends React.Component {
   render() {
@@ -34,6 +36,7 @@ class App extends React.Component {
             <Route path='/songs' component={Songs} />
             <Route path='/song-instance/:songID' component={SongInstance} />
             <Route path='/about' component={About} />
+            <Route path='/searchResults/:searchString' component={SearchResults} />
             <Route render={function () {
               return <center>
                 <h1>404</h1>

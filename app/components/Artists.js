@@ -108,7 +108,7 @@ class Artists extends React.Component {
     });
     var filter;
     if (genre !== "Show All") {
-      filter = [{'name': 'ArtistGenre','op': 'any', 'val':{"name":"Name","op":"==","val":genre}}];;
+      filter = [{'name': 'ArtistGenre','op': 'any', 'val':{"name":"Name","op":"==","val":genre}}];
     }
     api.getArtists(1, filter, orderByAsc)
       .then(function(data) {

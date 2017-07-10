@@ -33,7 +33,7 @@ module.exports = {
 
   getAlbums: function (page, filter, orderBy) {
 
-    var encodedURI = window.encodeURI(artistsURL);
+    var encodedURI = window.encodeURI(albumsURL);
     return axios.get(encodedURI, {
 
       headers: {
@@ -56,7 +56,7 @@ module.exports = {
 
   getSongs: function (page, filter, orderBy) {
 
-    var encodedURI = window.encodeURI(artistsURL);
+    var encodedURI = window.encodeURI(songsURL);
     return axios.get(encodedURI, {
 
       headers: {
@@ -79,7 +79,7 @@ module.exports = {
 
   getTours: function (page, filter, orderBy) {
 
-    var encodedURI = window.encodeURI(artistsURL);
+    var encodedURI = window.encodeURI(toursURL);
     return axios.get(encodedURI, {
 
       headers: {
@@ -99,7 +99,7 @@ module.exports = {
         console.log(error);
     });
   }, 
-  
+
   // Instance functions
 
   getAlbum: function(id) {

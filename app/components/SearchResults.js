@@ -2,7 +2,7 @@ var React = require('react');
 var PropTypes = require('prop-types');
 var api = require('../api.js');
 var Search = require('./Search.js');
-import { PageHeader, Pagination, Tabs, Tab } from 'react-bootstrap';
+import {PageHeader, Pagination, Tabs, Tab} from 'react-bootstrap';
 
 function SearchPageTitle(props) {
   var title = "Search results for: '";
@@ -26,25 +26,28 @@ class SearchResults extends React.Component {
     this.state = {
       searchString: null,
     }
-    this.updateSearchResults = this.updateSearchResults.bind(this);
+    this.updateSearchString = this.updateSearchString.bind(this);
   }
   componentWillMount() {
-    this.updateSearchResults((this.props.match.params.searchString).split(" "));
+    this.updateSearchString((this.props.match.params.searchString).split(" "));
   }
   componentWillReceiveProps(nextProps){
     this.setState({searchString: (nextProps.match.params.searchString).split(" ")}, 
       function() {
-        this.updateSearchResults(this.state.searchString);
+        this.updateSearchString(this.state.searchString);
       })
   }
-  updateSearchResults(searchString) {
+  updateSearchString(searchString) {
     this.setState({searchString: searchString});
   }
   render(){
     return(
       <div>
         <SearchPageTitle searchString = {this.state.searchString} />
-        <Search searchString = {this.state.searchString} />
+        <Search searchString = {this.state.searchString}
+                moduleType = {"Artists"} />
+        <Search searchString = {this.state.searchString}
+                moduleType = {"Albums"} />
       </div>
     )
   }

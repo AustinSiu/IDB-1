@@ -83,10 +83,13 @@ class Albums extends React.Component {
       currentFilter: "Show All",
       currentSort: "asc",
       songs: null,
+      activePage: 1,
+      numPages: 50,
     };
 
     this.updateFilter = this.updateFilter.bind(this);
     this.updateSort = this.updateSort.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
   componentDidMount() {  
     this.updateFilter(this.state.currentFilter)
@@ -96,6 +99,7 @@ class Albums extends React.Component {
       return {
         currentFilter: genre,
         songs: null,
+        activePage: 1,
       }
     });
     api.getSongs(genre)
@@ -111,36 +115,41 @@ class Albums extends React.Component {
     this.setState(function() {
       return {
         currentSort: sort,
+        activePage: 1,
     }})
-    if (sort === "asc") {
-      this.setState(function() {
-        return {
-          currentSort: sort,
-          songs: this.state.songs.sort(function(a, b){
-            if (a.Name > b.Name) {
-              return 1
-            } else {
-              return -1
-            }
+    api.getAlbums(this.state.currentFilter, sort)
+      .then(function(songs) {
+        this.setState(function() {
+          return {
+            songs: songs
+          }
         })
-      }})
+      }.bind(this))
+  }
+  handleSelect(event, selectedEvent) {
+    const eventKey = selectedEvent.eventKey;
+    const curPage = this.state.activePage;
+
+    if(eventKey === 'next') {
+      this.setState({activePage: curPage + 1});
+    }
+    else if(eventKey === 'prev') {
+      this.setState({activePage: curPage - 1});
     }
     else {
-      this.setState(function() {
-        return {
-          currentSort: sort,
-          songs: this.state.songs.sort(function(a, b){
-            if (a.Name < b.Name) {
-              return 1
-            } else {
-              return -1
-            }
-        })
-      }})
+      this.setState({activePage: eventKey});
     }
+    this.setState({activePage: selectedEvent.eventKey});
+    api.getSongs(this.state.currentFilter, this.state.currentSort, eventKey)
+      .then(function(songs) {
+        this.setState(function() {
+          return {
+            songs: songs
+          }
+        })
+      }.bind(this))
   }
   render() {
-    var genres = ["Show All", "Alternative", "Blues", "Country", "Electronic", "Indie", "Rap", "Rock"];
 
     return (
       <div>
@@ -155,6 +164,11 @@ class Albums extends React.Component {
           ? <p>LOADING</p> 
           : <SongGrid songs={this.state.songs} />}
 
+        <Pagination items={this.state.numPages}
+                    next={false}
+                    prev={false}
+                    activePage={this.state.activePage}
+                    onSelect={this.handleSelect.bind(this)} />
 
       </div>
     )

@@ -91,7 +91,6 @@ class Albums extends React.Component {
     this.updateFilter = this.updateFilter.bind(this);
     this.updateSort = this.updateSort.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
-    this.updateStatus = this.updateStatus.bind(this);
   }
   componentDidMount() {
     this.updateFilter(this.state.currentFilter)
@@ -134,7 +133,6 @@ class Albums extends React.Component {
     const curPage = this.state.activePage;
 
     if(eventKey === 'next') {
-      console.log(eventKey)
       this.setState({activePage: curPage + 1});
     }
     else if(eventKey === 'prev') {
@@ -142,9 +140,6 @@ class Albums extends React.Component {
     }
     else {
       this.setState({activePage: eventKey});
-      console.log(eventKey)
-      console.log(this.state.activePage)
-      console.log(curPage)
     }
     this.setState({activePage: selectedEvent.eventKey});
     api.getAlbums(this.state.currentFilter, this.state.currentSort, eventKey)
@@ -152,23 +147,6 @@ class Albums extends React.Component {
         this.setState(function() {
           return {
             albums: albums
-          }
-        })
-      }.bind(this))
-  }
-  updateStatus(status) {
-    this.setState(function() {
-      return {
-        albums: status
-      }
-    });
-
-    api.getAlbums("Show All")
-      .then(function(albums) {
-        this.setState(function() {
-          return {
-            albums: albums,
-            numPages: 5
           }
         })
       }.bind(this))

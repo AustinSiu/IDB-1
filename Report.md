@@ -124,11 +124,11 @@ In Phase II, ‘banddb’ is initialized according to a simplified version of pr
 
 Database schema is realized by Python SQLAlchemy, a Python Object Relational Mapper (ORM) package. It beautifully supports easy database setup through Python scripts. One-to-many relationships are realized by `SQLAlchemy().relationship()` and `SQLAlchemy().backref()` functions (see GitHub repo, inside app.py). For many-to-many relations, assistant tables are constructed with `SQLAlchemy().Table()` and `SQLAlchemy().relationship(,secondary=,)` functions.
 
-#### Restful API Implementation
+### Restful API Implementation
 Python SQLAlchemy has Flask-Restless package that automatically generates Restful APIs in endpoints following /api. See GitHub repo for detailed codes. APIs can be visited through banddb.me/api/artists/{ArtistID} for Artists model, banddb.me/api/songs/{SongID} for Songs model and banddb.me/api/albums/{AlbumID} for Albums model.
 
 
-#### Scraping
+### Scraping
 In order to obtain the necessary data for the website, data was scraped from two sources; Last.fm and Wikipedia.org. As collecting data on *many* instances manually would have been extremely tedious, the data was instead scraped using Python and exported into a JSON file.
 
 The output of the JSON was in the following format. The root of the file was a dictionary containing four other dictionaries with key values of `artists`, `albums`, `tours`, and `songs`:
@@ -243,3 +243,43 @@ Inside the `songs` dictionary contains every song known to the database and each
 ```
 
 Note: The `Tours` module is not implemented for phase 2 because we were not able to scrape a sufficient amount of data. We plan to continue adding data in future phases and it will have a similar format to the other modules.
+
+### React
+
+We began implementing React in Phase III of the project. Two key tools that we have been using to apply React to our project are Webpack and Babel.js. Webpack is nothing more complicated than a code bundler. It takes our code, transforms and bundles it, then returns a brand new version of our code for us to put to production. What’s neat about Webpack is that its purpose is to listen to any transformations that needs to be made to our code and then it will transform it and output a bundle file full of those changes. The file name that contains our webpack configurations is named webpack.config.js and it is located in the root directory of our project. When webpack runs, the transformed code could be referenced in a file located in our dist folder. In the folder we’ll have two files, index_bundle.js and index.html. index_bundle.js is the result of our entry code that we ran through our loaders, and index.html is a copy of our original index.html file from our app folder.
+On the other hand, Babel.js is the tool for compiling JavaScript. Babel allows us to transform our JSX into actual JavaScript, so that our browser can understand our code. Babel is added as a loader in our webpack settings. It does its job of transforming our code whenever we run webpack.  
+
+Initially we were using Flask and Python to route our pages, however we decided to switch gears and use the React router functionality instead to navigate our different routes from our website’s navigation bar. First, we need to run [ npm install –save react-router-dom ]. This can be found in one of our dependencies. Then in our App.js, we needed to require two properties from the React router: a router variable, “BrowserRouter”, and a route “Route”. To route our paths, we want to state [ <Route path=’/artists’ component = {Artists} /> ] in our React function. This will render our “Artists” component. So in a nutshell, we are essentially rendering a route component and passing in two props: Path and Component.
+Now let’s talk about the actual React components themselves. Our components are comprised of our models for the project: Artists, Albums, Songs, and Tours. Each of these components have a render method, which describes the user interface. In index.js, we instructed React to take our four components and render it to the element with an ID of ‘app’. We are only using this once due to the parent/child child relations of React. This theory rules that when you render the most parent component, it will render all of its child components as well.
+
+One neat thing about React is that a component can be thought of as a collection of HTML, CSS, JS, and some internal data specific to that component. React enables us to write “HTML” in the render method, as shown below:
+
+```
+render() {
+
+  return (
+    <div>
+      <SelectGenre
+      currentFilter = {this.state.currentFilter}
+      onSelect = {this.updateFilter}/>
+      <SelectSort
+      currentSort={this.state.currentSort}
+      onSelect= {this.updateSort}/>
+
+      {!this.state.artists
+        ? <p>LOADING</p>
+        : <ArtistGrid artists={this.state.artists} />}
+
+      <Pagination items={this.state.numPages}
+                  next={false}
+                  prev={false}
+                  activePage={this.state.activePage}
+                  onSelect={this.handleSelect.bind(this)} />
+    </div>
+  )
+}
+```
+
+In this code snippet from Artists.js, we are outputting our state objects to display on the UI as we render. React actually calls this syntax JSX. This feature allows us to write HTML like syntax that will eventually get transformed to JavaScript objects, which React is then going to take and form a “virtual DOM” out of them. This gives us accessibility of templates from JavaScript.
+
+### Search Implementation

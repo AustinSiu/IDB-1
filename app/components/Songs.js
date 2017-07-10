@@ -4,6 +4,9 @@ var api = require('../api');
 var Link = require('react-router-dom').Link;
 import {Pagination} from 'pui-react-pagination';
 
+var orderByAsc = [{'field': 'Name', 'direction': 'asc'}];
+var orderByDsc = [{'field': 'Name', 'direction': 'desc'}];
+
 function SelectGenre (props) {
   var genres = ["Show All", "alternative", "blues", "country", "electronic", "indie", "rap", "rock"];
   return (
@@ -102,11 +105,16 @@ class Albums extends React.Component {
         activePage: 1,
       }
     });
-    api.getSongs(genre)
-      .then(function(songs) {
+    var filter;
+    if (genre !== "Show All") {
+      filter = [{'name': 'SongGenre','op': 'any', 'val':{"name":"Name","op":"==","val":genre}}];;
+    }
+    api.getSongs(1, filter, orderByAsc)
+      .then(function(data) {
         this.setState(function() {
           return {
-            songs: songs
+            songs: data.objects,
+            numPages: data.total_pages,
           }
         })
       }.bind(this))
@@ -117,11 +125,22 @@ class Albums extends React.Component {
         currentSort: sort,
         activePage: 1,
     }})
-    api.getAlbums(this.state.currentFilter, sort)
-      .then(function(songs) {
+    var filter;
+    if (this.state.currentFilter !== "Show All") {
+      filter = [{'name': 'SongGenre','op': 'any', 'val':{"name":"Name","op":"==","val":this.state.currentFilter}}];;
+    }
+    var order_by;
+    if (sort === 'asc') {
+      order_by = orderByAsc; 
+    } else {
+      order_by = orderByDsc
+    }
+    api.getSongs(1, filter, order_by)
+      .then(function(data) {
         this.setState(function() {
           return {
-            songs: songs
+            songs: data.objects,
+            numPages: data.total_pages,
           }
         })
       }.bind(this))
@@ -140,11 +159,22 @@ class Albums extends React.Component {
       this.setState({activePage: eventKey});
     }
     this.setState({activePage: selectedEvent.eventKey});
-    api.getSongs(this.state.currentFilter, this.state.currentSort, eventKey)
-      .then(function(songs) {
+    var filter;
+    if (this.state.currentFilter !== "Show All") {
+      filter = [{'name': 'SongGenre','op': 'any', 'val':{"name":"Name","op":"==","val":this.state.currentFilter}}];;
+    }
+    var order_by;
+    if (this.state.currentSort === 'asc') {
+      order_by = orderByAsc; 
+    } else {
+      order_by = orderByDsc
+    }
+    api.getSongs(eventKey, filter, order_by)
+      .then(function(data) {
         this.setState(function() {
           return {
-            songs: songs
+            songs: data.objects,
+            numPages: data.total_pages,
           }
         })
       }.bind(this))

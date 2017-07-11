@@ -1,4 +1,5 @@
 var React = require('react');
+import {Pagination} from 'pui-react-pagination';
 
 class About extends React.Component {
   render() {

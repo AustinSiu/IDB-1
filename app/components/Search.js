@@ -77,6 +77,29 @@ function ResultGrid(props) {
       </ul>
     )
   }
+  else if (props.module === "Tours") {
+    return(
+      <ul className="data-list">
+        {props.data.map(function (tour) {
+          return (
+            <li key={tour.TourID} className='data-item'>
+              <ul className='data-list-items'>
+                  <Link to={'/tour-instance/' + tour.TourID}>
+                    <li>
+                      <img
+                        className='img'
+                        src={tour.Image}
+                        alt={'Image for ' + tour.Name}/>
+                    </li>
+                    <li>{tour.Name}</li>
+                  </Link>
+              </ul>
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
 }
 ResultGrid.propTypes = {
   data : PropTypes.array.isRequired,
@@ -164,11 +187,10 @@ class Search extends React.Component{
     else if (this.props.moduleType == "Tours") {
       filter = [{"or": [
                   {'name': 'Name','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
-                  {'name': 'Venues','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
+                  {'name': 'Venue','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
                   {'name': 'Locations','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
                   {'name': 'tDate','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
                   {'name': 'artist','op': 'has', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
-
                 ]}]
       api.getTours(this.state.activePage, filter, orderArtists)
         .then(function (data) {

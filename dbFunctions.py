@@ -89,7 +89,6 @@ class dbQuery:
         songsInfo = songs.__dict__
         return songsInfo
 
-
     def SongAlbum(self, song):
         albums = Albums.query.join(Songs).filter(Songs.Name == song).all()
         albumsInfo = [al.__dict__ for al in albums]
@@ -140,7 +139,6 @@ class dbQuery:
         albums = Albums.query.filter(Albums.AlbumID == ID).first()
         albumsInfo = albums.__dict__
         return albumsInfo
-
 
     def AlbumByArtist(self, artist):
         albums = Albums.query.join(Artists).filter(

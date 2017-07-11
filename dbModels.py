@@ -189,12 +189,13 @@ class Tours(db.Model):
     def __init__(self, date, name, image, venue, locations, **rest):
         self.tDate = date
         self.Name = name
-        self.Image = image        
+        self.Image = image
         self.Venue = venue
         self.Locations = locations
 
     def __repr__(self):
         return self.Name
+
 
 class Genre(db.Model):
     """

@@ -197,7 +197,7 @@ class Tours(db.Model):
     def __init__(self, date, name, image, venue, locations, **rest):
         self.tDate = date
         self.Name = name
-        self.Image = image        
+        self.Image = image
         self.Venue = venue
         self.Locations = locations
 
@@ -297,7 +297,7 @@ def artists(sorting, page):
     data = dbQuery().AllArtists(sorting)
     pages = len(data)
     data = data[(page - 1) * 8: page * 8]
-    return render_template('artists.html', data=data, genre='',sorting=sorting,pages=pages, language='Python', framework='Flask', lang=False)
+    return render_template('artists.html', data=data, genre='', sorting=sorting, pages=pages, language='Python', framework='Flask', lang=False)
 
 
 @app.route('/artists_by_genre/<string:genre>/<string:sorting>/<int:page>')
@@ -305,7 +305,7 @@ def artists_by_genre(genre, sorting, page):
     data = dbQuery().ArtistByGenre(genre, sorting)
     pages = len(data)
     data = data[(page - 1) * 8: page * 8]
-    return render_template('artists.html', data=data, pages=pages, genre=genre, sorting=sorting,language='Python', framework='Flask', lang=False)
+    return render_template('artists.html', data=data, pages=pages, genre=genre, sorting=sorting, language='Python', framework='Flask', lang=False)
 
 
 @app.route('/albums/<string:album_name>')
@@ -328,7 +328,7 @@ def albums(sorting, page):
     data = dbQuery().AllAlbums(sorting)
     pages = len(data)
     data = data[(page - 1) * 8: page * 8]
-    return render_template('albums.html', data=data, pages=pages, sorting=sorting,language='Python', framework='Flask', lang=False)
+    return render_template('albums.html', data=data, pages=pages, sorting=sorting, language='Python', framework='Flask', lang=False)
 
 
 @app.route('/tours')
@@ -361,7 +361,7 @@ def songs(sorting, page):
     data = dbQuery().AllSongs(sorting)
     pages = len(data)
     data = data[(page - 1) * 8: page * 8]
-    return render_template('songs.html', data=data, pages=pages, sorting=sorting,language='Python', framework='Flask', lang=False)
+    return render_template('songs.html', data=data, pages=pages, sorting=sorting, language='Python', framework='Flask', lang=False)
 
 
 @app.route('/songs_by_genre/<string:genre>/<string:sorting>/<int:page>')
@@ -369,7 +369,7 @@ def songs_by_genre(genre, sorting, page):
     data = dbQuery().SongByGenre(genre, sorting)
     pages = len(data)
     data = data[(page - 1) * 8: page * 8]
-    return render_template('songs.html', data=data, pages=pages, genre=genre, sorting=sorting,language='Python', framework='Flask', lang=False)
+    return render_template('songs.html', data=data, pages=pages, genre=genre, sorting=sorting, language='Python', framework='Flask', lang=False)
 
 
 @app.route('/about')
@@ -380,6 +380,7 @@ def about():
     Doc.
     """
     return render_template('about.html')
+
 
 @app.errorhandler(404)
 def page_not_found(e):

@@ -9,37 +9,46 @@ class About extends React.Component {
                 <p className="subdesc">Our team was motivated to create an IMDb-like application for everything you need to know about artists and music. We were inspired by Spotify and came into realization that there needs to be a main place where people can find simple and quick information about an artist’s biography, discography, and tour dates. Our website is named “BandDB”, which stands for Band Database. We believe this website will be useful for music lovers and others alike who want to learn a little bit more about their favorite bands and artists.</p>
                 <h3 className="subtitle">Group Name: Wiggity Wack</h3>
                 <h3 className="subtitle">Group Members: </h3>
-                  <h1> <img src = "images/devs/djp.jpg"></img></h1>
-                    <p className="subdesc" >I am Jonathan! I am a CS major with one year left before I graduate (i.e. I'm a Senior now I guess.)
+                  <h1> <img src = "http://i.imgur.com/oq4FYOi.jpg"></img></h1>
+                  <h1>Jonathan Peacher</h1>
+                  <p className="subdesc" >I am Jonathan! I am a CS major with one year left before I graduate (i.e. I'm a Senior now I guess.)
                     I've started programming since around highschool and have loved it ever since.</p>
-                  <li> - no. of commits: 27</li>
-                  <li> - no. of issues: 8</li>
-                  <li> - no. of unit tests: 22</li>
-                  <h1> <img src = "images/devs/tl.jpg"></img></h1>
-                    <p className="subdesc" >Apiary, Data Scraping, Flask Templates, React</p>
-                  <li> - no. of commits: 23</li>
-                  <li> - no. of issues: 4</li>
+                  <li> - Boostrap, AWS setup, Data Scraping</li>
+                  <li> - no. of commits: 41</li>
+                  <li> - no. of issues: 11</li>
+                  <li> - no. of unit tests: 29</li>
+                  <h1> <img src = "http://i.imgur.com/H2hdDdu.jpg"></img></h1>
+                  <h1>Tika Lestari</h1>
+                  <p className="subdesc" >I’m a third year Computer Science major at UT, minoring in Information Studies.
+                My hobbies include playing the piano, guitar, ukulele, cooking, and petting cats.</p>
+                  <li> - Apiary, Data Scraping, Flask Templates, React</li>
+                  <li> - no. of commits: 28</li>
+                  <li> - no. of issues: 10</li>
                   <li> - no. of unit tests: 0</li>
-                  <h1> <img src = "images/devs/ss.jpg"></img></h1>
-                    <p className="subdesc" >I am Shida. I study and research physics. I am also an enthusiastic coder.</p>
-                  <li> - no. of commits: 24</li>
-                  <li> - no. of issues: 8</li>
+                  <h1> <img src = "http://i.imgur.com/WmF6m4C.jpg"></img></h1>
+                  <h1>Shida Shen</h1>
+                  <p className="subdesc" >I am Shida. I study and research physics. I am also an enthusiastic coder.</p>
+                  <li> - Apiary, Database, AWS</li>
+                  <li> - no. of commits: 59</li>
+                  <li> - no. of issues: 12</li>
                   <li> - no. of unit tests: 0</li>
-                  <h1> <img src = "images/devs/sb.jpg"></img></h1>
-                    <p className="subdesc" >I'm a fourth year Computer Science major at UT. I also have a minor in Spanish and Business.</p>
-                  <li> - no. of commits: 9</li>
-                  <li> - no. of issues: 5</li>
+                  <h1> <img src = "http://i.imgur.com/IZl4Vuq.jpg"></img></h1>
+                  <h1>Sarah Baxter</h1>
+                 <p className="subdesc" >I'm a fourth year Computer Science major at UT. I also have a minor in Spanish and Business.</p>
+                  <li> - no. of commits: 68</li>
+                  <li> - no. of issues: 10</li>
                   <li> - no. of unit tests: 0</li>
-                  <h1> <img src = "images/devs/mc.jpg"></img></h1>
+                  <h1> <img src = "http://i.imgur.com/LZgaDuw.jpg"></img></h1>
+                  <h1>Mitch Chaiet (Auditor)</h1>
                     <p className="subdesc" >University of Texas Junior with a strong passion for everything music, tech, business, and design. Free time spent studying business tactics, working on my startup ConcertCam, playing open mic nights, and building innovative musical hardware.</p>
                   <li> - no. of commits: 9</li>
                   <li> - no. of issues: 2</li>
                   <li> - no. of unit tests: 0</li>
 
                 <h3 className="subtitle">Statistics </h3>
-                  <li> - total no. of commits: 77</li>
-                  <li> - total no. of issues: 27</li>
-                  <li> - total no. of unit tests: 77</li>
+                  <li> - total no. of commits: 197</li>
+                  <li> - total no. of issues: 43</li>
+                  <li> - total no. of unit tests: 29</li>
                   <li> - <b>Apiary API</b>: <a href="https://docs.djpeacher.apiary.io">https://docs.djpeacher.apiary.io</a></li>
                   <li> - <b>GitHub Repo</b>: <a href="https://github.com/djpeacher/IDB">https://github.com/djpeacher/IDB</a></li>
                   <li> - <b>Trello</b>: <a href="https://trello.com/b/Xa3QhO2b/idb1">https://trello.com/b/Xa3QhO2b/idb1</a></li>
@@ -66,7 +75,7 @@ class About extends React.Component {
                           <li> - Slack - A communication tool our team used to collaborate over the course of the project. Slack is also connected to the Github repository, which allowed us to monitor the commits of individual team members and the overall progress of the team.</li>
                           <li> - Trello - A project management application that our team used to list and categorize the necessary tasks for developing our web application. It allowed us to track the progress of our team over the course of the project.</li>
                           <li> - PlanitPoker - An online application that provides an interface for Agile project teams to estimate the complexity or completion time of projects. Our team used this application to break each phase of our project into tasks and estimate the time each task would require.</li>
-                  <li> - Report: <a href="https://utexas.box.com/s/kb82xlo3opqrp8ral25m8bmn8l68hp19">https://utexas.box.com/s/kb82xlo3opqrp8ral25m8bmn8l68hp19</a></li>
+                  <li> - Report: <a href="https://utexas.box.com/s/pmn4fuzcsur6sklj2i09o1x4q6shitkh">https://utexas.box.com/s/kb82xlo3opqrp8ral25m8bmn8l68hp19</a></li>
               </div>
         </div>
     )

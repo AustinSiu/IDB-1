@@ -37,6 +37,9 @@ def getRunTime(s):
     return int(s) // 1000
 
 
+
+
+
 for album, albumContent in data['albums'].items():
     NewAlbum = Albums(title=albumContent['name'], year=getDate(
         albumContent['release_date']), image=albumContent['img'], us_chart_position=albumContent['chart_pos'])
@@ -82,12 +85,36 @@ for song, songContent in data['songs'].items():
     print('ok')
 
 
+print("now tours")
+for tour, tourInfo in data['tours'].items():
+    NewTour = Tours(date=tourInfo['dates'], name=tourInfo['name'], image=tourInfo['img'], venue=tourInfo['venue'], locations=tourInfo['locations'])
+    for _s, _sc in tourInfo['songs'].items():
+        song = data['songs'][_sc['id']]
+        Song = Songs.query.filter(Songs.Name == song['name'] and Songs.Image == song['img'])
+        NewTour.TourLineUp.Append(Song)
+    db.session.add(NewTour)
+    db.session.commit()
+print("tours finished")
+
+
 for artist, content in data['artists'].items():
     if Artists.query.filter(Artists.Name == content['name'] and Artists.Image == content['img']).count():
         NewArtist = Artists.query.filter(
             Artists.Name == content['name'] and Artists.Image == content['img']).first()
     else:
         NewArtist = Artists(name=content['name'], image=content['img'], start_time=content['active']['start'], end_time=content['active']['end'])
+    
+
+
+    for t, ti in data['tours'].items():
+        if ti['artist']['id'] == content['id']:
+            tour = Tours.query.filter(Tours.Name == ti['name'] and Tours.Image == ti[''])
+    artist = data['artists'][tourInfo['artist']['id']]
+    Artist = Artists.query.filter(Artists.Name == artist['name'] and Artists.Image == artist['img'])
+    Artist.Tours.append(NewTour)
+
+
+
     # genre info
     for gr in content['genre']:
         if Genre.query.filter(Genre.Name == gr).count():
@@ -139,16 +166,3 @@ for artist, content in data['artists'].items():
     db.session.add(NewArtist)
     db.session.commit()
 
-print("now tours")
-for tour, tourInfo in data['tours'].items():
-    NewTour = Tours(date=tourInfo['dates'], name=tourInfo['name'], image=tourInfo['img'], venue=tourInfo['venue'], locations=tourInfo['locations'])
-    artist = data['artists'][tourInfo['artist']['id']]
-    Artist = Artists.query.filter(Artists.Name == artist['name'] and Artists.Image == artist['img']).first()
-    Artist.Tours.append(NewTour)
-    for _sc in tourInfo['songs']:
-        song = data['songs'][_sc['id']]
-        Song = Songs.query.filter(Songs.Name == song['name'] and Songs.Image == song['img']).first()
-        print(Song)
-        NewTour.TourLineUp.append(Song)
-    db.session.add(NewTour)
-    db.session.commit()

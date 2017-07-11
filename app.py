@@ -181,10 +181,11 @@ class Tours(db.Model):
     relations of tour_line_up (a table)
     """
     TourID = db.Column(db.Integer, nullable=False, primary_key=True)
-    Venue = db.Column(db.String, nullable=False)
-    Location = db.Column(db.Integer, nullable=False)
-    tDate = db.Column(db.Date, nullable=False)
+    tDate = db.Column(db.String, nullable=False)
+    Name = db.Column(db.String, nullable=False)
     Image = db.Column(db.String, nullable=True)
+    Venue = db.Column(db.String, nullable=False)
+    Locations = db.Column(db.String, nullable=False)
 
 #   Artist-tour is a one-to-many relationship
     ArtistID = db.Column(db.Integer, db.ForeignKey(
@@ -193,11 +194,15 @@ class Tours(db.Model):
     TourLineUp = db.relationship('Songs', secondary=TourLineUp, backref=db.backref(
         'tour', lazy='dynamic'))
 
-    def __init__(self, venue, location, date, **rest):
-        self.Venue = venue
-        self.Location = location
+    def __init__(self, date, name, image, venue, locations, **rest):
         self.tDate = date
-        self.Image = image
+        self.Name = name
+        self.Image = image        
+        self.Venue = venue
+        self.Locations = locations
+
+    def __repr__(self):
+        return self.Name
 
 
 class Genre(db.Model):

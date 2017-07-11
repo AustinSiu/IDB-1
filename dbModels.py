@@ -7,7 +7,7 @@ app = Flask(__name__)
 # for test purposes, use sqlite:////path/test.db instead
 #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////Users/shidashen/Desktop/IDB/IDB/test.db"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/banddb"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/banddb2"
 
 db = SQLAlchemy(app)
 
@@ -58,8 +58,8 @@ class Artists(db.Model):
     Name = db.Column(db.String, nullable=False)
     Age = db.Column(db.Integer, nullable=True)
     Origin = db.Column(db.String, nullable=True)
-    Start_Time = db.Column(db.Date, nullable=True)
-    End_Time = db.Column(db.Date, nullable=True)
+    Start_Time = db.Column(db.Integer, nullable=True)
+    End_Time = db.Column(db.Integer, nullable=True)
     Image = db.Column(db.String, nullable=True)
 
 #   top 3 songs are many-to-many relationship
@@ -173,10 +173,11 @@ class Tours(db.Model):
     relations of tour_line_up (a table)
     """
     TourID = db.Column(db.Integer, nullable=False, primary_key=True)
-    Venue = db.Column(db.String, nullable=False)
-    Location = db.Column(db.Integer, nullable=False)
-    tDate = db.Column(db.Date, nullable=False)
+    tDate = db.Column(db.String, nullable=False)
+    Name = db.Column(db.String, nullable=False)
     Image = db.Column(db.String, nullable=True)
+    Venue = db.Column(db.String, nullable=False)
+    Locations = db.Column(db.String, nullable=False)
 
 #   Artist-tour is a one-to-many relationship
     ArtistID = db.Column(db.Integer, db.ForeignKey(
@@ -185,12 +186,15 @@ class Tours(db.Model):
     TourLineUp = db.relationship('Songs', secondary=TourLineUp, backref=db.backref(
         'tour', lazy='dynamic'))
 
-    def __init__(self, venue, location, date, **rest):
-        self.Venue = venue
-        self.Location = location
+    def __init__(self, date, name, image, venue, locations, **rest):
         self.tDate = date
-        self.Image = image
+        self.Name = name
+        self.Image = image        
+        self.Venue = venue
+        self.Locations = locations
 
+    def __repr__(self):
+        return self.Name
 
 class Genre(db.Model):
     """

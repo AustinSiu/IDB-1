@@ -11,6 +11,7 @@ class TestAPI (TestCase):
     artistsURL = 'http://banddb.me/api/artists'
     songsURL = 'http://banddb.me/api/songs'
     albumsURL = 'http://banddb.me/api/albums'
+    toursURL = 'http://banddb.me/api/tours'
     headers = {'Content-Type': 'application/json'}
 
     ################
@@ -49,8 +50,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['Image'],
-                         'https://lastfm-img2.akamaized.net/i/u/'
-                         'd6549455318c4928bc3055d821827258.png')
+                         'https://lastfm-img2.akamaized.net/i/u/8b238225c5f341dfc10a1695a9cdf00c.png')
 
     def test_get_artists_genres(self):
         """test_get_artists_genres."""
@@ -63,7 +63,7 @@ class TestAPI (TestCase):
         # self.assertEqual(response.status_code, 200)
         genres = response.json()['objects'][0]['ArtistGenre']
         genres = [g['Name'] for g in genres]
-        self.assertEqual(genres, ['thrash metal', 'metal', 'heavy metal'])
+        self.assertEqual(genres, ['classic rock', 'rock', 'hard rock'])
 
     def test_get_artists_albums(self):
         """test_get_artists_albums."""
@@ -76,9 +76,7 @@ class TestAPI (TestCase):
         # self.assertEqual(response.status_code, 200)
         albums = response.json()['objects'][0]['Albums']
         albums = [a['Title'] for a in albums]
-        self.assertEqual(albums, ['Master of Puppets',
-                                  'Ride the Lightning',
-                                  'Metallica'])
+        self.assertEqual(albums, ['Led Zeppelin IV', 'Led Zeppelin', 'Led Zeppelin II'])
 
     def test_get_artists_top_songs(self):
         """test_get_artists_top_songs."""
@@ -91,9 +89,7 @@ class TestAPI (TestCase):
         # self.assertEqual(response.status_code, 200)
         songs = response.json()['objects'][0]['TopSongs']
         songs = [s['Name'] for s in songs]
-        self.assertEqual(songs, ['Master of Puppets',
-                                 'Nothing Else Matters',
-                                 'Enter Sandman'])
+        self.assertEqual(songs, ['Immigrant Song', 'Stairway to Heaven', 'Whole Lotta Love'])
 
     def test_get_artist_error(self):
         """test_get_artist_error."""
@@ -143,8 +139,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['Image'],
-                         'https://lastfm-img2.akamaized.net/i/u/300x300/'
-                         'fafc74a8f45241acc10158be6e2d8270.png')
+                         'https://lastfm-img2.akamaized.net/i/u/300x300/ead294d0d6a74ad1b1df311ded396cbf.png')
 
     def test_get_song_artist(self):
         """test_get_song_artist."""
@@ -156,7 +151,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['artist']['Name'],
-                         'The Beatles')
+                         'Taylor Swift')
 
     def test_get_song_release_date(self):
         """test_get_song_release_date."""
@@ -168,7 +163,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['Creation_Date'],
-                         '2014-12-08')
+                         '2010-10-10')
 
     def test_get_song_runtime(self):
         """test_get_song_runtime."""
@@ -179,7 +174,7 @@ class TestAPI (TestCase):
                                 headers=self.headers)
 
         # self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()['objects'][0]['Run_Time'], 156)
+        self.assertEqual(response.json()['objects'][0]['Run_Time'], 241)
 
     def test_get_song_genre(self):
         """test_get_song_genre."""
@@ -191,7 +186,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['SongGenre'][0]['Name'],
-                         'classic rock')
+                         'country')
 
     def test_get_song_error(self):
         """test_get_song_error."""
@@ -241,8 +236,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['Image'],
-                         'https://lastfm-img2.akamaized.net/i/u/'
-                         'b981d2efc62719fc76dfe1ceee8dc9bc.png')
+                         'https://lastfm-img2.akamaized.net/i/u/43871b6b40f14f4d89360b68d9084802.png')
 
     def test_get_album_artist(self):
         """test_get_album_artist."""
@@ -254,7 +248,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['artist']['Name'],
-                         'Adele')
+                         'Queen')
 
     def test_get_album_release_date(self):
         """test_get_album_release_date."""
@@ -266,7 +260,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['Year'],
-                         '2008-08-17')
+                         '2008-11-29')
 
     def test_get_album_songs(self):
         """test_get_album_songs."""
@@ -279,13 +273,100 @@ class TestAPI (TestCase):
         # self.assertEqual(response.status_code, 200)
         songs = response.json()['objects'][0]['Songs']
         songs = [s['Name'] for s in songs]
-        self.assertEqual(songs, ['Daydreamer'])
+        self.assertEqual(songs, [u'Sweet Lady', 'God Save the Queen', 'Lazing on a Sunday Afternoon', "'39", 'Bohemian Rhapsody', 'Love of My Life', "I'm in Love With My Car", 'Seaside Rendezvous', "The Prophet's Song", 'Good Company'])
 
     def test_get_album_error(self):
         """test_get_album_error."""
         filters = [dict(name='AlbumID', op='eq', val=-1)]
         params = dict(q=json.dumps(dict(filters=filters)))
         response = requests.get(self.albumsURL,
+                                params=params,
+                                headers=self.headers)
+
+        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()['objects']), 0)
+        self.assertEqual(response.json()['num_results'], 0)
+
+    ###############
+    # Tour Tests #
+    ###############
+
+    def test_get_tour_by_name(self):
+        """test_get_tour_by_name."""
+        filters = [dict(name='Name', op='eq', val='System of a Down Reunion Tour')]
+        params = dict(q=json.dumps(dict(filters=filters)))
+        response = requests.get(self.toursURL,
+                                params=params,
+                                headers=self.headers)
+
+        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['objects'][0]['Name'], 'System of a Down Reunion Tour')
+
+    def test_get_tour_by_id(self):
+        """test_get_tour_by_id."""
+        filters = [dict(name='TourID', op='eq', val=1)]
+        params = dict(q=json.dumps(dict(filters=filters)))
+        response = requests.get(self.toursURL,
+                                params=params,
+                                headers=self.headers)
+
+        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['objects'][0]['TourID'], 1)
+
+    def test_get_tour_img(self):
+        """test_get_tour_img."""
+        filters = [dict(name='TourID', op='eq', val=1)]
+        params = dict(q=json.dumps(dict(filters=filters)))
+        response = requests.get(self.toursURL,
+                                params=params,
+                                headers=self.headers)
+
+        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['objects'][0]['Image'],
+                         'https://upload.wikimedia.org/wikipedia/commons/5/54/System_Of_A_Down_en_Chile_2011.jpg')
+
+    def test_get_tour_artist(self):
+        """test_get_tour_artist."""
+        filters = [dict(name='TourID', op='eq', val=1)]
+        params = dict(q=json.dumps(dict(filters=filters)))
+        response = requests.get(self.toursURL,
+                                params=params,
+                                headers=self.headers)
+
+        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['objects'][0]['artist']['Name'],
+                         'System of a Down')
+
+    def test_get_tour_dates(self):
+        """test_get_tour_dates."""
+        filters = [dict(name='TourID', op='eq', val=1)]
+        params = dict(q=json.dumps(dict(filters=filters)))
+        response = requests.get(self.toursURL,
+                                params=params,
+                                headers=self.headers)
+
+        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['objects'][0]['tDate'],
+                         'May 10, 2011 - October 7, 2011')
+
+    def test_get_tour_songs(self):
+        """test_get_tour_songs."""
+        filters = [dict(name='TourID', op='eq', val=1)]
+        params = dict(q=json.dumps(dict(filters=filters)))
+        response = requests.get(self.toursURL,
+                                params=params,
+                                headers=self.headers)
+
+        # self.assertEqual(response.status_code, 200)
+        songs = response.json()['objects'][0]['TourLineUp']
+        songs = [s['Name'] for s in songs]
+        self.assertEqual(songs, ['Lonely Day', 'Toxicity'])
+
+    def test_get_tour_error(self):
+        """test_get_tour_error."""
+        filters = [dict(name='TourID', op='eq', val=-1)]
+        params = dict(q=json.dumps(dict(filters=filters)))
+        response = requests.get(self.toursURL,
                                 params=params,
                                 headers=self.headers)
 

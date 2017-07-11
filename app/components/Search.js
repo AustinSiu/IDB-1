@@ -4,14 +4,15 @@ var PropTypes = require('prop-types');
 var Link = require('react-router-dom').Link;
 import { PageHeader, Pagination, Tabs, Tab } from 'react-bootstrap';
 
-var orderByAsc = [{'field': 'Name', 'direction': 'asc'}];
+var orderArtists = [{'field': 'Name', 'direction': 'asc'}];
+var orderAlbums = [{'field': 'Title', 'direction': 'asc'}];
 
 function ResultGrid(props) {
   return(
     <ul className="data-list">
-      {props.artists.map(function (artist) {
+      {props.artists.map(function (artist, index) {
         return (
-          <li key={artist.ArtistID} className='data-item'>
+          <li key={index} className='data-item'>
             <ul className='data-list-items'>
               <Link to={'/artist-instance/' + artist.ArtistID}>
                 <li>
@@ -20,7 +21,7 @@ function ResultGrid(props) {
                     src={artist.Image}
                     alt={'Image for ' + artist.Name}/>
                 </li>
-                <li>{artist.Name}</li>
+                <li>{artist.Name ? artist.Name : artist.Title}</li>
               </Link>
             </ul>
           </li>
@@ -60,23 +61,57 @@ class Search extends React.Component{
         searchResults: searchResults
       }
     });
-        
-    filter = [{"or": [
-                {'name': 'Name','op': 'eq', 'val': this.props.searchString[0]},
-                {'name': 'ArtistGenre','op': 'any', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
-                {'name': 'Albums','op': 'any', 'val': {'name': 'Title', 'op': 'eq', 'val' : this.props.searchString[0]}},
-                {'name': 'Songs','op': 'any', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
-              ]}]
+    if (this.props.moduleType == "Artists") {
+      filter = [{"or": [
+                  {'name': 'Name','op': 'eq', 'val': this.props.searchString[0]},
+                  {'name': 'ArtistGenre','op': 'any', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
+                  {'name': 'Albums','op': 'any', 'val': {'name': 'Title', 'op': 'eq', 'val' : this.props.searchString[0]}},
+                  {'name': 'Songs','op': 'any', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
+                ]}]
+      api.getArtists(this.state.activePage, filter, orderArtists)
+        .then(function (data) {
+          this.setState(function () {
+            return {
+              searchResults: data.objects,
+              numPages: data.total_pages
+            }
+          });
+        }.bind(this));
+    }
+    else if (this.props.moduleType == "Albums") {
+      filter = [{"or": [
+                  {'name': 'Title','op': 'eq', 'val': this.props.searchString[0]},
+                  {'name': 'artist','op': 'has', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
+                  {'name': 'Songs','op': 'any', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
+                ]}]
+      api.getAlbums(this.state.activePage, filter, orderAlbums)
+        .then(function (data) {
+          this.setState(function () {
+            return {
+              searchResults: data.objects,
+              numPages: data.total_pages
+            }
+          });
+        }.bind(this));
+    }
+    else if (this.props.moduleType == "Songs") {
+      filter = [{"or": [
+                  {'name': 'Name','op': 'like', 'val': this.props.searchString[0]},
+                  {'name': 'SongGenre','op': 'any', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
+                  {'name': 'album','op': 'has', 'val': {'name': 'Title', 'op': 'eq', 'val' : this.props.searchString[0]}},
+                  {'name': 'artist','op': 'has', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
+                ]}]
+      api.getSongs(this.state.activePage, filter, orderArtists)
+        .then(function (data) {
+          this.setState(function () {
+            return {
+              searchResults: data.objects,
+              numPages: data.total_pages
+            }
+          });
+        }.bind(this));
+    }
 
-    api.getArtists(this.state.activePage, filter, orderByAsc)
-      .then(function (data) {
-        this.setState(function () {
-          return {
-            searchResults: data.objects,
-            numPages: data.total_pages
-          }
-        });
-      }.bind(this));
   }
   render(){
     return(

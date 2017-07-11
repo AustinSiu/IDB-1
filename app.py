@@ -163,11 +163,12 @@ class Albums(db.Model):
     AlbumGenre = db.relationship('Genre', secondary=AlbumGenre, backref=db.backref(
         'album', lazy='dynamic'))
 
-    def __init__(self, title, year, image, us_chart_position=None, **rest):
+    def __init__(self, title, year, image, us_chart_position=None, albumid, **rest):
         self.Title = title
         self.Year = year
         self.US_Chart_Postion = us_chart_position
         self.Image = image
+        self.AlbumID = albumid
 
     def __repr__(self):
         return self.Title

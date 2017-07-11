@@ -63,10 +63,10 @@ class Search extends React.Component{
     });
     if (this.props.moduleType == "Artists") {
       filter = [{"or": [
-                  {'name': 'Name','op': 'eq', 'val': this.props.searchString[0]},
-                  {'name': 'ArtistGenre','op': 'any', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
-                  {'name': 'Albums','op': 'any', 'val': {'name': 'Title', 'op': 'eq', 'val' : this.props.searchString[0]}},
-                  {'name': 'Songs','op': 'any', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
+                  {'name': 'Name','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
+                  {'name': 'ArtistGenre','op': 'any', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
+                  {'name': 'Albums','op': 'any', 'val': {'name': 'Title', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
+                  {'name': 'Songs','op': 'any', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
                 ]}]
       api.getArtists(this.state.activePage, filter, orderArtists)
         .then(function (data) {
@@ -80,9 +80,9 @@ class Search extends React.Component{
     }
     else if (this.props.moduleType == "Albums") {
       filter = [{"or": [
-                  {'name': 'Title','op': 'eq', 'val': this.props.searchString[0]},
-                  {'name': 'artist','op': 'has', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
-                  {'name': 'Songs','op': 'any', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
+                  {'name': 'Title','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
+                  {'name': 'artist','op': 'has', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
+                  {'name': 'Songs','op': 'any', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
                 ]}]
       api.getAlbums(this.state.activePage, filter, orderAlbums)
         .then(function (data) {
@@ -96,10 +96,10 @@ class Search extends React.Component{
     }
     else if (this.props.moduleType == "Songs") {
       filter = [{"or": [
-                  {'name': 'Name','op': 'like', 'val': this.props.searchString[0]},
-                  {'name': 'SongGenre','op': 'any', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
-                  {'name': 'album','op': 'has', 'val': {'name': 'Title', 'op': 'eq', 'val' : this.props.searchString[0]}},
-                  {'name': 'artist','op': 'has', 'val': {'name': 'Name', 'op': 'eq', 'val' : this.props.searchString[0]}},
+                  {'name': 'Name','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
+                  {'name': 'SongGenre','op': 'any', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
+                  {'name': 'album','op': 'has', 'val': {'name': 'Title', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
+                  {'name': 'artist','op': 'has', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
                 ]}]
       api.getSongs(this.state.activePage, filter, orderArtists)
         .then(function (data) {

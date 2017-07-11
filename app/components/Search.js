@@ -8,30 +8,79 @@ var orderArtists = [{'field': 'Name', 'direction': 'asc'}];
 var orderAlbums = [{'field': 'Title', 'direction': 'asc'}];
 
 function ResultGrid(props) {
-  return(
-    <ul className="data-list">
-      {props.artists.map(function (artist, index) {
-        return (
-          <li key={index} className='data-item'>
-            <ul className='data-list-items'>
-              <Link to={'/artist-instance/' + artist.ArtistID}>
-                <li>
-                  <img
-                    className='img'
-                    src={artist.Image}
-                    alt={'Image for ' + artist.Name}/>
-                </li>
-                <li>{artist.Name ? artist.Name : artist.Title}</li>
-              </Link>
-            </ul>
-          </li>
-        )
-      })}
-    </ul>
-  )
+  if (props.module === "Albums"){
+    return(
+      <ul className="data-list">
+        {props.data.map(function (album) {
+          return (
+            <li key={album.AlbumID} className='data-item'>
+              <ul className='data-list-items'>
+                  <Link to={'/album-instance/' + album.AlbumID}>
+                    <li>
+                      <img
+                        className='img'
+                        src={album.Image}
+                        alt={'Image for ' + album.Title}/>
+                    </li>
+                    <li>{album.Title}</li>
+                  </Link>
+              </ul>
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
+  else if (props.module === "Artists") {
+    return(
+      <ul className="data-list">
+        {props.data.map(function (artist) {
+          return (
+            <li key={artist.ArtistID} className='data-item'>
+              <ul className='data-list-items'>
+                <Link to={'/artist-instance/' + artist.ArtistID}>
+                  <li>
+                    <img
+                      className='img'
+                      src={artist.Image}
+                      alt={'Image for ' + artist.Name}/>
+                  </li>
+                  <li>{artist.Name}</li>
+                </Link>
+              </ul>
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
+  else if (props.module === "Songs") {
+    return(
+      <ul className="data-list">
+        {props.data.map(function (song) {
+          return (
+            <li key={song.SongID} className='data-item'>
+              <ul className='data-list-items'>
+                <Link to={'/song-instance/' + song.SongID}>
+                  <li>
+                    <img
+                      className='img'
+                      src={song.Image}
+                      alt={'Image for ' + song.Name}/>
+                  </li>
+                  <li>{song.Name}</li>
+                </Link>
+              </ul>
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
 }
 ResultGrid.propTypes = {
-  artists : PropTypes.array.isRequired,
+  data : PropTypes.array.isRequired,
+  module : PropTypes.string.isRequired,
 };
 
 class Search extends React.Component{
@@ -125,7 +174,8 @@ class Search extends React.Component{
       <div>
         {!this.state.searchResults
           ? <p>LOADING</p>
-          : <ResultGrid artists={this.state.searchResults} />}
+          : <ResultGrid data={this.state.searchResults} 
+                        module= {this.props.moduleType} />}
 
         <Pagination
             prev

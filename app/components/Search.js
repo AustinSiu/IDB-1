@@ -2,7 +2,7 @@ var React = require('react');
 var api = require('../api.js');
 var PropTypes = require('prop-types');
 var Link = require('react-router-dom').Link;
-import { PageHeader, Pagination, Tabs, Tab } from 'react-bootstrap';
+import {PageHeader, Pagination} from 'react-bootstrap';
 
 var orderArtists = [{'field': 'Name', 'direction': 'asc'}];
 var orderAlbums = [{'field': 'Title', 'direction': 'asc'}];

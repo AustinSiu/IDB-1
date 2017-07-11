@@ -2,7 +2,6 @@ var React = require('react');
 var PropTypes = require('prop-types');
 var api = require('../api.js');
 var Search = require('./Search.js');
-import {PageHeader, Pagination, Tabs, Tab} from 'react-bootstrap';
 
 function SearchPageTitle(props) {
   var title = "Search results for: '";
@@ -44,10 +43,13 @@ class SearchResults extends React.Component {
     return(
       <div>
         <SearchPageTitle searchString = {this.state.searchString} />
+        <h1>Results for Artists</h1>
         <Search searchString = {this.state.searchString}
                 moduleType = {"Artists"} />
+        <h1>Results for Albums</h1>
         <Search searchString = {this.state.searchString}
                 moduleType = {"Albums"} />
+        <h1>Results for Songs</h1>
         <Search searchString = {this.state.searchString}
                 moduleType = {"Songs"} />
       </div>

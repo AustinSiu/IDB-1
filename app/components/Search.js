@@ -161,6 +161,20 @@ class Search extends React.Component{
           });
         }.bind(this));
     }
+    else if (this.props.moduleType == "Tours") {
+      filter = [{"or": [
+                  {'name': 'Name','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
+                ]}]
+      api.getTours(this.state.activePage, filter, orderTours)
+        .then(function (data) {
+          this.setState(function () {
+            return {
+              searchResults: data.objects,
+              numPages: data.total_pages
+            }
+          });
+        }.bind(this));
+    }
 
   }
   handleSelect(eventKey){
@@ -174,7 +188,7 @@ class Search extends React.Component{
       <div>
         {!this.state.searchResults
           ? <p>LOADING</p>
-          : <ResultGrid data={this.state.searchResults} 
+          : <ResultGrid data={this.state.searchResults}
                         module= {this.props.moduleType} />}
 
         <Pagination
@@ -187,7 +201,7 @@ class Search extends React.Component{
             items={this.state.numPages}
             maxButtons={5}
             activePage={this.state.activePage}
-            onSelect={this.handleSelect} />  
+            onSelect={this.handleSelect} />
       </div>
       );
   }

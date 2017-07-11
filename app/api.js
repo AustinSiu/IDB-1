@@ -29,7 +29,7 @@ module.exports = {
     }).catch(function(error) {
         console.log(error);
     });
-  }, 
+  },
 
   getAlbums: function (page, filter, orderBy) {
 
@@ -52,7 +52,7 @@ module.exports = {
     }).catch(function(error) {
         console.log(error);
     });
-  }, 
+  },
 
   getSongs: function (page, filter, orderBy) {
 
@@ -75,7 +75,7 @@ module.exports = {
     }).catch(function(error) {
         console.log(error);
     });
-  }, 
+  },
 
   getTours: function (page, filter, orderBy) {
 
@@ -98,7 +98,7 @@ module.exports = {
     }).catch(function(error) {
         console.log(error);
     });
-  }, 
+  },
 
   // Instance functions
 
@@ -141,6 +141,24 @@ module.exports = {
   getSong: function(id) {
 
     var encodedURI = window.encodeURI(songsURL+ '/' + id);
+    console.log("the encoded URI" + encodedURI);
+    return axios.get(encodedURI, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(function (response) {
+      console.log(response.data)
+      return response.data
+    }).catch(function (error) {
+      console.log("Received Error: ");
+      console.log(error);
+    });
+
+  },
+
+  getTour: function(id) {
+
+    var encodedURI = window.encodeURI(toursURL+ '/' + id);
     console.log("the encoded URI" + encodedURI);
     return axios.get(encodedURI, {
       headers: {

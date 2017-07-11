@@ -1,5 +1,6 @@
 var React = require('react');
 var api = require('../api');
+var Link = require('react-router-dom').Link;
 
 class Tour_Instance extends React.Component {
 
@@ -45,8 +46,20 @@ class Tour_Instance extends React.Component {
       return (
         <div className="container">
 
-          <h1>hey</h1>
-          <h1>{tour.Name}</h1>
+          <h1>Tour: {tour.Name}</h1>
+          <img
+            className='img'
+            src={tour.Image}
+            alt={'Image for ' + tour.Name}/>
+          <ul>
+            <li>Line Up: {tour.TourLineUp}</li>
+            <li>Locations: {tour.Locations}</li>
+            <li>Venue: {tour.Venue}</li>
+            <li>Artist:
+              <Link to={'/artist-instance/' + tour.ArtistID}>
+              {tour.artist.Name}
+              </Link></li>
+          </ul>
 
         </div>
       )

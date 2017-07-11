@@ -285,8 +285,5 @@ In this code snippet from Artists.js, we are outputting our state objects to dis
 ### NPM
 All of the libraries we used for this project are from NPM. NPM is a Javascript repository that provides command line utility for downloading various packages. NPM also serves as a package manager that allows you to track which versions of which packages you’ve installed. This makes it easy for others who want to run the application to quickly download all of the necessary dependencies. The dependencies are stored in a file called package.json and the downloaded packages themselves are stored in a directory called node_modules. The package.json file also includes scripts, which you can use to run and test your application.
 
-### Babel
-
-
 ### Search Implementation
 In order to implement search functionality on our website, we used axios. Axios is a promise based HTTP client for the browser and node.js. Axios integrates well with Flask-SQLAlchemy and allows us to query the database with the desired sorting and filtering as parameters. Currently, our search implementation only handles searches of one word and returns results that match or contain the word (case-insensitive). Our search checks every attribute of every module for a match. The results are paginated and filtered by module. In the future we will implement searching with multiple terms and we will display results in order of best match (and results followed by or results). We also plan to display the matching context of the results. We will use Javascript regular expressions to parse the data for matching contexts.

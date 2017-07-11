@@ -36,7 +36,6 @@ class Tour_Instance extends React.Component {
   }
 
   render() {
-    console.log(JSON.stringify(this.state.tour))
     console.log(this.state.tour)
     const { tour } = this.state;
     if(!tour) {
@@ -52,7 +51,7 @@ class Tour_Instance extends React.Component {
             src={tour.Image}
             alt={'Image for ' + tour.Name}/>
           <ul>
-            <li>Line Up: {tour.TourLineUp}</li>
+            <li>Line Up: {tour.TourLineUp[0].Name}</li>
             <li>Locations: {tour.Locations}</li>
             <li>Venue: {tour.Venue}</li>
             <li>Artist:

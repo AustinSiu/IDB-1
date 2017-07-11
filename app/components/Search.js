@@ -164,8 +164,13 @@ class Search extends React.Component{
     else if (this.props.moduleType == "Tours") {
       filter = [{"or": [
                   {'name': 'Name','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
+                  {'name': 'Venues','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
+                  {'name': 'Locations','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
+                  {'name': 'tDate','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
+                  {'name': 'artist','op': 'has', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
+
                 ]}]
-      api.getTours(this.state.activePage, filter, orderTours)
+      api.getTours(this.state.activePage, filter, orderArtists)
         .then(function (data) {
           this.setState(function () {
             return {

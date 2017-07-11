@@ -158,7 +158,7 @@ module.exports = {
 
   getTour: function(id) {
 
-    var encodedURI = window.encodeURI(toursURL+ '/' + id);
+    var encodedURI = window.encodeURI(toursURL + '/' + id);
     console.log("the encoded URI" + encodedURI);
     return axios.get(encodedURI, {
       headers: {

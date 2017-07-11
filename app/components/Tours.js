@@ -89,7 +89,7 @@ class Tours extends React.Component {
       currentSort: "asc",
       tours: null,
       activePage: 1,
-      numPages: 16,
+      numPages: 0,
     };
 
     this.updateFilter = this.updateFilter.bind(this);

@@ -10,7 +10,7 @@ var orderByAsc = [{'field': 'Name', 'direction': 'asc'}];
 var orderByDsc = [{'field': 'Name', 'direction': 'desc'}];
 
 function SelectGenre (props) {
-  var genres = ["Show All", "alternative", "blues", "country", "electronic", "indie", "rap", "rock"];
+  var genres = ["Show All", "Alternative", "Blues", "Country", "Electronic", "Indie", "Rap", "Rock"];
   return (
     <ul className="my-button">
       {genres.map((genre) => {
@@ -109,7 +109,7 @@ class Albums extends React.Component {
     });
     var filter;
     if (genre !== "Show All") {
-      filter = [{'name': 'SongGenre','op': 'any', 'val':{"name":"Name","op":"==","val":genre}}];;
+      filter = [{'name': 'SongGenre','op': 'any', 'val':{"name":"Name","op":"ilike","val":genre}}];;
     }
     api.getSongs(1, filter, orderByAsc)
       .then(function(data) {
@@ -129,7 +129,7 @@ class Albums extends React.Component {
     }})
     var filter;
     if (this.state.currentFilter !== "Show All") {
-      filter = [{'name': 'SongGenre','op': 'any', 'val':{"name":"Name","op":"==","val":this.state.currentFilter}}];;
+      filter = [{'name': 'SongGenre','op': 'any', 'val':{"name":"Name","op":"ilike","val":this.state.currentFilter}}];;
     }
     var order_by;
     if (sort === 'asc') {
@@ -151,7 +151,7 @@ class Albums extends React.Component {
     this.setState({activePage: eventKey});
     var filter;
     if (this.state.currentFilter !== "Show All") {
-      filter = [{'name': 'SongGenre','op': 'any', 'val':{"name":"Name","op":"==","val":this.state.currentFilter}}];;
+      filter = [{'name': 'SongGenre','op': 'any', 'val':{"name":"Name","op":"ilike","val":this.state.currentFilter}}];;
     }
     var order_by;
     if (this.state.currentSort === 'asc') {

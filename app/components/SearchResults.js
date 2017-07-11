@@ -2,6 +2,7 @@ var React = require('react');
 var PropTypes = require('prop-types');
 var api = require('../api.js');
 var Search = require('./Search.js');
+import { PageHeader, Pagination, Tabs, Tab } from 'react-bootstrap';
 
 function SearchPageTitle(props) {
   var title = "Search results for: '";
@@ -43,15 +44,29 @@ class SearchResults extends React.Component {
     return(
       <div>
         <SearchPageTitle searchString = {this.state.searchString} />
-        <h1>Results for Artists</h1>
-        <Search searchString = {this.state.searchString}
-                moduleType = {"Artists"} />
-        <h1>Results for Albums</h1>
-        <Search searchString = {this.state.searchString}
-                moduleType = {"Albums"} />
-        <h1>Results for Songs</h1>
-        <Search searchString = {this.state.searchString}
-                moduleType = {"Songs"} />
+        
+        <Tabs animation bsStyle="pills" onSelect={this.handleTabSelect}>
+          <Tab unmountOnExit={true} eventKey={1} title="Artists">
+            <br/>
+            <Search searchString = {this.state.searchString}
+                    moduleType = {"Artists"} />
+          </Tab>
+          <Tab unmountOnExit={true} eventKey={2} title="Albums">
+            <br/>
+            <Search searchString = {this.state.searchString}
+                    moduleType = {"Albums"} />
+          </Tab>
+          <Tab unmountOnExit={true} eventKey={3} title="Songs">
+            <br/>
+            <Search searchString = {this.state.searchString}
+                    moduleType = {"Songs"} />
+          </Tab>  
+          <Tab unmountOnExit={true} eventKey={4} title="Tours">
+            <br/>
+            <Search searchString = {this.state.searchString}
+                    moduleType = {"Tours"} />
+          </Tab>    
+        </Tabs>
       </div>
     )
   }

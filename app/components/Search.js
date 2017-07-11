@@ -2,7 +2,7 @@ var React = require('react');
 var api = require('../api.js');
 var PropTypes = require('prop-types');
 var Link = require('react-router-dom').Link;
-import {PageHeader, Pagination} from 'react-bootstrap';
+import {Pagination} from 'react-bootstrap';
 
 var orderArtists = [{'field': 'Name', 'direction': 'asc'}];
 var orderAlbums = [{'field': 'Title', 'direction': 'asc'}];
@@ -43,6 +43,7 @@ class Search extends React.Component{
       numPages: 0
     }
     this.updateSearchResults = this.updateSearchResults.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
   componentWillMount() {
       this.updateSearchResults(null);
@@ -113,12 +114,30 @@ class Search extends React.Component{
     }
 
   }
+  handleSelect(eventKey){
+    console.log("SS: handlePageSelect");
+    this.setState({activePage: eventKey}, function () {
+      this.updateSearchResults(null);
+    });
+  }
   render(){
     return(
       <div>
         {!this.state.searchResults
           ? <p>LOADING</p>
           : <ResultGrid artists={this.state.searchResults} />}
+
+        <Pagination
+            prev
+            next
+            first
+            last
+            ellipsis
+            boundaryLinks
+            items={this.state.numPages}
+            maxButtons={5}
+            activePage={this.state.activePage}
+            onSelect={this.handleSelect} />  
       </div>
       );
   }

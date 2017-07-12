@@ -133,12 +133,20 @@ li {
       display: flex;
       justify-content: center;
   }
-  .my-button li {
+  .my-button .title {
+      font-size: 15px;
       color: #ababab;
       float: left;
       padding: 8px 16px;
       text-decoration: none;
       transition: background-color .3s;
+      margin: 1px ;    
+  }
+  .my-button li {
+      color: #ababab;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
       border: 1px solid #ddd;
       margin: 1px ;
   }

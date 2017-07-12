@@ -13,6 +13,7 @@ function SelectGenre (props) {
   var genres = ["Show All", "Alternative", "Blues", "Country", "Electronic", "Indie", "Rap", "Rock"];
   return (
     <ul className="my-button">
+      <p className='title'>Filter By: </p>
       {genres.map((genre) => {
         return (
           <li
@@ -32,9 +33,10 @@ SelectGenre.propTypes = {
 };
 
 function SelectSort (props) {
-  var sorts = ["asc", "desc"];
+  var sorts = ["Ascending", "Descending"];
   return (
     <ul className="my-button">
+      <p className='title'>Sort By: </p>
       {sorts.map((sort) => {
         return (
           <li
@@ -86,7 +88,7 @@ class Albums extends React.Component {
     super(props);
     this.state = {
       currentFilter: "Show All",
-      currentSort: "asc",
+      currentSort: "Ascending",
       songs: null,
       activePage: 1,
       numPages: 50,
@@ -132,7 +134,7 @@ class Albums extends React.Component {
       filter = [{'name': 'SongGenre','op': 'any', 'val':{"name":"Name","op":"ilike","val":this.state.currentFilter}}];;
     }
     var order_by;
-    if (sort === 'asc') {
+    if (sort === 'Ascending') {
       order_by = orderByAsc;
     } else {
       order_by = orderByDsc
@@ -154,7 +156,7 @@ class Albums extends React.Component {
       filter = [{'name': 'SongGenre','op': 'any', 'val':{"name":"Name","op":"ilike","val":this.state.currentFilter}}];;
     }
     var order_by;
-    if (this.state.currentSort === 'asc') {
+    if (this.state.currentSort === 'Ascending') {
       order_by = orderByAsc;
     } else {
       order_by = orderByDsc

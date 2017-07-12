@@ -13,6 +13,7 @@ function SelectGenre (props) {
   var filters = ["Show All"];
   return (
     <ul className="my-button">
+      <p className='title'>Filter By: </p>
       {filters.map((filter) => {
         return (
           <li
@@ -59,9 +60,10 @@ AlbumGrid.propTypes = {
 };
 
 function SelectSort (props) {
-  var sorts = ["asc", "desc"];
+  var sorts = ["Ascending", "Descending"];
   return (
     <ul className="my-button">
+      <p className='title'>Sort By: </p>
       {sorts.map((sort) => {
         return (
           <li
@@ -86,7 +88,7 @@ class Albums extends React.Component {
     super(props);
     this.state = {
       currentFilter: "Show All",
-      currentSort: "asc",
+      currentSort: "Ascending",
       albums: null,
       activePage: 1,
       numPages: 16,
@@ -126,7 +128,7 @@ class Albums extends React.Component {
     }})
     var filter;
     var order_by;
-    if (sort === 'asc') {
+    if (sort === 'Ascending') {
       order_by = orderByAsc;
     } else {
       order_by = orderByDsc
@@ -146,7 +148,7 @@ class Albums extends React.Component {
 
     var filter;
     var order_by;
-    if (this.state.currentSort === 'asc') {
+    if (this.state.currentSort === 'Ascending') {
       order_by = orderByAsc;
     } else {
       order_by = orderByDsc

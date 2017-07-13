@@ -36,7 +36,7 @@ class App extends React.Component {
             <Route path='/songs' component={Songs} />
             <Route path='/song-instance/:songID' component={SongInstance} />
             <Route path='/about' component={About} />
-            <Route path='/searchResults/:searchString' component={SearchResults} />
+            <Route path='/search/:searchString' component={SearchResults} />
             <Route render={function () {
               return <center>
                 <h1>404</h1>

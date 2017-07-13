@@ -1,4 +1,3 @@
-
 var axios = require('axios');
 
 var artistsURL = 'http://banddb.me/api/artists';
@@ -173,13 +172,5 @@ module.exports = {
     });
 
   },
-
-  // utils
-
-
-
-
-
-
 
 };

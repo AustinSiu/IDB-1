@@ -22,7 +22,7 @@ class SearchBox extends React.Component {
     handleSubmit(event){
       event.preventDefault();
       var searchEndPoint = this.state.search_entry
-      this.props.history.push("/searchResults/" + searchEndPoint);
+      this.props.history.push("/search/" + searchEndPoint);
       this.setState({ search_entry: ''});
     }
 

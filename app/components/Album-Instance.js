@@ -42,16 +42,6 @@ class Album_Instance extends React.Component {
     if(!album) {
       return <p>LOADING!</p>
     }
-/*
-Album X Image
-      X Songs                 - Image
-      X Title
-      X Chart Position
-      X Year (unformatted)
-      X Artist                X Image
-      - Label (null)
-
-*/
     else {
       return (
         <div className="container">
@@ -68,6 +58,7 @@ Album X Image
               </Link></li>
             <li>Release Date: {album.Year}</li>
             <li>Peak U.S. Chart Position: {album.US_Chart_Postion}</li>
+            {/* <li>Label: {album.label}</li> */}
             <h3>Songs:</h3>
             {album.Songs.map(function(song) {
               return (

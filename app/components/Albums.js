@@ -9,8 +9,8 @@ import { PageHeader, Pagination, Button,
 var orderByAsc = [{'field': 'Title', 'direction': 'asc'}];
 var orderByDsc = [{'field': 'Title', 'direction': 'desc'}];
 
-function SelectGenre (props) {
-  var filters = ["Show All"];
+function SelectFilter (props) {
+  var filters = ["Show All", "Top 10", "Top 20", "Top 40"];
   return (
     <ul className="my-button">
       <p className='title'>Filter By: </p>
@@ -27,7 +27,7 @@ function SelectGenre (props) {
     </ul>
   )
 }
-SelectGenre.propTypes = {
+SelectFilter.propTypes = {
   currentFilter: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
 };
@@ -77,8 +77,8 @@ function SelectSort (props) {
     </ul>
   )
 }
-SelectGenre.propTypes = {
-  currentFilter: PropTypes.string.isRequired,
+SelectSort.propTypes = {
+  currentSort: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
 };
 
@@ -91,7 +91,7 @@ class Albums extends React.Component {
       currentSort: "Ascending",
       albums: null,
       activePage: 1,
-      numPages: 16,
+      numPages: 1,
     };
 
     this.updateFilter = this.updateFilter.bind(this);
@@ -101,18 +101,30 @@ class Albums extends React.Component {
   componentDidMount() {
     this.updateFilter(this.state.currentFilter)
   }
-  updateFilter(genre) {
+  updateFilter(peak_pos) {
     this.setState(function() {
       return {
-        currentFilter: genre,
+        currentFilter: peak_pos,
         albums: null,
         activePage: 1,
       }
     });
     var filter;
+    if (peak_pos === "Top 10") {
+      filter = [{'name': 'US_Chart_Postion','op': '<=', 'val': 10}];
+    } else if (peak_pos === "Top 20") {
+      filter = [{'name': 'US_Chart_Postion','op': '<=', 'val': 20}];
+    } else if (peak_pos === "Top 40") {
+      filter = [{'name': 'US_Chart_Postion','op': '<=', 'val': 40}];
+    }
+    console.log(peak_pos);
     api.getAlbums(1, filter, orderByAsc)
       .then(function(data) {
         this.setState(function() {
+          console.log("updateFilter");
+          console.log(data);
+          console.log(this.state.activePage);
+          console.log(this.state.numPages);
           return {
             albums: data.objects,
             numPages: data.total_pages,
@@ -127,6 +139,13 @@ class Albums extends React.Component {
         activePage: 1,
     }})
     var filter;
+    if (this.state.currentFilter === "Top 10") {
+      filter = [{'name': 'US_Chart_Postion','op': '<=', 'val': 10}];
+    } else if (this.state.currentFilter === "Top 20") {
+      filter = [{'name': 'US_Chart_Postion','op': '<=', 'val': 20}];
+    } else if (this.state.currentFilter === "Top 40") {
+      filter = [{'name': 'US_Chart_Postion','op': '<=', 'val': 40}];
+    }
     var order_by;
     if (sort === 'Ascending') {
       order_by = orderByAsc;
@@ -147,6 +166,13 @@ class Albums extends React.Component {
     this.setState({activePage: eventKey});
 
     var filter;
+    if (this.state.currentFilter === "Top 10") {
+      filter = [{'name': 'US_Chart_Postion','op': '<=', 'val': 10}];
+    } else if (this.state.currentFilter === "Top 20") {
+      filter = [{'name': 'US_Chart_Postion','op': '<=', 'val': 20}];
+    } else if (this.state.currentFilter === "Top 40") {
+      filter = [{'name': 'US_Chart_Postion','op': '<=', 'val': 40}];
+    }
     var order_by;
     if (this.state.currentSort === 'Ascending') {
       order_by = orderByAsc;
@@ -168,7 +194,7 @@ class Albums extends React.Component {
     const { album } = this.state;
     return (
       <div className='center-pagination'>
-        <SelectGenre
+        <SelectFilter
         currentFilter = {this.state.currentFilter}
         onSelect = {this.updateFilter}/>
         <SelectSort

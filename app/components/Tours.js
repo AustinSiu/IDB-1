@@ -11,11 +11,6 @@ var orderByDsc = [{'field': 'Name', 'direction': 'desc'}];
 
 function SelectLocation (props) {
   var filters = ["Show All", "North America", "South America", "Europe", "Asia", "Oceania"];
-  // North America - United States, Canada
-  // South America - Latin America
-  // Europe
-  // Asia
-  // Oceania - Australia
   return (
     <ul className="my-button">
       <p className='title'>Filter By: </p>

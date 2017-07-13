@@ -10,7 +10,12 @@ var orderByAsc = [{'field': 'Name', 'direction': 'asc'}];
 var orderByDsc = [{'field': 'Name', 'direction': 'desc'}];
 
 function SelectLocation (props) {
-  var filters = ["Show All", "United States and Canada", "Europe and Asia"];
+  var filters = ["Show All", "North America", "South America", "Europe", "Asia", "Oceania"];
+  // North America - United States, Canada
+  // South America - Latin America
+  // Europe
+  // Asia
+  // Oceania - Australia
   return (
     <ul className="my-button">
       <p className='title'>Filter By: </p>
@@ -110,6 +115,27 @@ class Tours extends React.Component {
       }
     });
     var filter;
+    if (location === "North America") {
+      filter = [{"or": [
+                  {'name': 'Locations','op': 'like', 'val': '%North America%'},
+                  {'name': 'Locations','op': 'like', 'val': '%Canada%'},
+                  {'name': 'Locations','op': 'like', 'val': '%United States%'},
+                ]}]
+    } else if (location === "South America") {
+      filter = [{"or": [
+                  {'name': 'Locations','op': 'like', 'val': '%South America%'},
+                  {'name': 'Locations','op': 'like', 'val': '%Latin America%'},
+                ]}]      
+    } else if (location === "Europe") {
+      filter = [{'name': 'Locations', 'op': 'like', 'val': '%Europe%'}]
+    } else if (location === "Asia") {
+      filter = [{'name': 'Locations', 'op': 'like', 'val': '%Asia%'}]
+    } else if (location === "Oceania") {
+      filter = [{"or": [
+                  {'name': 'Locations','op': 'like', 'val': '%Oceania%'},
+                  {'name': 'Locations','op': 'like', 'val': '%Australia%'},
+                ]}]  
+    }
     var order_by;
     if (this.state.currentSort === 'Ascending') {
       order_by = orderByAsc;
@@ -133,6 +159,27 @@ class Tours extends React.Component {
         activePage: 1,
     }})
     var filter;
+    if (this.state.currentFilter === "North America") {
+      filter = [{"or": [
+                  {'name': 'Locations','op': 'like', 'val': '%North America%'},
+                  {'name': 'Locations','op': 'like', 'val': '%Canada%'},
+                  {'name': 'Locations','op': 'like', 'val': '%United States%'},
+                ]}]
+    } else if (this.state.currentFilter  === "South America") {
+      filter = [{"or": [
+                  {'name': 'Locations','op': 'like', 'val': '%South America%'},
+                  {'name': 'Locations','op': 'like', 'val': '%Latin America%'},
+                ]}]      
+    } else if (this.state.currentFilter  === "Europe") {
+      filter = [{'name': 'Locations', 'op': 'like', 'val': '%Europe%'}]
+    } else if (this.state.currentFilter  === "Asia") {
+      filter = [{'name': 'Locations', 'op': 'like', 'val': '%Asia%'}]
+    } else if (this.state.currentFilter  === "Oceania") {
+      filter = [{"or": [
+                  {'name': 'Locations','op': 'like', 'val': '%Oceania%'},
+                  {'name': 'Locations','op': 'like', 'val': '%Australia%'},
+                ]}]  
+    }
     var order_by;
     if (sort === 'Ascending') {
       order_by = orderByAsc;
@@ -153,6 +200,27 @@ class Tours extends React.Component {
     this.setState({activePage: eventKey});
 
     var filter;
+    if (this.state.currentFilter  === "North America") {
+      filter = [{"or": [
+                  {'name': 'Locations','op': 'like', 'val': '%North America%'},
+                  {'name': 'Locations','op': 'like', 'val': '%Canada%'},
+                  {'name': 'Locations','op': 'like', 'val': '%United States%'},
+                ]}]
+    } else if (this.state.currentFilter  === "South America") {
+      filter = [{"or": [
+                  {'name': 'Locations','op': 'like', 'val': '%South America%'},
+                  {'name': 'Locations','op': 'like', 'val': '%Latin America%'},
+                ]}]      
+    } else if (this.state.currentFilter  === "Europe") {
+      filter = [{'name': 'Locations', 'op': 'like', 'val': '%Europe%'}]
+    } else if (this.state.currentFilter  === "Asia") {
+      filter = [{'name': 'Locations', 'op': 'like', 'val': '%Asia%'}]
+    } else if (this.state.currentFilter  === "Oceania") {
+      filter = [{"or": [
+                  {'name': 'Locations','op': 'like', 'val': '%Oceania%'},
+                  {'name': 'Locations','op': 'like', 'val': '%Australia%'},
+                ]}]  
+    }
     var order_by;
     if (this.state.currentSort === 'Ascending') {
       order_by = orderByAsc;

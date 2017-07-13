@@ -174,7 +174,7 @@ class Albums extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className='center-pagination'>
         <SelectGenre
         currentFilter = {this.state.currentFilter}
         onSelect = {this.updateFilter}/>
@@ -185,7 +185,6 @@ class Albums extends React.Component {
         {!this.state.songs
           ? <p>LOADING</p>
           : <SongGrid songs={this.state.songs} />}
-
         <Pagination
             prev
             next

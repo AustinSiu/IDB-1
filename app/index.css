@@ -156,4 +156,7 @@ li {
       border: 1px solid #4CAF50;
   }
   .my-button li:hover:not(.active), .my-button li.current-button {color: #fd5927; border: 1px solid #fd5927;}
-/* -------- SLIDER --------- */
+
+.center-pagination {
+  text-align: center;
+}

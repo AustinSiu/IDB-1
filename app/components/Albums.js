@@ -167,7 +167,7 @@ class Albums extends React.Component {
   render() {
     const { album } = this.state;
     return (
-      <div>
+      <div className='center-pagination'>
         <SelectGenre
         currentFilter = {this.state.currentFilter}
         onSelect = {this.updateFilter}/>

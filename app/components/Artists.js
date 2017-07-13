@@ -176,7 +176,7 @@ class Artists extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className='center-pagination'>
         <SelectGenre
         currentFilter = {this.state.currentFilter}
         onSelect = {this.updateFilter}/>

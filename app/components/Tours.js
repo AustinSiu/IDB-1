@@ -167,7 +167,7 @@ class Tours extends React.Component {
   render() {
     const { tour } = this.state;
     return (
-      <div>
+      <div className='center-pagination'>
         <SelectLocation
         currentFilter = {this.state.currentFilter}
         onSelect = {this.updateFilter}/>
@@ -179,7 +179,7 @@ class Tours extends React.Component {
           ? <p>LOADING</p>
           : <TourGrid tours={this.state.tours} />}
 
-        <Pagination
+        <Pagination 
             prev
             next
             first

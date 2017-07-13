@@ -113,7 +113,13 @@ class Albums extends React.Component {
     if (genre !== "Show All") {
       filter = [{'name': 'SongGenre','op': 'any', 'val':{"name":"Name","op":"ilike","val":genre}}];;
     }
-    api.getSongs(1, filter, orderByAsc)
+    var order_by;
+    if (this.state.currentSort === 'Ascending') {
+      order_by = orderByAsc;
+    } else {
+      order_by = orderByDsc
+    }
+    api.getSongs(1, filter, order_by)
       .then(function(data) {
         this.setState(function() {
           return {

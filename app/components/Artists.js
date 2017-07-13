@@ -114,7 +114,13 @@ class Artists extends React.Component {
     if (genre !== "Show All") {
       filter = [{'name': 'ArtistGenre','op': 'any', 'val':{"name":"Name","op":"ilike","val":genre}}];
     }
-    api.getArtists(1, filter, orderByAsc)
+    var order_by;
+    if (this.state.currentSort === 'Ascending') {
+      order_by = orderByAsc;
+    } else {
+      order_by = orderByDsc
+    }
+    api.getArtists(1, filter, order_by)
       .then(function(data) {
         this.setState(function() {
           return {

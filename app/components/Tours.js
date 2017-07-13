@@ -110,7 +110,13 @@ class Tours extends React.Component {
       }
     });
     var filter;
-    api.getTours(1, filter, orderByAsc)
+    var order_by;
+    if (this.state.currentSort === 'Ascending') {
+      order_by = orderByAsc;
+    } else {
+      order_by = orderByDsc
+    }
+    api.getTours(1, filter, order_by)
       .then(function(data) {
         this.setState(function() {
           return {

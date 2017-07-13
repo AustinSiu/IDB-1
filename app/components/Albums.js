@@ -117,14 +117,15 @@ class Albums extends React.Component {
     } else if (peak_pos === "Top 40") {
       filter = [{'name': 'US_Chart_Postion','op': '<=', 'val': 40}];
     }
-    console.log(peak_pos);
-    api.getAlbums(1, filter, orderByAsc)
+    var order_by;
+    if (this.state.currentSort === 'Ascending') {
+      order_by = orderByAsc;
+    } else {
+      order_by = orderByDsc
+    }
+    api.getAlbums(1, filter, order_by)
       .then(function(data) {
         this.setState(function() {
-          console.log("updateFilter");
-          console.log(data);
-          console.log(this.state.activePage);
-          console.log(this.state.numPages);
           return {
             albums: data.objects,
             numPages: data.total_pages,

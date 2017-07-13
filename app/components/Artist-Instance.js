@@ -128,10 +128,6 @@ class Artist_Instance extends React.Component {
                 </li>
               )
             })}
-            <li>Album: 
-              <Link to={'/album-instance/' + artist.Albums[0].AlbumID}>
-                {artist.Albums[0].Title}
-              </Link></li>
           </ul>
 
         </div>

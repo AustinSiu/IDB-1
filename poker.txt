@@ -1,15 +1,13 @@
 TITLE:										                                EST:		ACTUAL:
-A user wants to search everything related to a particular genre.            70 min      100 min
-A user wants to search a tour for a particular venue.                       90 min      110 min
-A user wants search results to appear in order of relevance.                100 min     150 min
-A user wants to search for multiple attributes. Ex: "taylor swift 1989".    100 min     80 min
-A user wants to search for something and see all the surrounding context    100 min     130 min
-of the search for a particular instance.
-A user searches for something that produces more results than can fit       80 min      120 min
-on a single page. The user must be able to use pagination to go through
-all the results.
-A user wants to search for a particular song.                               30 min      45 min
-A user wants to see all the tours for a particular artist.                  50 min      60 min
-A user wants to search for an album.                                        90 min      60 min
-A user wants to search for a tour in their hometown.                        100 min     100 min
-A user wants to search for an artist.                                       50 min      70 min
+A user wants to delete a Album                                              60 min
+A user wants to delete a Song                                               100 min
+A user wants to add a Album                                                 80 min
+A user wants to add a Song                                                  80 min
+A user wants to delete a Tour                                               50 min
+A user wants to add a Tour                                                  50 min
+A user wants the instance pages to include external links and multimedia    100 min
+A user want the website to have animation                                   100 min
+A user wants to add information about an Artists, such as their age or genre90 min
+A user wants to change a Tour information to change the location            50 min
+A user wants to add an artist                                               70 min
+A user wants to delete an artist                                            100 min

@@ -2,9 +2,8 @@ var React = require('react');
 var PropTypes = require('prop-types');
 var api = require('../api');
 var Link = require('react-router-dom').Link;
-import { PageHeader, Pagination, Button,
-     ButtonGroup, ButtonToolbar,
-     Grid, Row, Col } from 'react-bootstrap';
+var Grid = require('./Grid.js')
+import {Pagination} from 'react-bootstrap';
 
 var orderByAsc = [{'field': 'Title', 'direction': 'asc'}];
 var orderByDsc = [{'field': 'Title', 'direction': 'desc'}];
@@ -30,33 +29,6 @@ function SelectFilter (props) {
 SelectFilter.propTypes = {
   currentFilter: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
-};
-
-function AlbumGrid(props) {
-  return(
-    <ul className="data-list">
-      {props.albums.map(function (album) {
-        return (
-          <li key={album.AlbumID} className='data-item'>
-            <ul className='data-list-items'>
-                <Link to={'/album-instance/' + album.AlbumID}>
-                  <li>
-                    <img
-                      className='img'
-                      src={album.Image}
-                      alt={'Image for ' + album.Title}/>
-                  </li>
-                  <li>{album.Title}</li>
-                </Link>
-            </ul>
-          </li>
-        )
-      })}
-    </ul>
-  )
-}
-AlbumGrid.propTypes = {
-  albums : PropTypes.array.isRequired,
 };
 
 function SelectSort (props) {
@@ -204,19 +176,24 @@ class Albums extends React.Component {
 
         {!this.state.albums
           ? <p>LOADING</p>
-          : <AlbumGrid albums={this.state.albums} />}
+          : <Grid data={this.state.albums} 
+                  module={"Albums"}/>}
 
-        <Pagination
-            prev
-            next
-            first
-            last
-            ellipsis
-            boundaryLinks
-            items={this.state.numPages}
-            maxButtons={5}
-            activePage={this.state.activePage}
-            onSelect={this.handleSelect} />
+        {!this.state.numPages
+          ? null
+          : <Pagination
+              prev
+              next
+              first
+              last
+              ellipsis
+              boundaryLinks
+              items={this.state.numPages}
+              maxButtons={5}
+              activePage={this.state.activePage}
+              onSelect={this.handleSelect} />
+        }
+        
       </div>
     )
   }

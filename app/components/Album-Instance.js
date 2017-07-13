@@ -2,8 +2,6 @@ var React = require('react');
 var api = require('../api');
 var Link = require('react-router-dom').Link;
 
-
-
 class Album_Instance extends React.Component {
 
   constructor(props) {

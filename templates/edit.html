@@ -1,0 +1,178 @@
+{% extends "layout.html" %}
+{% block title %}Edit{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="https://npmcdn.com/bootstrap@4.0.0-alpha.5/dist/js/bootstrap.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<style>
+html{
+    background: url("http://i.imgur.com/NUgDkU3.jpg") no-repeat;
+	background-size: cover;
+    min-height: 100%;
+}
+
+body{
+    background:none;
+}
+
+#advanced-search-form{
+    background-color: #fff;
+    max-width: 800px;
+    margin: 160px auto 0;
+    padding: 40px;
+    color: #858b8e;
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.2);
+}
+
+#advanced-search-form h2{
+    padding-bottom: 20px;
+    margin: 10px 20px;
+    font-size: 24px;
+}
+
+#advanced-search-form hr{
+    margin-top: 38px;
+    margin-bottom: 54px;
+    margin-left:3px;
+    border: 1px solid #cccccc;
+
+}
+
+#advanced-search-form .form-group{
+	margin-bottom: 20px;
+    margin-left:20px;
+	width: 30%;
+    float:left;
+    text-align: left;
+}
+
+#advanced-search-form .form-control{
+    padding: 12px 20px;
+    height: auto;
+    border-radius: 2px;
+}
+
+#advanced-search-form .radio-inline{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#advanced-search-form .gender{
+    width: 30%;
+    margin-top: 30px;
+    padding-left: 20px
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#advanced-search-form .s-btn{
+    width: 46%;
+    margin: 20px auto 0;
+    display: block;
+    outline: none;
+}
+
+.my-drop {
+    width: 100%;
+    padding-top: 12px;
+    padding-right: 20px;
+    padding-bottom: 12px;
+    padding-left: 20px;
+}
+
+.top-buffer { margin-top:10px; }
+
+@media screen and (max-width: 800px){
+    #advanced-search-form .form-group{
+        width: 45%;
+    }
+
+    #advanced-search-form{
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 560px){
+    #advanced-search-form .form-group{
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #advanced-search-form h2{
+        text-align: center;
+    }
+}
+
+</style>
+<body>
+    <div class="container" id="advanced-search-form">
+        <h2>Edit Song</h2>
+        <form>
+            <div class="row">
+                <div class="col-sm-12 col-md-4 top-buffer">
+                    <label for="first-name">Name</label>
+                    <input type="text" class="form-control" placeholder="Song Name" id="name">
+                </div>
+                <div class="col-sm-12 col-md-4 top-buffer">
+                    <label for="first-name">Image</label>
+                    <input type="text" class="form-control" placeholder="Song Image" id="name">
+                </div>
+                <div class="col-sm-12 col-md-4 top-buffer">
+                    <label for="first-name">Release Date</label>
+                    <input type="text" class="form-control" placeholder="Song Release Date" id="name">
+                </div>
+                <div class="col-sm-12 col-md-4 top-buffer">
+                    <label for="first-name">Run Time</label>
+                    <input type="text" class="form-control" placeholder="Song Run Time" id="name">
+                </div>
+                <div class="col-sm-12 col-md-4 top-buffer">
+                    <label for="first-name">Genre</label>
+                    <input type="text" class="form-control" placeholder="Song Genre" id="name">
+                </div>
+                <div class="col-sm-12 col-md-4 top-buffer">
+                    <label for="first-name">Chart Position</label>
+                    <input type="text" class="form-control" placeholder="Song Chart Position" id="name">
+                </div>
+                <div class='col-sm-12 col-md-4 top-buffer'>
+                    <label for="first-name">Select Artist</label>
+                    <div class="dropdown">
+                      <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Selected Artist
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">A</a>
+                        <a class="dropdown-item" href="#">B</a>
+                        <a class="dropdown-item" href="#">C</a>
+                      </div>
+                    </div>
+                </div>
+                <div class='col-sm-12 col-md-4 top-buffer'>
+                    <label for="first-name">Select Albums</label>
+                    <div class="dropdown">
+                      <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Selected Albums
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">A</a>
+                        <a class="dropdown-item" href="#">B</a>
+                        <a class="dropdown-item" href="#">C</a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <button type="submit" class="s-btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>Save Changes</button>
+        </form>
+    </div>
+</body>
+{% endblock %}

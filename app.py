@@ -250,6 +250,8 @@ class Labels(db.Model):
 
 import flask.ext.sqlalchemy
 import flask.ext.restless
+from flask import request, redirect, url_for
+from dbFunctions import dbQuery
 
 # Create the Flask-Restless API manager.
 manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
@@ -263,21 +265,22 @@ manager.create_api(Genre, methods=['GET'])
 
 @app.route('/edit/<string:type>/<int:id>/', methods=['GET', 'POST'], strict_slashes=False)
 def edit(type, id):
+    return render_template('edit.html', type = type)
     if request.method == 'POST': # here starts editing or deleting
         if type == 'song':
             request.form['']     # use this to hold form content, delete will a param passed in form
-    return redirect_url(url_for) # redirect after finishing editing or deleting
+    return redirect(url_for()) # redirect after finishing editing or deleting
 
 
 @app.route('/add/<string:type>', methods=['GET', 'POST'], strict_slashes=False)
 def add(type):
-    return redirect_url(url_for())
+    return redirect(url_for())
 
 
 @app.route('/<path:path>')
 def all_other(path):
-
     return render_template('index.html')
+
 
 @app.route('/')
 @app.route('/index')

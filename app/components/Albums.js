@@ -16,7 +16,7 @@ function SelectFilter (props) {
       {filters.map((filter) => {
         return (
           <li
-          style={filter === props.currentFilter ? {color: '#fd5927'} : null}
+          style={filter === props.currentFilter ? {border: '1px solid #fd5927', color:'#fd5927'} : null}
           onClick={props.onSelect.bind(null, filter)}
           key={filter}>
             {filter}
@@ -39,7 +39,7 @@ function SelectSort (props) {
       {sorts.map((sort) => {
         return (
           <li
-          style={sort === props.currentSort? {color: '#fd5927'} : null}
+          style={sort === props.currentSort? {border: '1px solid #fd5927', color:'#fd5927'} : null}
           onClick={props.onSelect.bind(null, sort)}
           key={sort}>
             {sort}
@@ -176,7 +176,7 @@ class Albums extends React.Component {
 
         {!this.state.albums
           ? <p>LOADING</p>
-          : <Grid data={this.state.albums} 
+          : <Grid data={this.state.albums}
                   module={"Albums"}/>}
 
         {!this.state.numPages

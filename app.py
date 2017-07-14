@@ -9,9 +9,6 @@ from flask import render_template
 from flask_cors import CORS
 import datetime
 
-
-from dbFunctions import *
-
 app = Flask(__name__)
 
 # for test purposes, use sqlite:////path/test.db instead
@@ -263,6 +260,10 @@ manager.create_api(Artists, methods=['GET'])
 manager.create_api(Songs, methods=['GET'])
 manager.create_api(Albums, methods=['GET'])
 manager.create_api(Genre, methods=['GET'])
+
+@app.route('/edit/<string:type>/<int:id>/')
+def edit(type, id):
+    return "Hello"
 
 @app.route('/<path:path>')
 def all_other(path):

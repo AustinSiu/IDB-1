@@ -22,27 +22,36 @@ class Search extends React.Component{
   componentWillMount() {
       this.updateSearchResults(null);
   }
-  componentWillReceiveProps(newProps){
-    if((newProps.searchString != this.props.searchString)) {
-      this.props = newProps;
+  componentWillReceiveProps(nextProps){
+    if((nextProps.searchString != this.props.searchString)) {
+      this.props = nextProps;
       this.updateSearchResults(null);
     }
   }
   updateSearchResults(searchResults) {
     var filter;
     const { searchString } = this.props;
+    const { searchType } = this.props;
     this.setState(function() {
       return {
         searchResults: searchResults
       }
     });
+    var filter = '[{"' + searchType + '":[';      
     if (this.props.moduleType == "Artists") {
-      filter = [{"or": [
-                  {'name': 'Name','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
-                  {'name': 'ArtistGenre','op': 'any', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
-                  {'name': 'Albums','op': 'any', 'val': {'name': 'Title', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
-                  {'name': 'Songs','op': 'any', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
-                ]}]
+      for(var i = 0; i < searchString.length; i++) {
+        filter += '{"or":[' +
+                  '{"name":"Name","op":"ilike","val":"%' + searchString[i] + '%"}, ' +
+                  '{"name":"ArtistGenre","op":"any","val":{"name":"Name","op":"ilike","val":"%' + searchString[i] + '%"}}, ' +
+                  '{"name":"Albums","op":"any","val":{"name":"Title","op":"ilike","val":"%' + searchString[i] + '%"}}, ' +
+                  '{"name":"Songs","op":"any","val":{"name":"Name","op":"ilike","val":"%' + searchString[i] + '%"}}' +
+                  ']}';
+        if(i != searchString.length - 1) {
+          filter += ",";
+        }
+      }
+      filter += "]}]";
+      filter = JSON.parse(filter)
       api.getArtists(this.state.activePage, filter, orderArtists)
         .then(function (data) {
           this.setState(function () {
@@ -54,11 +63,18 @@ class Search extends React.Component{
         }.bind(this));
     }
     else if (this.props.moduleType == "Albums") {
-      filter = [{"or": [
-                  {'name': 'Title','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
-                  {'name': 'artist','op': 'has', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
-                  {'name': 'Songs','op': 'any', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
-                ]}]
+      for(var i = 0; i < searchString.length; i++) {
+        filter += '{"or":[' +
+                  '{"name":"Title","op":"ilike","val":"%' + searchString[i] + '%"}, ' +
+                  '{"name":"artist","op":"has","val":{"name":"Name","op":"ilike","val":"%' + searchString[i] + '%"}}, ' +
+                  '{"name":"Songs","op":"any","val":{"name":"Name","op":"ilike","val":"%' + searchString[i] + '%"}} ' +
+                  ']}';
+        if(i != searchString.length - 1) {
+          filter += ",";
+        }
+      }
+      filter += "]}]";
+      filter = JSON.parse(filter)
       api.getAlbums(this.state.activePage, filter, orderAlbums)
         .then(function (data) {
           this.setState(function () {
@@ -70,12 +86,19 @@ class Search extends React.Component{
         }.bind(this));
     }
     else if (this.props.moduleType == "Songs") {
-      filter = [{"or": [
-                  {'name': 'Name','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
-                  {'name': 'SongGenre','op': 'any', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
-                  {'name': 'album','op': 'has', 'val': {'name': 'Title', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
-                  {'name': 'artist','op': 'has', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
-                ]}]
+      for(var i = 0; i < searchString.length; i++) {
+        filter += '{"or":[' +
+                  '{"name":"Name","op":"ilike","val":"%' + this.props.searchString[0] + '%"}, ' +
+                  '{"name":"SongGenre","op":"any","val":{"name":"Name","op":"ilike","val":"%' + this.props.searchString[0] + '%"}}, ' +
+                  '{"name":"album","op":"has","val":{"name":"Title","op":"ilike","val":"%' + this.props.searchString[0] + '%"}}, ' +
+                  '{"name":"artist","op":"has","val":{"name":"Name","op":"ilike","val":"%' + this.props.searchString[0] + '%"}} ' +
+                  ']}';
+        if(i != searchString.length - 1) {
+          filter += ",";
+        }
+      }
+      filter += "]}]";
+      filter = JSON.parse(filter)
       api.getSongs(this.state.activePage, filter, orderArtists)
         .then(function (data) {
           this.setState(function () {
@@ -87,13 +110,20 @@ class Search extends React.Component{
         }.bind(this));
     }
     else if (this.props.moduleType == "Tours") {
-      filter = [{"or": [
-                  {'name': 'Name','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
-                  {'name': 'Venue','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
-                  {'name': 'Locations','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
-                  {'name': 'tDate','op': 'ilike', 'val': "%" + this.props.searchString[0] + "%"},
-                  {'name': 'artist','op': 'has', 'val': {'name': 'Name', 'op': 'ilike', 'val' : "%" + this.props.searchString[0] + "%"}},
-                ]}]
+      for(var i = 0; i < searchString.length; i++) {
+        filter += '{"or":[' +
+                  '{"name":"Name","op":"ilike","val":"%' + this.props.searchString[0] + '%"}, ' +
+                  '{"name":"Venue","op":"ilike","val":"%' + this.props.searchString[0] + '%"}, ' + 
+                  '{"name":"Locations","op":"ilike","val":"%' + this.props.searchString[0] + '%"}, ' + 
+                  '{"name":"tDate","op":"ilike","val":"%' + this.props.searchString[0] + '%"}, ' + 
+                  '{"name":"artist","op":"has","val":{"name":"Name","op":"ilike","val":"%' + this.props.searchString[0] + '%"}} ' +
+                  ']}';
+        if(i != searchString.length - 1) {
+          filter += ",";
+        }
+      }
+      filter += "]}]";
+      filter = JSON.parse(filter)
       api.getTours(this.state.activePage, filter, orderArtists)
         .then(function (data) {
           this.setState(function () {
@@ -107,13 +137,11 @@ class Search extends React.Component{
 
   }
   handleSelect(eventKey){
-    console.log("SS: handlePageSelect");
     this.setState({activePage: eventKey}, function () {
       this.updateSearchResults(null);
     });
   }
   render(){
-    console.log(this.state.numPages)
     return(
       <div className='center-pagination'>
         {!this.state.searchResults

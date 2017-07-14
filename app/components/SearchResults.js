@@ -40,6 +40,29 @@ class SearchResults extends React.Component {
   updateSearchString(searchString) {
     this.setState({searchString: searchString});
   }
+  displayResults(moduleType) {
+    if (this.state.searchString.length > 1) {
+      return (
+        <div>
+          <h3>AND search results: </h3>
+          <Search searchString = {this.state.searchString}
+                  moduleType = {moduleType} 
+                  searchType = {"and"} />
+          <h3>OR search results: </h3>
+          <Search searchString = {this.state.searchString}
+                  moduleType = {moduleType} 
+                  searchType = {"or"} />
+        </div>
+      )
+    }
+    else {
+      return (
+        <Search searchString = {this.state.searchString}
+                moduleType = {moduleType} 
+                searchType = {"or"} />
+      )
+    }
+  }
   render(){
     return(
       <div>
@@ -47,24 +70,16 @@ class SearchResults extends React.Component {
         <TabContainer id={5}>
           <Tabs animation bsStyle="pills" onSelect={this.handleTabSelect} id={6}>
             <Tab unmountOnExit={true} eventKey={1} title="Artists">
-              <br/>
-              <Search searchString = {this.state.searchString}
-                      moduleType = {"Artists"} />
+              {this.displayResults("Artists")}
             </Tab>
             <Tab unmountOnExit={true} eventKey={2} title="Albums">
-              <br/>
-              <Search searchString = {this.state.searchString}
-                      moduleType = {"Albums"} />
+              {this.displayResults("Albums")}
             </Tab>
             <Tab unmountOnExit={true} eventKey={3} title="Songs">
-              <br/>
-              <Search searchString = {this.state.searchString}
-                      moduleType = {"Songs"} />
+              {this.displayResults("Songs")}
             </Tab>  
             <Tab unmountOnExit={true} eventKey={4} title="Tours">
-              <br/>
-              <Search searchString = {this.state.searchString}
-                      moduleType = {"Tours"} />
+              {this.displayResults("Tours")}
             </Tab>    
           </Tabs>
         </TabContainer>

@@ -91,6 +91,39 @@ class TestAPI (TestCase):
         songs = [s['Name'] for s in songs]
         self.assertEqual(songs, ['Immigrant Song', 'Stairway to Heaven', 'Whole Lotta Love'])
 
+    def test_get_start_time(self):
+        """test_get_start_time."""
+        filters = [dict(name='ArtistID', op='eq', val=2)]
+        params = dict(q=json.dumps(dict(filters=filters)))
+        response = requests.get(self.artistsURL,
+                                params=params,
+                                headers=self.headers)
+
+        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['objects'][0]['Start_Time'], 1968)
+
+    def test_get_end_time(self):
+        """test_get_end_time."""
+        filters = [dict(name='ArtistID', op='eq', val=2)]
+        params = dict(q=json.dumps(dict(filters=filters)))
+        response = requests.get(self.artistsURL,
+                                params=params,
+                                headers=self.headers)
+
+        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['objects'][0]['End_Time'], 1980)
+
+    def test_get_tour(self):
+        """test_get_tour."""
+        filters = [dict(name='ArtistID', op='eq', val=2)]
+        params = dict(q=json.dumps(dict(filters=filters)))
+        response = requests.get(self.artistsURL,
+                                params=params,
+                                headers=self.headers)
+
+        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['objects'][0]['Tours'][0]['Name'], "Scandinavia 1968")
+
     def test_get_artist_error(self):
         """test_get_artist_error."""
         filters = [dict(name='ArtistID', op='eq', val=-1)]
@@ -188,6 +221,18 @@ class TestAPI (TestCase):
         self.assertEqual(response.json()['objects'][0]['SongGenre'][0]['Name'],
                          'country')
 
+    def test_get_chart_pos(self):
+        """test_get_chart_pos."""
+        filters = [dict(name='SongID', op='eq', val=1)]
+        params = dict(q=json.dumps(dict(filters=filters)))
+        response = requests.get(self.songsURL,
+                                params=params,
+                                headers=self.headers)
+
+        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['objects'][0]['Chart_Position'],
+                         71)
+
     def test_get_song_error(self):
         """test_get_song_error."""
         filters = [dict(name='SongID', op='eq', val=-1)]
@@ -274,6 +319,18 @@ class TestAPI (TestCase):
         songs = response.json()['objects'][0]['Songs']
         songs = [s['Name'] for s in songs]
         self.assertEqual(songs, [u'Sweet Lady', 'God Save the Queen', 'Lazing on a Sunday Afternoon', "'39", 'Bohemian Rhapsody', 'Love of My Life', "I'm in Love With My Car", 'Seaside Rendezvous', "The Prophet's Song", 'Good Company'])
+
+    def test_get_album_chart_pose(self):
+        """test_get_album_chart_pose."""
+        filters = [dict(name='AlbumID', op='eq', val=1)]
+        params = dict(q=json.dumps(dict(filters=filters)))
+        response = requests.get(self.albumsURL,
+                                params=params,
+                                headers=self.headers)
+
+        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['objects'][0]['US_Chart_Postion'],
+                         71)
 
     def test_get_album_error(self):
         """test_get_album_error."""

@@ -59,6 +59,10 @@ li {
   margin-bottom: 7px;
 }
 
+.data-list-items :hover {
+  color: #fd5927;
+}
+
 .home-container {
   display: flex;
   flex-direction: column;
@@ -76,6 +80,10 @@ li {
 .nav li :hover{
   font-weight: bold;
   color: #fd5927;
+}
+
+.nav li a:hover{
+  background-color: transparent;
 }
 
 .active {
@@ -141,7 +149,7 @@ li {
       padding: 8px 16px;
       text-decoration: none;
       transition: background-color .3s;
-      margin: 1px ;    
+      margin: 1px ;
   }
   .my-button li {
       cursor: pointer;
@@ -168,7 +176,7 @@ li {
 .pagination .disabled span,
 .pagination .disabled a,
 .pagination .disabled a:hover {
-  background-color: #141414; 
+  background-color: #141414;
   color: #ababab;
   cursor: default;
 }
@@ -176,16 +184,16 @@ li {
 .pagination li a:hover,
 .pagination li span:focus,
 .pagination li span:hover {
-  background-color: #141414; 
+  background-color: #141414;
   color: #fd5927;
 }
-.pagination .active a, 
-.pagination .active a:focus, 
-.pagination .active a:hover, 
-.pagination .active span, 
-.pagination .active span:focus, 
-.pagination .active span:hover { 
-  background-color: #141414; 
+.pagination .active a,
+.pagination .active a:focus,
+.pagination .active a:hover,
+.pagination .active span,
+.pagination .active span:focus,
+.pagination .active span:hover {
+  background-color: #141414;
   color: #fd5927;
-  border-color: #ababab; 
+  border-color: #ababab;
 }

@@ -261,20 +261,16 @@ manager.create_api(Songs, methods=['GET'])
 manager.create_api(Albums, methods=['GET'])
 manager.create_api(Genre, methods=['GET'])
 
-@app.route('/edit/<string:type>/<int:id>/', methos=['GET', 'POST'], strict_slashes=False)
+@app.route('/edit/<string:type>/<int:id>/', methods=['GET', 'POST'], strict_slashes=False)
 def edit(type, id):
-    if request.method == 'POST': #here starts editing or deleting
+    if request.method == 'POST': # here starts editing or deleting
         if type == 'song':
-            request.form['']     #use this to hold form content, delete will a param passed in form
-    return redirect_url(url_for) #redirect after finishing editing or deleting
+            request.form['']     # use this to hold form content, delete will a param passed in form
+    return redirect_url(url_for) # redirect after finishing editing or deleting
 
-    return "Hello"
 
-@app.route('/add/<string:type>', methos=['GET', 'POST'], strict_slashes=False)
+@app.route('/add/<string:type>', methods=['GET', 'POST'], strict_slashes=False)
 def add(type):
-
-
-
     return redirect_url(url_for())
 
 

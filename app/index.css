@@ -32,10 +32,6 @@ li {
   max-height: 200px;
 }
 
-.space-list-items {
-  margin-bottom: 7px;
-}
-
 .options {
   display: flex;
   justify-content: center;
@@ -55,7 +51,12 @@ li {
 
 .data-item {
   margin: 20px;
+  width: 20%;
   text-align: center;
+}
+
+.data-list-items {
+  margin-bottom: 7px;
 }
 
 .home-container {
@@ -143,6 +144,7 @@ li {
       margin: 1px ;    
   }
   .my-button li {
+      cursor: pointer;
       color: #ababab;
       float: left;
       padding: 8px 16px;
@@ -156,7 +158,34 @@ li {
       border: 1px solid #4CAF50;
   }
   .my-button li:hover:not(.active), .my-button li.current-button {color: #fd5927; border: 1px solid #fd5927;}
-
 .center-pagination {
-  text-align: center;
+   text-align: center;
+}
+.pagination li a {
+  background-color: #141414;
+  color: #ababab;
+}
+.pagination .disabled span,
+.pagination .disabled a,
+.pagination .disabled a:hover {
+  background-color: #141414; 
+  color: #ababab;
+  cursor: default;
+}
+.pagination li a:focus,
+.pagination li a:hover,
+.pagination li span:focus,
+.pagination li span:hover {
+  background-color: #141414; 
+  color: #fd5927;
+}
+.pagination .active a, 
+.pagination .active a:focus, 
+.pagination .active a:hover, 
+.pagination .active span, 
+.pagination .active span:focus, 
+.pagination .active span:hover { 
+  background-color: #141414; 
+  color: #fd5927;
+  border-color: #ababab; 
 }

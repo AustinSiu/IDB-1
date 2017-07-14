@@ -193,7 +193,7 @@ class Albums extends React.Component {
               activePage={this.state.activePage}
               onSelect={this.handleSelect} />
         }
-        
+
       </div>
     )
   }

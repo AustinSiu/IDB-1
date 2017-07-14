@@ -16,7 +16,7 @@ function SelectGenre (props) {
       {genres.map((genre) => {
         return (
           <li
-          style={genre === props.currentFilter ? {color: '#fd5927'} : null}
+          style={genre === props.currentFilter ? {border: '1px solid #fd5927', color:'#fd5927'} : null}
           onClick={props.onSelect.bind(null, genre)}
           key={genre}>
             {genre}
@@ -39,7 +39,7 @@ function SelectSort (props) {
       {sorts.map((sort) => {
         return (
           <li
-          style={sort === props.currentSort? {color: '#fd5927'} : null}
+          style={sort === props.currentSort? {border: '1px solid #fd5927', color:'#fd5927'} : null}
           onClick={props.onSelect.bind(null, sort)}
           key={sort}>
             {sort}
@@ -180,7 +180,7 @@ class Artists extends React.Component {
               activePage={this.state.activePage}
               onSelect={this.handleSelect} />
         }
-        
+
       </div>
     )
   }

@@ -16,7 +16,7 @@ function SelectLocation (props) {
       {filters.map((filter) => {
         return (
           <li
-          style={filter === props.currentFilter ? {color: '#fd5927'} : null}
+          style={filter === props.currentFilter ? {border: '1px solid #fd5927', color:'#fd5927'} : null}
           onClick={props.onSelect.bind(null, filter)}
           key={filter}>
             {filter}
@@ -39,7 +39,7 @@ function SelectSort (props) {
       {sorts.map((sort) => {
         return (
           <li
-          style={sort === props.currentSort? {color: '#fd5927'} : null}
+          style={sort === props.currentSort? {border: '1px solid #fd5927', color:'#fd5927'} : null}
           onClick={props.onSelect.bind(null, sort)}
           key={sort}>
             {sort}
@@ -92,7 +92,7 @@ class Tours extends React.Component {
       filter = [{"or": [
                   {'name': 'Locations','op': 'like', 'val': '%South America%'},
                   {'name': 'Locations','op': 'like', 'val': '%Latin America%'},
-                ]}]      
+                ]}]
     } else if (location === "Europe") {
       filter = [{'name': 'Locations', 'op': 'like', 'val': '%Europe%'}]
     } else if (location === "Asia") {
@@ -101,7 +101,7 @@ class Tours extends React.Component {
       filter = [{"or": [
                   {'name': 'Locations','op': 'like', 'val': '%Oceania%'},
                   {'name': 'Locations','op': 'like', 'val': '%Australia%'},
-                ]}]  
+                ]}]
     }
     var order_by;
     if (this.state.currentSort === 'Ascending') {
@@ -136,7 +136,7 @@ class Tours extends React.Component {
       filter = [{"or": [
                   {'name': 'Locations','op': 'like', 'val': '%South America%'},
                   {'name': 'Locations','op': 'like', 'val': '%Latin America%'},
-                ]}]      
+                ]}]
     } else if (this.state.currentFilter  === "Europe") {
       filter = [{'name': 'Locations', 'op': 'like', 'val': '%Europe%'}]
     } else if (this.state.currentFilter  === "Asia") {
@@ -145,7 +145,7 @@ class Tours extends React.Component {
       filter = [{"or": [
                   {'name': 'Locations','op': 'like', 'val': '%Oceania%'},
                   {'name': 'Locations','op': 'like', 'val': '%Australia%'},
-                ]}]  
+                ]}]
     }
     var order_by;
     if (sort === 'Ascending') {
@@ -177,7 +177,7 @@ class Tours extends React.Component {
       filter = [{"or": [
                   {'name': 'Locations','op': 'like', 'val': '%South America%'},
                   {'name': 'Locations','op': 'like', 'val': '%Latin America%'},
-                ]}]      
+                ]}]
     } else if (this.state.currentFilter  === "Europe") {
       filter = [{'name': 'Locations', 'op': 'like', 'val': '%Europe%'}]
     } else if (this.state.currentFilter  === "Asia") {
@@ -186,7 +186,7 @@ class Tours extends React.Component {
       filter = [{"or": [
                   {'name': 'Locations','op': 'like', 'val': '%Oceania%'},
                   {'name': 'Locations','op': 'like', 'val': '%Australia%'},
-                ]}]  
+                ]}]
     }
     var order_by;
     if (this.state.currentSort === 'Ascending') {
@@ -218,7 +218,7 @@ class Tours extends React.Component {
 
         {!this.state.tours
           ? <p>LOADING</p>
-          : <Grid data={this.state.tours} 
+          : <Grid data={this.state.tours}
                   module={"Tours"} />}
 
         {!this.state.numPages

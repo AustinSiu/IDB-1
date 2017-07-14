@@ -86,9 +86,15 @@ li {
   background-color: transparent;
 }
 
+.nav li a.active{
+  background-color: transparent;
+  color: #fd5927;
+}
+
 .active {
   font-weight: bold;
   color: #fd5927;
+  background-color: transparent;
 }
 
 .title-header {

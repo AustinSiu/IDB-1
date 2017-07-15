@@ -178,9 +178,9 @@ margin-top: 50px;
     border: 1px solid #4CAF50;
 }
 
-.my-button li:hover:not(.active), 
+.my-button li:hover:not(.active),
 .my-button li.current-button {
-  color: #fd5927; 
+  color: #fd5927;
   border: 1px solid #fd5927;
 }
 
@@ -194,7 +194,7 @@ margin-top: 50px;
 .pagination .disabled span,
 .pagination .disabled a,
 .pagination .disabled a:hover {
-  background-color: #141414; 
+  background-color: #141414;
   color: #ababab;
   cursor: default;
 }
@@ -202,16 +202,21 @@ margin-top: 50px;
 .pagination li a:hover,
 .pagination li span:focus,
 .pagination li span:hover {
-  background-color: #141414; 
+  background-color: #141414;
   color: #fd5927;
 }
-.pagination .active a, 
-.pagination .active a:focus, 
-.pagination .active a:hover, 
-.pagination .active span, 
-.pagination .active span:focus, 
-.pagination .active span:hover { 
-  background-color: #141414; 
+.pagination .active a,
+.pagination .active a:focus,
+.pagination .active a:hover,
+.pagination .active span,
+.pagination .active span:focus,
+.pagination .active span:hover {
+  background-color: #141414;
   color: #fd5927;
-  border-color: #ababab; 
+  border-color: #ababab;
+}
+
+.inline {
+  display:inline;
+  margin-right:5px;
 }

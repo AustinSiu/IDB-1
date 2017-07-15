@@ -5,6 +5,7 @@ var songsURL = 'http://banddb.me/api/songs';
 var albumsURL = 'http://banddb.me/api/albums';
 var toursURL = 'http://banddb.me/api/tours';
 
+
 module.exports = {
 
   getArtists: function (page, filter, orderBy) {
@@ -173,4 +174,19 @@ module.exports = {
 
   },
 
+  editArtist: function(id) {
+
+    var encodedURI = window.encodeURI('banddb.me/edit/artist/'+ id);
+    var newName = document.getElementById('artistName').value;
+    var config = { headers: { 'Content-Type': 'application/json' } };
+    console.log("the encoded URI" + encodedURI);
+    axios.post(encodedURI, { Name: newName }, config
+    ).then(function (response) {
+      console.log(response.data)
+    }).catch(function (error) {
+      console.log("Received Error: ");
+      console.log(error);
+    });
+
+  },
 };

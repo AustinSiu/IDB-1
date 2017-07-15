@@ -274,6 +274,7 @@ def edit(type, id):
 
 @app.route('/add/<string:type>', methods=['GET', 'POST'], strict_slashes=False)
 def add(type):
+    return render_template('add.html', type = type)
     return redirect(url_for())
 
 

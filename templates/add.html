@@ -116,44 +116,44 @@ body{
 <body>
     <div class="container" id="advanced-search-form">
         {% if type == 'song' %}
-            <h2>Edit Song</h2>
+            <h2>Add Song</h2>
         {% elif type == 'tour' %}
-            <h2>Edit Tour</h2>
+            <h2>Add Tour</h2>
         {% elif type == 'album' %}
-            <h2>Edit Album</h2>
+            <h2>Add Album</h2>
         {% elif type == 'artist' %}
-            <h2>Edit Artist</h2>
+            <h2>Add Artist</h2>
         {% else %}
             <h2>There is no such {{ type }} model.</h2>
         {% endif%}
         <form>
             <div class="row">
                 {% if type == 'song' %}
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" placeholder="Song Name" id="name">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="img">Image</label>
                         <input type="text" class="form-control" placeholder="Song Image" id="img">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="release-date">Release Date</label>
                         <input type="text" class="form-control" placeholder="Song Release Date" id="release-date">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="run-time">Run Time</label>
                         <input type="text" class="form-control" placeholder="Song Run Time" id="run-time">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="genre">Genre</label>
                         <input type="text" class="form-control" placeholder="Song Genre" id="genre">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="chart-position">Chart Position</label>
                         <input type="text" class="form-control" placeholder="Song Chart Position" id="chart-position">
                     </div>
-                    <div class='col-sm-12 col-md-4 top-buffer'>
+                    <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="select-artist">Select Artist</label>
                         <div class="dropdown">
                           <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -166,7 +166,7 @@ body{
                           </div>
                         </div>
                     </div>
-                    <div class='col-sm-12 col-md-4 top-buffer'>
+                    <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="select-albums">Select Albums</label>
                         <div class="dropdown">
                           <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -180,27 +180,27 @@ body{
                         </div>
                     </div>
                 {% elif type == 'tour' %}
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" placeholder="Tour Name" id="name">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="img">Image</label>
                         <input type="text" class="form-control" placeholder="Tour Image" id="img">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="dates">Dates</label>
                         <input type="text" class="form-control" placeholder="Tour Dates" id="dates">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="venue">Venue</label>
                         <input type="text" class="form-control" placeholder="Tour Venue" id="venue">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="locations">Locations</label>
                         <input type="text" class="form-control" placeholder="Tour Locations" id="locations">
                     </div>
-                    <div class='col-sm-12 col-md-4 top-buffer'>
+                    <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="first-name">Select Artist</label>
                         <div class="dropdown">
                           <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -213,7 +213,7 @@ body{
                           </div>
                         </div>
                     </div>
-                    <div class='col-sm-12 col-md-4 top-buffer'>
+                    <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="first-name">Select Songs</label>
                         <div class="dropdown">
                           <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -227,27 +227,27 @@ body{
                         </div>
                     </div>
                 {% elif type == 'album' %}
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" placeholder="Album Name" id="name">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="img">Image</label>
                         <input type="text" class="form-control" placeholder="Album Image" id="img">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="release-date">Release Date</label>
                         <input type="text" class="form-control" placeholder="Album Release Date" id="dates">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="label">Label</label>
                         <input type="text" class="form-control" placeholder="Album Label" id="label">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="chart-position">Chart Position</label>
                         <input type="text" class="form-control" placeholder="Album Chart Position" id="chart-position">
                     </div>
-                    <div class='col-sm-12 col-md-4 top-buffer'>
+                    <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="first-name">Select Artist</label>
                         <div class="dropdown">
                           <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -260,7 +260,7 @@ body{
                           </div>
                         </div>
                     </div>
-                    <div class='col-sm-12 col-md-4 top-buffer'>
+                    <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="first-name">Select Songs</label>
                         <div class="dropdown">
                           <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -274,15 +274,15 @@ body{
                         </div>
                     </div>
                 {% elif type == 'artist' %}
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" placeholder="Album Name" id="name">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="img">Image</label>
                         <input type="text" class="form-control" placeholder="Album Image" id="img">
                     </div>
-                    <div class="col-sm-12 col-md-4 top-buffer">
+                    <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="genres">Genres</label>
                         <input type="text" class="form-control" placeholder="Album Genres" id="genres">
                     </div>
@@ -294,7 +294,7 @@ body{
                         <label for="end-year">End Year</label>
                         <input type="text" class="form-control" placeholder="End" id="end-year">
                     </div>
-                    <div class='col-sm-12 col-md-4 top-buffer'>
+                    <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="first-name">Select Albums</label>
                         <div class="dropdown">
                           <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -307,7 +307,7 @@ body{
                           </div>
                         </div>
                     </div>
-                    <div class='col-sm-12 col-md-4 top-buffer'>
+                    <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="first-name">Select Songs</label>
                         <div class="dropdown">
                           <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -320,7 +320,7 @@ body{
                           </div>
                         </div>
                     </div>
-                    <div class='col-sm-12 col-md-4 top-buffer'>
+                    <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="first-name">Select Tours</label>
                         <div class="dropdown">
                           <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -337,7 +337,7 @@ body{
             </div>
 
             <div class="clearfix"></div>
-            <button type="submit" class="s-btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>Save Changes</button>
+            <button type="submit" class="s-btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>ADD</button>
         </form>
     </div>
 </body>

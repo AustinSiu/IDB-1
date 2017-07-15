@@ -219,7 +219,7 @@ class Tours extends React.Component {
         {!this.state.tours
           ? <p>LOADING</p>
           : <Grid data={this.state.tours}
-                  module={"Tours"} />}
+                  module={"tours"} />}
 
         {!this.state.numPages
           ? null

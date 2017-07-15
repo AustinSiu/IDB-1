@@ -48,7 +48,6 @@ class SearchResults extends React.Component {
           <Search searchString = {this.state.searchString}
                   moduleType = {moduleType} 
                   searchType = {"and"} />
-          <br/>
           <h3>OR search results: </h3>
           <Search searchString = {this.state.searchString}
                   moduleType = {moduleType} 
@@ -71,16 +70,16 @@ class SearchResults extends React.Component {
         <TabContainer id={5}>
           <Tabs animation bsStyle="pills" onSelect={this.handleTabSelect} id={6}>
             <Tab unmountOnExit={true} eventKey={1} title="Artists">
-              {this.displayResults("Artists")}
+              {this.displayResults("artists")}
             </Tab>
             <Tab unmountOnExit={true} eventKey={2} title="Albums">
-              {this.displayResults("Albums")}
+              {this.displayResults("albums")}
             </Tab>
             <Tab unmountOnExit={true} eventKey={3} title="Songs">
-              {this.displayResults("Songs")}
+              {this.displayResults("songs")}
             </Tab>  
             <Tab unmountOnExit={true} eventKey={4} title="Tours">
-              {this.displayResults("Tours")}
+              {this.displayResults("tours")}
             </Tab>    
           </Tabs>
         </TabContainer>

@@ -164,7 +164,7 @@ class Artists extends React.Component {
         {!this.state.artists
           ? <p>LOADING</p>
           : <Grid data={this.state.artists}
-                        module={"Artists"} />}
+                        module={"artists"} />}
 
         {!this.state.numPages
           ? null

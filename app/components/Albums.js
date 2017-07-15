@@ -177,7 +177,7 @@ class Albums extends React.Component {
         {!this.state.albums
           ? <p>LOADING</p>
           : <Grid data={this.state.albums}
-                  module={"Albums"}/>}
+                  module={"albums"}/>}
 
         {!this.state.numPages
           ? null

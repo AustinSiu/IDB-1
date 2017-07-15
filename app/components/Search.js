@@ -38,7 +38,7 @@ class Search extends React.Component{
       }
     });
     var filter = '[{"' + searchType + '":[';      
-    if (this.props.moduleType == "Artists") {
+    if (this.props.moduleType == "artists") {
       for(var i = 0; i < searchString.length; i++) {
         filter += '{"or":[' +
                   '{"name":"Name","op":"ilike","val":"%' + searchString[i] + '%"}, ' +
@@ -62,7 +62,7 @@ class Search extends React.Component{
           });
         }.bind(this));
     }
-    else if (this.props.moduleType == "Albums") {
+    else if (this.props.moduleType == "albums") {
       for(var i = 0; i < searchString.length; i++) {
         filter += '{"or":[' +
                   '{"name":"Title","op":"ilike","val":"%' + searchString[i] + '%"}, ' +
@@ -85,7 +85,7 @@ class Search extends React.Component{
           });
         }.bind(this));
     }
-    else if (this.props.moduleType == "Songs") {
+    else if (this.props.moduleType == "songs") {
       for(var i = 0; i < searchString.length; i++) {
         filter += '{"or":[' +
                   '{"name":"Name","op":"ilike","val":"%' + searchString[i]  + '%"}, ' +
@@ -109,7 +109,7 @@ class Search extends React.Component{
           });
         }.bind(this));
     }
-    else if (this.props.moduleType == "Tours") {
+    else if (this.props.moduleType == "tours") {
       for(var i = 0; i < searchString.length; i++) {
         filter += '{"or":[' +
                   '{"name":"Name","op":"ilike","val":"%' + searchString[i]  + '%"}, ' +

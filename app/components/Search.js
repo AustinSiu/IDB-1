@@ -2,7 +2,7 @@ var React = require('react');
 var api = require('../api.js');
 var PropTypes = require('prop-types');
 var Link = require('react-router-dom').Link;
-var Grid = require('./Grid.js');
+var SearchResultsGrid = require('./SearchResultsGrid.js');
 import {Pagination} from 'react-bootstrap';
 
 var orderArtists = [{'field': 'Name', 'direction': 'asc'}];
@@ -88,10 +88,10 @@ class Search extends React.Component{
     else if (this.props.moduleType == "Songs") {
       for(var i = 0; i < searchString.length; i++) {
         filter += '{"or":[' +
-                  '{"name":"Name","op":"ilike","val":"%' + this.props.searchString[0] + '%"}, ' +
-                  '{"name":"SongGenre","op":"any","val":{"name":"Name","op":"ilike","val":"%' + this.props.searchString[0] + '%"}}, ' +
-                  '{"name":"album","op":"has","val":{"name":"Title","op":"ilike","val":"%' + this.props.searchString[0] + '%"}}, ' +
-                  '{"name":"artist","op":"has","val":{"name":"Name","op":"ilike","val":"%' + this.props.searchString[0] + '%"}} ' +
+                  '{"name":"Name","op":"ilike","val":"%' + searchString[i]  + '%"}, ' +
+                  '{"name":"SongGenre","op":"any","val":{"name":"Name","op":"ilike","val":"%' + searchString[i]  + '%"}}, ' +
+                  '{"name":"album","op":"has","val":{"name":"Title","op":"ilike","val":"%' + searchString[i]  + '%"}}, ' +
+                  '{"name":"artist","op":"has","val":{"name":"Name","op":"ilike","val":"%' + searchString[i]  + '%"}} ' +
                   ']}';
         if(i != searchString.length - 1) {
           filter += ",";
@@ -112,11 +112,11 @@ class Search extends React.Component{
     else if (this.props.moduleType == "Tours") {
       for(var i = 0; i < searchString.length; i++) {
         filter += '{"or":[' +
-                  '{"name":"Name","op":"ilike","val":"%' + this.props.searchString[0] + '%"}, ' +
-                  '{"name":"Venue","op":"ilike","val":"%' + this.props.searchString[0] + '%"}, ' + 
-                  '{"name":"Locations","op":"ilike","val":"%' + this.props.searchString[0] + '%"}, ' + 
-                  '{"name":"tDate","op":"ilike","val":"%' + this.props.searchString[0] + '%"}, ' + 
-                  '{"name":"artist","op":"has","val":{"name":"Name","op":"ilike","val":"%' + this.props.searchString[0] + '%"}} ' +
+                  '{"name":"Name","op":"ilike","val":"%' + searchString[i]  + '%"}, ' +
+                  '{"name":"Venue","op":"ilike","val":"%' + searchString[i]  + '%"}, ' + 
+                  '{"name":"Locations","op":"ilike","val":"%' + searchString[i]  + '%"}, ' + 
+                  '{"name":"tDate","op":"ilike","val":"%' + searchString[i]  + '%"}, ' + 
+                  '{"name":"artist","op":"has","val":{"name":"Name","op":"ilike","val":"%' + searchString[i]  + '%"}} ' +
                   ']}';
         if(i != searchString.length - 1) {
           filter += ",";
@@ -134,7 +134,6 @@ class Search extends React.Component{
           });
         }.bind(this));
     }
-
   }
   handleSelect(eventKey){
     this.setState({activePage: eventKey}, function () {
@@ -142,12 +141,14 @@ class Search extends React.Component{
     });
   }
   render(){
+    const { searchString } = this.props;
     return(
       <div className='center-pagination'>
         {!this.state.searchResults
           ? <p>LOADING</p>
-          : <Grid data={this.state.searchResults}
-                        module= {this.props.moduleType} />}
+          : <SearchResultsGrid  data={this.state.searchResults}
+                                module= {this.props.moduleType} 
+                                searchString={searchString} />}
         {!this.state.numPages
           ? null
           : <Pagination

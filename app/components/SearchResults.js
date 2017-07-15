@@ -48,6 +48,7 @@ class SearchResults extends React.Component {
           <Search searchString = {this.state.searchString}
                   moduleType = {moduleType} 
                   searchType = {"and"} />
+          <br/>
           <h3>OR search results: </h3>
           <Search searchString = {this.state.searchString}
                   moduleType = {moduleType} 

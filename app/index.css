@@ -101,77 +101,89 @@ li {
   position: fixed;
   margin-top: 150px;
 }
-  .title-header .title {
-    font-weight: bold;
-    font-size: 65px;
-    color: white;
-    text-align: center;
-  }
 
-  .title-header .subtitle {
-    font-weight: bold;
-    font-size: 40px;
-    color: #fd5927;
-    text-align: center;
-    line-height: 100%;
-  }
+.title-header .title {
+  font-weight: bold;
+  font-size: 65px;
+  color: white;
+  text-align: center;
+}
 
-  .title-header .subdesc {
-    font-size: 25px;
-    color: #848484;
-    text-align: center;
-  }
+.title-header .subtitle {
+  font-weight: bold;
+  font-size: 40px;
+  color: #fd5927;
+  text-align: center;
+  line-height: 100%;
+}
+
+.title-header .subdesc {
+  font-size: 25px;
+  color: #848484;
+  text-align: center;
+}
 
 .about {
-  margin-top: 50px;
+margin-top: 50px;
 }
-  .about .title {
-    font-weight: bold;
-    font-size: 40px;
-    color: white;
-  }
-  .about .subtitle {
-    font-weight: bold;
-    font-size: 25px;
-    color: white;
-    line-height: 100%;
-  }
 
-  .about .subdesc {
+.about .title {
+  font-weight: bold;
+  font-size: 40px;
+  color: white;
+}
+
+.about .subtitle {
+  font-weight: bold;
+  font-size: 25px;
+  color: white;
+  line-height: 100%;
+}
+
+.about .subdesc {
+  font-size: 15px;
+  color: #848484;
+  line-height: 120%;
+  margin-right: 300px;
+}
+
+.my-button {
+    display: flex;
+    justify-content: center;
+}
+
+.my-button .title {
     font-size: 15px;
-    color: #848484;
-    line-height: 120%;
-    margin-right: 300px;
-  }
+    color: #ababab;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    margin: 1px ;
+}
 
-  .my-button {
-      display: flex;
-      justify-content: center;
-  }
-  .my-button .title {
-      font-size: 15px;
-      color: #ababab;
-      float: left;
-      padding: 8px 16px;
-      text-decoration: none;
-      transition: background-color .3s;
-      margin: 1px ;
-  }
-  .my-button li {
-      cursor: pointer;
-      color: #ababab;
-      float: left;
-      padding: 8px 16px;
-      text-decoration: none;
-      border: 1px solid #ddd;
-      margin: 1px ;
-  }
-  .my-button li.active {
-      background-color: ##ababab;
-      color: white;
-      border: 1px solid #4CAF50;
-  }
-  .my-button li:hover:not(.active), .my-button li.current-button {color: #fd5927; border: 1px solid #fd5927;}
+.my-button li {
+    cursor: pointer;
+    color: #ababab;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 1px ;
+}
+
+.my-button li.active {
+    background-color: ##ababab;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+.my-button li:hover:not(.active), 
+.my-button li.current-button {
+  color: #fd5927; 
+  border: 1px solid #fd5927;
+}
+
 .center-pagination {
    text-align: center;
 }
@@ -182,7 +194,7 @@ li {
 .pagination .disabled span,
 .pagination .disabled a,
 .pagination .disabled a:hover {
-  background-color: #141414;
+  background-color: #141414; 
   color: #ababab;
   cursor: default;
 }
@@ -190,16 +202,16 @@ li {
 .pagination li a:hover,
 .pagination li span:focus,
 .pagination li span:hover {
-  background-color: #141414;
+  background-color: #141414; 
   color: #fd5927;
 }
-.pagination .active a,
-.pagination .active a:focus,
-.pagination .active a:hover,
-.pagination .active span,
-.pagination .active span:focus,
-.pagination .active span:hover {
-  background-color: #141414;
+.pagination .active a, 
+.pagination .active a:focus, 
+.pagination .active a:hover, 
+.pagination .active span, 
+.pagination .active span:focus, 
+.pagination .active span:hover { 
+  background-color: #141414; 
   color: #fd5927;
-  border-color: #ababab;
+  border-color: #ababab; 
 }

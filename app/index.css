@@ -215,3 +215,14 @@ margin-top: 50px;
   color: #fd5927;
   border-color: #ababab; 
 }
+
+.context {
+  font-size: 12px;
+}
+.genre {
+  display: inline;
+}
+.editable {
+ -moz-user-modify: read-write;
+ -webkit-user-modify: read-write;
+}

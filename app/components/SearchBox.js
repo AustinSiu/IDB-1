@@ -16,7 +16,6 @@ class SearchBox extends React.Component {
 
     handleChange(event) {
       this.setState({search_entry: event.target.value});
-      console.log(event.target.value)
     }
 
     handleSubmit(event){
@@ -26,7 +25,7 @@ class SearchBox extends React.Component {
       this.setState({ search_entry: ''});
     }
 
-  render(){
+  render() {
     return(
       <div>
         <form onSubmit={this.handleSubmit}>

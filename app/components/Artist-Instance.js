@@ -1,20 +1,36 @@
 var React = require('react');
 var api = require('../api');
 var Link = require('react-router-dom').Link;
+import { FormGroup, FormControl } from 'react-bootstrap';
+
 
 class Artist_Instance extends React.Component {
 
   constructor(props) {
     super();
     this.state = {
-      artist: null
+      artist: null,
+      isEditing: false
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleEdit = this.toggleEdit.bind(this);
+    this.toggleCancel = this.toggleCancel.bind(this);
+    this.toggleSubmit = this.toggleSubmit.bind(this);
+
   }
 
   componentDidMount() {
     this.updateArtist(this.state.artist);
   }
-
+  toggleEdit() {
+    this.setState({isEditing: true});
+  }
+  toggleCancel() {
+    this.setState({isEditing: false});
+  }
+  toggleSubmit() {
+    this.setState({isEditing: false});
+  }
   updateArtist(a){
     var artistID = this.props.match.params.artistID;
 
@@ -35,6 +51,20 @@ class Artist_Instance extends React.Component {
       }.bind(this));
   }
 
+  handleSubmit(event){
+    event.preventDefault();
+    api.editArtist(artistID)
+      .then(function(a) {
+        console.log(a)
+        this.setState(function (){
+          return {
+            artist: a
+          }
+        });
+      }.bind(this));
+
+  }
+
   render() {
     console.log(JSON.stringify(this.state.artist))
     console.log(this.state.artist)
@@ -46,7 +76,31 @@ class Artist_Instance extends React.Component {
       return (
         <div className="container">
 
-          <h1>Artist: {artist.Name}</h1>
+            {!this.state.isEditing
+             ?<div>
+                <button onClick={this.toggleEdit} className="my-button">edit</button>
+                <h1>Artist:{artist.Name}</h1>
+              </div>
+             :<div>
+                  <button onClick={this.toggleCancel} className="my-button">cancel</button>
+                  <br></br>
+                  <button onClick={this.toggleSubmit} className="my-button">submit</button>
+                 <h1>Artist:
+                 <form onSubmit={this.handleSubmit}>
+                <FormGroup
+                  controlId="formBasicText"
+                  >
+                  <FormControl
+                    type="text"
+                    value={this.state.value}
+                    placeholder={artist.Name}
+                  />
+                </FormGroup>
+              </form>
+                </h1>
+              </div>
+          }
+
           <img
             className='img'
             src={artist.Image}
@@ -66,7 +120,7 @@ class Artist_Instance extends React.Component {
             {artist.TopSongs.map(function(song) {
               return (
                 <li key={song.SongID}>
-                  <Link to={'/song-instance/' + song.SongID}> 
+                  <Link to={'/song-instance/' + song.SongID}>
                     <img
                       className='img'
                       src={song.Image}
@@ -84,7 +138,7 @@ class Artist_Instance extends React.Component {
             {artist.Albums.map(function(album) {
               return (
                 <li key={album.AlbumID}>
-                  <Link to={'/album-instance/' + album.AlbumID}> 
+                  <Link to={'/album-instance/' + album.AlbumID}>
                     <img
                       className='img'
                       src={album.Image}
@@ -100,7 +154,7 @@ class Artist_Instance extends React.Component {
             {artist.Tours.map(function(tour) {
               return (
                 <li key={tour.TourID}>
-                  <Link to={'/tour-instance/' + tour.TourID}> 
+                  <Link to={'/tour-instance/' + tour.TourID}>
                     <img
                       className='img'
                       src={tour.Image}
@@ -116,7 +170,7 @@ class Artist_Instance extends React.Component {
             {artist.Songs.map(function(song) {
               return (
                 <li key={song.SongID}>
-                  <Link to={'/song-instance/' + song.SongID}> 
+                  <Link to={'/song-instance/' + song.SongID}>
                     <br/>
                     <img
                       className='img'

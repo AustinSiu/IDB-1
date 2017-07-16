@@ -115,20 +115,20 @@ body{
 </style>
 <body>
     <div class="container" id="advanced-search-form">
-        {% if type == 'song' %}
+        {% if _type == 'song' %}
             <h2>Edit Song</h2>
-        {% elif type == 'tour' %}
+        {% elif _type == 'tour' %}
             <h2>Edit Tour</h2>
-        {% elif type == 'album' %}
+        {% elif _type == 'album' %}
             <h2>Edit Album</h2>
-        {% elif type == 'artist' %}
+        {% elif _type == 'artist' %}
             <h2>Edit Artist</h2>
         {% else %}
-            <h2>There is no such {{ type }} model.</h2>
+            <h2>There is no such {{ _type }} model.</h2>
         {% endif%}
         <form method="post" action="/edit">
             <div class="row">
-                {% if type == 'song' %}
+                {% if _type == 'song' %}
                     <div class="col-sm-12 col-md-4 top-buffer">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" placeholder="Song Name" id="name">
@@ -179,7 +179,7 @@ body{
                           </div>
                         </div>
                     </div>
-                {% elif type == 'tour' %}
+                {% elif _type == 'tour' %}
                     <div class="col-sm-12 col-md-4 top-buffer">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" placeholder="Tour Name" id="name">
@@ -226,7 +226,7 @@ body{
                           </div>
                         </div>
                     </div>
-                {% elif type == 'album' %}
+                {% elif _type == 'album' %}
                     <div class="col-sm-12 col-md-4 top-buffer">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" placeholder="Album Name" id="name">
@@ -273,7 +273,7 @@ body{
                           </div>
                         </div>
                     </div>
-                {% elif type == 'artist' %}
+                {% elif _type == 'artist' %}
                     <div class="col-sm-12 col-md-4 top-buffer">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" placeholder="Album Name" id="name">

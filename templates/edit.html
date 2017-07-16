@@ -126,7 +126,7 @@ body{
         {% else %}
             <h2>There is no such {{ type }} model.</h2>
         {% endif%}
-        <form>
+        <form method="post" action="/edit">
             <div class="row">
                 {% if type == 'song' %}
                     <div class="col-sm-12 col-md-4 top-buffer">
@@ -337,6 +337,7 @@ body{
             </div>
 
             <div class="clearfix"></div>
+            {{ recaptcha }}
             <button type="submit" class="s-btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>Save Changes</button>
         </form>
     </div>

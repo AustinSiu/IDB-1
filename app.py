@@ -7,9 +7,13 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template
 from flask_cors import CORS
+from flask_recaptcha import ReCaptcha
+
 import datetime
 
 app = Flask(__name__)
+recaptcha = ReCaptcha(app=app)
+
 
 # for test purposes, use sqlite:////path/test.db instead
 # a config file is needed
@@ -271,6 +275,15 @@ def edit(type, id):
             request.form['']     # use this to hold form content, delete will a param passed in form
     return redirect(url_for()) # redirect after finishing editing or deleting
 
+@app.route("/edit", methods=["POST"])
+def submit():
+
+    if recaptcha.verify():
+        # SUCCESS
+        pass
+    else:
+        # FAILED
+        pass
 
 @app.route('/add/<string:type>', methods=['GET', 'POST'], strict_slashes=False)
 def add(type):

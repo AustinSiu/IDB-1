@@ -10,9 +10,11 @@ class Artist_Instance extends React.Component {
     super();
     this.state = {
       artist: null,
-      isEditing: false
+      isEditing: false,
+      newName: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleCancel = this.toggleCancel.bind(this);
     this.toggleSubmit = this.toggleSubmit.bind(this);
@@ -22,6 +24,10 @@ class Artist_Instance extends React.Component {
   componentDidMount() {
     this.updateArtist(this.state.artist);
   }
+  handleChange(event) {
+    this.setState({newName: event.target.value});
+    console.log(event.target.value)
+  }
   toggleEdit() {
     this.setState({isEditing: true});
   }
@@ -29,7 +35,24 @@ class Artist_Instance extends React.Component {
     this.setState({isEditing: false});
   }
   toggleSubmit() {
-    this.setState({isEditing: false});
+    this.setState({
+       isEditing: false,
+       artist: {
+          Age: null,
+          Albums: [],
+          ArtistGenre: [],
+          ArtistID: 1,
+          End_Time: 2017,
+          Image: "https://lastfm-img2.akamaized.net/i/u/47de4c71c6ff4824c83ac2b194783f20.png",
+          Name: this.state.newName,
+          Origin: null,
+          Songs: [],
+          Start_Time: 2004,
+          TopSongs: [],
+          Tours: []
+          }
+        });
+
   }
   updateArtist(a){
     var artistID = this.props.match.params.artistID;
@@ -86,14 +109,15 @@ class Artist_Instance extends React.Component {
                   <br></br>
                   <button onClick={this.toggleSubmit} className="my-button">submit</button>
                  <h1>Artist:
-                 <form onSubmit={this.handleSubmit}>
+                 <form>
                 <FormGroup
                   controlId="formBasicText"
                   >
                   <FormControl
                     type="text"
-                    value={this.state.value}
+                    value={this.state.newName}
                     placeholder={artist.Name}
+                    onChange={this.handleChange}
                   />
                 </FormGroup>
               </form>

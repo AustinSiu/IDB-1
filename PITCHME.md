@@ -1,5 +1,4 @@
 # bandbd.me
-<br>
 Made by:
 <br>
 Jonathan Peacher

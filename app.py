@@ -263,11 +263,12 @@ manager.create_api(Songs, methods=['GET'])
 manager.create_api(Albums, methods=['GET'])
 manager.create_api(Genre, methods=['GET'])
 
-@app.route('/edit/<string:type>/<int:id>/', methods=['GET', 'POST'], strict_slashes=False)
-def edit(type, id):
-    return render_template('edit.html', type = type)
-    if request.method == 'POST': # here starts editing or deleting
-        if type == 'song':
+@app.route('/edit/<string:_type>/<int:_id>/', methods=['GET', 'POST'], strict_slashes=False)
+def edit(_type, _id):
+    if request.method == 'GET':
+        return render_template('edit.html', _type = _type)
+    elif request.method == 'POST': # here starts editing or deleting
+        if _type == 'song':
             request.form['']     # use this to hold form content, delete will a param passed in form
     return redirect(url_for()) # redirect after finishing editing or deleting
 
@@ -277,6 +278,22 @@ def add(_type):
     if request.method == 'GET':
         return render_template('add.html', _type=_type)
     elif request.method == 'POST':
+        if _type == 'artist':
+            NewArtist = Artists(name=request.form['name'], image=request.form['img'],
+                            start_time=request.form['start-year'], end_time=request.form['end-year'])
+#            genre
+#            album
+#            tour
+
+            return redirect()
+        elif _type == 'song':
+            pass  
+        elif _type == 'album':
+            pass
+
+        elif _type == 'tour':
+            pass
+
         print(request.form['name'])
         return _type
 

@@ -220,3 +220,14 @@ margin-top: 50px;
   display:inline;
   margin-right:5px;
 }
+
+.context {
+  font-size: 12px;
+}
+.genre {
+  display: inline;
+}
+.editable {
+ -moz-user-modify: read-write;
+ -webkit-user-modify: read-write;
+}

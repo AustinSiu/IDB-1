@@ -130,11 +130,11 @@ class Artist_Instance extends React.Component {
             src={artist.Image}
             alt={'Image for ' + artist.Name}/>
           <ul>
-            <li>Genre(s):
-              <ul>
+            <li>Genre(s): 
+              <ul className='genre'>
                 {artist.ArtistGenre.map(function(genre) {
                   return (
-                    <li key={genre.GID}>{genre.Name}</li>
+                    <li key={genre.GID} className='genre'>{genre.Name}, </li>
                   )
                 })}
               </ul>

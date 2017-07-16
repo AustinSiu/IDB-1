@@ -12,7 +12,7 @@ function ContextSearch(props) {
         if(re.test(value)) {
           var idx = value.toString().search(re);
           context.push (
-            <li key={context.length} >
+            <li key={context.length} className='context' >
               {key + " : "}
               {value.slice(0, idx)}
               <mark> 

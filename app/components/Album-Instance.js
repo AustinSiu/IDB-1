@@ -43,14 +43,13 @@ class Album_Instance extends React.Component {
     else {
       return (
         <div className="container">
-
-          <h1>Album: {album.Title}</h1>
+            <h1>Album: <div className='editable' id='edit-artist'>{album.Title}</div></h1>
           <img
             className='img'
             src={album.Image}
             alt={'Image for ' + album.Title}/>
           <ul>
-            <li>Artist: 
+            <li>Artist:              
               <Link to={'/artist-instance/' + album.artist.ArtistID}>
               {album.artist.Name}
               </Link></li>

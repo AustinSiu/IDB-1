@@ -272,10 +272,13 @@ def edit(type, id):
     return redirect(url_for()) # redirect after finishing editing or deleting
 
 
-@app.route('/add/<string:type>', methods=['GET', 'POST'], strict_slashes=False)
-def add(type):
-    return render_template('add.html', type = type)
-    return redirect(url_for())
+@app.route('/add/<string:_type>', methods=['GET', 'POST'], strict_slashes=False)
+def add(_type):
+    if request.method == 'GET':
+        return render_template('add.html', _type=_type)
+    elif request.method == 'POST':
+        print(request.form['name'])
+        return _type
 
 
 @app.route('/<path:path>')

@@ -67,7 +67,7 @@ class Artist_Instance extends React.Component {
             {artist.TopSongs.map(function(song) {
               return (
                 <li key={song.SongID}>
-                  <Link to={'/song-instance/' + song.SongID}>
+                  <Link to={'/songs/' + song.SongID}>
                     <img
                       className='img'
                       src={song.Image}
@@ -85,7 +85,7 @@ class Artist_Instance extends React.Component {
             {artist.Albums.map(function(album) {
               return (
                 <li key={album.AlbumID}>
-                  <Link to={'/album-instance/' + album.AlbumID}>
+                  <Link to={'/albums/' + album.AlbumID}>
                     <img
                       className='img'
                       src={album.Image}
@@ -101,7 +101,7 @@ class Artist_Instance extends React.Component {
             {artist.Tours.map(function(tour) {
               return (
                 <li key={tour.TourID}>
-                  <Link to={'/tour-instance/' + tour.TourID}>
+                  <Link to={'/tours/' + tour.TourID}>
                     <img
                       className='img'
                       src={tour.Image}
@@ -117,7 +117,7 @@ class Artist_Instance extends React.Component {
             {artist.Songs.map(function(song) {
               return (
                 <li key={song.SongID}>
-                  <Link to={'/song-instance/' + song.SongID}>
+                  <Link to={'/songs/' + song.SongID}>
                     <br/>
                     <img
                       className='img'

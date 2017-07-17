@@ -57,7 +57,7 @@ class Tour_Instance extends React.Component {
             <li>Tour Dates: {tour.tDate} </li>
             <li>
               <h3>Artist: </h3>
-              <Link to={'/artist-instance/' + tour.artist.ArtistID}>
+              <Link to={'/artists/' + tour.artist.ArtistID}>
                 <img
                   className='img'
                   src={tour.artist.Image}

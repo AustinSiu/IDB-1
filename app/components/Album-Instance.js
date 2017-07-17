@@ -51,7 +51,7 @@ class Album_Instance extends React.Component {
             alt={'Image for ' + album.Title}/>
           <ul>
             <li>Artist:
-              <Link to={'/artist-instance/' + album.artist.ArtistID}>
+              <Link to={'/artists/' + album.artist.ArtistID}>
               {album.artist.Name}
               </Link></li>
             <li>Release Date: {album.Year}</li>
@@ -61,7 +61,7 @@ class Album_Instance extends React.Component {
             {album.Songs.map(function(song) {
               return (
                 <li key={song.SongID}>
-                  <Link to={'/song-instance/' + song.SongID}>
+                  <Link to={'/songs/' + song.SongID}>
                     <br/>
                     <img
                       className='img'

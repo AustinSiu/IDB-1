@@ -3,7 +3,7 @@ Doc.
 
 Doc.
 """
-from flask import Flask, redirect
+from flask import Flask, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template
 from flask_cors import CORS
@@ -17,7 +17,7 @@ recaptcha = ReCaptcha(app=app)
 
 # for test purposes, use sqlite:////path/test.db instead
 # a config file is needed
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/banddb"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/banddb2"
 
 CORS(app, headers=['Content-Type'])
 
@@ -252,21 +252,6 @@ class Labels(db.Model):
         return self.Name
 
 
-import flask.ext.sqlalchemy
-import flask.ext.restless
-from flask import request, redirect, url_for
-from dbFunctions import dbQuery
-
-# Create the Flask-Restless API manager.
-manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
-
-# Create API endpoints, which will be available at /api/<tablename> by
-# default. Allowed HTTP methods can be specified as well.
-manager.create_api(Artists, methods=['GET'])
-manager.create_api(Songs, methods=['GET'])
-manager.create_api(Albums, methods=['GET'])
-manager.create_api(Genre, methods=['GET'])
-
 
 # utility functions
 def getDate(s, f="%d %b %Y, %H:%M"):
@@ -323,7 +308,7 @@ def edit(_type, _id):
                     artist.ArtistGenre.append(artistGenre)
 
                 db.session.commit()
-                return redirect("/artist-instance/{0}".format(artist.ArtistID))
+                return redirect(url_for('index') + "/artist-instance/{0}".format(artist.ArtistID))
         elif _type == 'song':
             song = Songs.query.filter(Songs.SongID == _id).first()
             if request.form.get('delete'):
@@ -352,7 +337,7 @@ def edit(_type, _id):
                 new_album = Albums.query.filter(Albums.AlbumID == request.form['album']).first()
                 new_album.Songs.append(song)
                 db.session.commit()
-                return redirect("/song-instance/{0}".format(song.SongID))
+                return redirect(url_for('index') + "/song-instance/{0}".format(song.SongID))
         elif _type == 'album':
             album = Albums.query.filter(Albums.AlbumID == _id).first()
             if request.form['delete'] == 1:
@@ -369,7 +354,7 @@ def edit(_type, _id):
                 new_artist = Artists.query.filter(Artists.ArtistID == request.form['artist']).first()
                 new_artist.Albums.append(album)
                 db.commit()
-                return redirect("/album-instance/{0}".format(album.AlbumID))
+                return redirect(url_for('index') + "/album-instance/{0}".format(album.AlbumID))
         elif _type == 'tour':
             tour = Tours.query.filter(Tous.TourID == _id).first()
             if request.form['delete'] == 1:
@@ -391,7 +376,7 @@ def edit(_type, _id):
                 new_artist = Artists.query.filter(Artists.ArtistID == request.form['artist']).first()
                 new_artist.Tours.append(tour)
                 db.commit()
-                return redirect("/tour-instance/{0}".format(tour.TourID))
+                return redirect(url_for('index') + "/tour-instance/{0}".format(tour.TourID))
 # redirect after finishing editing or deleting
 
 #request POST
@@ -433,14 +418,14 @@ def add(_type):
 # -----------------------
 # check redirection later
 # -----------------------
-            return redirect("/artist-instance/{0}".format(NewArtist.ArtistID))
+            return redirect(url_for('index') + "/artist-instance/{0}/".format(NewArtist.ArtistID))
         elif _type == 'song':
             print("SONG")
             NewSong = NewSong = Songs(name=request.form['name'],
-                creation_date=getDate(request.form['release-date']),
-                run_time=getRunTime(request.form['run-time']),
-                image=request.form['img'],
-                chart_position=request.form['chart-position'])
+                creation_date = getDate(request.form['release-date']),
+                run_time = request.form['run-time'],
+                image = request.form['img'],
+                chart_position = request.form['chart-position'])
             print('Cteated new song')
 #           genre
             for gid in request.form.getlist('genres'):
@@ -462,7 +447,7 @@ def add(_type):
 
             db.session.add(NewSong)
             db.session.commit()
-            return redirect("/song-instance/{0}".format(NewSong.SongID))
+            return redirect(url_for('index') + "/song-instance/{0}".format(NewSong.SongID))
         elif _type == 'album':
             NewAlbum = Albums(title=request.form['name'],
                 year=getDate(request.form['dates']),
@@ -482,7 +467,7 @@ def add(_type):
 
             db.session.add(NewAlbum)
             db.session.commit()
-            return redirect("/album-instance/{0}".format(NewAlbum.AlbumID))
+            return redirect(url_for('index') + "/album-instance/{0}".format(NewAlbum.AlbumID))
         elif _type == 'tour':
             NewTour = Tours(date=request.form['dates'],
                             name=request.form['name'],
@@ -502,7 +487,7 @@ def add(_type):
 
             db.session.add(NewTour)
             db.session.commit()
-            return redirect("/tour-instance/{0}".format(NewTour.TourID))
+            return redirect(url_for('index') + "/tour-instance/{0}".format(NewTour.TourID))
 
 
 @app.route('/<path:path>')
@@ -511,7 +496,6 @@ def all_other(path):
 
 
 @app.route('/')
-@app.route('/index')
 def index():
     """
     Doc.
@@ -528,6 +512,24 @@ def page_not_found(e):
 
 
 # INFO
+
+
+import flask.ext.sqlalchemy
+import flask.ext.restless
+from flask import request, redirect, url_for
+from dbFunctions import dbQuery
+
+# Create the Flask-Restless API manager.
+manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
+
+# Create API endpoints, which will be available at /api/<tablename> by
+# default. Allowed HTTP methods can be specified as well.
+manager.create_api(Artists, methods=['GET'])
+manager.create_api(Songs, methods=['GET'])
+manager.create_api(Albums, methods=['GET'])
+manager.create_api(Genre, methods=['GET'])
+
+
 
 
 app.run(debug=True)

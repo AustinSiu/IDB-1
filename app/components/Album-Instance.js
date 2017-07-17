@@ -51,8 +51,8 @@ class Album_Instance extends React.Component {
             alt={'Image for ' + album.Title}/>
           <ul>
             <li>Artist:
-              {!album.artist.ArtistID
-                ? <div>{album.artist.Name}</div>
+              {!album.artist
+                ? <div></div>
                 : <div>
                   <Link to={'/artists/' + album.artist.ArtistID}>
                   {album.artist.Name}

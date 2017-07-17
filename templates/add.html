@@ -131,26 +131,26 @@ body{
                 {% if _type == 'song' %}
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" placeholder="Song Name" name="name">
+                        <input type="text" required="true" class="form-control" placeholder="Song Name" name="name">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="img">Image</label>
                         <label for="img">(URL)</label>
-                        <input type="text" class="form-control" placeholder="Song Image" name="img">
+                        <input type="text" required="true" class="form-control" placeholder="Song Image" name="img">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="release-date">Release Date</label>
-                        <label for="release-date">(Format: DD MM YYYY, HH:MM)</label>
-                        <input type="text" class="form-control" placeholder="Song Release Date" name="release-date">
+                        <label for="release-date">(Format: DD MM YYYY, HH:MM) Ex: 29 Dec 2008, 15:54</label>
+                        <input type="text" required="true" class="form-control" placeholder="Song Release Date" name="release-date">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="run-time">Run Time</label>
                         <label for="run-time">(In seconds)</label>
-                        <input type="number" min="0" class="form-control" placeholder="Song Run Time" name="run-time">
+                        <input type="number" required="true" min="0" class="form-control" placeholder="Song Run Time" name="run-time">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="chart-position">Chart Position</label>
-                        <input type="number" min="0" class="form-control" placeholder="Song Chart Position" name="chart-position">
+                        <input type="number" required="true" min="0" class="form-control" placeholder="Song Chart Position" name="chart-position">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="genre">Genre</label>
@@ -219,16 +219,16 @@ body{
                 {% elif _type == 'album' %}
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" placeholder="Album Name" name="name">
+                        <input type="text" required="true"  class="form-control" placeholder="Album Name" name="name">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="img">Image (URL)</label>
-                        <input type="text" class="form-control" placeholder="Album Image" name="img">
+                        <input type="text" required="true"  class="form-control" placeholder="Album Image" name="img">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="release-date">Release Date</label>
-                        <label for="release-date">(Format: DD MM YYYY, HH:MM)</label>
-                        <input type="text" class="form-control" placeholder="Album Release Date" name="dates">
+                        <label for="release-date">(Format: DD MM YYYY, HH:MM) Ex: 29 Dec 2008, 15:54</label>
+                        <input type="text" required="true" class="form-control" placeholder="Album Release Date" name="dates">
                     </div>
                     <!-- <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="label">Label</label>
@@ -236,7 +236,7 @@ body{
                     </div> -->
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="chart-position">Chart Position</label>
-                        <input type="number" min="0" class="form-control" placeholder="Album Chart Position" name="chart-position">
+                        <input type="number" required="true"  min="0" class="form-control" placeholder="Album Chart Position" name="chart-position">
                     </div>
                     <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="select-artist">Select Artist</label>

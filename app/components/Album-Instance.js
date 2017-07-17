@@ -43,13 +43,14 @@ class Album_Instance extends React.Component {
     else {
       return (
         <div className="container">
+          <Link to={'/edit/album/' + album.AlbumID}><button>Edit</button></Link>
             <h1>Album: <div className='editable' id='edit-artist'>{album.Title}</div></h1>
           <img
             className='img'
             src={album.Image}
             alt={'Image for ' + album.Title}/>
           <ul>
-            <li>Artist:              
+            <li>Artist:
               <Link to={'/artist-instance/' + album.artist.ArtistID}>
               {album.artist.Name}
               </Link></li>
@@ -60,7 +61,7 @@ class Album_Instance extends React.Component {
             {album.Songs.map(function(song) {
               return (
                 <li key={song.SongID}>
-                  <Link to={'/song-instance/' + song.SongID}> 
+                  <Link to={'/song-instance/' + song.SongID}>
                     <br/>
                     <img
                       className='img'

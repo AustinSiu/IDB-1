@@ -117,12 +117,16 @@ body{
     <div class="container" id="advanced-search-form">
         {% if _type == 'song' %}
             <h2>Edit Song</h2>
+            <img src = "{{ info.Image }}" style="max-width: 400px;">
         {% elif _type == 'tour' %}
             <h2>Edit Tour</h2>
+            <img src = "{{ info.Image }}" style="max-width: 400px;">
         {% elif _type == 'album' %}
             <h2>Edit Album</h2>
+            <img src = "{{ info.Image }}" style="max-width: 400px;">
         {% elif _type == 'artist' %}
             <h2>Edit Artist</h2>
+            <img src = "{{ info.Image }}" style="max-width: 400px;">
         {% else %}
             <h2>There is no such {{ _type }} model.</h2>
         {% endif%}
@@ -131,7 +135,7 @@ body{
                 {% if _type == 'song' %}
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="name">Name</label>
-                        <input disabled type="text" class="form-control" placeholder="Song Name" name="name" value={{info['Name']}}>
+                        <input disabled type="text" class="form-control" placeholder="Song Name" name="name" value="{{info['Name']}}">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="img">Image</label>

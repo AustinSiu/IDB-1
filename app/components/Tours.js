@@ -215,7 +215,7 @@ class Tours extends React.Component {
         <SelectSort
         currentSort={this.state.currentSort}
         onSelect= {this.updateSort}/>
-        <a href="http://banddb.me/add/tour"><button>Add</button></a>
+      <a href="/add/tour"><button>Add</button></a>
 
         {!this.state.tours
           ? <p>LOADING</p>

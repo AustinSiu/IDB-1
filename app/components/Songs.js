@@ -159,7 +159,7 @@ class Albums extends React.Component {
         <SelectSort
         currentSort={this.state.currentSort}
         onSelect= {this.updateSort}/>
-      <a href="http://banddb.me/add/song"><button>Add</button></a>
+      <a href="/add/song"><button>Add</button></a>
 
         {!this.state.songs
           ? <p>LOADING</p>

@@ -39,13 +39,14 @@ class Artist_Instance extends React.Component {
     console.log(JSON.stringify(this.state.artist))
     console.log(this.state.artist)
     const { artist } = this.state;
+    const {artistIdUrl} = "/edit/artist/"+"{artist.ArtistID}";
     if(!artist) {
       return <p>LOADING!</p>
     }
     else {
       return (
         <div className="container">
-
+          <Link to={'/edit/artist/' + artist.ArtistID}><button>Edit</button></Link>
           <h1>Artist: {artist.Name}</h1>
           <img
             className='img'

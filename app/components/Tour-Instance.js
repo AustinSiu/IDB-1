@@ -44,7 +44,7 @@ class Tour_Instance extends React.Component {
     else {
       return (
         <div className="container">
-
+          <Link to={'/edit/tour/' + tour.TourID}><button>Edit</button></Link>
           <h1>Tour: {tour.Name}</h1>
           <img
             className='img'
@@ -57,7 +57,7 @@ class Tour_Instance extends React.Component {
             <li>Tour Dates: {tour.tDate} </li>
             <li>
               <h3>Artist: </h3>
-              <Link to={'/artist-instance/' + tour.artist.ArtistID}> 
+              <Link to={'/artist-instance/' + tour.artist.ArtistID}>
                 <img
                   className='img'
                   src={tour.artist.Image}

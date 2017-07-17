@@ -544,7 +544,7 @@ manager.create_api(Artists, methods=['GET'])
 manager.create_api(Songs, methods=['GET'])
 manager.create_api(Albums, methods=['GET'])
 manager.create_api(Genre, methods=['GET'])
-
+manager.create_api(Tours, methods=['GET'])
 
 
 

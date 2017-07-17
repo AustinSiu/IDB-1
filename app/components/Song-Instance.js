@@ -59,25 +59,34 @@ class Song_Instance extends React.Component {
             <li>Peak U.S. Chart Position: {song.Chart_Position} </li>
             <li>
               <h3>Artist: </h3>
-              <Link to={'/artists/' + song.artist.ArtistID}>
-                <img
-                  className='img'
-                  src={song.artist.Image}
-                  alt={'Image for ' + song.artist.Name}/>
-                <br/>
-                {song.artist.Name}
-              </Link>
+              {!song.artist.ArtistID
+                ? <div>{song.artist.Name}</div>
+                : <div>
+                  <Link to={'/artists/' + song.artist.ArtistID}>
+                    <img
+                      className='img'
+                      src={song.artist.Image}
+                      alt={'Image for ' + song.artist.Name}/>
+                    <br/>
+                    {song.artist.Name}
+                  </Link>
+                  </div>}
             </li>
             <li>
               <h3>Album: </h3>
-              <Link to={'/albums/' + song.album.AlbumID}>
-                <img
-                  className='img'
-                  src={song.album.Image}
-                  alt={'Image for ' + song.album.Title}/>
-                <br/>
-                {song.album.Title}
-              </Link>
+              {!song.album.AlbumID
+                ? <div>{song.album.Title}</div>
+                : <div>
+                  <Link to={'/albums/' + song.album.AlbumID}>
+                    <img
+                      className='img'
+                      src={song.album.Image}
+                      alt={'Image for ' + song.album.Title}/>
+                    <br/>
+                    {song.album.Title}
+                  </Link>                  
+                  </div>}
+
             </li>
           </ul>
 

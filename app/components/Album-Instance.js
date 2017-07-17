@@ -51,27 +51,34 @@ class Album_Instance extends React.Component {
             alt={'Image for ' + album.Title}/>
           <ul>
             <li>Artist:
-              <Link to={'/artists/' + album.artist.ArtistID}>
-              {album.artist.Name}
-              </Link></li>
+              {!album.artist.ArtistID
+                ? <div>{album.artist.Name}</div>
+                : <div>
+                  <Link to={'/artists/' + album.artist.ArtistID}>
+                  {album.artist.Name}
+                  </Link>
+                  </div>}
+            </li>
             <li>Release Date: {album.Year}</li>
             <li>Peak U.S. Chart Position: {album.US_Chart_Postion}</li>
             {/* <li>Label: {album.label}</li> */}
             <h3>Songs:</h3>
             {album.Songs.map(function(song) {
-              return (
-                <li key={song.SongID}>
-                  <Link to={'/songs/' + song.SongID}>
-                    <br/>
-                    <img
-                      className='img'
-                      src={song.Image}
-                      alt={'Image for ' + song.Name}/>
-                    <br/>
-                    {song.Name}
-                  </Link>
-                </li>
-              )
+              if (song.SongID) {
+                return (
+                  <li key={song.SongID}>
+                    <Link to={'/songs/' + song.SongID}>
+                      <br/>
+                      <img
+                        className='img'
+                        src={song.Image}
+                        alt={'Image for ' + song.Name}/>
+                      <br/>
+                      {song.Name}
+                    </Link>
+                  </li>
+                )
+              }
             })}
           </ul>
 

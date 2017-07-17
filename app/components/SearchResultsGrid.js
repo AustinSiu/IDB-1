@@ -9,7 +9,7 @@ function ContextSearch(props) {
   for(var i = 0; i < searchString.length; i++) {
     var re = new RegExp(searchString[i], 'i');
     JSON.parse(JSON.stringify(props.data), (key, value) => {
-        if(re.test(value)) {
+        if(re.test(value) && key !== 'Image') {
           var idx = value.toString().search(re);
           context.push (
             <li key={context.length} className='context' >
@@ -50,24 +50,26 @@ function SearchResultsGrid(props) {
                 : (instance.ArtistID) ? instance.ArtistID  
                 : null;
         var name = (instance.Name) ? instance.Name : instance.Title;
-        return (
-          <li key={id} className='data-item'>
-            <ul className='data-list-items'>
-              <Link to={'/' + module + '/' + id}>
-                <li>
-                  <img
-                    className='img'
-                    src={instance.Image}
-                    alt={'Image for ' + name}/>
-                </li>
-                <li>{name}</li>
-                <br/>
-                <ContextSearch  data = {instance}
-                                searchString = {searchString} />
-              </Link>
-            </ul>
-          </li>
-        )
+        if (id && name) {
+          return (
+            <li key={id} className='data-item'>
+              <ul className='data-list-items'>
+                <Link to={'/' + module + '/' + id}>
+                  <li>
+                    <img
+                      className='img'
+                      src={instance.Image}
+                      alt={'Image for ' + name}/>
+                  </li>
+                  <li>{name}</li>
+                  <br/>
+                  <ContextSearch  data = {instance}
+                                  searchString = {searchString} />
+                </Link>
+              </ul>
+            </li>
+          )
+        }
       })}
     </ul>
   )

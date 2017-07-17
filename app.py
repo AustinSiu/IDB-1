@@ -273,6 +273,18 @@ def edit(_type, _id):
             artists = Artists.query.filter(Artists.ArtistID == _id).first()
             artists.ArtistGenre
             info = artists.__dict__
+            song_list = []
+            for s in artists.Songs:
+                song_list.append(tuple(s.Name, s.SongID))
+            info['SongList'] = song_list
+            album_list = []
+            for al in artists.Albums:
+                album_list.append(tuple(al.Title, al.AlbumID))
+            info['AlbumList'] = album_list
+            tour_list = []
+            for t in artists.Tours:
+                tour_list.append(tuple(t.Name, t.TourID))
+            info['TourList'] = tour_list
             info['ArtistGenre'] = [(a.Name, a.GID) for a in info['ArtistGenre']]
         elif _type == "song":
             songs = Songs.query.filter(Songs.SongID == _id).first()
@@ -528,11 +540,11 @@ manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
 
 # Create API endpoints, which will be available at /api/<tablename> by
 # default. Allowed HTTP methods can be specified as well.
-manager.create_api(Artists, methods=['GET'])
-manager.create_api(Songs, methods=['GET'])
-manager.create_api(Albums, methods=['GET'])
-manager.create_api(Genre, methods=['GET'])
-
+manager.create_api(Artists, methods=['GET'], results_per_page=12)
+manager.create_api(Songs, methods=['GET'], results_per_page=12)
+manager.create_api(Albums, methods=['GET'], results_per_page=12)
+manager.create_api(Genre, methods=['GET'], results_per_page=12)
+manager.create_api(Tours, methods=['GET'], results_per_page=12)
 
 
 

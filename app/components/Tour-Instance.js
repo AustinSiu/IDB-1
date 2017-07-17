@@ -44,7 +44,7 @@ class Tour_Instance extends React.Component {
     else {
       return (
         <div className="container">
-          <Link to={'/edit/tour/' + tour.TourID}><button>Edit</button></Link>
+          <a href={'http://127.0.0.1:5000/edit/tour' + '/' + tour.TourID}><button>Edit</button></a>
           <h1>Tour: {tour.Name}</h1>
           <img
             className='img'

@@ -310,7 +310,7 @@ def edit(_type, _id):
                     artist.ArtistGenre.append(artistGenre)
 
                 db.session.commit()
-                return redirect(url_for('index') + "/artist-instance/{0}".format(artist.ArtistID))
+                return redirect(url_for('/index') + "/artist-instance/{0}".format(artist.ArtistID))
         elif _type == 'song':
             song = Songs.query.filter(Songs.SongID == _id).first()
             if request.form.get('delete'):
@@ -420,7 +420,7 @@ def add(_type):
 # -----------------------
 # check redirection later
 # -----------------------
-            return redirect(url_for('index') + "/artist-instance/{0}/".format(NewArtist.ArtistID))
+            return redirect("http://127.0.0.1:5000/artists/{0}/".format(NewArtist.ArtistID))
         elif _type == 'song':
             print("SONG")
             NewSong = NewSong = Songs(name=request.form['name'],
@@ -449,7 +449,7 @@ def add(_type):
 
             db.session.add(NewSong)
             db.session.commit()
-            return redirect(url_for('index') + "/song-instance/{0}".format(NewSong.SongID))
+            return redirect("http://127.0.0.1:5000/songs/{0}".format(NewSong.SongID))
         elif _type == 'album':
             NewAlbum = Albums(title=request.form['name'],
                 year=getDate(request.form['dates']),
@@ -469,7 +469,7 @@ def add(_type):
 
             db.session.add(NewAlbum)
             db.session.commit()
-            return redirect(url_for('index') + "/album-instance/{0}".format(NewAlbum.AlbumID))
+            return redirect("http://127.0.0.1:5000/albums/{0}".format(NewAlbum.AlbumID))
         elif _type == 'tour':
             NewTour = Tours(date=request.form['dates'],
                             name=request.form['name'],
@@ -489,11 +489,13 @@ def add(_type):
 
             db.session.add(NewTour)
             db.session.commit()
-            return redirect(url_for('index') + "/tour-instance/{0}".format(NewTour.TourID))
+            return redirect("http://127.0.0.1:5000/tours/{0}".format(NewTour.TourID))
 
 
+@app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def all_other(path):
+    print('You want path: %s' % path)
     return render_template('index.html')
 
 

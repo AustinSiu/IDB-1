@@ -45,7 +45,7 @@ class Song_Instance extends React.Component {
     else {
       return (
         <div className="container">
-          <Link to={'/edit/song/' + song.SongID}><button>Edit</button></Link>
+          <a href={'http://127.0.0.1:5000/edit/song' + '/' + song.SongID}><button>Edit</button></a>
           <h1>Song: {song.Name}</h1>
           <img
             className='img'

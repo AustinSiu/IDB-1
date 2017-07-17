@@ -342,8 +342,9 @@ body{
             </div>
 
             <div class="clearfix"></div>
-            {{ recaptcha }}
-            <div class="checkbox">
+            <script src='//www.google.com/recaptcha/api.js'></script>
+            <div class="g-recaptcha top-buffer" data-sitekey="6Let5SgUAAAAADOF-hAru-JurTkgEI8Heb6evOcL" data-theme="light" data-type="image" data-size="normal" data-tabindex="0"></div>
+            <div class="checkbox top-buffer">
               <label><input type="checkbox" value="1" id="delete" name="delete"> Delete?</label>
             </div>
             <button type="submit" class="s-btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>Save Changes</button>

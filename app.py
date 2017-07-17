@@ -12,7 +12,7 @@ from flask_recaptcha import ReCaptcha
 import datetime
 
 app = Flask(__name__)
-recaptcha = ReCaptcha(app=app)
+recaptcha = ReCaptcha(app=app, site_key='6Let5SgUAAAAADOF-hAru-JurTkgEI8Heb6evOcL', secret_key='6Let5SgUAAAAAKrafblaBR2gED50MPLlFFTclfn0')
 
 
 # for test purposes, use sqlite:////path/test.db instead
@@ -287,8 +287,10 @@ def edit(_type, _id):
             info = tours.__dict__
         print(info)
         return render_template('edit.html', _type = _type, _id = _id, info=info, artists=artists, songs=songs, albums=albums, tours=tours,
-                                genre=genre)
+                                genre=genre, recaptcha=recaptcha)
     elif request.method == 'POST': # here starts editing or deleting
+        if not recaptcha.verify():
+            return
         if _type == 'artist':
             artist = Artists.query.filter(Artists.ArtistID == _id).first()
             if request.form.get('delete'):
@@ -392,7 +394,7 @@ def add(_type):
         tours   = [tuple((t.Name, t.TourID)) for t in Tours.query.all()]
         genre   = [tuple((g.Name, g.GID)) for g in Genre.query.all()]
         return render_template('add.html', _type=_type, artists=artists, songs=songs, albums=albums, tours=tours,
-                                genre=genre)
+                                genre=genre, recaptcha=recaptcha)
     elif request.method == 'POST':
         if _type == 'artist':
             NewArtist = Artists(name=request.form['name'],

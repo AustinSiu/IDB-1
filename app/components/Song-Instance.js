@@ -59,7 +59,7 @@ class Song_Instance extends React.Component {
             <li>Peak U.S. Chart Position: {song.Chart_Position} </li>
             <li>
               <h3>Artist: </h3>
-              <Link to={'/artist-instance/' + song.artist.ArtistID}>
+              <Link to={'/artists/' + song.artist.ArtistID}>
                 <img
                   className='img'
                   src={song.artist.Image}
@@ -70,7 +70,7 @@ class Song_Instance extends React.Component {
             </li>
             <li>
               <h3>Album: </h3>
-              <Link to={'/album-instance/' + song.album.AlbumID}>
+              <Link to={'/albums/' + song.album.AlbumID}>
                 <img
                   className='img'
                   src={song.album.Image}

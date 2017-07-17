@@ -181,7 +181,7 @@ class Tours(db.Model):
 
 #   Artist-tour is a one-to-many relationship
     ArtistID = db.Column(db.Integer, db.ForeignKey(
-        "artists.ArtistID"), nullable=False)
+        "artists.ArtistID"), nullable=True)
 #   Tour-tour_line_up is a many to many relationship
     TourLineUp = db.relationship('Songs', secondary=TourLineUp, backref=db.backref(
         'tour', lazy='dynamic'))

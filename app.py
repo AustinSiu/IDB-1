@@ -194,7 +194,7 @@ class Tours(db.Model):
 
 #   Artist-tour is a one-to-many relationship
     ArtistID = db.Column(db.Integer, db.ForeignKey(
-        "artists.ArtistID"), nullable=False)
+        "artists.ArtistID"), nullable=True)
 #   Tour-tour_line_up is a many to many relationship
     TourLineUp = db.relationship('Songs', secondary=TourLineUp, backref=db.backref(
         'tour', lazy='dynamic'))
@@ -310,7 +310,7 @@ def edit(_type, _id):
                     artist.ArtistGenre.append(artistGenre)
 
                 db.session.commit()
-                return redirect(url_for('/index') + "/artist-instance/{0}".format(artist.ArtistID))
+                return redirect("http://127.0.0.1:5000/artists/{0}".format(artist.ArtistID))
         elif _type == 'song':
             song = Songs.query.filter(Songs.SongID == _id).first()
             if request.form.get('delete'):
@@ -339,7 +339,7 @@ def edit(_type, _id):
                 new_album = Albums.query.filter(Albums.AlbumID == request.form['album']).first()
                 new_album.Songs.append(song)
                 db.session.commit()
-                return redirect(url_for('index') + "/song-instance/{0}".format(song.SongID))
+                return redirect("http://127.0.0.1:5000/songs/{0}".format(song.SongID))
         elif _type == 'album':
             album = Albums.query.filter(Albums.AlbumID == _id).first()
             if request.form['delete'] == 1:
@@ -356,7 +356,7 @@ def edit(_type, _id):
                 new_artist = Artists.query.filter(Artists.ArtistID == request.form['artist']).first()
                 new_artist.Albums.append(album)
                 db.commit()
-                return redirect(url_for('index') + "/album-instance/{0}".format(album.AlbumID))
+                return redirect("http://127.0.0.1:5000/albums/{0}".format(album.AlbumID))
         elif _type == 'tour':
             tour = Tours.query.filter(Tous.TourID == _id).first()
             if request.form['delete'] == 1:
@@ -378,7 +378,7 @@ def edit(_type, _id):
                 new_artist = Artists.query.filter(Artists.ArtistID == request.form['artist']).first()
                 new_artist.Tours.append(tour)
                 db.commit()
-                return redirect(url_for('index') + "/tour-instance/{0}".format(tour.TourID))
+                return redirect("http://127.0.0.1:5000/tours/{0}".format(tour.TourID))
 # redirect after finishing editing or deleting
 
 #request POST

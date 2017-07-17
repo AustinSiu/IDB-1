@@ -8248,31 +8248,33 @@ function Grid(props) {
     props.data.map(function (instance) {
       var id = instance.SongID ? instance.SongID : instance.AlbumID ? instance.AlbumID : instance.TourID ? instance.TourID : instance.ArtistID ? instance.ArtistID : null;
       var name = instance.Name ? instance.Name : instance.Title;
-      return React.createElement(
-        'li',
-        { key: id, className: 'data-item' },
-        React.createElement(
-          'ul',
-          { className: 'data-list-items' },
+      if (id && name) {
+        return React.createElement(
+          'li',
+          { key: id, className: 'data-item' },
           React.createElement(
-            Link,
-            { to: '/' + module + '/' + id },
+            'ul',
+            { className: 'data-list-items' },
             React.createElement(
-              'li',
-              null,
-              React.createElement('img', {
-                className: 'img',
-                src: instance.Image,
-                alt: 'Image for ' + name })
-            ),
-            React.createElement(
-              'li',
-              null,
-              name
+              Link,
+              { to: '/' + module + '/' + id },
+              React.createElement(
+                'li',
+                null,
+                React.createElement('img', {
+                  className: 'img',
+                  src: instance.Image,
+                  alt: 'Image for ' + name })
+              ),
+              React.createElement(
+                'li',
+                null,
+                name
+              )
             )
           )
-        )
-      );
+        );
+      }
     })
   );
 }
@@ -50226,8 +50228,8 @@ var Artist_Instance = function (_React$Component) {
           'div',
           { className: 'container' },
           React.createElement(
-            Link,
-            { to: '/edit/artist/' + artist.ArtistID },
+            'a',
+            { href: 'http://127.0.0.1:5000/edit/artist' + '/' + artist.ArtistID },
             React.createElement(
               'button',
               null,
@@ -50280,28 +50282,30 @@ var Artist_Instance = function (_React$Component) {
               'Top Songs:'
             ),
             artist.TopSongs.map(function (song) {
-              return React.createElement(
-                'li',
-                { key: song.SongID },
-                React.createElement(
-                  Link,
-                  { to: '/songs/' + song.SongID },
-                  React.createElement('img', {
-                    className: 'img',
-                    src: song.Image,
-                    alt: 'Image for ' + song.Name }),
+              if (song.SongID) {
+                return React.createElement(
+                  'li',
+                  { key: song.SongID },
+                  React.createElement(
+                    Link,
+                    { to: '/songs/' + song.SongID },
+                    React.createElement('img', {
+                      className: 'img',
+                      src: song.Image,
+                      alt: 'Image for ' + song.Name }),
+                    React.createElement('br', null),
+                    song.Name,
+                    React.createElement('br', null)
+                  ),
+                  'Peak Chart Position: ',
+                  song.Chart_Position,
+                  ' ',
                   React.createElement('br', null),
-                  song.Name,
-                  React.createElement('br', null)
-                ),
-                'Peak Chart Position: ',
-                song.Chart_Position,
-                ' ',
-                React.createElement('br', null),
-                'Release Date: ',
-                song.Creation_Date,
-                React.createElement('p', null)
-              );
+                  'Release Date: ',
+                  song.Creation_Date,
+                  React.createElement('p', null)
+                );
+              }
             }),
             React.createElement(
               'h3',
@@ -50309,22 +50313,24 @@ var Artist_Instance = function (_React$Component) {
               'Albums:'
             ),
             artist.Albums.map(function (album) {
-              return React.createElement(
-                'li',
-                { key: album.AlbumID },
-                React.createElement(
-                  Link,
-                  { to: '/albums/' + album.AlbumID },
-                  React.createElement('img', {
-                    className: 'img',
-                    src: album.Image,
-                    alt: 'Image for ' + album.Title }),
-                  React.createElement('br', null),
-                  album.Title,
-                  React.createElement('br', null)
-                ),
-                React.createElement('p', null)
-              );
+              if (album.AlbumID) {
+                return React.createElement(
+                  'li',
+                  { key: album.AlbumID },
+                  React.createElement(
+                    Link,
+                    { to: '/albums/' + album.AlbumID },
+                    React.createElement('img', {
+                      className: 'img',
+                      src: album.Image,
+                      alt: 'Image for ' + album.Title }),
+                    React.createElement('br', null),
+                    album.Title,
+                    React.createElement('br', null)
+                  ),
+                  React.createElement('p', null)
+                );
+              }
             }),
             React.createElement(
               'h3',
@@ -50332,22 +50338,24 @@ var Artist_Instance = function (_React$Component) {
               'Tours:'
             ),
             artist.Tours.map(function (tour) {
-              return React.createElement(
-                'li',
-                { key: tour.TourID },
-                React.createElement(
-                  Link,
-                  { to: '/tours/' + tour.TourID },
-                  React.createElement('img', {
-                    className: 'img',
-                    src: tour.Image,
-                    alt: 'Image for ' + tour.Name }),
-                  React.createElement('br', null),
-                  tour.Name,
-                  React.createElement('br', null)
-                ),
-                tour.tDate
-              );
+              if (tour.TourID) {
+                return React.createElement(
+                  'li',
+                  { key: tour.TourID },
+                  React.createElement(
+                    Link,
+                    { to: '/tours/' + tour.TourID },
+                    React.createElement('img', {
+                      className: 'img',
+                      src: tour.Image,
+                      alt: 'Image for ' + tour.Name }),
+                    React.createElement('br', null),
+                    tour.Name,
+                    React.createElement('br', null)
+                  ),
+                  tour.tDate
+                );
+              }
             }),
             React.createElement(
               'h3',
@@ -50355,21 +50363,23 @@ var Artist_Instance = function (_React$Component) {
               'All Songs:'
             ),
             artist.Songs.map(function (song) {
-              return React.createElement(
-                'li',
-                { key: song.SongID },
-                React.createElement(
-                  Link,
-                  { to: '/songs/' + song.SongID },
-                  React.createElement('br', null),
-                  React.createElement('img', {
-                    className: 'img',
-                    src: song.Image,
-                    alt: 'Image for ' + song.Name }),
-                  React.createElement('br', null),
-                  song.Name
-                )
-              );
+              if (song.SongID) {
+                return React.createElement(
+                  'li',
+                  { key: song.SongID },
+                  React.createElement(
+                    Link,
+                    { to: '/songs/' + song.SongID },
+                    React.createElement('br', null),
+                    React.createElement('img', {
+                      className: 'img',
+                      src: song.Image,
+                      alt: 'Image for ' + song.Name }),
+                    React.createElement('br', null),
+                    song.Name
+                  )
+                );
+              }
             })
           )
         );
@@ -50485,10 +50495,18 @@ var Album_Instance = function (_React$Component) {
               'li',
               null,
               'Artist:',
-              React.createElement(
-                Link,
-                { to: '/artists/' + album.artist.ArtistID },
+              !album.artist.ArtistID ? React.createElement(
+                'div',
+                null,
                 album.artist.Name
+              ) : React.createElement(
+                'div',
+                null,
+                React.createElement(
+                  Link,
+                  { to: '/artists/' + album.artist.ArtistID },
+                  album.artist.Name
+                )
               )
             ),
             React.createElement(
@@ -50509,21 +50527,23 @@ var Album_Instance = function (_React$Component) {
               'Songs:'
             ),
             album.Songs.map(function (song) {
-              return React.createElement(
-                'li',
-                { key: song.SongID },
-                React.createElement(
-                  Link,
-                  { to: '/songs/' + song.SongID },
-                  React.createElement('br', null),
-                  React.createElement('img', {
-                    className: 'img',
-                    src: song.Image,
-                    alt: 'Image for ' + song.Name }),
-                  React.createElement('br', null),
-                  song.Name
-                )
-              );
+              if (song.SongID) {
+                return React.createElement(
+                  'li',
+                  { key: song.SongID },
+                  React.createElement(
+                    Link,
+                    { to: '/songs/' + song.SongID },
+                    React.createElement('br', null),
+                    React.createElement('img', {
+                      className: 'img',
+                      src: song.Image,
+                      alt: 'Image for ' + song.Name }),
+                    React.createElement('br', null),
+                    song.Name
+                  )
+                );
+              }
             })
           )
         );
@@ -50611,8 +50631,8 @@ var Tour_Instance = function (_React$Component) {
           'div',
           { className: 'container' },
           React.createElement(
-            Link,
-            { to: '/edit/tour/' + tour.TourID },
+            'a',
+            { href: 'http://127.0.0.1:5000/edit/tour' + '/' + tour.TourID },
             React.createElement(
               'button',
               null,
@@ -50665,15 +50685,23 @@ var Tour_Instance = function (_React$Component) {
                 null,
                 'Artist: '
               ),
-              React.createElement(
-                Link,
-                { to: '/artists/' + tour.artist.ArtistID },
-                React.createElement('img', {
-                  className: 'img',
-                  src: tour.artist.Image,
-                  alt: 'Image for ' + tour.artist.Name }),
-                React.createElement('br', null),
-                tour.artist.Name
+              !tour.artist.ArtistID ? React.createElement(
+                'div',
+                null,
+                album.artist.Name
+              ) : React.createElement(
+                'div',
+                null,
+                React.createElement(
+                  Link,
+                  { to: '/artists/' + tour.artist.ArtistID },
+                  React.createElement('img', {
+                    className: 'img',
+                    src: tour.artist.Image,
+                    alt: 'Image for ' + tour.artist.Name }),
+                  React.createElement('br', null),
+                  tour.artist.Name
+                )
               )
             )
           )
@@ -50763,8 +50791,8 @@ var Song_Instance = function (_React$Component) {
           'div',
           { className: 'container' },
           React.createElement(
-            Link,
-            { to: '/edit/song/' + song.SongID },
+            'a',
+            { href: 'http://127.0.0.1:5000/edit/song' + '/' + song.SongID },
             React.createElement(
               'button',
               null,
@@ -50818,15 +50846,23 @@ var Song_Instance = function (_React$Component) {
                 null,
                 'Artist: '
               ),
-              React.createElement(
-                Link,
-                { to: '/artists/' + song.artist.ArtistID },
-                React.createElement('img', {
-                  className: 'img',
-                  src: song.artist.Image,
-                  alt: 'Image for ' + song.artist.Name }),
-                React.createElement('br', null),
+              !song.artist.ArtistID ? React.createElement(
+                'div',
+                null,
                 song.artist.Name
+              ) : React.createElement(
+                'div',
+                null,
+                React.createElement(
+                  Link,
+                  { to: '/artists/' + song.artist.ArtistID },
+                  React.createElement('img', {
+                    className: 'img',
+                    src: song.artist.Image,
+                    alt: 'Image for ' + song.artist.Name }),
+                  React.createElement('br', null),
+                  song.artist.Name
+                )
               )
             ),
             React.createElement(
@@ -50837,15 +50873,23 @@ var Song_Instance = function (_React$Component) {
                 null,
                 'Album: '
               ),
-              React.createElement(
-                Link,
-                { to: '/albums/' + song.album.AlbumID },
-                React.createElement('img', {
-                  className: 'img',
-                  src: song.album.Image,
-                  alt: 'Image for ' + song.album.Title }),
-                React.createElement('br', null),
+              !song.album.AlbumID ? React.createElement(
+                'div',
+                null,
                 song.album.Title
+              ) : React.createElement(
+                'div',
+                null,
+                React.createElement(
+                  Link,
+                  { to: '/albums/' + song.album.AlbumID },
+                  React.createElement('img', {
+                    className: 'img',
+                    src: song.album.Image,
+                    alt: 'Image for ' + song.album.Title }),
+                  React.createElement('br', null),
+                  song.album.Title
+                )
               )
             )
           )
@@ -51206,7 +51250,7 @@ function ContextSearch(props) {
   for (var i = 0; i < searchString.length; i++) {
     var re = new RegExp(searchString[i], 'i');
     JSON.parse(JSON.stringify(props.data), function (key, value) {
-      if (re.test(value)) {
+      if (re.test(value) && key !== 'Image') {
         var idx = value.toString().search(re);
         context.push(React.createElement(
           'li',
@@ -51253,34 +51297,36 @@ function SearchResultsGrid(props) {
     props.data.map(function (instance) {
       var id = instance.SongID ? instance.SongID : instance.AlbumID ? instance.AlbumID : instance.TourID ? instance.TourID : instance.ArtistID ? instance.ArtistID : null;
       var name = instance.Name ? instance.Name : instance.Title;
-      return React.createElement(
-        'li',
-        { key: id, className: 'data-item' },
-        React.createElement(
-          'ul',
-          { className: 'data-list-items' },
+      if (id && name) {
+        return React.createElement(
+          'li',
+          { key: id, className: 'data-item' },
           React.createElement(
-            Link,
-            { to: '/' + module + '/' + id },
+            'ul',
+            { className: 'data-list-items' },
             React.createElement(
-              'li',
-              null,
-              React.createElement('img', {
-                className: 'img',
-                src: instance.Image,
-                alt: 'Image for ' + name })
-            ),
-            React.createElement(
-              'li',
-              null,
-              name
-            ),
-            React.createElement('br', null),
-            React.createElement(ContextSearch, { data: instance,
-              searchString: searchString })
+              Link,
+              { to: '/' + module + '/' + id },
+              React.createElement(
+                'li',
+                null,
+                React.createElement('img', {
+                  className: 'img',
+                  src: instance.Image,
+                  alt: 'Image for ' + name })
+              ),
+              React.createElement(
+                'li',
+                null,
+                name
+              ),
+              React.createElement('br', null),
+              React.createElement(ContextSearch, { data: instance,
+                searchString: searchString })
+            )
           )
-        )
-      );
+        );
+      }
     })
   );
 }

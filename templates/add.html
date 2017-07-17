@@ -135,143 +135,125 @@ body{
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="img">Image</label>
+                        <label for="img">(URL)</label>
                         <input type="text" class="form-control" placeholder="Song Image" name="img">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="release-date">Release Date</label>
+                        <label for="release-date">(Format: DD MM YYYY, HH:MM)</label>
                         <input type="text" class="form-control" placeholder="Song Release Date" name="release-date">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="run-time">Run Time</label>
-                        <input type="text" class="form-control" placeholder="Song Run Time" name="run-time">
-                    </div>
-                    <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="genre">Genre</label>
-                        <input type="text" class="form-control" placeholder="Song Genre" name="genre">
+                        <label for="run-time">(In seconds)</label>
+                        <input type="number" min="0" class="form-control" placeholder="Song Run Time" name="run-time">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="chart-position">Chart Position</label>
-                        <input type="text" class="form-control" placeholder="Song Chart Position" name="chart-position">
+                        <input type="number" min="0" class="form-control" placeholder="Song Chart Position" name="chart-position">
+                    </div>
+                    <div class="col-sm-12 col-md-12 top-buffer">
+                        <label for="genre">Genre</label>
+                        <select multiple class="form-control" id="genres" name="genres">
+                            {% for item in genre -%}
+                              <option value="{{ item[1] }}">{{ item[0] }}</option>
+                            {%- endfor %}
+                        </select>
                     </div>
                     <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="select-artist">Select Artist</label>
-                        <div class="dropdown">
-                          <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selected Artist
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">A</a>
-                            <a class="dropdown-item" href="#">B</a>
-                            <a class="dropdown-item" href="#">C</a>
-                          </div>
-                        </div>
+                        <select class="form-control" id="artists" name="artists">
+                            <option value="0">None</option>
+                            {% for item in artists -%}
+                              <option value="{{ item[1] }}">{{ item[0] }}</option>
+                            {%- endfor %}
+                        </select>
                     </div>
                     <div class='col-sm-12 col-md-12 top-buffer'>
-                        <label for="select-albums">Select Albums</label>
-                        <div class="dropdown">
-                          <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selected Albums
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">A</a>
-                            <a class="dropdown-item" href="#">B</a>
-                            <a class="dropdown-item" href="#">C</a>
-                          </div>
-                        </div>
+                        <label for="select-albums">Select Album</label>
+                          <select class="form-control" id="albums" name="albums">
+                              <option value="0">None</option>
+                              {% for item in albums -%}
+                                <option value="{{ item[1] }}">{{ item[0] }}</option>
+                              {%- endfor %}
+                          </select>
                     </div>
                 {% elif _type == 'tour' %}
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" placeholder="Tour Name" id="name">
+                        <input type="text" class="form-control" placeholder="Tour Name" name="name">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="img">Image</label>
-                        <input type="text" class="form-control" placeholder="Tour Image" id="img">
+                        <input type="text" class="form-control" placeholder="Tour Image" name="img">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="dates">Dates</label>
-                        <input type="text" class="form-control" placeholder="Tour Dates" id="dates">
+                        <input type="text" class="form-control" placeholder="Tour Dates" name="dates">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="venue">Venue</label>
-                        <input type="text" class="form-control" placeholder="Tour Venue" id="venue">
+                        <input type="text" class="form-control" placeholder="Tour Venue" name="venue">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="locations">Locations</label>
-                        <input type="text" class="form-control" placeholder="Tour Locations" id="locations">
+                        <input type="text" class="form-control" placeholder="Tour Locations" name="locations">
                     </div>
                     <div class='col-sm-12 col-md-12 top-buffer'>
-                        <label for="first-name">Select Artist</label>
-                        <div class="dropdown">
-                          <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selected Artist
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">A</a>
-                            <a class="dropdown-item" href="#">B</a>
-                            <a class="dropdown-item" href="#">C</a>
-                          </div>
-                        </div>
+                        <label for="select-artist">Select Artist</label>
+                        <select class="form-control" id="artists" name="artists">
+                            <option value="0">None</option>
+                            {% for item in artists -%}
+                              <option value="{{ item[1] }}">{{ item[0] }}</option>
+                            {%- endfor %}
+                        </select>
                     </div>
                     <div class='col-sm-12 col-md-12 top-buffer'>
-                        <label for="first-name">Select Songs</label>
-                        <div class="dropdown">
-                          <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selected Songs
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">A</a>
-                            <a class="dropdown-item" href="#">B</a>
-                            <a class="dropdown-item" href="#">C</a>
-                          </div>
-                        </div>
+                        <label for="select-songs">Select Songs</label>
+                          <select multiple class="form-control" id="songs" name="songs">
+                              {% for item in songs -%}
+                                <option value="{{ item[1] }}">{{ item[0] }}</option>
+                              {%- endfor %}
+                          </select>
                     </div>
                 {% elif _type == 'album' %}
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" placeholder="Album Name" id="name">
+                        <input type="text" class="form-control" placeholder="Album Name" name="name">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="img">Image</label>
-                        <input type="text" class="form-control" placeholder="Album Image" id="img">
+                        <label for="img">Image (URL)</label>
+                        <input type="text" class="form-control" placeholder="Album Image" name="img">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="release-date">Release Date</label>
-                        <input type="text" class="form-control" placeholder="Album Release Date" id="dates">
+                        <label for="release-date">(Format: DD MM YYYY, HH:MM)</label>
+                        <input type="text" class="form-control" placeholder="Album Release Date" name="dates">
                     </div>
-                    <div class="col-sm-12 col-md-12 top-buffer">
+                    <!-- <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="label">Label</label>
-                        <input type="text" class="form-control" placeholder="Album Label" id="label">
-                    </div>
+                        <input type="text" class="form-control" placeholder="Album Label" name="label">
+                    </div> -->
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="chart-position">Chart Position</label>
-                        <input type="text" class="form-control" placeholder="Album Chart Position" id="chart-position">
+                        <input type="number" min="0" class="form-control" placeholder="Album Chart Position" name="chart-position">
                     </div>
                     <div class='col-sm-12 col-md-12 top-buffer'>
-                        <label for="first-name">Select Artist</label>
-                        <div class="dropdown">
-                          <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selected Artist
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">A</a>
-                            <a class="dropdown-item" href="#">B</a>
-                            <a class="dropdown-item" href="#">C</a>
-                          </div>
-                        </div>
+                        <label for="select-artist">Select Artist</label>
+                        <select class="form-control" id="artists" name="artists">
+                            <option value="0">None</option>
+                            {% for item in artists -%}
+                              <option value="{{ item[1] }}">{{ item[0] }}</option>
+                            {%- endfor %}
+                        </select>
                     </div>
                     <div class='col-sm-12 col-md-12 top-buffer'>
-                        <label for="first-name">Select Songs</label>
-                        <div class="dropdown">
-                          <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selected Songs
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">A</a>
-                            <a class="dropdown-item" href="#">B</a>
-                            <a class="dropdown-item" href="#">C</a>
-                          </div>
-                        </div>
+                        <label for="select-songs">Select Songs</label>
+                          <select multiple class="form-control" id="songs" name="songs">
+                              {% for item in songs -%}
+                                <option value="{{ item[1] }}">{{ item[0] }}</option>
+                              {%- endfor %}
+                          </select>
                     </div>
                 {% elif _type == 'artist' %}
                     <div class="col-sm-12 col-md-12 top-buffer">
@@ -279,59 +261,48 @@ body{
                         <input type="text" class="form-control" placeholder="Album Name" name="name">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="img">Image</label>
+                        <label for="img">Image (URL)</label>
                         <input type="text" class="form-control" placeholder="Album Image" name="img">
                     </div>
-                    <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="genres">Genres</label>
-                        <input type="text" class="form-control" placeholder="Album Genres" name="genres">
-                    </div>
-                    <div class="col-sm-12 col-md-2 top-buffer">
+                    <div class="col-sm-12 col-md-6 top-buffer">
                         <label for="start-year">Start Year</label>
-                        <input type="text" class="form-control" placeholder="Start" name="start-year">
+                        <input type="number" min="0" class="form-control" placeholder="Start" name="start-year">
                     </div>
-                    <div class="col-sm-12 col-md-2 top-buffer">
+                    <div class="col-sm-12 col-md-6 top-buffer">
                         <label for="end-year">End Year</label>
-                        <input type="text" class="form-control" placeholder="End" name="end-year">
+                        <input type="number" min="0" class="form-control" placeholder="End" name="end-year">
+                    </div>
+                    <div class="col-sm-12 col-md-12 top-buffer">
+                        <label for="genre">Genre</label>
+                        <select multiple class="form-control" id="genres" name="genres">
+                            {% for item in genre -%}
+                              <option value="{{ item[1] }}">{{ item[0] }}</option>
+                            {%- endfor %}
+                        </select>
                     </div>
                     <div class='col-sm-12 col-md-12 top-buffer'>
-                        <label for="first-name">Select Albums</label>
-                        <div class="dropdown">
-                          <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selected Albums
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">A</a>
-                            <a class="dropdown-item" href="#">B</a>
-                            <a class="dropdown-item" href="#">C</a>
-                          </div>
-                        </div>
+                        <label for="select-albums">Select Album</label>
+                          <select multiple class="form-control" id="albums" name="albums">
+                              {% for item in albums -%}
+                                <option value="{{ item[1] }}">{{ item[0] }}</option>
+                              {%- endfor %}
+                          </select>
                     </div>
                     <div class='col-sm-12 col-md-12 top-buffer'>
-                        <label for="first-name">Select Songs</label>
-                        <div class="dropdown">
-                          <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selected Songs
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">A</a>
-                            <a class="dropdown-item" href="#">B</a>
-                            <a class="dropdown-item" href="#">C</a>
-                          </div>
-                        </div>
+                        <label for="select-songs">Select Songs</label>
+                          <select multiple class="form-control" id="songs" name="songs">
+                              {% for item in songs -%}
+                                <option value="{{ item[1] }}">{{ item[0] }}</option>
+                              {%- endfor %}
+                          </select>
                     </div>
                     <div class='col-sm-12 col-md-12 top-buffer'>
-                        <label for="first-name">Select Tours</label>
-                        <div class="dropdown">
-                          <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selected Tours
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">A</a>
-                            <a class="dropdown-item" href="#">B</a>
-                            <a class="dropdown-item" href="#">C</a>
-                          </div>
-                        </div>
+                        <label for="select-tours">Select Tour</label>
+                          <select multiple class="form-control" id="tours" name="tours">
+                              {% for item in tours -%}
+                                <option value="{{ item[1] }}">{{ item[0] }}</option>
+                              {%- endfor %}
+                          </select>
                     </div>
                 {% endif%}
             </div>

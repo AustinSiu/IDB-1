@@ -160,6 +160,7 @@ class Artists extends React.Component {
         <SelectSort
         currentSort={this.state.currentSort}
         onSelect= {this.updateSort}/>
+        <a href="http://banddb.me/add/artist"><button>Add</button></a>
 
         {!this.state.artists
           ? <p>LOADING</p>

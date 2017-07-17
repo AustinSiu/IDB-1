@@ -231,3 +231,7 @@ margin-top: 50px;
  -moz-user-modify: read-write;
  -webkit-user-modify: read-write;
 }
+
+a:hover {
+    color: #fd5927;
+}

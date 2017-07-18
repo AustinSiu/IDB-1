@@ -1,6 +1,6 @@
 # Technical Report
 
-Jonathan Peacher | Tika Lestaris | Shida Shen | Sarah Baxter | Mitch Chaiet
+Jonathan Peacher | Tika Lestari | Shida Shen | Sarah Baxter 
 
 Github: https://github.com/djpeacher/IDB
 
@@ -345,3 +345,7 @@ For editing, the endpoint is ‘/edit/<string:_type>/<int:_id>’, which is a te
 For deleting, it is done in editing process. There is a check box on editing page indicating whether user wants to delete this instance of model. HTTP Form will have information called ‘delete’, if it exists, Flask scripts simply remove this instance from database. When finished, user is simply redirected to index page.
 
 For adding, the endpoint is ‘/add/<string:_type>’, which is a templated URL indicating which type of model is being added to the database. When visited with HTTP GET method, it just returns am empty form, rendered according to the type. When user fills the form and use HTTP POST to send it to the server, a Python function called `add()` is called with argument _type. It instantiate a new instance of model _type and commit to database. When finished, user will be redirected to the newly added instance. 
+
+On the front-end aspect, we created a button that links to the specific edit/add page. Each of our model instances has an "Edit" button that will allow the user to edit an existing artist, album, song, or tour. The user is also allowed to delete an instance through this page. We decided to restrict the ability to change the name of the models because we felt that it would complicate things and make our database look horrible. At first we had some trouble figuring out how to integrate React routing with Flask, because initially when we created the button to direct to the /edit page, it would only direct through React instead of go to our edit.html file that we needed to route to. We resolved this issue by using <a href = { LINK } > around the button. 
+
+Furthermore, we attempted to style the edit and add pages in such a way that mimics a pop-up to the page the user would be on before they click the add/edit button. The pages for add and edit look similar. They both contain forms that a user can fill out and choose from drop-down bars to pick which artist/song they want their edited model to associate with. 

@@ -181,23 +181,23 @@ body{
                 {% elif _type == 'tour' %}
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" placeholder="Tour Name" name="name">
+                        <input type="text" required="true" class="form-control" placeholder="Tour Name" name="name">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="img">Image</label>
-                        <input type="text" class="form-control" placeholder="Tour Image" name="img">
+                        <input type="text" required="true" class="form-control" placeholder="Tour Image" name="img">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="dates">Dates</label>
-                        <input type="text" class="form-control" placeholder="Tour Dates" name="dates">
+                        <input type="text" required="true" class="form-control" placeholder="Tour Dates" name="dates">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="venue">Venue</label>
-                        <input type="text" class="form-control" placeholder="Tour Venue" name="venue">
+                        <input type="text" required="true" class="form-control" placeholder="Tour Venue" name="venue">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="locations">Locations</label>
-                        <input type="text" class="form-control" placeholder="Tour Locations" name="locations">
+                        <input type="text" required="true" class="form-control" placeholder="Tour Locations" name="locations">
                     </div>
                     <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="select-artist">Select Artist</label>
@@ -247,14 +247,14 @@ body{
                             {%- endfor %}
                         </select>
                     </div>
-                    <div class='col-sm-12 col-md-12 top-buffer'>
+                    <!-- <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="select-songs">Select Songs</label>
                           <select multiple class="form-control" id="songs" name="songs">
                               {% for item in songs -%}
                                 <option value="{{ item[1] }}">{{ item[0] }}</option>
                               {%- endfor %}
                           </select>
-                    </div>
+                    </div> -->
                 {% elif _type == 'artist' %}
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="name">Name</label>
@@ -280,7 +280,7 @@ body{
                             {%- endfor %}
                         </select>
                     </div>
-                    <div class='col-sm-12 col-md-12 top-buffer'>
+                    <!-- <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="select-albums">Select Album</label>
                           <select multiple class="form-control" id="albums" name="albums">
                               {% for item in albums -%}
@@ -303,7 +303,7 @@ body{
                                 <option value="{{ item[1] }}">{{ item[0] }}</option>
                               {%- endfor %}
                           </select>
-                    </div>
+                    </div> -->
                 {% endif%}
             </div>
 

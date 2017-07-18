@@ -50282,6 +50282,7 @@ var Artist_Instance = function (_React$Component) {
               'Top Songs:'
             ),
             artist.TopSongs.map(function (song) {
+              console.log('HERE', song);
               if (song.SongID) {
                 return React.createElement(
                   'li',
@@ -50363,6 +50364,7 @@ var Artist_Instance = function (_React$Component) {
               'All Songs:'
             ),
             artist.Songs.map(function (song) {
+              console.log('HERE', song);
               if (song.SongID) {
                 return React.createElement(
                   'li',
@@ -50648,7 +50650,7 @@ var Tour_Instance = function (_React$Component) {
           React.createElement(
             'ul',
             null,
-            React.createElement(
+            !tour.TourLineUp[0] ? React.createElement('div', null) : React.createElement(
               'li',
               null,
               'Line Up: ',
@@ -50681,11 +50683,7 @@ var Tour_Instance = function (_React$Component) {
                 null,
                 'Artist: '
               ),
-              !tour.artist.ArtistID ? React.createElement(
-                'div',
-                null,
-                album.artist.Name
-              ) : React.createElement(
+              !tour.artist ? React.createElement('div', null) : React.createElement(
                 'div',
                 null,
                 React.createElement(

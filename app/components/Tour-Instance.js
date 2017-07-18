@@ -51,14 +51,17 @@ class Tour_Instance extends React.Component {
             src={tour.Image}
             alt={'Image for ' + tour.Name}/>
           <ul>
-            <li>Line Up: {tour.TourLineUp[0].Name}</li>
+            {!tour.TourLineUp[0]
+                ? <div></div>
+                :<li>Line Up: {tour.TourLineUp[0].Name}</li>
+            }
             <li>Locations: {tour.Locations}</li>
             <li>Venues: {tour.Venue}</li>
             <li>Tour Dates: {tour.tDate} </li>
             <li>
               <h3>Artist: </h3>
-              {!tour.artist.ArtistID
-                ? <div>{album.artist.Name}</div>
+              {!tour.artist
+                ? <div></div>
                 : <div>
                   <Link to={'/artists/' + tour.artist.ArtistID}>
                     <img

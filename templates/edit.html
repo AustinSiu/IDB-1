@@ -239,52 +239,40 @@ body{
                         </div>
                     </div>
                 {% elif _type == 'album' %}
-                    <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" placeholder="Album Name" id="name">
-                    </div>
-                    <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="img">Image</label>
-                        <input type="text" class="form-control" placeholder="Album Image" id="img">
-                    </div>
-                    <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="release-date">Release Date</label>
-                        <input type="text" class="form-control" placeholder="Album Release Date" id="dates">
-                    </div>
-                    <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="label">Label</label>
-                        <input type="text" class="form-control" placeholder="Album Label" id="label">
-                    </div>
-                    <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="chart-position">Chart Position</label>
-                        <input type="text" class="form-control" placeholder="Album Chart Position" id="chart-position">
-                    </div>
-                    <div class='col-sm-12 col-md-12 top-buffer'>
-                        <label for="first-name">Select Artist</label>
-                        <div class="dropdown">
-                          <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selected Artist
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">A</a>
-                            <a class="dropdown-item" href="#">B</a>
-                            <a class="dropdown-item" href="#">C</a>
-                          </div>
-                        </div>
-                    </div>
-                    <div class='col-sm-12 col-md-12 top-buffer'>
-                        <label for="first-name">Select Songs</label>
-                        <div class="dropdown">
-                          <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selected Songs
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">A</a>
-                            <a class="dropdown-item" href="#">B</a>
-                            <a class="dropdown-item" href="#">C</a>
-                          </div>
-                        </div>
-                    </div>
+                <div class="col-sm-12 col-md-12 top-buffer">
+                    <label for="name">Name</label>
+                    <input type="text" required="true"  class="form-control" placeholder="Album Name" name="name" value="{{info['Title']}}">
+                </div>
+                <div class="col-sm-12 col-md-12 top-buffer">
+                    <label for="img">Image (URL)</label>
+                    <input type="text" required="true"  class="form-control" placeholder="Album Image" name="img" value="{{info['Image']}}">
+                </div>
+                <div class="col-sm-12 col-md-12 top-buffer">
+                    <label for="release-date">Release Date</label>
+                    <label for="release-date">Ex: 2008-12-29</label>
+                    <input type="text" required="true" class="form-control" placeholder="Album Release Date" name="dates" value="{{info['Year']}}">
+                </div>
+                <!-- <div class="col-sm-12 col-md-12 top-buffer">
+                    <label for="label">Label</label>
+                    <input type="text" class="form-control" placeholder="Album Label" name="label">
+                </div> -->
+                <div class="col-sm-12 col-md-12 top-buffer">
+                    <label for="chart-position">Chart Position</label>
+                    <input type="number" required="true"  min="0" class="form-control" placeholder="Album Chart Position" name="chart-position" value="{{info['US_Chart_Postion']}}">
+                </div>
+                <div class='col-sm-12 col-md-12 top-buffer'>
+                    <label for="select-artist">Select Artist</label>
+                    <select class="form-control" id="artists" name="artists">
+                        <option value="0">None</option>
+                        {% for item in artists -%}
+                            {% if item[1] == info['ArtistID'] %}
+                                <option selected value="{{ item[1] }}">{{ item[0] }}</option>
+                            {% else %}
+                                <option value="{{ item[1] }}">{{ item[0] }}</option>
+                            {% endif%}
+                        {%- endfor %}
+                    </select>
+                </div>
                 {% elif _type == 'artist' %}
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="name">Name</label>
@@ -292,7 +280,7 @@ body{
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="img">Image</label>
-                        <input type="text" class="form-control" placeholder="Album Image" name="img" value={{info['Image']}}>
+                        <input type="text" class="form-control" placeholder="Album Image" name="img" value="{{info['Image']}}">
                     </div>
                     <div class="col-sm-12 col-md-6 top-buffer">
                         <label for="start-year">Start Year</label>
@@ -314,7 +302,7 @@ body{
                             {%- endfor %}
                         </select>
                     </div>
-                    <div class='col-sm-12 col-md-12 top-buffer'>
+                    <!-- <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="select-albums">Select Album</label>
                           <select multiple class="form-control" id="albums" name="albums">
                               {% for item in albums -%}
@@ -337,13 +325,13 @@ body{
                                 <option value="{{ item[1] }}">{{ item[0] }}</option>
                               {%- endfor %}
                           </select>
-                    </div>
+                    </div> -->
                 {% endif%}
             </div>
 
             <div class="clearfix"></div>
-            <script src='//www.google.com/recaptcha/api.js'></script>
-            <div class="g-recaptcha top-buffer" data-sitekey="6Let5SgUAAAAADOF-hAru-JurTkgEI8Heb6evOcL" data-theme="light" data-type="image" data-size="normal" data-tabindex="0"></div>
+            <!-- <script src='//www.google.com/recaptcha/api.js'></script> -->
+            <!-- <div class="g-recaptcha top-buffer" data-sitekey="6Let5SgUAAAAADOF-hAru-JurTkgEI8Heb6evOcL" data-theme="light" data-type="image" data-size="normal" data-tabindex="0"></div> -->
             <div class="checkbox top-buffer">
               <label><input type="checkbox" value="1" id="delete" name="delete"> Delete?</label>
             </div>

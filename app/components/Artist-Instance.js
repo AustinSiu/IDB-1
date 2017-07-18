@@ -65,6 +65,7 @@ class Artist_Instance extends React.Component {
             <li>Years Active: {artist.Start_Time} - {artist.End_Time} ({artist.End_Time - artist.Start_Time} years) </li>
             <h3>Top Songs:</h3>
             {artist.TopSongs.map(function(song) {
+                console.log('HERE' ,song)
               if (song.SongID) {
                 return (
                   <li key={song.SongID}>
@@ -121,6 +122,7 @@ class Artist_Instance extends React.Component {
             })}
             <h3>All Songs:</h3>
             {artist.Songs.map(function(song) {
+                console.log('HERE' ,song)
               if (song.SongID) {
                 return (
                   <li key={song.SongID}>

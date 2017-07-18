@@ -310,9 +310,9 @@ def edit(_type, _id):
                 db.session.commit()
                 return redirect("http://banddb.me")
             else:
-                artist.Image = request.form['img']
-                artist.Start_Time = request.form['start-year']
-                artist.End_Time = request.form['end-year']   # use this to hold form content, delete will a param passed in form
+                artist.Image = request.form.get('img')
+                artist.Start_Time = request.form.get('start-year')
+                artist.End_Time = request.form.get('end-year')  # use this to hold form content, delete will a param passed in form
 # ---------------------------------
 # check deleting relationship later
 # ---------------------------------
@@ -330,26 +330,27 @@ def edit(_type, _id):
                 db.session.commit()
                 return redirect("http://banddb.me")
             else:
-                song.Image = request.form['img']
-                song.Creation_Date = request.form['release-date']
-                song.Run_Time = request.form['run-time']
-                song.Chart_Position = request.form['chart-position']
+                song.Image = request.form.get('img')
+                song.Creation_Date = request.form.get('release-date')
+                song.Run_Time = request.form.get('run-time')
+                song.Chart_Position = request.form.get('chart-position')
                 song.SongGenre = []
                 for gid in request.form.getlist('genres'):
                     songgenre = Genre.query.filter(Genre.GID == gid).first()
                     song.SongGenre.append(songgenre)
                 print(song.ArtistID)
-                if song.ArtistID:                
+                if song.ArtistID:
                     artist = Artists.query.filter(Artists.ArtistID == song.ArtistID).first()
                     artist.Songs.remove(song)
                     db.session.commit()
-                new_artist = Artists.query.filter(Artists.ArtistID == request.form['artist']).first()
+                new_artist = Artists.query.filter(Artists.ArtistID == int(request.form.get('artists'))).first()
                 new_artist.Songs.append(song)
                 db.session.commit()
-                album = Albums.query.filter(Albums.AlbumID == song.Album).first()
-                album.Songs.remove(song)
-                db.session.commit()
-                new_album = Albums.query.filter(Albums.AlbumID == request.form['album']).first()
+                if song.AlbumID:
+                    album = Albums.query.filter(Albums.AlbumID == song.AlbumID).first()
+                    album.Songs.remove(song)
+                    db.session.commit()
+                new_album = Albums.query.filter(Albums.AlbumID == int(request.form.get('albums'))).first()
                 new_album.Songs.append(song)
                 db.session.commit()
                 return redirect("http://127.0.0.1:5000/songs/{0}".format(song.SongID))
@@ -381,25 +382,26 @@ def edit(_type, _id):
                 db.session.commit()
                 return redirect("http://banddb.me")
             else:
-                tour.Image = request.form['img']
-                tour.tDate = getDate(request.form['dates'])
-                tour.Venue = request.form['venue']
-                tour.Locations = request.form['locations']
+                tour.Image = request.form.get('img')
+                tour.tDate = getDate(request.form.get('dates'))
+                tour.Venue = request.form.get('venue')
+                tour.Locations = request.form.get('locations')
                 tour.TourLineUp = None
-                for s in request.form['songs']:
+                for s in request.form.get('songs'):
                     song = Songs.query.filter(Songs.SongID == s).first()
                     tour.TourLineUp.append(song)
-                artist = Artists.query.filter(Artists.ArtistID == tour.ArtistID).first()
-                artist.Tours.remove(tour)
-                db.session.commit()
-                new_artist = Artists.query.filter(Artists.ArtistID == request.form['artist']).first()
+                if tour.ArtistID:
+                    artist = Artists.query.filter(Artists.ArtistID == tour.ArtistID).first()
+                    artist.Tours.remove(tour)
+                    db.session.commit()
+                new_artist = Artists.query.filter(Artists.ArtistID == request.form.get('artist')).first()
                 new_artist.Tours.append(tour)
                 db.session.commit()
                 return redirect("http://127.0.0.1:5000/tours/{0}".format(tour.TourID))
 # redirect after finishing editing or deleting
 
 #request POST
-#request.form['start_date']
+#request.form.get('start_date']
 
 
 @app.route('/add/<string:_type>', methods=['GET', 'POST'], strict_slashes=False)
@@ -414,10 +416,10 @@ def add(_type):
                                 genre=genre, recaptcha=recaptcha)
     elif request.method == 'POST':
         if _type == 'artist':
-            NewArtist = Artists(name=request.form['name'],
-                                image=request.form['img'],
-                                start_time=request.form['start-year'],
-                                end_time=request.form['end-year'])
+            NewArtist = Artists(name=request.form.get('name'),
+                                image=request.form.get('img'),
+                                start_time=request.form.get('start-year'),
+                                end_time=request.form.get('end-year'))
 #            genre
             for gid in request.form.getlist('genres'):
                 artistGenre = Genre.query.filter(Genre.GID == gid).first()
@@ -440,11 +442,11 @@ def add(_type):
             return redirect("http://127.0.0.1:5000/artists/{0}/".format(NewArtist.ArtistID))
         elif _type == 'song':
             print("SONG")
-            NewSong = NewSong = Songs(name=request.form['name'],
-                creation_date = getDate(request.form['release-date']),
-                run_time = request.form['run-time'],
-                image = request.form['img'],
-                chart_position = request.form['chart-position'])
+            NewSong = NewSong = Songs(name=request.form.get('name'),
+                creation_date = getDate(request.form.get('release-date')),
+                run_time = request.form.get('run-time'),
+                image = request.form.get('img'),
+                chart_position = request.form.get('chart-position'))
             print('Cteated new song')
 #           genre
             for gid in request.form.getlist('genres'):
@@ -468,10 +470,10 @@ def add(_type):
             db.session.commit()
             return redirect("http://127.0.0.1:5000/songs/{0}".format(NewSong.SongID))
         elif _type == 'album':
-            NewAlbum = Albums(title=request.form['name'],
-                year=getDate(request.form['dates']),
-                image=request.form['img'],
-                us_chart_position=request.form['chart-position'])
+            NewAlbum = Albums(title=request.form.get('name'),
+                year=getDate(request.form.get('dates')),
+                image=request.form.get('img'),
+                us_chart_position=request.form.get('chart-position'))
 #           artist
             a = request.form.getlist('artists')
 
@@ -488,11 +490,11 @@ def add(_type):
             db.session.commit()
             return redirect("http://127.0.0.1:5000/albums/{0}".format(NewAlbum.AlbumID))
         elif _type == 'tour':
-            NewTour = Tours(date=request.form['dates'],
-                            name=request.form['name'],
-                            image=request.form['img'],
-                            venue=request.form['venue'],
-                            locations=request.form['locations'])
+            NewTour = Tours(date=request.form.get('dates'),
+                            name=request.form.get('name'),
+                            image=request.form.get('img'),
+                            venue=request.form.get('venue'),
+                            locations=request.form.get('locations'))
 #           artist
             a = request.form.getlist('artists')
             if len(a) != 0 and int(a[0]) != 0:

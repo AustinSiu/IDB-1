@@ -151,7 +151,7 @@ body{
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="chart-position">Chart Position</label>
-                        <input type="number" min="0" class="form-control" placeholder="Song Chart Position" name="chart-position" value={{info['Chart_Position']}}">
+                        <input type="number" min="0" class="form-control" placeholder="Song Chart Position" name="chart-position" value="{{info['Chart_Position']}}">
                     </div>
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="genre">Genre</label>
@@ -241,7 +241,7 @@ body{
                 {% elif _type == 'album' %}
                 <div class="col-sm-12 col-md-12 top-buffer">
                     <label for="name">Name</label>
-                    <input type="text" required="true"  class="form-control" placeholder="Album Name" name="name" value="{{info['Title']}}">
+                    <input disabled type="text" required="true"  class="form-control" placeholder="Album Name" name="name" value="{{info['Title']}}">
                 </div>
                 <div class="col-sm-12 col-md-12 top-buffer">
                     <label for="img">Image (URL)</label>

@@ -55,12 +55,15 @@ class Song_Instance extends React.Component {
             <li>Release Date: {song.Creation_Date}</li>
             <li>Run Time: {song.Run_Time} seconds</li>
             {/* Will there ever be more than 1 song genre? */}
-            <li>Genre: {song.SongGenre[0].Name}</li>
+            {!song.SongGenre[0]
+                ? <div></div>
+                :<li>Genre: {song.SongGenre[0].Name}</li>
+            }
             <li>Peak U.S. Chart Position: {song.Chart_Position} </li>
             <li>
               <h3>Artist: </h3>
-              {!song.artist.ArtistID
-                ? <div>{song.artist.Name}</div>
+              {!song.artist
+                ? <div></div>
                 : <div>
                   <Link to={'/artists/' + song.artist.ArtistID}>
                     <img
@@ -74,8 +77,8 @@ class Song_Instance extends React.Component {
             </li>
             <li>
               <h3>Album: </h3>
-              {!song.album.AlbumID
-                ? <div>{song.album.Title}</div>
+              {!song.album
+                ? <div></div>
                 : <div>
                   <Link to={'/albums/' + song.album.AlbumID}>
                     <img
@@ -84,7 +87,7 @@ class Song_Instance extends React.Component {
                       alt={'Image for ' + song.album.Title}/>
                     <br/>
                     {song.album.Title}
-                  </Link>                  
+                  </Link>
                   </div>}
 
             </li>

@@ -50495,11 +50495,7 @@ var Album_Instance = function (_React$Component) {
               'li',
               null,
               'Artist:',
-              !album.artist.ArtistID ? React.createElement(
-                'div',
-                null,
-                album.artist.Name
-              ) : React.createElement(
+              !album.artist ? React.createElement('div', null) : React.createElement(
                 'div',
                 null,
                 React.createElement(
@@ -50825,7 +50821,7 @@ var Song_Instance = function (_React$Component) {
               song.Run_Time,
               ' seconds'
             ),
-            React.createElement(
+            !song.SongGenre[0] ? React.createElement('div', null) : React.createElement(
               'li',
               null,
               'Genre: ',
@@ -50846,11 +50842,7 @@ var Song_Instance = function (_React$Component) {
                 null,
                 'Artist: '
               ),
-              !song.artist.ArtistID ? React.createElement(
-                'div',
-                null,
-                song.artist.Name
-              ) : React.createElement(
+              !song.artist ? React.createElement('div', null) : React.createElement(
                 'div',
                 null,
                 React.createElement(
@@ -50873,11 +50865,7 @@ var Song_Instance = function (_React$Component) {
                 null,
                 'Album: '
               ),
-              !song.album.AlbumID ? React.createElement(
-                'div',
-                null,
-                song.album.Title
-              ) : React.createElement(
+              !song.album ? React.createElement('div', null) : React.createElement(
                 'div',
                 null,
                 React.createElement(

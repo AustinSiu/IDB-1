@@ -256,7 +256,7 @@ On the other hand, Babel.js is a tool for compiling JavaScript. Babel allows us 
 
 Initially we were using Flask and Python to route our pages, however we decided to switch gears and use the React router functionality instead to navigate our different routes from our website’s navigation bar. First, we need to run [ npm install –save react-router-dom ]. This can be found in one of our dependencies. Then in our App.js, we needed to require two properties from the React router: a router variable, “BrowserRouter”, and a route “Route”. To route our paths, we want to state [ <Route path=’/artists’ component = {Artists} /> ] in our React function. This will render our “Artists” component. So in a nutshell, we are essentially rendering a route component and passing in two props: Path and Component.
 
-Now let’s talk about the actual React components themselves. Our components are comprised of our models for the project: Artists, Albums, Songs, and Tours. Each of these components have a render method, which describes the user interface. In index.js, we instructed React to take our four components and render it to the element with an ID of ‘app’. We are only using this once due to the parent/child child relations of React. This theory rules that when you render the most parent component, it will render all of its child components as well. Components are great this way because they're both modular and reusable. You can take one component used in one area of an application and reuse it in other areas without having to duplicate any code. This increases efficiency in development.
+Now let’s talk about the actual React components themselves. Our components are comprised of our models for the project: Artists, Albums, Songs, and Tours. Each of these components have a render method, which describes the user interface. In index.js, we instructed React to take our four components and render it to the element with an ID of ‘app’. We are only using this once due to the parent/child child relations of React. This theory rules that when you render the most parent component, it will render all of its child components as well. Components are great this way because they're both modular and reusable. You can take one component used in one area of an application and reuse it in other areas without having to duplicate any code. This increases efficiency in development. Each component decides how it should be rendered, and each has its own internal logic.
 
 One neat thing about React is that a component can be thought of as a collection of HTML, CSS, JS, and some internal data specific to that component. React enables us to write “HTML” in the render method, as shown below:
 
@@ -286,15 +286,46 @@ render() {
 }
 ```
 
-In this code snippet from Artists.js, we are outputting our state objects to display on the UI as we render. React actually calls this XML-like syntax, JSX. This feature allows us to write HTML like syntax that will eventually get transformed to JavaScript objects, which React is then going to take and form a “virtual DOM” out of them. This gives us accessibility of templates from JavaScript.
+In this code snippet from Artists.js, we are outputting our state objects to display on the UI as we render. React actually calls this XML-like syntax, JSX. This feature allows us to write HTML like syntax that will eventually get transformed to JavaScript objects, which React is then going to take and form a “virtual DOM” out of them. This gives us accessibility of templates from JavaScript. In addition, the data stored in a state is updated by the component's event handlers, which will update in real time as the interface is being used. What "handleSelect" does is that it informs the component that a pagination button was pressed by a user, and it will process the pagination data (the page number) so that it can render a different set of artists. Similarly, "updateFilter" and "updateSort" are functions that handle the different parameters that we pass through. This is triggered when a user selects different filters and different sort setting. As shown on our website, all of the action is usually done on the same page. We used an index_bundle.js file that will render (output) the things that we want to output into the UI.
 
+To speak in more detail, components pass properties to their children components through props.
 
+```
+function SelectGenre (props) {
+  var genres = ["Show All", "Alternative", "Blues", "Country", "Electronic", "Indie", "Rap", "Rock"];
+  return (
+    <ul className="my-button">
+      <p className='title'>Filter By: </p>
+      {genres.map((genre) => {
+        return (
+          <li
+          style={genre === props.currentFilter ? {border: '1px solid #fd5927', color:'#fd5927'} : null}
+          onClick={props.onSelect.bind(null, genre)}
+          key={genre}>
+            {genre}
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+SelectGenre.propTypes = {
+  currentFilter: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired,
+};
+```
+
+In our Artists.js file, we declared a function that takes in these "props." These props consists of our component's properties, such as the currentFilter, currentSort, and other parameters we use to define the component's current state. These props statements allow us to grab the current status of our component and update the state according to the users' actions. Following the function, we would have to state the PropTypes that is required for the parameters. In this case, currentFilter requires a string and onSelect require the function that does the select action.
+
+Another important method is componentDidMount() which is automatically called once when the component has finished rendering. This method is called and then updates the filter, which also sets the current state. We also need to bind whenever we handle events in the components. The concept of binding can be confusing at first, but the reason why we bind "this" to the function is to retain object instance when the function is going to be passed. The function of course then has to expect such object. "This" depends on how the function is called, not where it is created. It is used for an internal matter, and it isn't dynamic. It is retained when used in the function.
+
+In a nutshell, we are using React as one piece of a larger app that will do all the processing of the data. Our data is pulled from a database, then saved back to the database as the interface is being used. React is a great way to develop a website for many reasons. One being that the reusable benefit of the components allows our app to look and feel consistent. It also makes development for our app easier.
 
 ### NPM
 All of the libraries we used for this project are from NPM. NPM is a Javascript repository that provides command line utility for downloading various packages. NPM also serves as a package manager that allows you to track which versions of which packages you’ve installed. This makes it easy for others who want to run the application to quickly download all of the necessary dependencies. The dependencies are stored in a file called package.json and the downloaded packages themselves are stored in a directory called node_modules. The package.json file also includes scripts, which you can use to run and test your application.
 
 ### Search Implementation
-In order to implement search functionality on our website, we used axios. Axios is a promise based HTTP client for the browser and node.js. Axios integrates well with Flask-SQLAlchemy and allows us to query the database with the desired sorting and filtering as parameters. Our models are searchable by most of their attributes. These are:
+In order to implement search functionality on our website, we used Axios. Axios is a promise based HTTP client for the browser and node.js. Axios integrates well with Flask-SQLAlchemy and allows us to query the database with the desired sorting and filtering as parameters. Our models are searchable by most of their attributes. These are:
   Artists - Name, Genre, Album Titles, Song Titles
   Albums - Title, Artist Name, Song Titles
   Songs - Title, Genre, Album Title, Artist Name

@@ -1,13 +1,11 @@
-TITLE:										                                EST:		ACTUAL:
-A user wants to delete a Album                                              60 min
-A user wants to delete a Song                                               100 min
-A user wants to add a Album                                                 80 min
-A user wants to add a Song                                                  80 min
-A user wants to delete a Tour                                               50 min
-A user wants to add a Tour                                                  50 min
-A user wants the instance pages to include external links and multimedia    100 min
-A user want the website to have animation                                   100 min
-A user wants to add information about an Artists, such as their age or genre90 min
-A user wants to change a Tour information to change the location            50 min
-A user wants to add an artist                                               70 min
-A user wants to delete an artist                                            100 min
+TITLE:										                                                    EST:		  ACTUAL:
+A user wants to delete a Album                                                60 min    90 min
+A user wants to delete a Song                                                 100 min   90 min
+A user wants to add a Album                                                   80 min    100 min
+A user wants to add a Song                                                    80 min    100 min
+A user wants to delete a Tour                                                 50 min    90 min
+A user wants to add a Tour                                                    50 min    100 min
+A user wants to add information about an Artists, such as their age or genre  90 min    80 min
+A user wants to change a Tour information to change the location              50 min    80 min
+A user wants to add an artist                                                 70 min    100 min
+A user wants to delete an artist                                              100 min   90 min

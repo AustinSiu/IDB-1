@@ -275,15 +275,15 @@ def edit(_type, _id):
             info = artists.__dict__
             song_list = []
             for s in artists.Songs:
-                song_list.append(tuple(s.Name, s.SongID))
+                song_list.append(tuple((s.Name, s.SongID)))
             info['SongList'] = song_list
             album_list = []
             for al in artists.Albums:
-                album_list.append(tuple(al.Title, al.AlbumID))
+                album_list.append(tuple((al.Title, al.AlbumID)))
             info['AlbumList'] = album_list
             tour_list = []
             for t in artists.Tours:
-                tour_list.append(tuple(t.Name, t.TourID))
+                tour_list.append(tuple((t.Name, t.TourID)))
             info['TourList'] = tour_list
             info['ArtistGenre'] = [(a.Name, a.GID) for a in info['ArtistGenre']]
         elif _type == "song":

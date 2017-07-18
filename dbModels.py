@@ -140,7 +140,7 @@ class Albums(db.Model):
     AlbumID = db.Column(db.Integer, nullable=False, primary_key=True)
     Title = db.Column(db.String, nullable=False)
     Year = db.Column(db.Date, nullable=True)
-    US_Chart_Postion = db.Column(db.Integer, nullable=True)
+    US_Chart_Position = db.Column(db.Integer, nullable=True)
     Image = db.Column(db.String, nullable=True)
 
 #   Album-song is a one-to-many relationship
@@ -158,7 +158,7 @@ class Albums(db.Model):
     def __init__(self, title, year, image, us_chart_position=None, **rest):
         self.Title = title
         self.Year = year
-        self.US_Chart_Postion = us_chart_position
+        self.US_Chart_Position = us_chart_position
         self.Image = image
 
     def __repr__(self):

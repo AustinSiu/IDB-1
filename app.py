@@ -153,7 +153,7 @@ class Albums(db.Model):
     AlbumID = db.Column(db.Integer, nullable=False, primary_key=True)
     Title = db.Column(db.String, nullable=False)
     Year = db.Column(db.Date, nullable=True)
-    US_Chart_Postion = db.Column(db.Integer, nullable=True)
+    US_Chart_Position = db.Column(db.Integer, nullable=True)
     Image = db.Column(db.String, nullable=True)
 
 #   Album-song is a one-to-many relationship
@@ -171,7 +171,7 @@ class Albums(db.Model):
     def __init__(self, title, year, image, us_chart_position=None, **rest):
         self.Title = title
         self.Year = year
-        self.US_Chart_Postion = us_chart_position
+        self.US_Chart_Position = us_chart_position
         self.Image = image
 
     def __repr__(self):
@@ -353,39 +353,26 @@ def edit(_type, _id):
                 db.session.commit()
                 return redirect("http://127.0.0.1:5000/songs/{0}".format(song.SongID))
         elif _type == 'album':
-            print('HERE')
             album = Albums.query.filter(Albums.AlbumID == _id).first()
-            print('HERasdfE')
             if request.form.get('delete'):
-                print('HERE1')
                 db.session.delete(album)
                 db.session.commit()
                 return redirect("http://banddb.me")
             else:
-                print('HERE2')
+                print(album.US_Chart_Position)
                 album.Image = request.form.get('img')
-                print('HERE3')
                 album.Year = request.form.get('year')
-                print('HERE4')
                 album.US_Chart_Position = request.form.get('chart-position')
-                print('HERE5')
-                print(album.ArtistID)
-                artist = Artists.query.filter(Artists.ArtistID == album.ArtistID).first()
-                print(artist.Name)
-                print('HERE6')
-                artist.Albums.remove(album)
-                print('HERE7')
-                db.session.commit()
-                print('HERE8')
-                print(type(request.form.get('artists')))
+                print(request.form.get('chart-position'))
+                if album.ArtistID:
+                    artist = Artists.query.filter(Artists.ArtistID == album.ArtistID).first()
+                    artist.Albums.remove(album)
+                    db.session.commit()
                 new_artist = Artists.query.filter(Artists.ArtistID == int(request.form.get('artists'))).first()
-                print('HERE9')
                 new_artist.Albums.append(album)
-                print('HERE10')
                 db.session.commit()
-                print('HERE12')
+                print(album.US_Chart_Position)
                 return redirect("http://127.0.0.1:5000/albums/{0}".format(album.AlbumID))
-            print('HERE3')
         elif _type == 'tour':
             tour = Tours.query.filter(Tous.TourID == _id).first()
             if request.form.get('delete'):

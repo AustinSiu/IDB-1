@@ -9,42 +9,45 @@ class About extends React.Component {
                 <p className="subdesc">Our team was motivated to create an IMDb-like application for everything you need to know about artists and music. We were inspired by Spotify and came into realization that there needs to be a main place where people can find simple and quick information about an artist’s biography, discography, and tour dates. Our website is named “BandDB”, which stands for Band Database. We believe this website will be useful for music lovers and others alike who want to learn a little bit more about their favorite bands and artists.</p>
                 <h3 className="subtitle">Group Name: Wiggity Wack</h3>
                 <h3 className="subtitle">Group Members: </h3>
-                  <h1> <img src = "http://i.imgur.com/oq4FYOi.jpg"></img></h1>
-                  <h1>Jonathan Peacher</h1>
-                  <p className="subdesc" >I am Jonathan! I am a CS major with one year left before I graduate (i.e. I'm a Senior now I guess.)
-                    I've started programming since around highschool and have loved it ever since.</p>
-                  <li> - Boostrap, AWS setup, Data Scraping</li>
-                  <li> - no. of commits: 41</li>
-                  <li> - no. of issues: 11</li>
-                  <li> - no. of unit tests: 29</li>
-                  <h1> <img src = "http://i.imgur.com/H2hdDdu.jpg"></img></h1>
-                  <h1>Tika Lestari</h1>
-                  <p className="subdesc" >I’m a third year Computer Science major at UT, minoring in Information Studies.
-                My hobbies include playing the piano, guitar, ukulele, cooking, and petting cats.</p>
-                  <li> - Apiary, Data Scraping, Flask Templates, React</li>
-                  <li> - no. of commits: 28</li>
-                  <li> - no. of issues: 10</li>
-                  <li> - no. of unit tests: 0</li>
-                  <h1> <img src = "http://i.imgur.com/WmF6m4C.jpg"></img></h1>
-                  <h1>Shida Shen</h1>
-                  <p className="subdesc" >I am Shida. I study and research physics. I am also an enthusiastic coder.</p>
-                  <li> - Apiary, Database, AWS</li>
-                  <li> - no. of commits: 59</li>
-                  <li> - no. of issues: 12</li>
-                  <li> - no. of unit tests: 0</li>
-                  <h1> <img src = "http://i.imgur.com/IZl4Vuq.jpg"></img></h1>
-                  <h1>Sarah Baxter</h1>
-                 <p className="subdesc" >I'm a fourth year Computer Science major at UT. I also have a minor in Spanish and Business.</p>
-                  <li> - no. of commits: 68</li>
-                  <li> - no. of issues: 10</li>
-                  <li> - no. of unit tests: 0</li>
-                  <h1> <img src = "http://i.imgur.com/LZgaDuw.jpg"></img></h1>
-                  <h1>Mitch Chaiet (Auditor)</h1>
-                    <p className="subdesc" >University of Texas Junior with a strong passion for everything music, tech, business, and design. Free time spent studying business tactics, working on my startup ConcertCam, playing open mic nights, and building innovative musical hardware.</p>
-                  <li> - no. of commits: 9</li>
-                  <li> - no. of issues: 2</li>
-                  <li> - no. of unit tests: 0</li>
-
+                <div className='devs'>
+                  <div className='dev'>
+                    <h1> <img src = "http://i.imgur.com/oq4FYOi.jpg"></img></h1>
+                    <h1>Jonathan Peacher</h1>
+                    <p className='subdesc'>I am Jonathan! I am a CS major with one year left before I graduate (i.e. I'm a Senior now I guess.)
+                      I've started programming since around highschool and have loved it ever since.</p>
+                    <li> - Boostrap, AWS setup, Data Scraping</li>
+                    <li> - no. of commits: 41</li>
+                    <li> - no. of issues: 11</li>
+                    <li> - no. of unit tests: 29</li>
+                  </div>
+                  <div className='dev'>
+                    <h1> <img src = "http://i.imgur.com/H2hdDdu.jpg"></img></h1>
+                    <h1>Tika Lestari</h1>
+                    <p className='subdesc'>I’m a third year Computer Science major at UT, minoring in Information Studies.
+                  My hobbies include playing the piano, guitar, ukulele, cooking, and petting cats.</p>
+                    <li> - Apiary, Data Scraping, Flask Templates, React</li>
+                    <li> - no. of commits: 28</li>
+                    <li> - no. of issues: 10</li>
+                    <li> - no. of unit tests: 0</li>
+                  </div>
+                  <div className='dev'>
+                    <h1> <img src = "http://i.imgur.com/WmF6m4C.jpg"></img></h1>
+                    <h1>Shida Shen</h1>
+                    <p>I am Shida. I study and research physics. I am also an enthusiastic coder.</p>
+                    <li> - Apiary, Database, AWS</li>
+                    <li> - no. of commits: 59</li>
+                    <li> - no. of issues: 12</li>
+                    <li> - no. of unit tests: 0</li>
+                  </div>
+                  <div className='dev'>
+                    <h1> <img src = "http://i.imgur.com/IZl4Vuq.jpg"></img></h1>
+                    <h1>Sarah Baxter</h1>
+                    <p>I'm a fourth year Computer Science major at UT. I also have a minor in Spanish and Business.</p>
+                    <li> - no. of commits: 68</li>
+                    <li> - no. of issues: 10</li>
+                    <li> - no. of unit tests: 0</li>
+                  </div>
+                </div>
                 <h3 className="subtitle">Statistics </h3>
                   <li> - total no. of commits: 197</li>
                   <li> - total no. of issues: 43</li>

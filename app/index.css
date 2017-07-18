@@ -124,7 +124,8 @@ li {
 }
 
 .about {
-margin-top: 50px;
+  text-align: center;
+  margin-top: 50px;
 }
 
 .about .title {
@@ -144,7 +145,6 @@ margin-top: 50px;
   font-size: 15px;
   color: #848484;
   line-height: 120%;
-  margin-right: 300px;
 }
 
 .my-button {
@@ -227,6 +227,19 @@ margin-top: 50px;
 .genre {
   display: inline;
 }
+
+.devs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.devs .dev {
+  margin: 20px;
+  width: 30%;
+  text-align: center;
+}
+
 .editable {
  -moz-user-modify: read-write;
  -webkit-user-modify: read-write;

@@ -3012,10 +3012,10 @@ exports.default = SafeAnchor;
 
 var axios = __webpack_require__(496);
 
-var artistsURL = 'http://127.0.0.1:5000/api/artists';
-var songsURL = 'http://127.0.0.1:5000/api/songs';
-var albumsURL = 'http://127.0.0.1:5000/api/albums';
-var toursURL = 'http://127.0.0.1:5000/api/tours';
+var artistsURL = 'http://banddb.me/api/artists';
+var songsURL = 'http://banddb.me/api/songs';
+var albumsURL = 'http://banddb.me/api/albums';
+var toursURL = 'http://banddb.me/api/tours';
 
 module.exports = {
 
@@ -50218,7 +50218,7 @@ var Artist_Instance = function (_React$Component) {
           { className: 'container' },
           React.createElement(
             'a',
-            { href: 'http://127.0.0.1:5000/edit/artist' + '/' + artist.ArtistID },
+            { href: 'http://banddb.me/edit/artist' + '/' + artist.ArtistID },
             React.createElement(
               'button',
               null,
@@ -50458,7 +50458,7 @@ var Album_Instance = function (_React$Component) {
           { className: 'container' },
           React.createElement(
             'a',
-            { href: 'http://127.0.0.1:5000/edit/album' + '/' + album.AlbumID },
+            { href: 'http://banddb.me/edit/album' + '/' + album.AlbumID },
             React.createElement(
               'button',
               null,
@@ -50619,7 +50619,7 @@ var Tour_Instance = function (_React$Component) {
           { className: 'container' },
           React.createElement(
             'a',
-            { href: 'http://127.0.0.1:5000/edit/tour' + '/' + tour.TourID },
+            { href: 'http://banddb.me/edit/tour' + '/' + tour.TourID },
             React.createElement(
               'button',
               null,
@@ -50775,7 +50775,7 @@ var Song_Instance = function (_React$Component) {
           { className: 'container' },
           React.createElement(
             'a',
-            { href: 'http://127.0.0.1:5000/edit/song' + '/' + song.SongID },
+            { href: 'http://banddb.me/edit/song' + '/' + song.SongID },
             React.createElement(
               'button',
               null,

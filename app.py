@@ -301,8 +301,8 @@ def edit(_type, _id):
         return render_template('edit.html', _type = _type, _id = _id, info=info, artists=artists, songs=songs, albums=albums, tours=tours,
                                 genre=genre, recaptcha=recaptcha)
     elif request.method == 'POST': # here starts editing or deleting
-        # if not recaptcha.verify():
-        #     return
+        if not recaptcha.verify():
+            return redirect(url_for("edit", _type=_type, _id=_id, methods="GET"))
         if _type == 'artist':
             artist = Artists.query.filter(Artists.ArtistID == _id).first()
             if request.form.get('delete'):
@@ -322,7 +322,7 @@ def edit(_type, _id):
                     artist.ArtistGenre.append(artistGenre)
 
                 db.session.commit()
-                return redirect("http://127.0.0.1:5000/artists/{0}".format(artist.ArtistID))
+                return redirect("http://banddb.me/artists/{0}".format(artist.ArtistID))
         elif _type == 'song':
             song = Songs.query.filter(Songs.SongID == _id).first()
             if request.form.get('delete'):
@@ -350,10 +350,11 @@ def edit(_type, _id):
                     album = Albums.query.filter(Albums.AlbumID == song.AlbumID).first()
                     album.Songs.remove(song)
                     db.session.commit()
-                new_album = Albums.query.filter(Albums.AlbumID == int(request.form.get('albums'))).first()
-                new_album.Songs.append(song)
-                db.session.commit()
-                return redirect("http://127.0.0.1:5000/songs/{0}".format(song.SongID))
+                if int(request.form.get('albums')) != 0:
+                    new_album = Albums.query.filter(Albums.AlbumID == int(request.form.get('albums'))).first()
+                    new_album.Songs.append(song)
+                    db.session.commit()
+                return redirect("http://banddb.me/songs/{0}".format(song.SongID))
         elif _type == 'album':
             album = Albums.query.filter(Albums.AlbumID == _id).first()
             if request.form.get('delete'):
@@ -370,13 +371,14 @@ def edit(_type, _id):
                     artist = Artists.query.filter(Artists.ArtistID == album.ArtistID).first()
                     artist.Albums.remove(album)
                     db.session.commit()
-                new_artist = Artists.query.filter(Artists.ArtistID == int(request.form.get('artists'))).first()
-                new_artist.Albums.append(album)
-                db.session.commit()
+                if int(request.form.get('artists')) != 0:
+                    new_artist = Artists.query.filter(Artists.ArtistID == int(request.form.get('artists'))).first()
+                    new_artist.Albums.append(album)
+                    db.session.commit()
                 print(album.US_Chart_Position)
-                return redirect("http://127.0.0.1:5000/albums/{0}".format(album.AlbumID))
+                return redirect("http://banddb.me/albums/{0}".format(album.AlbumID))
         elif _type == 'tour':
-            tour = Tours.query.filter(Tous.TourID == _id).first()
+            tour = Tours.query.filter(Tours.TourID == _id).first()
             if request.form.get('delete'):
                 db.session.delete(tour)
                 db.session.commit()
@@ -386,18 +388,20 @@ def edit(_type, _id):
                 tour.tDate = getDate(request.form.get('dates'))
                 tour.Venue = request.form.get('venue')
                 tour.Locations = request.form.get('locations')
-                tour.TourLineUp = None
-                for s in request.form.get('songs'):
-                    song = Songs.query.filter(Songs.SongID == s).first()
-                    tour.TourLineUp.append(song)
+                tour.TourLineUp = []
+                # for s in request.form.get('songs'):
+                #     song = Songs.query.filter(Songs.SongID == s).first()
+                #     tour.TourLineUp.append(song)
                 if tour.ArtistID:
                     artist = Artists.query.filter(Artists.ArtistID == tour.ArtistID).first()
                     artist.Tours.remove(tour)
                     db.session.commit()
-                new_artist = Artists.query.filter(Artists.ArtistID == request.form.get('artist')).first()
-                new_artist.Tours.append(tour)
-                db.session.commit()
-                return redirect("http://127.0.0.1:5000/tours/{0}".format(tour.TourID))
+                print(int(request.form.get('artists')))
+                if int(request.form.get('artists')) != 0:
+                    new_artist = Artists.query.filter(Artists.ArtistID == int(request.form.get('artists'))).first()
+                    new_artist.Tours.append(tour)
+                    db.session.commit()
+                return redirect("http://banddb.me/tours/{0}".format(tour.TourID))
 # redirect after finishing editing or deleting
 
 #request POST
@@ -415,6 +419,8 @@ def add(_type):
         return render_template('add.html', _type=_type, artists=artists, songs=songs, albums=albums, tours=tours,
                                 genre=genre, recaptcha=recaptcha)
     elif request.method == 'POST':
+        if not recaptcha.verify():
+            return redirect(url_for("add", _type=_type, methods="GET"))
         if _type == 'artist':
             NewArtist = Artists(name=request.form.get('name'),
                                 image=request.form.get('img'),
@@ -439,7 +445,7 @@ def add(_type):
 # -----------------------
 # check redirection later
 # -----------------------
-            return redirect("http://127.0.0.1:5000/artists/{0}/".format(NewArtist.ArtistID))
+            return redirect("http://banddb.me/artists/{0}/".format(NewArtist.ArtistID))
         elif _type == 'song':
             print("SONG")
             NewSong = NewSong = Songs(name=request.form.get('name'),
@@ -468,7 +474,7 @@ def add(_type):
 
             db.session.add(NewSong)
             db.session.commit()
-            return redirect("http://127.0.0.1:5000/songs/{0}".format(NewSong.SongID))
+            return redirect("http://banddb.me/songs/{0}".format(NewSong.SongID))
         elif _type == 'album':
             NewAlbum = Albums(title=request.form.get('name'),
                 year=getDate(request.form.get('dates')),
@@ -488,7 +494,7 @@ def add(_type):
 
             db.session.add(NewAlbum)
             db.session.commit()
-            return redirect("http://127.0.0.1:5000/albums/{0}".format(NewAlbum.AlbumID))
+            return redirect("http://banddb.me/albums/{0}".format(NewAlbum.AlbumID))
         elif _type == 'tour':
             NewTour = Tours(date=request.form.get('dates'),
                             name=request.form.get('name'),
@@ -508,7 +514,7 @@ def add(_type):
 
             db.session.add(NewTour)
             db.session.commit()
-            return redirect("http://127.0.0.1:5000/tours/{0}".format(NewTour.TourID))
+            return redirect("http://banddb.me/tours/{0}".format(NewTour.TourID))
 
 
 @app.route('/', defaults={'path': ''})

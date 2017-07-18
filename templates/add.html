@@ -208,14 +208,14 @@ body{
                             {%- endfor %}
                         </select>
                     </div>
-                    <div class='col-sm-12 col-md-12 top-buffer'>
+                    <!-- <div class='col-sm-12 col-md-12 top-buffer'>
                         <label for="select-songs">Select Songs</label>
                           <select multiple class="form-control" id="songs" name="songs">
                               {% for item in songs -%}
                                 <option value="{{ item[1] }}">{{ item[0] }}</option>
                               {%- endfor %}
                           </select>
-                    </div>
+                    </div> -->
                 {% elif _type == 'album' %}
                     <div class="col-sm-12 col-md-12 top-buffer">
                         <label for="name">Name</label>
@@ -306,8 +306,11 @@ body{
                     </div> -->
                 {% endif%}
             </div>
+            <script src='//www.google.com/recaptcha/api.js'></script>
 
-            <div class="clearfix"></div>
+            <div class="g-recaptcha top-buffer" data-sitekey="6Let5SgUAAAAADOF-hAru-JurTkgEI8Heb6evOcL" data-theme="light" data-type="image" data-size="normal" data-tabindex="0"></div>
+
+            <div class="clearfix top-buffer"></div>
             <button type="submit" class="s-btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>ADD</button>
         </form>
     </div>

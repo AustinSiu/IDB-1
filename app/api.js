@@ -1,9 +1,9 @@
 var axios = require('axios');
 
-var artistsURL = 'http://127.0.0.1:5000/api/artists';
-var songsURL = 'http://127.0.0.1:5000/api/songs';
-var albumsURL = 'http://127.0.0.1:5000/api/albums';
-var toursURL = 'http://127.0.0.1:5000/api/tours';
+var artistsURL = 'http://banddb.me/api/artists';
+var songsURL = 'http://banddb.me/api/songs';
+var albumsURL = 'http://banddb.me/api/albums';
+var toursURL = 'http://banddb.me/api/tours';
 
 
 module.exports = {

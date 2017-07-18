@@ -43,7 +43,7 @@ class Album_Instance extends React.Component {
     else {
       return (
         <div className="container">
-          <a href={'http://127.0.0.1:5000/edit/album' + '/' + album.AlbumID}><button>Edit</button></a>
+          <a href={'http://banddb.me/edit/album' + '/' + album.AlbumID}><button>Edit</button></a>
             <h1>Album: <div className='editable' id='edit-artist'>{album.Title}</div></h1>
           <img
             className='img'

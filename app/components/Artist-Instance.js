@@ -46,7 +46,7 @@ class Artist_Instance extends React.Component {
     else {
       return (
         <div className="container">
-          <a href={'http://127.0.0.1:5000/edit/artist' + '/' + artist.ArtistID}><button>Edit</button></a>
+          <a href={'http://banddb.me/edit/artist' + '/' + artist.ArtistID}><button>Edit</button></a>
           <h1>Artist: {artist.Name}</h1>
           <img
             className='img'

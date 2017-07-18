@@ -192,52 +192,40 @@ body{
                           </select>
                     </div>
                 {% elif _type == 'tour' %}
-                    <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" placeholder="Tour Name" id="name">
-                    </div>
-                    <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="img">Image</label>
-                        <input type="text" class="form-control" placeholder="Tour Image" id="img">
-                    </div>
-                    <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="dates">Dates</label>
-                        <input type="text" class="form-control" placeholder="Tour Dates" id="dates">
-                    </div>
-                    <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="venue">Venue</label>
-                        <input type="text" class="form-control" placeholder="Tour Venue" id="venue">
-                    </div>
-                    <div class="col-sm-12 col-md-12 top-buffer">
-                        <label for="locations">Locations</label>
-                        <input type="text" class="form-control" placeholder="Tour Locations" id="locations">
-                    </div>
-                    <div class='col-sm-12 col-md-12 top-buffer'>
-                        <label for="first-name">Select Artist</label>
-                        <div class="dropdown">
-                          <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selected Artist
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">A</a>
-                            <a class="dropdown-item" href="#">B</a>
-                            <a class="dropdown-item" href="#">C</a>
-                          </div>
-                        </div>
-                    </div>
-                    <div class='col-sm-12 col-md-12 top-buffer'>
-                        <label for="first-name">Select Songs</label>
-                        <div class="dropdown">
-                          <button class="my-drop btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selected Songs
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">A</a>
-                            <a class="dropdown-item" href="#">B</a>
-                            <a class="dropdown-item" href="#">C</a>
-                          </div>
-                        </div>
-                    </div>
+                <div class="col-sm-12 col-md-12 top-buffer">
+                    <label for="name">Name</label>
+                    <input type="text" required="true" class="form-control" placeholder="Tour Name" name="name" value="{{info['Name']}}">
+                </div>
+                <div class="col-sm-12 col-md-12 top-buffer">
+                    <label for="img">Image</label>
+                    <input type="text" required="true" class="form-control" placeholder="Tour Image" name="img" value="{{info['Image']}}">
+                </div>
+                <div class="col-sm-12 col-md-12 top-buffer">
+                    <label for="dates">Dates</label>
+                    <label for="release-date">(Format: DD MM YYYY, HH:MM) Ex: 29 Dec 2008, 15:54</label>
+                    <input type="text" required="true" class="form-control" placeholder="Tour Dates" name="dates" value="{{info['tDate']}}">
+                </div>
+                <div class="col-sm-12 col-md-12 top-buffer">
+                    <label for="venue">Venue</label>
+                    <input type="text" required="true" class="form-control" placeholder="Tour Venue" name="venue" value="{{info['Venue']}}">
+                </div>
+                <div class="col-sm-12 col-md-12 top-buffer">
+                    <label for="locations">Locations</label>
+                    <input type="text" required="true" class="form-control" placeholder="Tour Locations" name="locations" value="{{info['Locations']}}">
+                </div>
+                <div class='col-sm-12 col-md-12 top-buffer'>
+                    <label for="select-artist">Select Artist</label>
+                    <select class="form-control" id="artists" name="artists">
+                        <option value="0">None</option>
+                        {% for item in artists -%}
+                            {% if item[1] == info['ArtistID'] %}
+                                <option selected value="{{ item[1] }}">{{ item[0] }}</option>
+                            {% else %}
+                                <option value="{{ item[1] }}">{{ item[0] }}</option>
+                            {% endif%}
+                        {%- endfor %}
+                    </select>
+                </div>
                 {% elif _type == 'album' %}
                 <div class="col-sm-12 col-md-12 top-buffer">
                     <label for="name">Name</label>
@@ -330,8 +318,8 @@ body{
             </div>
 
             <div class="clearfix"></div>
-            <!-- <script src='//www.google.com/recaptcha/api.js'></script> -->
-            <!-- <div class="g-recaptcha top-buffer" data-sitekey="6Let5SgUAAAAADOF-hAru-JurTkgEI8Heb6evOcL" data-theme="light" data-type="image" data-size="normal" data-tabindex="0"></div> -->
+            <script src='//www.google.com/recaptcha/api.js'></script>
+            <div class="g-recaptcha top-buffer" data-sitekey="6Let5SgUAAAAADOF-hAru-JurTkgEI8Heb6evOcL" data-theme="light" data-type="image" data-size="normal" data-tabindex="0"></div>
             <div class="checkbox top-buffer">
               <label><input type="checkbox" value="1" id="delete" name="delete"> Delete?</label>
             </div>

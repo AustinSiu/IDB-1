@@ -60,7 +60,7 @@ class Album_Instance extends React.Component {
                   </div>}
             </li>
             <li>Release Date: {album.Year}</li>
-            <li>Peak U.S. Chart Position: {album.US_Chart_Postion}</li>
+            <li>Peak U.S. Chart Position: {album.US_Chart_Position}</li>
             {/* <li>Label: {album.label}</li> */}
             <h3>Songs:</h3>
             {album.Songs.map(function(song) {

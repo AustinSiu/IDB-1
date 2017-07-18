@@ -339,9 +339,10 @@ def edit(_type, _id):
                     songgenre = Genre.query.filter(Genre.GID == gid).first()
                     song.SongGenre.append(songgenre)
                 print(song.ArtistID)
-                artist = Artists.query.filter(Artists.ArtistID == song.ArtistID).first()
-                artist.Songs.remove(song)
-                db.session.commit()
+                if song.ArtistID:                
+                    artist = Artists.query.filter(Artists.ArtistID == song.ArtistID).first()
+                    artist.Songs.remove(song)
+                    db.session.commit()
                 new_artist = Artists.query.filter(Artists.ArtistID == request.form['artist']).first()
                 new_artist.Songs.append(song)
                 db.session.commit()

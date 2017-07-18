@@ -32688,7 +32688,7 @@ exports = module.exports = __webpack_require__(325)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-color: #141414;\n  color: #848484;\n  font-family: \"Source Sans Pro\", \"Open Sans\", sans-serif;\n  font-size: 16px;\n  line-height: 24px;\n  background-image: url('http://i.imgur.com/NUgDkU3.jpg');\n}\n\n.container {\n  max-width: 1200px;\n  margin: 0 auto;\n}\n\na {\n  text-decoration: none;\n  color: #848484;\n}\n\nul {\n  padding: 0;\n}\n\nli {\n  list-style-type: none;\n}\n\n.img {\n  height: auto;\n  width: auto;\n  max-width: 200px;\n  max-height: 200px;\n}\n\n.options {\n  display: flex;\n  justify-content: center;\n}\n\n.options li {\n  margin: 10px;\n  font-weight: bold;\n  cursor: pointer;\n}\n\n.data-list {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n}\n\n.data-item {\n  margin: 20px;\n  width: 20%;\n  text-align: center;\n}\n\n.data-list-items {\n  margin-bottom: 7px;\n}\n\n.data-list-items :hover {\n  color: #fd5927;\n}\n\n.home-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.nav {\n  display: flex;\n}\n\n.nav li {\n  margin-right: 15px;\n}\n\n.nav li :hover{\n  font-weight: bold;\n  color: #fd5927;\n}\n\n.nav li a:hover{\n  background-color: transparent;\n}\n\n.nav li a.active{\n  background-color: transparent;\n  color: #fd5927;\n}\n\n.active {\n  font-weight: bold;\n  color: #fd5927;\n  background-color: transparent;\n}\n\n.title-header {\n  position: fixed;\n  margin-top: 150px;\n}\n\n.title-header .title {\n  font-weight: bold;\n  font-size: 65px;\n  color: white;\n  text-align: center;\n}\n\n.title-header .subtitle {\n  font-weight: bold;\n  font-size: 40px;\n  color: #fd5927;\n  text-align: center;\n  line-height: 100%;\n}\n\n.title-header .subdesc {\n  font-size: 25px;\n  color: #848484;\n  text-align: center;\n}\n\n.about {\nmargin-top: 50px;\n}\n\n.about .title {\n  font-weight: bold;\n  font-size: 40px;\n  color: white;\n}\n\n.about .subtitle {\n  font-weight: bold;\n  font-size: 25px;\n  color: white;\n  line-height: 100%;\n}\n\n.about .subdesc {\n  font-size: 15px;\n  color: #848484;\n  line-height: 120%;\n  margin-right: 300px;\n}\n\n.my-button {\n    display: flex;\n    justify-content: center;\n}\n\n.my-button .title {\n    font-size: 15px;\n    color: #ababab;\n    float: left;\n    padding: 8px 16px;\n    text-decoration: none;\n    transition: background-color .3s;\n    margin: 1px ;\n}\n\n.my-button li {\n    cursor: pointer;\n    color: #ababab;\n    float: left;\n    padding: 8px 16px;\n    text-decoration: none;\n    border: 1px solid #ddd;\n    margin: 1px ;\n}\n\n.my-button li.active {\n    background-color: ##ababab;\n    color: white;\n    border: 1px solid #4CAF50;\n}\n\n.my-button li:hover:not(.active),\n.my-button li.current-button {\n  color: #fd5927;\n  border: 1px solid #fd5927;\n}\n\n.center-pagination {\n   text-align: center;\n}\n.pagination li a {\n  background-color: #141414;\n  color: #ababab;\n}\n.pagination .disabled span,\n.pagination .disabled a,\n.pagination .disabled a:hover {\n  background-color: #141414;\n  color: #ababab;\n  cursor: default;\n}\n.pagination li a:focus,\n.pagination li a:hover,\n.pagination li span:focus,\n.pagination li span:hover {\n  background-color: #141414;\n  color: #fd5927;\n}\n.pagination .active a,\n.pagination .active a:focus,\n.pagination .active a:hover,\n.pagination .active span,\n.pagination .active span:focus,\n.pagination .active span:hover {\n  background-color: #141414;\n  color: #fd5927;\n  border-color: #ababab;\n}\n\n.inline {\n  display:inline;\n  margin-right:5px;\n}\n\n.context {\n  font-size: 12px;\n}\n.genre {\n  display: inline;\n}\n.editable {\n -moz-user-modify: read-write;\n -webkit-user-modify: read-write;\n}\n\na:hover {\n    color: #fd5927;\n}\n", ""]);
+exports.push([module.i, "body {\n  background-color: #141414;\n  color: #848484;\n  font-family: \"Source Sans Pro\", \"Open Sans\", sans-serif;\n  font-size: 16px;\n  line-height: 24px;\n  background-image: url('http://i.imgur.com/NUgDkU3.jpg');\n}\n\n.container {\n  max-width: 1200px;\n  margin: 0 auto;\n}\n\na {\n  text-decoration: none;\n  color: #848484;\n}\n\nul {\n  padding: 0;\n}\n\nli {\n  list-style-type: none;\n}\n\n.img {\n  height: auto;\n  width: auto;\n  max-width: 200px;\n  max-height: 200px;\n}\n\n.options {\n  display: flex;\n  justify-content: center;\n}\n\n.options li {\n  margin: 10px;\n  font-weight: bold;\n  cursor: pointer;\n}\n\n.data-list {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n}\n\n.data-item {\n  margin: 20px;\n  width: 20%;\n  text-align: center;\n}\n\n.data-list-items {\n  margin-bottom: 7px;\n}\n\n.data-list-items :hover {\n  color: #fd5927;\n}\n\n.home-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.nav {\n  display: flex;\n}\n\n.nav li {\n  margin-right: 15px;\n}\n\n.nav li :hover{\n  font-weight: bold;\n  color: #fd5927;\n}\n\n.nav li a:hover{\n  background-color: transparent;\n}\n\n.nav li a.active{\n  background-color: transparent;\n  color: #fd5927;\n}\n\n.active {\n  font-weight: bold;\n  color: #fd5927;\n  background-color: transparent;\n}\n\n.title-header {\n  position: fixed;\n  margin-top: 150px;\n}\n\n.title-header .title {\n  font-weight: bold;\n  font-size: 65px;\n  color: white;\n  text-align: center;\n}\n\n.title-header .subtitle {\n  font-weight: bold;\n  font-size: 40px;\n  color: #fd5927;\n  text-align: center;\n  line-height: 100%;\n}\n\n.title-header .subdesc {\n  font-size: 25px;\n  color: #848484;\n  text-align: center;\n}\n\n.about {\n  text-align: center;\n  margin-top: 50px;\n}\n\n.about .title {\n  font-weight: bold;\n  font-size: 40px;\n  color: white;\n}\n\n.about .subtitle {\n  font-weight: bold;\n  font-size: 25px;\n  color: white;\n  line-height: 100%;\n}\n\n.about .subdesc {\n  font-size: 15px;\n  color: #848484;\n  line-height: 120%;\n}\n\n.my-button {\n    display: flex;\n    justify-content: center;\n}\n\n.my-button .title {\n    font-size: 15px;\n    color: #ababab;\n    float: left;\n    padding: 8px 16px;\n    text-decoration: none;\n    transition: background-color .3s;\n    margin: 1px ;\n}\n\n.my-button li {\n    cursor: pointer;\n    color: #ababab;\n    float: left;\n    padding: 8px 16px;\n    text-decoration: none;\n    border: 1px solid #ddd;\n    margin: 1px ;\n}\n\n.my-button li.active {\n    background-color: ##ababab;\n    color: white;\n    border: 1px solid #4CAF50;\n}\n\n.my-button li:hover:not(.active),\n.my-button li.current-button {\n  color: #fd5927;\n  border: 1px solid #fd5927;\n}\n\n.center-pagination {\n   text-align: center;\n}\n.pagination li a {\n  background-color: #141414;\n  color: #ababab;\n}\n.pagination .disabled span,\n.pagination .disabled a,\n.pagination .disabled a:hover {\n  background-color: #141414;\n  color: #ababab;\n  cursor: default;\n}\n.pagination li a:focus,\n.pagination li a:hover,\n.pagination li span:focus,\n.pagination li span:hover {\n  background-color: #141414;\n  color: #fd5927;\n}\n.pagination .active a,\n.pagination .active a:focus,\n.pagination .active a:hover,\n.pagination .active span,\n.pagination .active span:focus,\n.pagination .active span:hover {\n  background-color: #141414;\n  color: #fd5927;\n  border-color: #ababab;\n}\n\n.inline {\n  display:inline;\n  margin-right:5px;\n}\n\n.context {\n  font-size: 12px;\n}\n.genre {\n  display: inline;\n}\n\n.devs {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n}\n\n.devs .dev {\n  margin: 20px;\n  width: 30%;\n  text-align: center;\n}\n\n.editable {\n -moz-user-modify: read-write;\n -webkit-user-modify: read-write;\n}\n\na:hover {\n    color: #fd5927;\n}\n", ""]);
 
 // exports
 
@@ -49772,174 +49772,163 @@ var About = function (_React$Component) {
             "Group Members: "
           ),
           React.createElement(
-            "h1",
-            null,
-            " ",
-            React.createElement("img", { src: "http://i.imgur.com/oq4FYOi.jpg" })
-          ),
-          React.createElement(
-            "h1",
-            null,
-            "Jonathan Peacher"
-          ),
-          React.createElement(
-            "p",
-            { className: "subdesc" },
-            "I am Jonathan! I am a CS major with one year left before I graduate (i.e. I'm a Senior now I guess.) I've started programming since around highschool and have loved it ever since."
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - Boostrap, AWS setup, Data Scraping"
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of commits: 41"
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of issues: 11"
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of unit tests: 29"
-          ),
-          React.createElement(
-            "h1",
-            null,
-            " ",
-            React.createElement("img", { src: "http://i.imgur.com/H2hdDdu.jpg" })
-          ),
-          React.createElement(
-            "h1",
-            null,
-            "Tika Lestari"
-          ),
-          React.createElement(
-            "p",
-            { className: "subdesc" },
-            "I\u2019m a third year Computer Science major at UT, minoring in Information Studies. My hobbies include playing the piano, guitar, ukulele, cooking, and petting cats."
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - Apiary, Data Scraping, Flask Templates, React"
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of commits: 28"
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of issues: 10"
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of unit tests: 0"
-          ),
-          React.createElement(
-            "h1",
-            null,
-            " ",
-            React.createElement("img", { src: "http://i.imgur.com/WmF6m4C.jpg" })
-          ),
-          React.createElement(
-            "h1",
-            null,
-            "Shida Shen"
-          ),
-          React.createElement(
-            "p",
-            { className: "subdesc" },
-            "I am Shida. I study and research physics. I am also an enthusiastic coder."
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - Apiary, Database, AWS"
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of commits: 59"
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of issues: 12"
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of unit tests: 0"
-          ),
-          React.createElement(
-            "h1",
-            null,
-            " ",
-            React.createElement("img", { src: "http://i.imgur.com/IZl4Vuq.jpg" })
-          ),
-          React.createElement(
-            "h1",
-            null,
-            "Sarah Baxter"
-          ),
-          React.createElement(
-            "p",
-            { className: "subdesc" },
-            "I'm a fourth year Computer Science major at UT. I also have a minor in Spanish and Business."
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of commits: 68"
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of issues: 10"
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of unit tests: 0"
-          ),
-          React.createElement(
-            "h1",
-            null,
-            " ",
-            React.createElement("img", { src: "http://i.imgur.com/LZgaDuw.jpg" })
-          ),
-          React.createElement(
-            "h1",
-            null,
-            "Mitch Chaiet (Auditor)"
-          ),
-          React.createElement(
-            "p",
-            { className: "subdesc" },
-            "University of Texas Junior with a strong passion for everything music, tech, business, and design. Free time spent studying business tactics, working on my startup ConcertCam, playing open mic nights, and building innovative musical hardware."
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of commits: 9"
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of issues: 2"
-          ),
-          React.createElement(
-            "li",
-            null,
-            " - no. of unit tests: 0"
+            "div",
+            { className: "devs" },
+            React.createElement(
+              "div",
+              { className: "dev" },
+              React.createElement(
+                "h1",
+                null,
+                " ",
+                React.createElement("img", { src: "http://i.imgur.com/oq4FYOi.jpg" })
+              ),
+              React.createElement(
+                "h1",
+                null,
+                "Jonathan Peacher"
+              ),
+              React.createElement(
+                "p",
+                { className: "subdesc" },
+                "I am Jonathan! I am a CS major with one year left before I graduate (i.e. I'm a Senior now I guess.) I've started programming since around highschool and have loved it ever since."
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - Boostrap, AWS setup, Data Scraping"
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - no. of commits: 41"
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - no. of issues: 11"
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - no. of unit tests: 29"
+              )
+            ),
+            React.createElement(
+              "div",
+              { className: "dev" },
+              React.createElement(
+                "h1",
+                null,
+                " ",
+                React.createElement("img", { src: "http://i.imgur.com/H2hdDdu.jpg" })
+              ),
+              React.createElement(
+                "h1",
+                null,
+                "Tika Lestari"
+              ),
+              React.createElement(
+                "p",
+                { className: "subdesc" },
+                "I\u2019m a third year Computer Science major at UT, minoring in Information Studies. My hobbies include playing the piano, guitar, ukulele, cooking, and petting cats."
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - Apiary, Data Scraping, Flask Templates, React"
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - no. of commits: 28"
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - no. of issues: 10"
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - no. of unit tests: 0"
+              )
+            ),
+            React.createElement(
+              "div",
+              { className: "dev" },
+              React.createElement(
+                "h1",
+                null,
+                " ",
+                React.createElement("img", { src: "http://i.imgur.com/WmF6m4C.jpg" })
+              ),
+              React.createElement(
+                "h1",
+                null,
+                "Shida Shen"
+              ),
+              React.createElement(
+                "p",
+                null,
+                "I am Shida. I study and research physics. I am also an enthusiastic coder."
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - Apiary, Database, AWS"
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - no. of commits: 59"
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - no. of issues: 12"
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - no. of unit tests: 0"
+              )
+            ),
+            React.createElement(
+              "div",
+              { className: "dev" },
+              React.createElement(
+                "h1",
+                null,
+                " ",
+                React.createElement("img", { src: "http://i.imgur.com/IZl4Vuq.jpg" })
+              ),
+              React.createElement(
+                "h1",
+                null,
+                "Sarah Baxter"
+              ),
+              React.createElement(
+                "p",
+                null,
+                "I'm a fourth year Computer Science major at UT. I also have a minor in Spanish and Business."
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - no. of commits: 68"
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - no. of issues: 10"
+              ),
+              React.createElement(
+                "li",
+                null,
+                " - no. of unit tests: 0"
+              )
+            )
           ),
           React.createElement(
             "h3",
@@ -50517,7 +50506,7 @@ var Album_Instance = function (_React$Component) {
               'li',
               null,
               'Peak U.S. Chart Position: ',
-              album.US_Chart_Postion
+              album.US_Chart_Position
             ),
             React.createElement(
               'h3',

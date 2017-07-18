@@ -78,7 +78,7 @@ class About extends React.Component {
                           <li> - Slack - A communication tool our team used to collaborate over the course of the project. Slack is also connected to the Github repository, which allowed us to monitor the commits of individual team members and the overall progress of the team.</li>
                           <li> - Trello - A project management application that our team used to list and categorize the necessary tasks for developing our web application. It allowed us to track the progress of our team over the course of the project.</li>
                           <li> - PlanitPoker - An online application that provides an interface for Agile project teams to estimate the complexity or completion time of projects. Our team used this application to break each phase of our project into tasks and estimate the time each task would require.</li>
-                  <li> - Report: <a href="https://utexas.box.com/s/pmn4fuzcsur6sklj2i09o1x4q6shitkh">https://utexas.box.com/s/kb82xlo3opqrp8ral25m8bmn8l68hp19</a></li>
+                  <li> - Report: <a href="https://utexas.box.com/s/3warvmwpyjmy0uye6oofzvtulz7vo8pn">https://utexas.box.com/s/kb82xlo3opqrp8ral25m8bmn8l68hp19</a></li>
               </div>
         </div>
     )

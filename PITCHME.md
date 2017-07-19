@@ -141,7 +141,7 @@ Unit Tests
 
 ---
 
-## OTHER Critique
+## leaguedb.me Critique
 
 #### What did they do well?
 
@@ -154,7 +154,7 @@ Unit Tests
 
 ---
 
-## OTHER Critique
+## leaguedb.me Critique
 
 #### What did we learn from their website?
 
@@ -163,7 +163,7 @@ Unit Tests
 
 ---
 
-## OTHER Critique
+## leaguedb.me Critique
 
 #### What can they do better?
 
@@ -174,7 +174,7 @@ Unit Tests
 
 ---
 
-## OTHER Critique
+## leaguedb.me Critique
 
 #### What puzzles us about their website?
 

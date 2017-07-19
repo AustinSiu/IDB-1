@@ -114,7 +114,7 @@ Unit Tests
 - Data Scraping
 - Database Management
 - SQLAlchemy
-- How to be more adaptive. i.e. learning new tools on our own.
+- How to be more adaptive. i.e. learning new tools on our own
 - React
 - AWS
 
@@ -135,9 +135,9 @@ Unit Tests
 
 #### What puzzles us?
 
-- How to combine multiple tools effectively.
-- Database Optimization.
-- Search Engine Optimization.
+- How to combine multiple tools effectively
+- Database Optimization
+- Search Engine Optimization
 
 ---
 
@@ -158,8 +158,8 @@ Unit Tests
 
 #### What did we learn from their website?
 
-- We learned we should have had better data sources.
-- We learned we should have had better image sources.
+- We learned we should have had better data sources
+- We learned we should have had better image sources
 
 ---
 
@@ -168,9 +168,9 @@ Unit Tests
 #### What can they do better?
 
 - Pagination
-- Some HTML is descriptions.
-- Can't figure out editing.
-- Nothing on the index page.
+- Some HTML is descriptions
+- Can't figure out editing
+- Nothing on the index page
 
 ---
 
@@ -178,8 +178,8 @@ Unit Tests
 
 #### What puzzles us about their website?
 
-- Website doesn't support refreshing.
-- Website doesn't support back/forward history.
+- Website doesn't support refreshing
+- Website doesn't support back/forward history
 - Why is there no URL routing?
 
 ---

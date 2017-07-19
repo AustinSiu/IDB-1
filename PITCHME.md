@@ -25,11 +25,11 @@ GitPitch
 
 ## Tika Lestari
 
+React
+<br>
 Apiary
 <br>
 Flask Templates
-<br>
-React
 <br>
 Front-end Filtering
 <br>
@@ -57,7 +57,9 @@ Back-end Searching
 <br>
 Back-end Editing
 <br>
-ULM Diagram/Models
+UML Diagram/Models
+<br>
+Database
 <br>
 AWS
 
@@ -65,10 +67,9 @@ AWS
 
 ## Sarah Baxter
 
-
-Flask Templates
-<br>
 React
+<br>
+Flask Templates
 <br>
 Front-end Filtering
 <br>
@@ -86,7 +87,9 @@ Navigate
 <br>
 Search
 <br>
-Edit/Adding
+Edit
+<br>
+Adding
 <br>
 Unit Tests
 
@@ -96,7 +99,11 @@ Unit Tests
 
 #### What did we do well?
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+- Filtering
+- Google reCAPTCHA
+- Editing
+- Adding
+- Serching
 
 ---
 
@@ -104,7 +111,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 #### What did we learn?
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+- Data Scraping
+- Database Management
+- SQLAlchemy
+- How to be more adaptive. i.e. learning new tools on our own.
+- React
+- AWS
 
 ---
 
@@ -112,7 +124,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 #### What can we do better?
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+- Appearance
+- Not Mobile Friendly
+- Better Data Sources
+- Better Error Messages
 
 ---
 
@@ -120,39 +135,52 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 #### What puzzles us?
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+- How to combine multiple tools effectively.
+- Database Optimization.
+- Search Engine Optimization.
 
 ---
 
-## OTHER Critique
+## leaguedb.me Critique
 
 #### What did they do well?
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+- Instant Search 
+- Robust Data
+- Good Images
+- Clean Layout
+- Favicon
+- Mobile Friendly
 
 ---
 
-## OTHER Critique
+## leaguedb.me Critique
 
 #### What did we learn from their website?
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+- We learned we should have had better data sources.
+- We learned we should have had better image sources.
 
 ---
 
-## OTHER Critique
+## leaguedb.me Critique
 
 #### What can they do better?
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+- Pagination
+- Some HTML is descriptions.
+- Can't figure out editing.
+- Nothing on the index page.
 
 ---
 
-## OTHER Critique
+## leaguedb.me Critique
 
 #### What puzzles us about their website?
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+- Website doesn't support refreshing.
+- Website doesn't support back/forward history.
+- Why is there no URL routing?
 
 ---
 

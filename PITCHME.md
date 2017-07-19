@@ -25,11 +25,11 @@ GitPitch
 
 ## Tika Lestari
 
+React
+<br>
 Apiary
 <br>
 Flask Templates
-<br>
-React
 <br>
 Front-end Filtering
 <br>
@@ -65,10 +65,9 @@ AWS
 
 ## Sarah Baxter
 
-
-Flask Templates
-<br>
 React
+<br>
+Flask Templates
 <br>
 Front-end Filtering
 <br>
@@ -86,7 +85,9 @@ Navigate
 <br>
 Search
 <br>
-Edit/Adding
+Edit
+<br>
+Adding
 <br>
 Unit Tests
 

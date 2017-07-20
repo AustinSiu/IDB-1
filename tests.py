@@ -50,7 +50,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['Image'],
-                         'https://lastfm-img2.akamaized.net/i/u/8b238225c5f341dfc10a1695a9cdf00c.png')
+                         'https://lastfm-img2.akamaized.net/i/u/9c75c892aaa828633077a3b2ef0b65ad.png')
 
     def test_get_artists_genres(self):
         """test_get_artists_genres."""
@@ -63,7 +63,7 @@ class TestAPI (TestCase):
         # self.assertEqual(response.status_code, 200)
         genres = response.json()['objects'][0]['ArtistGenre']
         genres = [g['Name'] for g in genres]
-        self.assertEqual(genres, ['classic rock', 'rock', 'hard rock'])
+        self.assertEqual(genres, ['pop', 'dance', 'female vocalists'])
 
     def test_get_artists_albums(self):
         """test_get_artists_albums."""
@@ -76,7 +76,7 @@ class TestAPI (TestCase):
         # self.assertEqual(response.status_code, 200)
         albums = response.json()['objects'][0]['Albums']
         albums = [a['Title'] for a in albums]
-        self.assertEqual(albums, ['Led Zeppelin IV', 'Led Zeppelin', 'Led Zeppelin II'])
+        self.assertEqual(albums, ['In the Zone', 'Blackout', 'Greatest Hits: My Prerogative'])
 
     def test_get_artists_top_songs(self):
         """test_get_artists_top_songs."""
@@ -89,7 +89,7 @@ class TestAPI (TestCase):
         # self.assertEqual(response.status_code, 200)
         songs = response.json()['objects'][0]['TopSongs']
         songs = [s['Name'] for s in songs]
-        self.assertEqual(songs, ['Immigrant Song', 'Stairway to Heaven', 'Whole Lotta Love'])
+        self.assertEqual(songs, ['Womanizer', '...Baby One More Time', 'Toxic'])
 
     def test_get_start_time(self):
         """test_get_start_time."""
@@ -100,7 +100,7 @@ class TestAPI (TestCase):
                                 headers=self.headers)
 
         # self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()['objects'][0]['Start_Time'], 1968)
+        self.assertEqual(response.json()['objects'][0]['Start_Time'], 1992)
 
     def test_get_end_time(self):
         """test_get_end_time."""
@@ -111,7 +111,7 @@ class TestAPI (TestCase):
                                 headers=self.headers)
 
         # self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()['objects'][0]['End_Time'], 1980)
+        self.assertEqual(response.json()['objects'][0]['End_Time'], 2017)
 
     def test_get_tour(self):
         """test_get_tour."""
@@ -122,7 +122,7 @@ class TestAPI (TestCase):
                                 headers=self.headers)
 
         # self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()['objects'][0]['Tours'][0]['Name'], "Scandinavia 1968")
+        self.assertEqual(response.json()['objects'][0]['Tours'][0]['Name'], "The Circus Starring Britney Spears")
 
     def test_get_artist_error(self):
         """test_get_artist_error."""
@@ -172,7 +172,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['Image'],
-                         'https://lastfm-img2.akamaized.net/i/u/300x300/ead294d0d6a74ad1b1df311ded396cbf.png')
+                         'https://lastfm-img2.akamaized.net/i/u/300x300/938222f5dd7c4af1818c353234bcd9a7.png')
 
     def test_get_song_artist(self):
         """test_get_song_artist."""
@@ -184,7 +184,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['artist']['Name'],
-                         'Taylor Swift')
+                         'Daft Punk')
 
     def test_get_song_release_date(self):
         """test_get_song_release_date."""
@@ -196,7 +196,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['Creation_Date'],
-                         '2010-10-10')
+                         '2009-03-29')
 
     def test_get_song_runtime(self):
         """test_get_song_runtime."""
@@ -207,7 +207,7 @@ class TestAPI (TestCase):
                                 headers=self.headers)
 
         # self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()['objects'][0]['Run_Time'], 241)
+        self.assertEqual(response.json()['objects'][0]['Run_Time'], 223)
 
     def test_get_song_genre(self):
         """test_get_song_genre."""
@@ -219,7 +219,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['SongGenre'][0]['Name'],
-                         'country')
+                         'electronic')
 
     def test_get_chart_pos(self):
         """test_get_chart_pos."""
@@ -231,7 +231,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['Chart_Position'],
-                         71)
+                         91)
 
     def test_get_song_error(self):
         """test_get_song_error."""
@@ -281,7 +281,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['Image'],
-                         'https://lastfm-img2.akamaized.net/i/u/43871b6b40f14f4d89360b68d9084802.png')
+                         'https://lastfm-img2.akamaized.net/i/u/53442bc27a314142a02d2df018b4161e.png')
 
     def test_get_album_artist(self):
         """test_get_album_artist."""
@@ -293,7 +293,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['artist']['Name'],
-                         'Queen')
+                         'The Smiths')
 
     def test_get_album_release_date(self):
         """test_get_album_release_date."""
@@ -305,7 +305,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['Year'],
-                         '2008-11-29')
+                         '2010-05-05')
 
     def test_get_album_songs(self):
         """test_get_album_songs."""
@@ -318,7 +318,7 @@ class TestAPI (TestCase):
         # self.assertEqual(response.status_code, 200)
         songs = response.json()['objects'][0]['Songs']
         songs = [s['Name'] for s in songs]
-        self.assertEqual(songs, [u'Sweet Lady', 'God Save the Queen', 'Lazing on a Sunday Afternoon', "'39", 'Bohemian Rhapsody', 'Love of My Life', "I'm in Love With My Car", 'Seaside Rendezvous', "The Prophet's Song", 'Good Company'])
+        self.assertEqual(songs, ['There Is a Light That Never Goes Out'])
 
     def test_get_album_chart_pose(self):
         """test_get_album_chart_pose."""
@@ -329,8 +329,8 @@ class TestAPI (TestCase):
                                 headers=self.headers)
 
         # self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()['objects'][0]['US_Chart_Postion'],
-                         71)
+        self.assertEqual(response.json()['objects'][0]['US_Chart_Position'],
+                         8)
 
     def test_get_album_error(self):
         """test_get_album_error."""
@@ -380,7 +380,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['Image'],
-                         'https://upload.wikimedia.org/wikipedia/commons/5/54/System_Of_A_Down_en_Chile_2011.jpg')
+                         'https://upload.wikimedia.org/wikipedia/en/c/c6/HumanzTour2017.jpg')
 
     def test_get_tour_artist(self):
         """test_get_tour_artist."""
@@ -392,7 +392,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['artist']['Name'],
-                         'System of a Down')
+                         'Gorillaz')
 
     def test_get_tour_dates(self):
         """test_get_tour_dates."""
@@ -404,7 +404,7 @@ class TestAPI (TestCase):
 
         # self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['objects'][0]['tDate'],
-                         'May 10, 2011 - October 7, 2011')
+                         '8 July 2017 - 16 December 2017')
 
     def test_get_tour_songs(self):
         """test_get_tour_songs."""
@@ -417,7 +417,7 @@ class TestAPI (TestCase):
         # self.assertEqual(response.status_code, 200)
         songs = response.json()['objects'][0]['TourLineUp']
         songs = [s['Name'] for s in songs]
-        self.assertEqual(songs, ['Lonely Day', 'Toxicity'])
+        self.assertEqual(songs, ['Clint Eastwood', 'DARE', 'Feel Good Inc.'])
 
     def test_get_tour_error(self):
         """test_get_tour_error."""

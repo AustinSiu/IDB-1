@@ -103,7 +103,7 @@ Unit Tests
 - Google reCAPTCHA
 - Editing
 - Adding
-- Serching
+- Searching
 
 ---
 
@@ -168,7 +168,7 @@ Unit Tests
 #### What can they do better?
 
 - Pagination
-- Some HTML is descriptions
+- Some HTML in descriptions
 - Can't figure out editing
 - Nothing on the index page
 
